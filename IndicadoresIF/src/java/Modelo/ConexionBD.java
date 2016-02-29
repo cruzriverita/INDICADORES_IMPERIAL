@@ -17,19 +17,17 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- *
- * @author jhernandez
- */
 public class ConexionBD {
 
     String driver = "com.mysql.jdbc.Driver";
-    String connectString = "jdbc:mysql://192.168.1.107:3306/BD_INDICES";
+    String server = "192.168.1.107";
+    String BaseDatos="BD_INDICES";
+    String connectString = "jdbc:mysql://"+server+"/"+BaseDatos;
     String user = "root";
     String pass = "root";
 
     public Statement conectar() {
-        Connection conn = null;
+        Connection conn;
         Statement st = null;
         try {
             DriverManager.registerDriver(new com.mysql.jdbc.Driver());
@@ -50,26 +48,25 @@ public class ConexionBD {
 
     //select a las tablas 
     public <T> List<Map<String, Object>> select(String query) {
-        List<Map<String, Object>> resultList = new ArrayList<Map<String, Object>>();
+        List<Map<String, Object>> resultList = new ArrayList<>();
         ConexionBD conectar = new ConexionBD();
         Statement st = conectar.conectar();
-        ResultSet rs = null;
+        ResultSet rs;
         try {
             rs = st.executeQuery(query);
-            Map<String, Object> row = null;
+            Map<String, Object> row ;
 
             ResultSetMetaData metaData = rs.getMetaData();
             Integer columnCount = metaData.getColumnCount();
 
             while (rs.next()) {
-                row = new HashMap<String, Object>();
+                row = new HashMap<>();
                 for (int i = 1; i <= columnCount; i++) {
                     row.put(metaData.getColumnName(i), rs.getObject(i));
                 }
                 resultList.add(row);
             }
         } catch (Exception e) {
-            e.printStackTrace();
             out.println(e.getMessage());
         }
         return resultList;

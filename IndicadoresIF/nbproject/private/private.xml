@@ -3,9 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/rcruz/Documents/NetBeansProjects/IndicadoresIF/web/index.html</file>
-            <file>file:/C:/Users/rcruz/Documents/NetBeansProjects/IndicadoresIF/src/java/Controladores/I_000_Produccion_Por_Planta_Mes.java</file>
-            <file>file:/C:/Users/rcruz/Documents/NetBeansProjects/IndicadoresIF/src/java/Modelo/ConexionBD.java</file>
+            <file>file:/C:/Users/rcruz/Documents/GitHub/INDICADORES/INDICADORES_IMPERIAL/IndicadoresIF/web/Js/I_000_Produccion_Por_Planta.js</file>
+            <file>file:/C:/Users/rcruz/Documents/GitHub/INDICADORES/INDICADORES_IMPERIAL/IndicadoresIF/web/Js/FuncionesGlobales.js</file>
+            <file>file:/C:/Users/rcruz/Documents/GitHub/INDICADORES/INDICADORES_IMPERIAL/IndicadoresIF/web/I_000_Produccion_Por_Planta_Commodity.jsp</file>
+            <file>file:/C:/Users/rcruz/Documents/GitHub/INDICADORES/INDICADORES_IMPERIAL/IndicadoresIF/web/I_000_Produccion_Por_Planta_Mes.jsp</file>
         </group>
     </open-files>
 </project-private>
