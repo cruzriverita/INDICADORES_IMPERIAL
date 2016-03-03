@@ -1,0 +1,26 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 1/03/2016, 04:35:48 PM
+    Author     : rcruz
+*/
+
+body {
+	margin: 0;
+	padding: 0;
+	background: #243342;
+}
+
+#pushobj {
+	position: absolute;
+	top: 0px;
+	left: 300px;
+	color: #fff;
+	background: #243342;
+	font-family: 'Open Sans Condensed', sans-serif;
+	font-size: 2em;
+	z-index: 1;
+}

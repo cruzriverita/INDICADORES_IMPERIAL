@@ -21,7 +21,7 @@ public class ConexionBD {
 
     String driver = "com.mysql.jdbc.Driver";
     String server = "192.168.1.107";
-    String BaseDatos="BD_INDICES";
+    String BaseDatos="INDICADORES";
     String connectString = "jdbc:mysql://"+server+"/"+BaseDatos;
     String user = "root";
     String pass = "root";

@@ -19,12 +19,12 @@ public class ConsultasBD {
    
     public static String I_000_Produccion_Por_Planta_Mes_01 (String anio, String mes)
     { 
-        return "select PLANTA,sum(VALOR) as VALOR FROM ProduccionEncabezado  where anio='"+anio+"' and mes='"+mes+"' group by PLANTA";
+        return "select PLANTA,sum(VALOR) as VALOR FROM ProduccionPlantaMes  where anio='"+anio+"' and mes='"+mes+"' group by PLANTA";
     }
     
     public static String I_000_Produccion_Por_Planta_Mes_02 (String planta,String anio, String mes)
     {
-        return "select COMMODITY_CODE,sum(valor) as VALOR From ProduccionPlantaDetalle\n"
+        return "select COMMODITY_CODE,sum(valor) as VALOR From ProduccionPlantaCommodity\n"
                 + "where mes='" + mes + "'\n"
                 + "and anio ='" + anio + "'\n"
                 + "and planta='" + planta + "'\n"
