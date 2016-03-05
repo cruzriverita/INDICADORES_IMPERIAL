@@ -19,11 +19,14 @@ function DibujarChartPrincipal() {
                 success: function (data) {
                     queryObject = eval('(' + JSON.stringify(data) + ')');
                     queryObjectLen = queryObject.ListaValores.length;
-
-
                 },
                 error: function () {
-                    alert('Error al procesar Datos');
+
+                    alert('No existen datos para los parametros ingresados');
+                    document.getElementById("mes").value = MesActual();
+                    document.getElementById("anio").value = AnioActual();
+                    location.reload();
+
                 },
                 async: false
             });
@@ -48,7 +51,7 @@ function DibujarChartPrincipal() {
         ]);
     }
     var options = {
-        title: 'Produccion Por Planta',
+        title: 'Produccion Por Planta Mes De ' + ConvertirMes($("#mes").val()),
         hAxis: {title: 'Year', titleTextStyle: {color: 'Black'}},
         is3D: true
     };
@@ -114,6 +117,7 @@ function DibujarChartDetalle() {
                     chart.draw(data, options);
                 },
                 error: function (xhr, type) {
+                                  
                     alert('server error occoured ' + xhr.toString() + ' '+ type.toString());
                 },
                 async: false

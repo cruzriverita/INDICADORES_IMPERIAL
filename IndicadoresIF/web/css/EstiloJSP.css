@@ -9,38 +9,30 @@ and open the template in the editor.
 */
 
 .html{
-    
     height: 100%;
 }
 .body{
     height: 100%;
     width: 100%
 }
-
 .divprincipal {
-    //line-height:30px;
     background-color:#ffffff;
     height:95%;
-    width:70%;
+    width:65%;
     float: right;
     border: 5px solid black;
 }
 
 .divimagen {
-
     background-color:#ffffff;
     height:80%;
-    width:99.5%;
-    float:left;
-   //border: 5px solid black;
-    //padding:5px;	      
+    width:90%;
+    float:right;
+
 }
 .MenuDesplegable {
-
-    background-color:#ff0000;
+    background-color:#ffffff;
     height:100%;
     width:25%;
-    float:left;
-
-       
+    float:left;       
 }

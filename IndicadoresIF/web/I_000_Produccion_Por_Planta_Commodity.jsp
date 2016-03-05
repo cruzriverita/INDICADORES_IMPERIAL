@@ -10,13 +10,13 @@
 <!DOCTYPE html>
 <html class="html">
 
-    
-        <%
-            //Se recogen los parametros que envia el jsp.
-            String anio = request.getParameter("anio");
-            String mes = request.getParameter("mes");
-            String planta = request.getParameter("planta");
-        %>
+
+    <%
+        //Se recogen los parametros que envia el jsp.
+        String anio = request.getParameter("anio");
+        String mes = request.getParameter("mes");
+        String planta = request.getParameter("planta");
+    %>
 
     <!-----------------------------------------Archivos y Fuentes JavaScript--------------------------------------> 
     <script type="text/javascript" src="Js/FuncionesGlobales.js"></script>
@@ -56,28 +56,28 @@
     <link rel="stylesheet" href="css/EstiloJSP.css">
     <!--------------------------------------------------------------------------------------------------------------> 
     <title>Produccion Planta <%=planta%></title>
-    
+
 </head>
 
-    <body onload="DibujarChartDetalle();" class="body">
+<body onload="DibujarChartDetalle();" class="body">
 
-        <div id="DivMenu" class="MenuDesplegable">
-            <div id="menu"> </div>
-        </div>
+    <div id="DivMenu" class="MenuDesplegable">
+        <div id="menu"> </div>
+    </div>
 
-        <div id="DivPrincipal" class="divprincipal">
-            <form method="get" action="I_000_Produccion_Por_Planta_Commodity_XLS">
-                <%--Campos escondidos, utilizados para enviar los valores al servlet que 
-                    genera el excel.--%>              
-                <input type="text" id="anio" name="anio" onkeypress="" value="<%=anio%>" hidden="true" />
-                <input type="text" id="mes" name="mes" onkeypress="" value="<%=mes%>" hidden="true" />
-                <input type="text" id="anio" name="planta" onkeypress="" value="<%=planta%>" hidden="true" />             
-                <INPUT TYPE="SUBMIT" value="Descargar">        
-            </form>
-                
-            <div id="piechart_detalle" class="divimagen"></div>
-        
-        </div>
+    <div id="DivPrincipal" class="divprincipal">
+        <form method="get" action="I_000_Produccion_Por_Planta_Commodity_XLS">
+            <%--Campos escondidos, utilizados para enviar los valores al servlet que 
+                genera el excel.--%>              
+            <input type="text" id="anio" name="anio" onkeypress="" value="<%=anio%>" hidden="true" />
+            <input type="text" id="mes" name="mes" onkeypress="" value="<%=mes%>" hidden="true" />
+            <input type="text" id="anio" name="planta" onkeypress="" value="<%=planta%>" hidden="true" />             
+            <INPUT TYPE="SUBMIT" value="Descargar">        
+        </form>
 
-    </body>
+        <div id="piechart_detalle" class="divimagen"></div>
+
+    </div>
+
+</body>
 </html>

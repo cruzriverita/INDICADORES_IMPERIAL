@@ -14,7 +14,7 @@ $(document).ready(function () {
         wrapperClass: 'mlpm_w',
         menuInactiveClass: 'mlpm_inactive',
         menuWidth: '100%',
-		menuHeight: '100%',
+        menuHeight: '100%',
         preventItemClick: false //Habilitar el click en el menu.
     });
 });
@@ -49,8 +49,9 @@ var arrMenu = [
                                 link: '#'
                             },
                             {
-                                name: 'Costo Energia',
-                                link: '#'
+                                name: 'Costo Energia (Q)',
+                                link: 'I_003_Costo_Energia_Q.jsp'
+
                             },
                             {
                                 name: 'Costo MRS',
@@ -352,7 +353,7 @@ var arrMenu = [
                                 ]
 
                             }
-                          
+
 
 
                         ]
@@ -386,73 +387,73 @@ var arrMenu = [
                     }
                 ]
             },
-              {
-                                name: 'TRANSPORTE',
-                                icon: 'fa fa-shopping-cart',
-                                link: '#',
-                                items: [
-                                    {
-                                        title: 'TRANSPORTE',
-                                        icon: 'fa fa-shopping-cart',
-                                        items: [
-                                            {
-                                                name: 'Kilometros por galon',
-                                                link: '#'
-
-                                            },
-                                            {
-                                                name: 'Mano de obra pagada',
-                                                link: '#'
-
-                                            },
-                                            {
-                                                name: 'Costo por kilos transportados',
-                                                link: '#'
-
-                                            },
-                                            {
-                                                name: 'Costo por docenas transportadas',
-                                                link: '#'
-
-                                            },
-                                            {
-                                                name: 'Costo por viaje',
-                                                link: '#'
-
-                                            }
-
-
-
-                                        ]
-                                    }
-                                ]
+            {
+                name: 'TRANSPORTE',
+                icon: 'fa fa-shopping-cart',
+                link: '#',
+                items: [
+                    {
+                        title: 'TRANSPORTE',
+                        icon: 'fa fa-shopping-cart',
+                        items: [
+                            {
+                                name: 'Kilometros por galon',
+                                link: '#'
 
                             },
                             {
-                                name: 'SEGURIDAD INDUSTRIAL',
-                                icon: 'fa fa-shopping-cart',
-                                link: '#',
-                                items: [
-                                    {
-                                        title: 'SEGURIDAD INDUSTRIAL',
-                                        icon: 'fa fa-shopping-cart',
-                                        items: [
-                                            {
-                                                name: 'Incidentes Por Mes',
-                                                link: '#'
+                                name: 'Mano de obra pagada',
+                                link: '#'
 
-                                            },
-                                            {
-                                                name: 'Tiempo desde el ultimo incidente',
-                                                link: '#'
+                            },
+                            {
+                                name: 'Costo por kilos transportados',
+                                link: '#'
 
-                                            }
-                                        ]
-                                    }
-                                ]
+                            },
+                            {
+                                name: 'Costo por docenas transportadas',
+                                link: '#'
+
+                            },
+                            {
+                                name: 'Costo por viaje',
+                                link: '#'
 
                             }
-                            
+
+
+
+                        ]
+                    }
+                ]
+
+            },
+            {
+                name: 'SEGURIDAD INDUSTRIAL',
+                icon: 'fa fa-shopping-cart',
+                link: '#',
+                items: [
+                    {
+                        title: 'SEGURIDAD INDUSTRIAL',
+                        icon: 'fa fa-shopping-cart',
+                        items: [
+                            {
+                                name: 'Incidentes Por Mes',
+                                link: '#'
+
+                            },
+                            {
+                                name: 'Tiempo desde el ultimo incidente',
+                                link: '#'
+
+                            }
+                        ]
+                    }
+                ]
+
+            }
+
         ]
     }
 ];

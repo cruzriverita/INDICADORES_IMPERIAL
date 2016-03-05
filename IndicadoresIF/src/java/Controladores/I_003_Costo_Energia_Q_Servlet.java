@@ -26,10 +26,11 @@ import org.json.JSONObject;
  *
  * @author rcruz
  */
-public class I_000_Produccion_Por_Planta_Mes_Servlet extends HttpServlet {
+public class I_003_Costo_Energia_Q_Servlet extends HttpServlet {
 
-    
+    String anio, mes, opcion;
     Modelo.ConexionBD conexion = new Modelo.ConexionBD();
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -47,7 +48,7 @@ public class I_000_Produccion_Por_Planta_Mes_Servlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet I_000_Produccion_Por_Planta_Mes</title>");            
+            out.println("<title>Servlet I_000_Produccion_Por_Planta_Mes</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet I_000_Produccion_Por_Planta_Mes at " + request.getContextPath() + "</h1>");
@@ -83,52 +84,57 @@ public class I_000_Produccion_Por_Planta_Mes_Servlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        String anio,mes;
         List ListaValores = new LinkedList();
         JSONObject responseObj = new JSONObject();
-       
+
         JSONObject Obj = null;
 
         //Recuperar valores enviados desde el javascript.
-         anio = request.getParameter("aniojs");
-         mes = request.getParameter("mesjs");
-              
-        String sql=ConsultasBD.I_000_Produccion_Por_Planta_Mes_01(anio, mes);
-         
-        
+        anio = request.getParameter("aniojs");
+        opcion = request.getParameter("opcion");
+        String sql = "";
+
+        //Se evalua si el indicador es por costo monetario o por cantidad de KWH
+        if (opcion.equals("money")) {
+            sql = ConsultasBD.I_003_Costo_Energia_Q(anio);
+        } else {
+            sql = ConsultasBD.I_003_Costo_Energia_KWH(anio);
+        }
+
         List<Map<String, Object>> resultList = new ArrayList<>();
-        resultList=conexion.select(sql);
-      
-        Iterator<Map<String,Object>> iterador = resultList.iterator();
-        while(iterador.hasNext()){
-             Map<String,Object> mapa = iterador.next();
-           
-             String Nplanta =(String) mapa.get("PLANTA");
-             Float Cvalor = Float.parseFloat(mapa.get("VALOR").toString()); //.parseInt( mapa.get("VALOR").toString());
-            
-              Obj = new JSONObject();
-           
+        resultList = conexion.select(sql);
+
+        Iterator<Map<String, Object>> iterador = resultList.iterator();
+        while (iterador.hasNext()) {
+            Map<String, Object> mapa = iterador.next();
+
+            //Columnas obtenidas del query
+            String Nplanta = (String) mapa.get("Planta");
+            Float Cvalor = Float.parseFloat(mapa.get("1").toString());
+            Float Cvalor2 = Float.parseFloat(mapa.get("2").toString());
+            Float Cvalor3 = Float.parseFloat(mapa.get("3").toString());
+            Obj = new JSONObject();
+
             try {
+
                 Obj.put("planta", Nplanta);
-                Obj.put("valor", Cvalor);
-              
-                 ListaValores.add(Obj);
-                  responseObj.put("ListaValores", ListaValores);
+                Obj.put("valor1", Cvalor);
+                Obj.put("valor2", Cvalor2);
+                Obj.put("valor3", Cvalor3);
+
+                ListaValores.add(Obj);
+                responseObj.put("ListaValores", ListaValores);
             } catch (JSONException ex) {
-                Logger.getLogger(I_000_Produccion_Por_Planta_Mes_Servlet.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(I_003_Costo_Energia_Q_Servlet.class.getName()).log(Level.SEVERE, null, ex);
             }
+
         }
- 
-   
-        if (Obj==null){
-         response.getWriter().write("");
-        }
-        
-        else{
-        response.getWriter().write(responseObj.toString());
+        if (Obj == null) {
+            response.getWriter().write("");
+        } else {
+            response.getWriter().write(responseObj.toString());
         }
     }
-
     /**
      * Returns a short description of the servlet.
      *
@@ -138,5 +144,4 @@ public class I_000_Produccion_Por_Planta_Mes_Servlet extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
 }
