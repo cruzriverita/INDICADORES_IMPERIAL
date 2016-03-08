@@ -32,12 +32,12 @@ var arrMenu = [
             /*---------------------------------------PRODUCCION-------------------------------------*/
             {
                 name: 'Produccion',
-                icon: 'fa fa-adjust',
+                icon: 'fa fa-gears',
                 link: '#',
                 items: [
                     {/*TITULO HIJO*/
                         title: 'Produccion',
-                        icon: 'fa fa-adjust',
+                        icon: 'fa fa-gears',
                         items: [
                             /*-----------------------------------NIETOS---------------------------*/
                             {
@@ -49,7 +49,7 @@ var arrMenu = [
                                 link: '#'
                             },
                             {
-                                name: 'Costo Energia (Q)',
+                                name: 'Costo Energia',
                                 link: 'I_003_Costo_Energia_Q.jsp'
 
                             },
@@ -105,7 +105,7 @@ var arrMenu = [
             /*---------------------------------------CALIDAD-------------------------------------*/
             {
                 name: 'Calidad',
-                icon: 'fa fa-calendar-check-o',
+                icon: 'fa fa-pie-chart',
                 link: '#',
                 items: [
                     {
@@ -144,14 +144,15 @@ var arrMenu = [
                     }
                 ]
             },
+            /*-------------------------------------------RRHH-----------------------------------*/
             {
                 name: 'RRHH',
-                icon: 'fa fa-shopping-cart',
+                icon: 'fa fa-group',
                 link: '#',
                 items: [
                     {
                         title: 'RRHH',
-                        icon: 'fa fa-shopping-cart',
+                        icon: 'fa fa-group',
                         items: [
                             {
                                 name: 'Rotacion De Personal',
@@ -173,6 +174,7 @@ var arrMenu = [
                     }
                 ]
             },
+              /*-------------------------------------------VENTAS-----------------------------------*/
             {
                 name: 'VENTAS',
                 icon: 'fa fa-shopping-cart',
@@ -212,21 +214,21 @@ var arrMenu = [
             },
             {
                 name: 'FINANCIEROS',
-                icon: 'fa fa-shopping-cart',
+                icon: 'fa fa-area-chart',
                 link: '#',
                 items: [
                     {
                         title: 'FINANCIEROS',
-                        icon: 'fa fa-shopping-cart',
+                        icon: 'fa fa-area-chart',
                         items: [
                             {
                                 name: 'Indices De Liquidez',
-                                icon: 'fa fa-shopping-cart',
+                                icon: 'fa fa-line-chart',
                                 link: '#',
                                 items: [
                                     {
                                         title: 'Indices De Liquidez',
-                                        icon: 'fa fa-shopping-cart',
+                                        icon: 'fa fa-line-chart',
                                         items: [
                                             {
                                                 name: 'Liquidez Corriente',
@@ -248,12 +250,12 @@ var arrMenu = [
                             },
                             {
                                 name: 'Indices De Endeudamiento',
-                                icon: 'fa fa-shopping-cart',
+                                icon: 'fa fa-line-chart',
                                 link: '#',
                                 items: [
                                     {
                                         title: 'Indices De Endeudamiento',
-                                        icon: 'fa fa-shopping-cart',
+                                        icon: 'fa fa-line-chart',
                                         items: [
                                             {
                                                 name: 'Apalancamiento Financiero',
@@ -275,12 +277,12 @@ var arrMenu = [
                             },
                             {
                                 name: 'Indices De Rentabilidad',
-                                icon: 'fa fa-shopping-cart',
+                                icon: 'fa fa-line-chart',
                                 link: '#',
                                 items: [
                                     {
                                         title: 'Indices De Rentabilidad',
-                                        icon: 'fa fa-shopping-cart',
+                                        icon: 'fa fa-line-chart',
                                         items: [
                                             {
                                                 name: 'Rentabilidad Neta del Activo',
@@ -312,12 +314,12 @@ var arrMenu = [
                             },
                             {
                                 name: 'Indices De Gestion',
-                                icon: 'fa fa-shopping-cart',
+                                icon: 'fa fa-line-chart',
                                 link: '#',
                                 items: [
                                     {
                                         title: 'Indices De Gestion',
-                                        icon: 'fa fa-shopping-cart',
+                                        icon: 'fa fa-line-chart',
                                         items: [
                                             {
                                                 name: 'Impacto de Gastos Administrativos y Ventas',
@@ -336,12 +338,12 @@ var arrMenu = [
                             },
                             {
                                 name: 'Monto pagado por multas',
-                                icon: 'fa fa-shopping-cart',
+                                icon: 'fa fa-line-chart',
                                 link: '#',
                                 items: [
                                     {
                                         title: 'Monto pagado por multas',
-                                        icon: 'fa fa-shopping-cart',
+                                        icon: 'fa fa-line-chart',
                                         items: [
                                             {
                                                 name: 'Total pagado por multas y retificaciones',
@@ -362,12 +364,12 @@ var arrMenu = [
             },
             {
                 name: 'INVENTARIOS',
-                icon: 'fa fa-shopping-cart',
+                icon: 'fa fa-file-pdf-o',
                 link: '#',
                 items: [
                     {
                         title: 'INVENTARIOS',
-                        icon: 'fa fa-shopping-cart',
+                        icon: 'fa fa-file-pdf-o',
                         items: [
                             {
                                 name: 'Rotacion De Inventarios',
@@ -389,12 +391,12 @@ var arrMenu = [
             },
             {
                 name: 'TRANSPORTE',
-                icon: 'fa fa-shopping-cart',
+                icon: 'fa fa-truck',
                 link: '#',
                 items: [
                     {
                         title: 'TRANSPORTE',
-                        icon: 'fa fa-shopping-cart',
+                        icon: 'fa fa-truck',
                         items: [
                             {
                                 name: 'Kilometros por galon',
@@ -431,12 +433,12 @@ var arrMenu = [
             },
             {
                 name: 'SEGURIDAD INDUSTRIAL',
-                icon: 'fa fa-shopping-cart',
+                icon: 'fa fa-industry',
                 link: '#',
                 items: [
                     {
                         title: 'SEGURIDAD INDUSTRIAL',
-                        icon: 'fa fa-shopping-cart',
+                        icon: 'fa fa-industry',
                         items: [
                             {
                                 name: 'Incidentes Por Mes',

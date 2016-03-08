@@ -20,6 +20,14 @@
         <servlet-name>I_003_Costo_Energia_Q_Servlet</servlet-name>
         <servlet-class>Controladores.I_003_Costo_Energia_Q_Servlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>I_003_Costo_Energia_Detalle_Servlet</servlet-name>
+        <servlet-class>Controladores.I_003_Costo_Energia_Detalle_Servlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>I_003_Costo_Energia_XLS</servlet-name>
+        <servlet-class>ArchivosXLS.I_003_Costo_Energia_XLS</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>I_000_Produccion_Por_Planta_Mes_Servlet</servlet-name>
         <url-pattern>/I_000_Produccion_Por_Planta_Mes_Servlet</url-pattern>
@@ -39,6 +47,14 @@
     <servlet-mapping>
         <servlet-name>I_003_Costo_Energia_Q_Servlet</servlet-name>
         <url-pattern>/I_003_Costo_Energia_Q_Servlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>I_003_Costo_Energia_Detalle_Servlet</servlet-name>
+        <url-pattern>/I_003_Costo_Energia_Detalle_Servlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>I_003_Costo_Energia_XLS</servlet-name>
+        <url-pattern>/I_003_Costo_Energia_XLS</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

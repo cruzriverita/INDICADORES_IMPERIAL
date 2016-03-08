@@ -9,14 +9,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html class="html">
-    
-    <!-----------------------------JAVA CODE----------------------------------->
-    <%@page import="java.util.Calendar"%>
-    <%Calendar c = Calendar.getInstance();
-        int year = c.get(Calendar.YEAR);
-        int month = c.get(Calendar.MONTH);%>
-    <!-----------------------------JAVA CODE----------------------------------->
-        
+      
     <!-----------------------------------------Archivos y Fuentes JavaScript-------------------------------> 
     <script type="text/javascript" src="Js/FuncionesGlobales.js"></script>
     <script type="text/javascript" src="Js/I_000_Produccion_Por_Planta.js"></script>
@@ -44,10 +37,11 @@
 
     <head>
         <link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,300italic,700&subset=latin,cyrillic-ext,latin-ext,cyrillic' rel='stylesheet' type='text/css'>
-        <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.1/css/font-awesome.min.css">
         <link rel="stylesheet" href="css/jquery.multilevelpushmenu_red.css">
         <link rel="stylesheet" href="css/basicjs.css">
         <link rel="stylesheet" href="css/EstiloJSP.css">
+         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
         <title>Produccion Por Planta</title>
     </head>
     
@@ -59,10 +53,10 @@
         
         <div id="DivPrincipal" class="divprincipal">
             <form method="get" action="I_000_Produccion_Por_Planta_Mes_Servlet_XLS" style="padding:5px">
-                <input type="text" id="anio" name="anio" onkeypress="" value="<%=year%>" />
-                <input type="text" id="mes"  name="mes"  onkeypress="" value="<%=month+1%>"/>  
+                <input type="text" id="anio" name="anio" onkeypress="" value="<%=Utilidades.MetodosGlobales.year_actual%>" />
+                <input type="text" id="mes"  name="mes"  onkeypress="" value="<%=Utilidades.MetodosGlobales.month_actual+1%>"/>  
                 <input type="button" value="Visualizar" onclick="DibujarChartPrincipal()"/>
-                <INPUT TYPE="SUBMIT" value="Descargar">
+                <INPUT TYPE="SUBMIT" value="Exportar Datos">
             </form> 
             
             <div id="GraficaPrincipal" class="divimagen"></div>

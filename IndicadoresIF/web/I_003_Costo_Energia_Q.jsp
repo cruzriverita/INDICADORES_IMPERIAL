@@ -36,13 +36,13 @@
 
     <head>
         <link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,300italic,700&subset=latin,cyrillic-ext,latin-ext,cyrillic' rel='stylesheet' type='text/css'>
-        <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.1/css/font-awesome.min.css">
         <link rel="stylesheet" href="css/jquery.multilevelpushmenu_red.css">
         <link rel="stylesheet" href="css/basicjs.css">
         <link rel="stylesheet" href="css/EstiloJSP.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
         <title>Consumo De Energia </title>
-    </head>
-    
+    </head> 
     <body class="body">
 
         <div id="DivMenu" class="MenuDesplegable">
@@ -50,19 +50,20 @@
         </div>
         
         <div id="DivPrincipal" class="divprincipal">
-            <form method="get" action="I_000_Produccion_Por_Planta_Mes_Servlet_XLS" style="padding:5px">
-                <input type="text" id="anio" name="anio" onkeypress="" value="2016" />
+            <form method="get" action="I_003_Costo_Energia_XLS" style="padding:5px">
+                <input type="text" id="anio" name="anio" onkeypress="" value="<%=Utilidades.MetodosGlobales.year_actual%>" />
 
-                <select id="opciones">
+                <select id="opciones" name="opciones">
                     <option value="money">Quetzales</option>
                     <option value="KWH">KWH</option>              
                 </select>
 
                 <input type="button" value="Visualizar" onclick="ChartCostoEnergiaQ()"/>
-                <INPUT TYPE="SUBMIT" value="Descargar">
+                <INPUT TYPE="SUBMIT" value="Exportar Datos">
             </form> 
-            
-            <div id="GraficaPrincipal" class="divimagen"></div>
+           <div class="DivWithScroll">
+            <div id="GraficaPrincipal" class="divimagenscroll"></div>
+          </div>
         </div> 
 
     </body>

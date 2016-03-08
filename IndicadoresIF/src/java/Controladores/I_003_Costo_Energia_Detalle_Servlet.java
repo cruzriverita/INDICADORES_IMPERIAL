@@ -26,10 +26,7 @@ import org.json.JSONObject;
  *
  * @author rcruz
  */
-public class I_003_Costo_Energia_Q_Servlet extends HttpServlet {
-
-    String anio, mes, opcion;
-    Modelo.ConexionBD conexion = new Modelo.ConexionBD();
+public class I_003_Costo_Energia_Detalle_Servlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -48,10 +45,10 @@ public class I_003_Costo_Energia_Q_Servlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet I_000_Produccion_Por_Planta_Mes</title>");
+            out.println("<title>Servlet I_003_Costo_Energia_Detalle_Servlet</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet I_000_Produccion_Por_Planta_Mes at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet I_003_Costo_Energia_Detalle_Servlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -83,23 +80,17 @@ public class I_003_Costo_Energia_Q_Servlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        Modelo.ConexionBD conexion = new Modelo.ConexionBD();
         List ListaValores = new LinkedList();
         JSONObject responseObj = new JSONObject();
 
         JSONObject Obj = null;
 
         //Recuperar valores enviados desde el javascript.
-        anio = request.getParameter("aniojs");
-        opcion = request.getParameter("opcion");
-        String sql = "";
-
-        //Se evalua si el indicador es por costo monetario o por cantidad de KWH
-        if (opcion.equals("money")) {
-            sql = ConsultasBD.I_003_Costo_Energia_Q(anio);
-        } else {
-            sql = ConsultasBD.I_003_Costo_Energia_KWH(anio);
-        }
+        String anio = request.getParameter("anio");
+        String mes = request.getParameter("mes");
+        String planta = request.getParameter("planta");
+        String sql = ConsultasBD.I_003_Costo_Energia_Detalle(mes, anio, planta);
 
         List<Map<String, Object>> resultList = new ArrayList<>();
         resultList = conexion.select(sql);
@@ -108,51 +99,26 @@ public class I_003_Costo_Energia_Q_Servlet extends HttpServlet {
         while (iterador.hasNext()) {
             Map<String, Object> mapa = iterador.next();
 
-            //Columnas obtenidas del query
-            String Nplanta = (String) mapa.get("Planta");
-            Float Cvalor = Float.parseFloat(mapa.get("1").toString());
-            Float Cvalor2 = Float.parseFloat(mapa.get("2").toString());
-            Float Cvalor3 = Float.parseFloat(mapa.get("3").toString());
-            Float Cvalor4 = Float.parseFloat(mapa.get("4").toString());
-            Float Cvalor5 = Float.parseFloat(mapa.get("5").toString());
-            Float Cvalor6 = Float.parseFloat(mapa.get("6").toString());
-            Float Cvalor7 = Float.parseFloat(mapa.get("7").toString());
-            Float Cvalor8 = Float.parseFloat(mapa.get("8").toString());
-            Float Cvalor9 = Float.parseFloat(mapa.get("9").toString());
-            Float Cvalor10 = Float.parseFloat(mapa.get("10").toString());
-            Float Cvalor11 = Float.parseFloat(mapa.get("11").toString());
-            Float Cvalor12 = Float.parseFloat(mapa.get("12").toString());
+            String Nplanta = (String) mapa.get("PlantaE");
+            Float Cvalor = Float.parseFloat(mapa.get("VALOR").toString());
+
             Obj = new JSONObject();
 
             try {
-
                 Obj.put("planta", Nplanta);
-                Obj.put("valor1", Cvalor);                
-                Obj.put("valor2", Cvalor2);
-                Obj.put("valor3", Cvalor3);
-                Obj.put("valor4", Cvalor4);
-                Obj.put("valor5", Cvalor5);
-                Obj.put("valor6", Cvalor6);
-                Obj.put("valor7", Cvalor7);
-                Obj.put("valor8", Cvalor8);
-                Obj.put("valor9", Cvalor9);
-                Obj.put("valor10", Cvalor10);
-                Obj.put("valor11", Cvalor11);
-                Obj.put("valor12", Cvalor12);
+                Obj.put("valor", Cvalor);
 
                 ListaValores.add(Obj);
                 responseObj.put("ListaValores", ListaValores);
             } catch (JSONException ex) {
-                Logger.getLogger(I_003_Costo_Energia_Q_Servlet.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(I_003_Costo_Energia_Detalle_Servlet.class.getName()).log(Level.SEVERE, null, ex);
             }
 
         }
-        if (Obj == null) {
-            response.getWriter().write("");
-        } else {
-            response.getWriter().write(responseObj.toString());
-        }
+        response.getWriter().write(responseObj.toString());
+
     }
+
     /**
      * Returns a short description of the servlet.
      *
@@ -162,6 +128,5 @@ public class I_003_Costo_Energia_Q_Servlet extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-    
- 
+
 }

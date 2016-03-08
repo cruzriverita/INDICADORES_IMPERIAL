@@ -36,7 +36,7 @@ public class Metodos_Generales_Excel {
     }
     
      public static WritableCellFormat Titulo () throws WriteException {
-        WritableFont cellFont = new WritableFont(WritableFont.ARIAL, 20);
+        WritableFont cellFont = new WritableFont(WritableFont.ARIAL, 16);
         WritableCellFormat cellFormat = new WritableCellFormat(cellFont);
         return cellFormat;
     }

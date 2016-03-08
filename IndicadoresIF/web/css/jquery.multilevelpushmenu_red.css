@@ -26,8 +26,8 @@ and open the template in the editor.
 	width: auto;
 	min-height: 100%;
 	font-family: 'Open Sans Condensed', sans-serif;
-	font-size: 90%;
-	zoom: 1;
+	font-size: 100%;
+	//zoom: 1;
 }
 
 .mlpm_w .ltr {

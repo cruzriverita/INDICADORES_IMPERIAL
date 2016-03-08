@@ -39,6 +39,8 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script src="Js/jquery.multilevelpushmenu.min.js"></script>
     <script type="text/javascript" src="Js/basicjs.js"></script>
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
 
     <!Refrescar pagina>
     <script type="text/javascript" src="Js/UpdateBrowser.js"></script>
@@ -66,13 +68,14 @@
     </div>
 
     <div id="DivPrincipal" class="divprincipal">
-        <form method="get" action="I_000_Produccion_Por_Planta_Commodity_XLS">
+        <form method="get" action="I_000_Produccion_Por_Planta_Commodity_XLS" style="padding:5px">
             <%--Campos escondidos, utilizados para enviar los valores al servlet que 
                 genera el excel.--%>              
             <input type="text" id="anio" name="anio" onkeypress="" value="<%=anio%>" hidden="true" />
             <input type="text" id="mes" name="mes" onkeypress="" value="<%=mes%>" hidden="true" />
             <input type="text" id="anio" name="planta" onkeypress="" value="<%=planta%>" hidden="true" />             
-            <INPUT TYPE="SUBMIT" value="Descargar">        
+            <input id ="atras" type="button" value="Regresar" onclick="window.history.back()"/>
+            <INPUT TYPE="SUBMIT" value="Exportar Datos">        
         </form>
 
         <div id="piechart_detalle" class="divimagen"></div>

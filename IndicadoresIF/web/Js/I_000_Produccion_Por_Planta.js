@@ -22,7 +22,7 @@ function DibujarChartPrincipal() {
                 },
                 error: function () {
 
-                    alert('No existen datos para los parametros ingresados');
+                    alert('No existen datos para el año '+ $("#anio").val() +' y el mes' + $("#mes").val());
                     document.getElementById("mes").value = MesActual();
                     document.getElementById("anio").value = AnioActual();
                     location.reload();
@@ -52,12 +52,80 @@ function DibujarChartPrincipal() {
     }
     var options = {
         title: 'Produccion Por Planta Mes De ' + ConvertirMes($("#mes").val()),
-        hAxis: {title: 'Year', titleTextStyle: {color: 'Black'}},
+        hAxis: {title: 'Plantas', titleTextStyle: {color: 'Black'}},
         is3D: true
     };
 
 
     var chart = new google.visualization.ColumnChart(document.getElementById('GraficaPrincipal'));
+
+
+    function ClickBarra() {
+        var selectedItem = chart.getSelection()[0];
+        if (selectedItem) {
+
+            location.href = "I_000_Produccion_Por_Planta_Commodity.jsp?planta=" + data.getValue(selectedItem.row, 0) + "&anio=" + $("#anio").val() + "&mes=" + $("#mes").val();
+        }
+    }
+    google.visualization.events.addListener(chart, 'select', ClickBarra);
+    chart.draw(data, options);
+}
+
+function DibujarChartPrincipal2() {
+
+    $.ajax
+            ({
+                type: "POST",
+                //Nombre del servlet de donde se reciben los datos en formato json.
+                url: "I_000_Produccion_Por_Planta_Mes_Servlet",
+                //Parametros leidos del jsp. anio y mes, parametros en enviados al servlet aniojs mesjs.         
+                data: {
+                    aniojs: $("#anio").val(),
+                    mesjs: $("#mes").val()
+                },
+                dataType: "json", //Se reciben los datos en formato JSON                
+                success: function (data) {
+                    queryObject = eval('(' + JSON.stringify(data) + ')');
+                    queryObjectLen = queryObject.ListaValores.length;
+                },
+                error: function () {
+
+                    alert('No existen datos para el año '+ $("#anio").val() +' y el mes' + $("#mes").val());
+                    document.getElementById("mes").value = MesActual();
+                    document.getElementById("anio").value = AnioActual();
+                    location.reload();
+
+                },
+                async: false
+            });
+
+    var data = new google.visualization.DataTable();
+
+    data.addColumn('string', 'planta');
+    data.addColumn('number', '');
+
+    //Columna adicional para dar color a la grafica.
+    data.addColumn({type: 'string', role: 'style'});
+
+    for (var i = 0; i < queryObjectLen; i++)
+    {
+        var name = queryObject.ListaValores[i].planta;
+        var empid = queryObject.ListaValores[i].valor;
+        var Color = GenerarColorRandom();
+
+
+        data.addRows([
+            [name, parseFloat(empid), Color]
+        ]);
+    }
+    var options = {
+        title: 'Produccion Por Planta Mes De ' + ConvertirMes($("#mes").val()),
+        hAxis: {title: 'Plantas', titleTextStyle: {color: 'Black'}},
+        is3D: true
+    };
+
+
+    var chart = new google.visualization.ColumnChart(document.getElementById('GraficaPrincipal1'));
 
 
     function ClickBarra() {
@@ -99,7 +167,7 @@ function DibujarChartDetalle() {
                     }
                     var options = {
                         title: 'Planta ' + getParameterByName("planta"),
-                        hAxis: {title: 'Year', titleTextStyle: {color: 'red'}},
+                       
                         is3D: true
                     };
                     var chart = new google.visualization.PieChart(document.getElementById('piechart_detalle'));

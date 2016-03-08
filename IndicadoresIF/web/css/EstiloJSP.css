@@ -36,3 +36,17 @@ and open the template in the editor.
     width:25%;
     float:left;       
 }
+
+.DivWithScroll{
+    height:85%;
+    width:100%;
+    overflow-y:scroll;
+    overflow-x: scroll;
+    white-space: nowrap;
+}
+
+.divimagenscroll {
+    background-color:#ffffff;
+    height:700px;
+    width:700px;
+}
