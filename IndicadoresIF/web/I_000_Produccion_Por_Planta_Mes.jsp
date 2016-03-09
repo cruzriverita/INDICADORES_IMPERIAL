@@ -19,8 +19,10 @@
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script type="text/javascript">
         //API de Google Chart, Se llama en cada jsp 
-        google.charts.load('current', {'packages': ['corechart']});
-        /* Set a callback to run when the Google Visualization API is loaded
+      
+     
+    google.charts.load('current', {'packages': ['corechart']});    
+    /* Set a callback to run when the Google Visualization API is loaded
          Se especifica la funcion javascript que dibuja el chart 
          */
         google.charts.setOnLoadCallback(DibujarChartPrincipal);
@@ -60,6 +62,7 @@
             </form> 
             
             <div id="GraficaPrincipal" class="divimagen"></div>
+          
         </div> 
 
 
