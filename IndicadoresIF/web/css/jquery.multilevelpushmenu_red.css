@@ -22,7 +22,7 @@ and open the template in the editor.
 	position: absolute;
 	overflow: hidden;
 	top: 0;
-	background: #ce3130;
+	background: #797373; //color fondo general
 	width: auto;
 	min-height: 100%;
 	font-family: 'Open Sans Condensed', sans-serif;
@@ -31,32 +31,25 @@ and open the template in the editor.
 }
 
 .mlpm_w .ltr {
-	margin-left: -100%;
+	margin-left: -90%;
 	left: 0;
-	-moz-box-shadow: 5px 0 5px -5px #870000;
-	-webkit-box-shadow: 5px 0 5px -5px #870000;
-	box-shadow: 5px 0 5px -5px #870000;
-	filter: progid:DXImageTransform.Microsoft.Shadow(color=#870000,direction=90,strength=2);
+	-moz-box-shadow: 3px 0 3px -3px #fff;
+	-webkit-box-shadow: 3px 0 3px -3px #fff;
+	box-shadow: 3px 0 3px -3px #000000;
+	filter: progid:DXImageTransform.Microsoft.Shadow(color=#000000,direction=90,strength=1);
 }
 
-.mlpm_w .rtl {
-	margin-right: -100%;
-	right: 0;
-	-moz-box-shadow: 5px 0 5px 5px #870000;
-	-webkit-box-shadow: 5px 0 5px 5px #870000;
-	box-shadow: 5px 0 5px 5px #870000;
-	filter: progid:DXImageTransform.Microsoft.Shadow(color=#870000,direction=270,strength=2);
-}
+
 
 .mlpm_w .mlpm_inactive {
-	background: #ba0011;
+	background: #797373;
 }
 
-.mlpm_w h2 {
+.mlpm_w h2 { 
 	font-size: 1em;
 	line-height: 1em;
 	font-weight: bold;
-	color: #870000;
+	color: #000000;
 	padding: 0 .4em 0 .4em;
 }
 
@@ -68,16 +61,16 @@ and open the template in the editor.
 
 .mlpm_w li {
 	cursor: pointer;
-	border-top: 1px solid #870000;
+	border-top: 1px solid #000000; //cursor pointer color 
 	padding: .4em .4em .4em .4em;
 }
 
 .mlpm_w li:last-child {
-	border-bottom: 1px solid #870000;
+	border-bottom: 1px solid #000000;
 }
 
 .mlpm_w li:hover {
-	background-color: #870000;
+	background-color: #000000;  //Color de resaltado 
 }
 
 .mlpm_w a {
@@ -98,8 +91,8 @@ and open the template in the editor.
 .mlpm_w .backItemClass {
 	display: block;
 	padding: .4em .4em .4em .4em;
-	background: #ba0011;
-	border-top: 1px solid #870000;
+	background:  #000000;
+	border-top: 1px solid #000000;
 }
 
 .mlpm_w .floatRight {

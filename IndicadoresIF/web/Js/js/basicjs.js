@@ -16,8 +16,14 @@ $(document).ready(function () {
         menuWidth: '100%',
         menuHeight: '100%',
         preventItemClick: false //Habilitar el click en el menu.
+       
     });
+    $( window ).resize(function() {
+    $( '#menu' ).multilevelpushmenu( 'redraw' );
 });
+});
+
+
 
 
 // JS Aray instead HTML Markup
@@ -31,22 +37,64 @@ var arrMenu = [
             /*HIJOS*/
             /*---------------------------------------PRODUCCION-------------------------------------*/
             {
-                name: 'Produccion',
+                name: 'Demo',
+                link: 'I_000_Produccion_Por_Planta_Mes.jsp'
+            },
+            {
+                name: 'PRODUCCION',
                 icon: 'fa fa-gears',
                 link: '#',
                 items: [
                     {/*TITULO HIJO*/
-                        title: 'Produccion',
+                        title: 'PRODUCCION',
                         icon: 'fa fa-gears',
                         items: [
                             /*-----------------------------------NIETOS---------------------------*/
+
                             {
                                 name: 'Produccion Por Planta',
-                                link: 'I_000_Produccion_Por_Planta_Mes.jsp'
-                            },
-                            {
-                                name: 'Costo Mano de obra',
-                                link: '#'
+                                icon: '',
+                                link: 'C_001_Produccion_Por_Planta.jsp',
+                                items: [
+                                    {
+                                        title: 'Produccion Por Planta',
+                                        icon: '',
+                                        items: [
+                                            {
+                                                name: 'Kilos Producidos/ Hora - Hombre',
+                                                link: 'I_001_Kilos_Producidos_Hora_Hombre.jsp'
+
+                                            },
+                                            {
+                                                name: 'Kg producidos/ Kw-h',
+                                                link: 'I_002_Kg_Producidos_Kwh.jsp'
+
+                                            },
+                                            {
+                                                name: 'Kg producidos/ $ MRS',
+                                                link: 'I_003_KgProducidos_MRS.jsp'
+
+                                            },
+                                            {
+                                                name: 'Costo Mo/Kg Producido',
+                                                link: 'I_004_CostoMo_KgProducido.jsp'
+                                            },
+                                            {
+                                                name: 'Costo Kwh/Kg Producido',
+                                                link: 'I_005_CostoKWH_KgProducido.jsp'
+                                            },
+                                            {
+                                                name:'categoria',
+                                                link:'C_001_Produccion_Por_Planta.jsp'
+                                                
+                                            }
+
+
+
+                                        ]
+                                    }
+                                ]
+
                             },
                             {
                                 name: 'Costo Energia',
@@ -104,7 +152,7 @@ var arrMenu = [
             },
             /*---------------------------------------CALIDAD-------------------------------------*/
             {
-                name: 'Calidad',
+                name: 'CALIDAD',
                 icon: 'fa fa-pie-chart',
                 link: '#',
                 items: [
@@ -174,7 +222,7 @@ var arrMenu = [
                     }
                 ]
             },
-              /*-------------------------------------------VENTAS-----------------------------------*/
+            /*-------------------------------------------VENTAS-----------------------------------*/
             {
                 name: 'VENTAS',
                 icon: 'fa fa-shopping-cart',

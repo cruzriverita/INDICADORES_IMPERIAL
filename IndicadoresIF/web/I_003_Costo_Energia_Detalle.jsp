@@ -17,12 +17,12 @@
     %>
 
     <!-----------------------------------------Archivos y Fuentes JavaScript--------------------------------------> 
-    <script type="text/javascript" src="Js/FuncionesGlobales.js"></script>
+    <script type="text/javascript" src="Js/js/FuncionesGlobales.js"></script>
     <script type="text/javascript" src="Js/I_003_Costo_Energia.js"></script>
 
     <!JS GOOGLE CHARTS> 
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script type="text/javascript" src="Js/js/loader.js"></script>
+ <script type="text/javascript" src="Js/js/jquery-1.12.1.min.js"></script>
     <script type="text/javascript">
         //API de Google Chart, Se llama en cada jsp 
         google.charts.load('current', {'packages': ['corechart']});
@@ -33,13 +33,12 @@
     </script>    
 
     <!JS MENU DESPLEGABLE> 
-    <script type="text/javascript" src="http://oss.maxcdn.com/libs/modernizr/2.6.2/modernizr.min.js"></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-    <script src="Js/jquery.multilevelpushmenu.min.js"></script>
-    <script type="text/javascript" src="Js/basicjs.js"></script>
+    <script type="text/javascript" src="Js/js/modernizr.min.js"></script>
+    <script src="Js/js/jquery.multilevelpushmenu.min.js"></script>
+    <script type="text/javascript" src="Js/js/basicjs.js"></script>
 
     <!Refrescar pagina>
-    <script type="text/javascript" src="Js/UpdateBrowser.js"></script>
+    <script type="text/javascript" src="Js/js/UpdateBrowser.js"></script>
 
     <!--------------------------------------------------------------------------------------------------------------> 
 

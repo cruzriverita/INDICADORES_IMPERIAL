@@ -5,6 +5,8 @@
  */
 
 
+/* global google */
+
 function ChartCostoEnergiaQ() {
 
     $.ajax

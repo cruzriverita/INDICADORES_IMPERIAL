@@ -1,9 +1,3 @@
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 
 //Genera un color de manera aleatoria para colocar a cada elemento de la grafica de barras.
 function GenerarColorRandom()
@@ -11,6 +5,7 @@ function GenerarColorRandom()
     return '#' + (0x1000000 + (Math.random()) * 0xffffff).toString(16).substr(1, 6);
 }
 
+//Recoger parametros enviados por medio de una URL
 function getParameterByName(name) {
     name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
     var regexS = "[\\?&]" + name + "=([^&#]*)",
@@ -23,6 +18,7 @@ function getParameterByName(name) {
     }
 }
 
+//Obtener el mes actual
 function MesActual()
 {
     var d = new Date();
@@ -30,12 +26,15 @@ function MesActual()
     return n + 1;
 }
 
+//Obtener el año actual
 function AnioActual()
 {
     var d = new Date();
     var n = d.getFullYear();
     return n;
 }
+
+//Convertir a nombre de mes
 function ConvertirMes(mes)
 {
     if (mes === "1") {
@@ -74,5 +73,11 @@ function ConvertirMes(mes)
     else if (mes === "12") {
         return "Diciembre";
     }
+
 }
 
+ function Colores()
+    {
+        var cars = ["#000000", "#FFFF00", "#33CCCC","#000000", "#FFFF00", "#33CCCC"];
+        return cars;
+    }

@@ -1,8 +1,6 @@
-
-
 <%-- 
-    Document   : I_000_Produccion_Por_Planta_Mes
-    Created on : 19-feb-2016, 10:06:29
+    Document   : C_001_Produccion_Por_Planta
+    Created on : 21/03/2016, 11:01:02 AM
     Author     : rcruz
 --%>
 
@@ -12,16 +10,16 @@
       
     <!-----------------------------------------Archivos y Fuentes JavaScript-------------------------------> 
     <script type="text/javascript" src="Js/js/FuncionesGlobales.js"></script>
-    <script type="text/javascript" src="Js/I_000_Produccion_Por_Planta.js"></script>
+    <script type="text/javascript" src="Js/C_001_Produccion_Por_Planta.js"></script>
 
                       <!---------------------------JS GOOGLE CHARTS----------------------------> 
     <script type="text/javascript" src="Js/js/loader.js"></script>
     <script type="text/javascript" src="Js/js/jquery-1.12.1.min.js"></script>
     <script type="text/javascript">    
         /* global google */
-        google.charts.load('current', {'packages': ['corechart']});    
+        google.charts.load('current', {'packages':['table']});   
     /* Set a callback to run when the Google Visualization API is loaded Se especifica la funcion javascript que dibuja el chart */
-        google.charts.setOnLoadCallback(DibujarChartPrincipal);
+        google.charts.setOnLoadCallback(DibujarTabla);
     </script>    
 
     <!------------------------------------------JS MENU DESPLEGABLE-------------------------------------------> 
@@ -29,6 +27,18 @@
     <script src="Js/js/jquery.multilevelpushmenu.min.js"></script>
     <script type="text/javascript" src="Js/js/basicjs.js"></script>
 
+      <script type="text/javascript">
+        //mantener la posicion actual del menu
+        $(document).ready(function () {
+            
+            $('#menu').multilevelpushmenu('expand', 'Produccion Por Planta');
+            $(window).resize(function () {
+                DibujarChartPrincipal();
+            });
+            $('#table').style.backgroundColor = "lightblue";
+        });
+    </script> 
+    
       <!-----------------------------------------Refrescar pagina---------------------------------------------->
     <script type="text/javascript" src="Js/js/UpdateBrowser.js"></script>
 
@@ -52,11 +62,12 @@
             <form method="get" action="I_000_Produccion_Por_Planta_Mes_Servlet_XLS" class="formulario">
                 <input type="text" id="anio" name="anio" onkeypress="" value="<%=Utilidades.MetodosGlobales.year_actual%>" />
                 <input type="text" id="mes"  name="mes"  onkeypress="" value="<%=Utilidades.MetodosGlobales.month_actual%>"/>  
-                <input type="button" value="Visualizar" onclick="DibujarChartPrincipal()"/>
+                <input type="button" value="Visualizar" onclick="DibujarTabla()"/>
                 <INPUT TYPE="SUBMIT" value="Exportar Datos">
             </form> 
             
-           <div id="GraficaPrincipal" class="divimagenP"></div>
+           <div id="table" class="divimagenP"></div>
+           <div id="output"></div>
            <!-- <div id="GraficaPrincipal1" class="divimagenP"></div>-->
              <!--<div id="GraficaPrincipal2" class="divimagenP"></div>-->
         </div> 
