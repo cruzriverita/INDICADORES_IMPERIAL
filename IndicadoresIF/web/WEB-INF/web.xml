@@ -111,6 +111,6 @@
     </session-config>
     <!--Pagina inicial del proyecto -->
     <welcome-file-list>
-        <welcome-file>I_000_Produccion_Por_Planta_Mes.jsp</welcome-file>
+        <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
 </web-app>
