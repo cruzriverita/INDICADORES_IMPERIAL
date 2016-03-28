@@ -125,7 +125,13 @@ function DibujarChartPrincipal() {
                         };
                     }
 
-                    var chart = new google.visualization.BarChart(document.getElementById('GraficaPrincipal'));
+
+/* var options = {
+          title: 'Company Performance',
+          curveType: 'function',
+          legend: { position: 'bottom' }
+        };*/
+                    var chart = new google.visualization.LineChart(document.getElementById('GraficaPrincipal'));
 
 
                     function ClickBarra() {
@@ -135,7 +141,7 @@ function DibujarChartPrincipal() {
                         }
                     }
                     google.visualization.events.addListener(chart, 'select', ClickBarra);
-                    chart.draw(view, options);
+                    chart.draw(data, options);
                 },
                 error: function () {
                     alert('No existen datos para los parametros elegidos');

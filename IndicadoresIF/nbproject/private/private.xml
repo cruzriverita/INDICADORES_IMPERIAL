@@ -3,37 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/rcruz/Documents/GitHub/INDICADORES/INDICADORES_IMPERIAL/IndicadoresIF/src/java/Controladores/I_003_KgProducidos_MRS_Servlet.java</file>
-            <file>file:/C:/Users/rcruz/Documents/GitHub/INDICADORES/INDICADORES_IMPERIAL/IndicadoresIF/web/I_003_Costo_Energia_Q.jsp</file>
-            <file>file:/C:/Users/rcruz/Documents/GitHub/INDICADORES/INDICADORES_IMPERIAL/IndicadoresIF/web/WEB-INF/web.xml</file>
+            <file>file:/C:/Users/rcruz/Documents/GitHub/INDICADORES/INDICADORES_IMPERIAL/IndicadoresIF/web/C_001_Produccion_Por_Planta.jsp</file>
             <file>file:/C:/Users/rcruz/Documents/GitHub/INDICADORES/INDICADORES_IMPERIAL/IndicadoresIF/web/css/basicjs.css</file>
+            <file>file:/C:/Users/rcruz/Documents/GitHub/INDICADORES/INDICADORES_IMPERIAL/IndicadoresIF/web/Js/I_001_Kilos_Producidos_Hora_Hombre.js</file>
             <file>file:/C:/Users/rcruz/Documents/GitHub/INDICADORES/INDICADORES_IMPERIAL/IndicadoresIF/web/Js/js/basicjs.js</file>
-            <file>file:/C:/Users/rcruz/Documents/GitHub/INDICADORES/INDICADORES_IMPERIAL/IndicadoresIF/web/I_005_CostoKWH_KgProducido.jsp</file>
-            <file>file:/C:/Users/rcruz/Documents/GitHub/INDICADORES/INDICADORES_IMPERIAL/IndicadoresIF/src/java/Controladores/I_005_CostoKWH_KgProducido_Servlet.java</file>
+            <file>file:/C:/Users/rcruz/Documents/GitHub/INDICADORES/INDICADORES_IMPERIAL/IndicadoresIF/web/Js/C_001_Produccion_Por_Planta.js</file>
             <file>file:/C:/Users/rcruz/Documents/GitHub/INDICADORES/INDICADORES_IMPERIAL/IndicadoresIF/web/I_001_Kilos_Producidos_Hora_Hombre.jsp</file>
             <file>file:/C:/Users/rcruz/Documents/GitHub/INDICADORES/INDICADORES_IMPERIAL/IndicadoresIF/web/css/jquery.multilevelpushmenu_red.css</file>
-            <file>file:/C:/Users/rcruz/Documents/GitHub/INDICADORES/INDICADORES_IMPERIAL/IndicadoresIF/web/Js/I_005_CostoKWH_KgProducido.js</file>
-            <file>file:/C:/Users/rcruz/Documents/GitHub/INDICADORES/INDICADORES_IMPERIAL/IndicadoresIF/web/Js/I_003_KgProducidos_MRS.js</file>
-            <file>file:/C:/Users/rcruz/Documents/GitHub/INDICADORES/INDICADORES_IMPERIAL/IndicadoresIF/web/I_000_Produccion_Por_Planta_Commodity.jsp</file>
-            <file>file:/C:/Users/rcruz/Documents/GitHub/INDICADORES/INDICADORES_IMPERIAL/IndicadoresIF/src/java/Controladores/I_000_Produccion_Por_Planta_Mes_Servlet.java</file>
-            <file>file:/C:/Users/rcruz/Documents/GitHub/INDICADORES/INDICADORES_IMPERIAL/IndicadoresIF/web/I_002_Kg_Producidos_Kwh.jsp</file>
-            <file>file:/C:/Users/rcruz/Documents/GitHub/INDICADORES/INDICADORES_IMPERIAL/IndicadoresIF/src/java/Controladores/I_003_Costo_Energia_Q_Servlet.java</file>
-            <file>file:/C:/Users/rcruz/Documents/GitHub/INDICADORES/INDICADORES_IMPERIAL/IndicadoresIF/web/css/EstiloJSP.css</file>
-            <file>file:/C:/Users/rcruz/Documents/GitHub/INDICADORES/INDICADORES_IMPERIAL/IndicadoresIF/web/I_003_KgProducidos_MRS.jsp</file>
-            <file>file:/C:/Users/rcruz/Documents/GitHub/INDICADORES/INDICADORES_IMPERIAL/IndicadoresIF/web/Js/I_004_CostoMo_KgProducido.js</file>
-            <file>file:/C:/Users/rcruz/Documents/GitHub/INDICADORES/INDICADORES_IMPERIAL/IndicadoresIF/web/Js/I_001_Kilos_Producidos_Hora_Hombre.js</file>
             <file>file:/C:/Users/rcruz/Documents/GitHub/INDICADORES/INDICADORES_IMPERIAL/IndicadoresIF/web/I_000_Produccion_Por_Planta_Mes.jsp</file>
-            <file>file:/C:/Users/rcruz/Documents/GitHub/INDICADORES/INDICADORES_IMPERIAL/IndicadoresIF/web/I_004_CostoMo_KgProducido.jsp</file>
-            <file>file:/C:/Users/rcruz/Documents/GitHub/INDICADORES/INDICADORES_IMPERIAL/IndicadoresIF/web/Js/js/UpdateBrowser.js</file>
-            <file>file:/C:/Users/rcruz/Documents/GitHub/INDICADORES/INDICADORES_IMPERIAL/IndicadoresIF/web/Js/I_000_Produccion_Por_Planta.js</file>
-            <file>file:/C:/Users/rcruz/Documents/GitHub/INDICADORES/INDICADORES_IMPERIAL/IndicadoresIF/web/Js/I_002_Kg_Producidos_Kwh.js</file>
-            <file>file:/C:/Users/rcruz/Documents/GitHub/INDICADORES/INDICADORES_IMPERIAL/IndicadoresIF/web/Js/js/FuncionesGlobales.js</file>
-            <file>file:/C:/Users/rcruz/Documents/GitHub/INDICADORES/INDICADORES_IMPERIAL/IndicadoresIF/src/java/Controladores/I_001_Kilos_Producidos_Hora_Hombre_Servlet.java</file>
-            <file>file:/C:/Users/rcruz/Documents/GitHub/INDICADORES/INDICADORES_IMPERIAL/IndicadoresIF/src/java/Controladores/I_004_CostoMo_KgProducido_Servlet.java</file>
-            <file>file:/C:/Users/rcruz/Documents/GitHub/INDICADORES/INDICADORES_IMPERIAL/IndicadoresIF/src/java/Modelo/ConsultasBD.java</file>
-            <file>file:/C:/Users/rcruz/Documents/GitHub/INDICADORES/INDICADORES_IMPERIAL/IndicadoresIF/src/java/Controladores/I_002_Kg_Producidos_Kwh_Servlet.java</file>
-            <file>file:/C:/Users/rcruz/Documents/GitHub/INDICADORES/INDICADORES_IMPERIAL/IndicadoresIF/web/I_003_Costo_Energia_Detalle.jsp</file>
-            <file>file:/C:/Users/rcruz/Documents/GitHub/INDICADORES/INDICADORES_IMPERIAL/IndicadoresIF/web/Js/I_003_Costo_Energia.js</file>
+            <file>file:/C:/Users/rcruz/Documents/GitHub/INDICADORES/INDICADORES_IMPERIAL/IndicadoresIF/web/css/EstiloJSP.css</file>
         </group>
     </open-files>
 </project-private>

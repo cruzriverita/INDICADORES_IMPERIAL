@@ -18,9 +18,12 @@ $(document).ready(function () {
         preventItemClick: false //Habilitar el click en el menu.
        
     });
-    $( window ).resize(function() {
-    $( '#menu' ).multilevelpushmenu( 'redraw' );
-});
+   
+    $(window).resize(function () {
+        $('#menu').multilevelpushmenu('redraw');
+    });
+
+
 });
 
 
@@ -60,6 +63,17 @@ var arrMenu = [
                                         title: 'Produccion Por Planta',
                                         icon: '',
                                         items: [
+                                            
+                                             {
+                                                name:'Indicadores Produccion',
+                                                link:'C_001_Produccion_Por_Planta.jsp'
+                                                
+                                            },
+                                             {
+                                                name:'Historico Por Planta',
+                                                link:''
+                                                
+                                            },
                                             {
                                                 name: 'Kilos Producidos/ Hora - Hombre',
                                                 link: 'I_001_Kilos_Producidos_Hora_Hombre.jsp'
@@ -83,11 +97,7 @@ var arrMenu = [
                                                 name: 'Costo Kwh/Kg Producido',
                                                 link: 'I_005_CostoKWH_KgProducido.jsp'
                                             },
-                                            {
-                                                name:'categoria',
-                                                link:'C_001_Produccion_Por_Planta.jsp'
-                                                
-                                            }
+                                           
 
 
 

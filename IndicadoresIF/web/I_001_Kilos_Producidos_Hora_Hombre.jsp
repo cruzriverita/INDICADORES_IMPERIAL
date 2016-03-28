@@ -12,9 +12,7 @@
         String planta = request.getParameter("planta");
         String v="ALL";
         if (planta==null)
-        {
-        
-        }
+        {}
         else if (planta.equals("PLANTA RSM"))
         {
         v="PLANTA RSM O&M";
@@ -24,18 +22,19 @@
         v = planta ;
         }
     %>
+        <!------------------------------------------JS GOOGLE CHARTS-------------------------------------------> 
+    <script type="text/javascript" src="Js/js/loader.js"></script>
+    <script type="text/javascript" src="Js/js/jquery-1.12.1.min.js"></script>
+ 
     <!-----------------------------------------Archivos y Fuentes JavaScript-------------------------------> 
     <script type="text/javascript" src="Js/js/FuncionesGlobales.js"></script>
     <script type="text/javascript" src="Js/I_001_Kilos_Producidos_Hora_Hombre.js"></script>
   
-    <!------------------------------------------JS GOOGLE CHARTS-------------------------------------------> 
-    <script type="text/javascript" src="Js/js/loader.js"></script>
-    <script type="text/javascript" src="Js/js/jquery-1.12.1.min.js"></script>
-    <script type="text/javascript">
+     <script type="text/javascript">
         //API de Google Chart, Se llama en cada jsp   
         google.charts.load('current', {'packages': ['corechart']});
         google.charts.setOnLoadCallback(DibujarChartPrincipal);
-    </script>    
+    </script>   
 
     <!------------------------------------------JS MENU DESPLEGABLE-------------------------------------------> 
     <script type="text/javascript" src="Js/js/modernizr/2.6.2/modernizr.min.js"></script>
@@ -49,6 +48,7 @@
             $(window).resize(function () {
                 DibujarChartPrincipal();
             });
+            
             $('#opciones').val("<%=v%>");
         });
     </script> 

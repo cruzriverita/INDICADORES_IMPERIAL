@@ -11,14 +11,17 @@ function DibujarTabla() {
                 url: "C_001_Produccion_Por_Planta_Servlet",
                 data: {
                     mesjs: $("#mes").val(),
-                    aniojs: $("#anio").val(),
+                    aniojs: $("#anio").val()
+                    
                 },
                 dataType: "json", //Se reciben los datos en formato JSON                
                 success: function (data_) {
+                    try{
                     queryObject = eval('(' + JSON.stringify(data_) + ')');
                     queryObjectLen = queryObject.ListaValores.length;
                     var data = new google.visualization.DataTable();
-
+                    }
+                    catch(err){}
                     data.addColumn('string', 'INDICADOR');
                     data.addColumn('number', 'RST');
                     data.addColumn('number', 'KNIT');
@@ -101,6 +104,12 @@ function DibujarTabla() {
                     $("#table table tbody tr td").click(function () {
                         myFunction(this);
                     });
+                    
+                     $("#table table tbody tr td").mouseover(function () {
+                        myFunction2(this);
+                    });
+                    
+                    
                 },
                 error: function () {
                     alert('No existen datos para los parametros elegidos');
@@ -110,6 +119,7 @@ function DibujarTabla() {
                 async: false
             });
 }
+
 
 function myFunction(x) {
     var rows = document.getElementById('table').getElementsByTagName('tbody')[0].getElementsByTagName('tr');
@@ -127,6 +137,48 @@ function myFunction(x) {
                 if (x.cellIndex === 3)
                 {
                     location.href = "I_001_Kilos_Producidos_Hora_Hombre.jsp?planta=PLANTA KNIT";
+                }
+                else
+                if (x.cellIndex === 4)
+                {
+                    location.href = "I_001_Kilos_Producidos_Hora_Hombre.jsp?planta=PLANTA DPF";
+                }
+                else
+                if (x.cellIndex === 5)
+                {
+                    location.href = "I_001_Kilos_Producidos_Hora_Hombre.jsp?planta=PLANTA RLRS";
+                }
+                else
+                if (x.cellIndex === 6)
+                {
+                    location.href = "I_001_Kilos_Producidos_Hora_Hombre.jsp?planta=PLANTA FPS";
+                }
+                if (x.cellIndex === 7)
+                {
+                    location.href = "I_001_Kilos_Producidos_Hora_Hombre.jsp?planta=PLANTA RSM";
+                }
+            }
+        };
+    }
+}
+
+
+function myFunction2(x) {
+    var rows = document.getElementById('table').getElementsByTagName('tbody')[0].getElementsByTagName('tr');
+    for (i = 0; i < rows.length; i++) {
+        rows[i].onmouseover = function () {
+           // alert("Columna " + x.cellIndex + "FILA " + this.rowIndex);
+
+            if (this.rowIndex === 1)
+            {
+                if (x.cellIndex === 2)
+                {
+                    location.href = "I_001_Kilos_Producidos_Hora_Hombre.jsp?planta=PLANTA RST";
+                }
+                else
+                if (x.cellIndex === 3)
+                {
+                 x.backgroud='white'; x.style.color='red';
                 }
                 else
                 if (x.cellIndex === 4)

@@ -8,20 +8,28 @@
 <!DOCTYPE html>
 <html class="html">
       
+     <script type="text/javascript" src="Js/js/loader.js"></script>
+    <script type="text/javascript" src="Js/js/jquery-1.12.1.min.js"></script>
+    
     <!-----------------------------------------Archivos y Fuentes JavaScript-------------------------------> 
-    <script type="text/javascript" src="Js/js/FuncionesGlobales.js"></script>
-    <script type="text/javascript" src="Js/C_001_Produccion_Por_Planta.js"></script>
+
 
                       <!---------------------------JS GOOGLE CHARTS----------------------------> 
-    <script type="text/javascript" src="Js/js/loader.js"></script>
-    <script type="text/javascript" src="Js/js/jquery-1.12.1.min.js"></script>
+   
     <script type="text/javascript">    
         /* global google */
         google.charts.load('current', {'packages':['table']});   
-    /* Set a callback to run when the Google Visualization API is loaded Se especifica la funcion javascript que dibuja el chart */
-        google.charts.setOnLoadCallback(DibujarTabla);
+
     </script>    
 
+            <script type="text/javascript" src="Js/js/FuncionesGlobales.js"></script>
+    <script type="text/javascript" src="Js/C_001_Produccion_Por_Planta.js"></script>
+    
+    
+        <script type="text/javascript">    
+    google.charts.setOnLoadCallback(DibujarTabla);
+    </script>    
+    
     <!------------------------------------------JS MENU DESPLEGABLE-------------------------------------------> 
     <script type="text/javascript" src="Js/js/modernizr.min.js"></script>
     <script src="Js/js/jquery.multilevelpushmenu.min.js"></script>
@@ -33,9 +41,9 @@
             
             $('#menu').multilevelpushmenu('expand', 'Produccion Por Planta');
             $(window).resize(function () {
-                DibujarChartPrincipal();
+                DibujarTabla();
             });
-            $('#table').style.backgroundColor = "lightblue";
+           // $('#table').style.backgroundColor = "lightblue";
         });
     </script> 
     
