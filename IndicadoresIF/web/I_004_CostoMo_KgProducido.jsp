@@ -1,5 +1,5 @@
 <%-- 
-    Document   : I_001_CostoMo_KgProducido
+    Document   : I_004_CostoMo_KgProducido
     Created on : 14/03/2016, 03:45:39 PM
     Author     : rcruz
 --%>
@@ -7,7 +7,22 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html class="html">
-
+    <%
+        String planta = request.getParameter("planta");
+        String mes = request.getParameter("mes");
+        String an = request.getParameter("anio");
+        String v = "ALL";
+        String m = "2";
+        String a = "2016";
+        if (planta == null) {
+        } else if (planta.equals("PLANTA RSM")) {
+            v = "PLANTA RSM O&M";
+        } else {
+            v = planta;
+            a = an;
+            m = mes;
+        }
+    %>
     <!-----------------------------------------Archivos y Fuentes JavaScript-------------------------------> 
     <script type="text/javascript" src="Js/js/FuncionesGlobales.js"></script>
     <script type="text/javascript" src="Js/I_004_CostoMo_KgProducido.js"></script>
@@ -34,6 +49,8 @@
             $(window).resize(function () {
                 DibujarChartPrincipal();
             });
+            $('#opciones').val("<%=v%>");
+            hideMes();
         });
     </script> 
 
@@ -63,10 +80,10 @@
                  <input type="text" id="lblP"  name="lblP"  onkeypress="" value="Planta" disabled="true" class="texto" /> 
                 <INPUT TYPE="SUBMIT" value="Exportar Datos" class="boton">
                 <br>
-                <input type="text" id="mes"  name="mes"  onkeypress="" value="2" class="texto"/>  
-                <input type="text" id="anio"  name="anio"  onkeypress="" value="2016" class="texto"/>  
+           <input type="text" id="mes"  name="mes"  onkeypress="" value="<%=m%>" class="texto"/>  
+                <input type="text" id="anio"  name="anio"  onkeypress="" value="<%=a%>" class="texto"/>  
 
-                <select id="opciones" name="opciones" onchange="DibujarChartPrincipal()" class="texto2">
+                <select id="opciones" name="opciones" onchange="DibujarChartPrincipal();hideMes();" class="texto2">
                     <option value="ALL" selected="ALL">Elegir Planta</option>
                     <option value="PLANTA RLRS">RLRS</option>
                     <option value="PLANTA RST">RST</option>      

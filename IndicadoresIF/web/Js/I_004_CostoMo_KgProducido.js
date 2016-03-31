@@ -18,103 +18,125 @@ function DibujarChartPrincipal() {
                 },
                 dataType: "json", //Se reciben los datos en formato JSON                
                 success: function (data_) {
-                    queryObject = eval('(' + JSON.stringify(data_) + ')');
-                    queryObjectLen = queryObject.ListaValores.length;
-                    var data = new google.visualization.DataTable();
-                    var x = parseInt($("#anio").val(), 10);
-
-                    data.addColumn('string', 'Planta');
-                    //data.addColumn('number', '2015');
-                    data.addColumn('number', 'Acumulado ' + String(x - 1));
-                    data.addColumn('number', x - 1);
-                    
-                    data.addColumn('number', 'mejor');
-                    data.addColumn('number', $("#anio").val());
-                    data.addColumn('number', 'Acumulado ' + $("#anio").val());
-
-                    for (var i = 0; i < queryObjectLen; i++)
+                   if ($('#opciones option:selected').val() === "ALL")
                     {
-                        var planta = queryObject.ListaValores[i].planta;
-                        var a1 = queryObject.ListaValores[i].valor1;
-                        var a2 = queryObject.ListaValores[i].valor2;
-                        var a3 = queryObject.ListaValores[i].valor3;
-                        var a4 = queryObject.ListaValores[i].valor4;
-                        var a5 = queryObject.ListaValores[i].valor5;
+                        queryObject = eval('(' + JSON.stringify(data_) + ')');
+                        queryObjectLen = queryObject.ListaValores.length;
+                        var data = new google.visualization.DataTable();
+                        /*convertir #anio a entero*/
+                        var x = parseInt($("#anio").val(), 10);
 
-                        data.addRows([
-                            [planta, parseFloat(a4), parseFloat(a1), parseFloat(a3),
-                                parseFloat(a2), parseFloat(a5)
-                            ]
+                        data.addColumn('string', 'Planta');                         //Planta
+                        //data.addColumn('number', 'Acumulado ' + String(x - 1));   //Acumulado año anterior
+                        data.addColumn('number', x - 1);                            //Año anterior
+                        data.addColumn('number', 'mejor');                          //Mejor
+                        data.addColumn('number', $("#anio").val());                 //Año actual
+                        //data.addColumn('number', 'Acumulado ' + $("#anio").val());//Acumulado año actual 
+                        data.addColumn('number', 'promedio');                       //Promedio
+
+                        for (var i = 0; i < queryObjectLen; i++)
+                        {
+                            var planta = queryObject.ListaValores[i].planta;
+                            var a1 = queryObject.ListaValores[i].valor1;
+                            var a2 = queryObject.ListaValores[i].valor2;
+                            var a3 = queryObject.ListaValores[i].valor3;
+                            // var a4 = queryObject.ListaValores[i].valor4;
+                            //var a5 = queryObject.ListaValores[i].valor5;
+                            var a6 = queryObject.ListaValores[i].valor6;
+
+                            data.addRows([
+                                [planta, /*parseFloat(a4)*/ parseFloat(a1), parseFloat(a3),
+                                    parseFloat(a2), /*parseFloat(a5)*/parseFloat(a6)
+                                ]
+                            ]);
+                        }
+
+                        var view = new google.visualization.DataView(data);
+                        view.setColumns([0, 1,
+                            2, 3, 4
                         ]);
-                    }
 
-                    //Asignar anotacion en las barras de la grafica.
-                    if($('#opciones option:selected').val()==="ALL")
-                    {
-                                 var view = new google.visualization.DataView(data);
-                    view.setColumns([0, 1,
-                       2, 3, 4, 5
-                    ]); 
-                    }
-                    else
-                    {
-                            var view = new google.visualization.DataView(data);
-                    view.setColumns([0, 1,
-                        {calc: "stringify",
-                            sourceColumn: 1,
-                            type: "string",
-                            role: "annotation"
-                        },
-                        2,
-                        {calc: "stringify",
-                            sourceColumn: 2,
-                            type: "string",
-                            role: "annotation"}, 3,{calc: "stringify",
-                            sourceColumn: 3,
-                            type: "string",
-                            role: "annotation"}, 4,{calc: "stringify",
-                            sourceColumn: 4,
-                            type: "string",
-                            role: "annotation"}, 5,{calc: "stringify",
-                            sourceColumn: 5,
-                            type: "string",
-                            role: "annotation"}
-                    ]);
-                        
-                    }
-                 
-            
-                
-                         var options = {
-                        title: 'Costo Mano Obra/Kg Producido: ' + ConvertirMes($("#mes").val()),
-                        hAxis: {title: 'Dolares', titleTextStyle: {color: 'Black'}},
-                        is3D: true,
-                        annotations: {
-                            textStyle: {
-                                //fontName: 'Times-Roman',
-                                fontSize: 10,
-                                // bold: true,
-                                // italic: true,
-                                //color: '#fff',// The color of the text.
-                                auraColor: 'transparent' // The color of the text outline.
-                                        //opacity: 0.8 // The transparency of the text.
+                        var options = {
+                            title: 'Costo Mo/Kg Producidos ' + ConvertirMes($("#mes").val()) + ' ' + $("#anio").val(),
+                            vAxis: {title: 'Dolares', titleTextStyle: {color: 'Black'}},
+                            is3D: true,
+                            colors: Colores()
+                        };
+
+                        var chart = new google.visualization.ColumnChart(document.getElementById('GraficaPrincipal'));
+                        function ClickBarra() {
+                            var selectedItem = chart.getSelection()[0];
+                            if (selectedItem) {
                             }
                         }
-                    };
-                
-                
-                    var chart = new google.visualization.BarChart(document.getElementById('GraficaPrincipal'));
-
-
-                    function ClickBarra() {
-                        var selectedItem = chart.getSelection()[0];
-                        if (selectedItem) {
-
-                            //location.href = "I_000_Produccion_Por_Planta_Commodity.jsp?planta=" + data.getValue(selectedItem.row, 0) + "&anio=" + $("#anio").val() + "&mes=" + $("#mes").val();
-                        }
+                        google.visualization.events.addListener(chart, 'select', ClickBarra);
+                        chart.draw(data, options);
                     }
-                    google.visualization.events.addListener(chart, 'select', ClickBarra);
-                    chart.draw(view, options);
+
+                    else
+                    {
+                        queryObject = eval('(' + JSON.stringify(data_) + ')');
+                        queryObjectLen = queryObject.ListaValores.length;
+                        var data = new google.visualization.DataTable();
+                        //convertir #anio a entero
+                        var x = parseInt($("#anio").val(), 10);
+
+                        data.addColumn('string', 'mes');
+                        data.addColumn('number', x - 1);
+                        data.addColumn('number', 'mejor');
+                        data.addColumn('number', $("#anio").val());
+                        //data.addColumn({type:'string', role:'annotation'});
+                        data.addColumn('number', 'Promedio');
+                        //data.addColumn({type:'string', role:'annotation'});
+
+                        for (var i = 0; i < queryObjectLen; i++)
+                        {
+                            var planta = queryObject.ListaValores[i].mes;
+                            var a1 = queryObject.ListaValores[i].valor1;
+                            var a2 = queryObject.ListaValores[i].valor2;
+                            var a3 = queryObject.ListaValores[i].valor3;
+                            var a6 = queryObject.ListaValores[i].valor6;
+                          
+                            data.addRows([
+                                [planta, parseFloat(a1), /*String(a1),*/ parseFloat(a3),
+                                    parseFloat(a2), /*String(a2),*/parseFloat(a6)
+                                ]
+                            ]);
+                        }
+
+                        if ($('#opciones option:selected').val() === "PLANTA FPS")
+                        {
+                            var options = {
+                                title: 'Costo Mo/Docenas Producidas ' + $("#anio").val() + ' ' + $('#opciones option:selected').val(),
+                                vAxis: {title: 'Dolares', titleTextStyle: {color: 'Black'}},
+                                is3D: true,
+                                colors: Colores()
+                            };
+                        }
+                        else
+                        {
+                            var options = {
+                                title: 'Costo Mo/Kg Producidos ' + $("#anio").val() + ' ' + $('#opciones option:selected').val(),
+                                vAxis: {title: 'Dolares', titleTextStyle: {color: 'Black'}},
+                                is3D: true,
+                                colors: Colores()
+                            };
+                        }
+
+
+
+                        var chart = new google.visualization.LineChart(document.getElementById('GraficaPrincipal'));
+
+
+                        function ClickBarra() {
+                            var selectedItem = chart.getSelection()[0];
+                            if (selectedItem) {                           
+                            }
+                        }
+                        google.visualization.events.addListener(chart, 'select', ClickBarra);
+                        chart.draw(data, options);
+
+                    }
 
                 },
                 error: function () {

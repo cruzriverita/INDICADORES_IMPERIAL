@@ -6,7 +6,7 @@ package ArchivosXLS;
  * and open the template in the editor.
  */
 import Utilidades.Metodos_Generales_Excel;
-import Modelo.ConsultasBD;
+import Modelo.ConsultasBD_IndicadoresProduccion;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.ArrayList;
@@ -52,7 +52,7 @@ public class I_000_Produccion_Por_Planta_Mes_XLS extends HttpServlet {
         OutputStream out = null;
         try {
 
-            String sql = ConsultasBD.I_000_Produccion_Por_Planta_Mes_01(anio, mes);
+            String sql = ConsultasBD_IndicadoresProduccion.I_000_Produccion_Por_Planta_Mes_01(anio, mes);
             response.setContentType("application/vnd.ms-excel");
 
             response.setHeader("Content-Disposition",

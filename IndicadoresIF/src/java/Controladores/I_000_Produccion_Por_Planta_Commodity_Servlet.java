@@ -5,7 +5,7 @@
  */
 package Controladores;
 
-import Modelo.ConsultasBD;
+import Modelo.ConsultasBD_IndicadoresProduccion;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -91,7 +91,7 @@ public class I_000_Produccion_Por_Planta_Commodity_Servlet extends HttpServlet {
          String anio = request.getParameter("anio");
          String mes = request.getParameter("mes");
          String planta = request.getParameter("planta");
-        String sql=ConsultasBD.I_000_Produccion_Por_Planta_Mes_02(planta,anio, mes);
+        String sql=ConsultasBD_IndicadoresProduccion.I_000_Produccion_Por_Planta_Mes_02(planta,anio, mes);
          
         
         List<Map<String, Object>> resultList = new ArrayList<>();

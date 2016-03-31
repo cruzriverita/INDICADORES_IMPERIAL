@@ -5,7 +5,7 @@
  */
 package Controladores;
 
-import Modelo.ConsultasBD;
+import Modelo.ConsultasBD_IndicadoresProduccion;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -96,9 +96,9 @@ public class I_003_Costo_Energia_Q_Servlet extends HttpServlet {
 
         //Se evalua si el indicador es por costo monetario o por cantidad de KWH
         if (opcion.equals("money")) {
-            sql = ConsultasBD.I_003_Costo_Energia_Q(anio);
+            sql = ConsultasBD_IndicadoresProduccion.I_003_Costo_Energia_Q(anio);
         } else {
-            sql = ConsultasBD.I_003_Costo_Energia_KWH(anio);
+            sql = ConsultasBD_IndicadoresProduccion.I_003_Costo_Energia_KWH(anio);
         }
 
         List<Map<String, Object>> resultList = new ArrayList<>();

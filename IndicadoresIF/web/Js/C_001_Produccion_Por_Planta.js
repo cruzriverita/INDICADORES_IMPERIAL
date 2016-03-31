@@ -12,16 +12,14 @@ function DibujarTabla() {
                 data: {
                     mesjs: $("#mes").val(),
                     aniojs: $("#anio").val()
-                    
                 },
                 dataType: "json", //Se reciben los datos en formato JSON                
                 success: function (data_) {
-                    try{
+
                     queryObject = eval('(' + JSON.stringify(data_) + ')');
                     queryObjectLen = queryObject.ListaValores.length;
                     var data = new google.visualization.DataTable();
-                    }
-                    catch(err){}
+
                     data.addColumn('string', 'INDICADOR');
                     data.addColumn('number', 'RST');
                     data.addColumn('number', 'KNIT');
@@ -31,7 +29,6 @@ function DibujarTabla() {
                     data.addColumn('number', 'RSM O&M');
 
                     data.addRows(queryObjectLen);
-
                     for (var i = 0; i < queryObjectLen; i++)
                     {
                         var indicador = queryObject.ListaValores[i].indicador;
@@ -49,160 +46,316 @@ function DibujarTabla() {
                         var a12 = queryObject.ListaValores[i].valor12;
 
                         data.setCell(i, 0, indicador);
+                        //Comparar promedio vs valor actual para elegir color de la celda
                         if (a2 > a1) {
                             data.setCell(i, 1, parseFloat(a1), a1, {'className': 'red-background'});
                         } else {
                             data.setCell(i, 1, parseFloat(a1), a1, {'className': 'green-background'});
                         }
-
                         if (a4 > a3) {
                             data.setCell(i, 2, parseFloat(a3), a3, {'className': 'red-background'});
                         } else {
                             data.setCell(i, 2, parseFloat(a3), a3, {'className': 'green-background'});
                         }
-
                         if (a6 > a5) {
                             data.setCell(i, 3, parseFloat(a5), a5, {'className': 'red-background'});
                         } else {
                             data.setCell(i, 3, parseFloat(a5), a5, {'className': 'green-background'});
                         }
-
                         if (a8 > a7) {
                             data.setCell(i, 4, parseFloat(a7), a7, {'className': 'red-background'});
                         } else {
                             data.setCell(i, 4, parseFloat(a7), a7, {'className': 'green-background'});
                         }
-
-                        if (a9 > a10) {
+                        if (a10 > a9) {
                             data.setCell(i, 5, parseFloat(a9), a9, {'className': 'red-background'});
                         } else {
                             data.setCell(i, 5, parseFloat(a9), a9, {'className': 'green-background'});
                         }
-
-                        if (a11 > a12) {
+                        if (a12 > a11) {
                             data.setCell(i, 6, parseFloat(a11), a11, {'className': 'red-background'});
                         } else {
                             data.setCell(i, 6, parseFloat(a11), a11, {'className': 'green-background'});
                         }
                     }
 
+                    //Opciones Css de la tabla
                     var cssClassNames = {
-                        'headerRow': 'italic-darkblue-font large-font bold-font',
+                        'headerRow': 'large-font bold-font',
                         'tableRow': '',
-                        'oddTableRow': 'beige-background',
+                        //'oddTableRow': 'beige-background',
                         //'selectedTableRow': 'orange-background large-font',
                         //'hoverTableRow': '',
                         'headerCell': 'gold-border',
                         'tableCell': '',
-                        'rowNumberCell': 'underline-blue-font'};
+                        'rowNumberCell': 'black-font'};
 
                     var options = {'showRowNumber': true, 'allowHtml': false, 'cssClassNames': cssClassNames};
                     var table = new google.visualization.Table(document.getElementById('table'));
                     table.draw(data, options);
 
-
+                    //Redirecciona dependiendo de la celda a la que se le da click.
                     $("#table table tbody tr td").click(function () {
-                        myFunction(this);
+                        Redireccionar(this);
                     });
-                    
-                     $("#table table tbody tr td").mouseover(function () {
-                        myFunction2(this);
+
+                    //Cambiar color al estar sobre la celda
+                    $("#table table tbody tr td").mouseover(function () {
+                        CambiarColorCelda(this);
                     });
-                    
-                    
+
+                    //Regresar al color original la celda
+                    $("#table table tbody tr td").mouseout(function () {
+                        ColorOriginalCelda(this);
+                    });
                 },
                 error: function () {
                     alert('No existen datos para los parametros elegidos');
                     document.getElementById("mes").value = 2; //MesActual();
                     location.reload();
-                },
-                async: false
+                }
+
             });
 }
 
-
-function myFunction(x) {
+//Se ejecuta al dar click sobre una celda de la tabla.
+function Redireccionar(x) {
     var rows = document.getElementById('table').getElementsByTagName('tbody')[0].getElementsByTagName('tr');
     for (i = 0; i < rows.length; i++) {
         rows[i].onclick = function () {
             //alert("Columna " + x.cellIndex + "FILA " + this.rowIndex);
-
-            if (this.rowIndex === 1)
+            if (this.rowIndex === 1) /*Indicador 1*/
             {
+                if (x.cellIndex === 1)
+                {
+                    location.href = "I_001_Kilos_Producidos_Hora_Hombre.jsp?planta=ALL&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "";
+                }
+                else
                 if (x.cellIndex === 2)
                 {
-                    location.href = "I_001_Kilos_Producidos_Hora_Hombre.jsp?planta=PLANTA RST";
+                    location.href = "I_001_Kilos_Producidos_Hora_Hombre.jsp?planta=PLANTA RST&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "";
                 }
                 else
                 if (x.cellIndex === 3)
                 {
-                    location.href = "I_001_Kilos_Producidos_Hora_Hombre.jsp?planta=PLANTA KNIT";
+                    location.href = "I_001_Kilos_Producidos_Hora_Hombre.jsp?planta=PLANTA KNIT&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "";
                 }
                 else
                 if (x.cellIndex === 4)
                 {
-                    location.href = "I_001_Kilos_Producidos_Hora_Hombre.jsp?planta=PLANTA DPF";
+                    location.href = "I_001_Kilos_Producidos_Hora_Hombre.jsp?planta=PLANTA DPF&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "";
                 }
                 else
                 if (x.cellIndex === 5)
                 {
-                    location.href = "I_001_Kilos_Producidos_Hora_Hombre.jsp?planta=PLANTA RLRS";
+                    location.href = "I_001_Kilos_Producidos_Hora_Hombre.jsp?planta=PLANTA RLRS&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "";
                 }
                 else
                 if (x.cellIndex === 6)
                 {
-                    location.href = "I_001_Kilos_Producidos_Hora_Hombre.jsp?planta=PLANTA FPS";
+                    location.href = "I_001_Kilos_Producidos_Hora_Hombre.jsp?planta=PLANTA FPS&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "";
                 }
                 if (x.cellIndex === 7)
                 {
-                    location.href = "I_001_Kilos_Producidos_Hora_Hombre.jsp?planta=PLANTA RSM";
+                    location.href = "I_001_Kilos_Producidos_Hora_Hombre.jsp?planta=PLANTA RSM&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "";
                 }
             }
+            else
+            if (this.rowIndex === 2) /*Indicador 2*/
+            {
+                if (x.cellIndex === 1)
+                {
+                    location.href = "I_002_Kg_Producidos_Kwh.jsp?planta=ALL&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "";
+                }
+                else
+                if (x.cellIndex === 2)
+                {
+                    location.href = "I_002_Kg_Producidos_Kwh.jsp?planta=PLANTA RST&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "";
+                }
+                else
+                if (x.cellIndex === 3)
+                {
+                    location.href = "I_002_Kg_Producidos_Kwh.jsp?planta=PLANTA KNIT&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "";
+                }
+                else
+                if (x.cellIndex === 4)
+                {
+                    location.href = "I_002_Kg_Producidos_Kwh.jsp?planta=PLANTA DPF&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "";
+                }
+                else
+                if (x.cellIndex === 5)
+                {
+                    location.href = "I_002_Kg_Producidos_Kwh.jsp?planta=PLANTA RLRS&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "";
+                }
+                else
+                if (x.cellIndex === 6)
+                {
+                    location.href = "I_002_Kg_Producidos_Kwh.jsp?planta=PLANTA FPS&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "";
+                }
+                if (x.cellIndex === 7)
+                {
+                    location.href = "I_002_Kg_Producidos_Kwh.jsp?planta=PLANTA RSM&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "";
+                }
+            }
+            
+            else
+            if (this.rowIndex === 3) /*Indicador 3*/
+            {
+                if (x.cellIndex === 1)
+                {
+                    location.href = "I_003_KgProducidos_MRS.jsp?planta=ALL&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "";
+                }
+                else
+                if (x.cellIndex === 2)
+                {
+                    location.href = "I_003_KgProducidos_MRS.jsp?planta=PLANTA RST&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "";
+                }
+                else
+                if (x.cellIndex === 3)
+                {
+                    location.href = "I_003_KgProducidos_MRS.jsp?planta=PLANTA KNIT&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "";
+                }
+                else
+                if (x.cellIndex === 4)
+                {
+                    location.href = "I_003_KgProducidos_MRS.jsp?planta=PLANTA DPF&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "";
+                }
+                else
+                if (x.cellIndex === 5)
+                {
+                    location.href = "I_003_KgProducidos_MRS.jsp?planta=PLANTA RLRS&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "";
+                }
+                else
+                if (x.cellIndex === 6)
+                {
+                    location.href = "I_003_KgProducidos_MRS.jsp?planta=PLANTA FPS&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "";
+                }
+                if (x.cellIndex === 7)
+                {
+                    location.href = "I_003_KgProducidos_MRS.jsp?planta=PLANTA RSM&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "";
+                }
+            }
+            
+            else
+            if (this.rowIndex === 4) /*Indicador 4*/
+            {
+                if (x.cellIndex === 1)
+                {
+                    location.href = "I_004_CostoMo_KgProducido.jsp?planta=ALL&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "";
+                }
+                else
+                if (x.cellIndex === 2)
+                {
+                    location.href = "I_004_CostoMo_KgProducido.jsp?planta=PLANTA RST&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "";
+                }
+                else
+                if (x.cellIndex === 3)
+                {
+                    location.href = "I_004_CostoMo_KgProducido.jsp?planta=PLANTA KNIT&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "";
+                }
+                else
+                if (x.cellIndex === 4)
+                {
+                    location.href = "I_004_CostoMo_KgProducido.jsp?planta=PLANTA DPF&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "";
+                }
+                else
+                if (x.cellIndex === 5)
+                {
+                    location.href = "I_004_CostoMo_KgProducido.jsp?planta=PLANTA RLRS&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "";
+                }
+                else
+                if (x.cellIndex === 6)
+                {
+                    location.href = "I_004_CostoMo_KgProducido.jsp?planta=PLANTA FPS&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "";
+                }
+                if (x.cellIndex === 7)
+                {
+                    location.href = "I_004_CostoMo_KgProducido.jsp?planta=PLANTA RSM&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "";
+                }
+            }
+            
+                        else
+            if (this.rowIndex === 5) /*Indicador 5*/
+            {
+                if (x.cellIndex === 1)
+                {
+                    location.href = "I_005_CostoKWH_KgProducido.jsp?planta=ALL&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "";
+                }
+                else
+                if (x.cellIndex === 2)
+                {
+                    location.href = "I_005_CostoKWH_KgProducido.jsp?planta=PLANTA RST&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "";
+                }
+                else
+                if (x.cellIndex === 3)
+                {
+                    location.href = "I_005_CostoKWH_KgProducido.jsp?planta=PLANTA KNIT&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "";
+                }
+                else
+                if (x.cellIndex === 4)
+                {
+                    location.href = "I_005_CostoKWH_KgProducido.jsp?planta=PLANTA DPF&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "";
+                }
+                else
+                if (x.cellIndex === 5)
+                {
+                    location.href = "I_005_CostoKWH_KgProducido.jsp?planta=PLANTA RLRS&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "";
+                }
+                else
+                if (x.cellIndex === 6)
+                {
+                    location.href = "I_005_CostoKWH_KgProducido.jsp?planta=PLANTA FPS&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "";
+                }
+                if (x.cellIndex === 7)
+                {
+                    location.href = "I_005_CostoKWH_KgProducido.jsp?planta=PLANTA RSM&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "";
+                }
+            }
+            
+             else
+            if (this.rowIndex === 6) /*Indicador 6*/
+            {
+                if (x.cellIndex === 1)
+                {
+                    location.href = "I_006_CostoMRS_KgProducido.jsp?planta=ALL&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "";
+                }
+                else
+                if (x.cellIndex === 2)
+                {
+                    location.href = "I_006_CostoMRS_KgProducido.jsp?planta=PLANTA RST&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "";
+                }
+                else
+                if (x.cellIndex === 3)
+                {
+                    location.href = "I_006_CostoMRS_KgProducido.jsp?planta=PLANTA KNIT&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "";
+                }
+                else
+                if (x.cellIndex === 4)
+                {
+                    location.href = "I_006_CostoMRS_KgProducido.jsp?planta=PLANTA DPF&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "";
+                }
+                else
+                if (x.cellIndex === 5)
+                {
+                    location.href = "I_006_CostoMRS_KgProducido.jsp?planta=PLANTA RLRS&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "";
+                }
+                else
+                if (x.cellIndex === 6)
+                {
+                    location.href = "I_006_CostoMRS_KgProducido.jsp?planta=PLANTA FPS&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "";
+                }
+                if (x.cellIndex === 7)
+                {
+                    location.href = "I_006_CostoMRS_KgProducido.jsp?planta=PLANTA RSM&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "";
+                }
+            }
+            
         };
     }
 }
 
 
-function myFunction2(x) {
-    var rows = document.getElementById('table').getElementsByTagName('tbody')[0].getElementsByTagName('tr');
-    for (i = 0; i < rows.length; i++) {
-        rows[i].onmouseover = function () {
-           // alert("Columna " + x.cellIndex + "FILA " + this.rowIndex);
 
-            if (this.rowIndex === 1)
-            {
-                if (x.cellIndex === 2)
-                {
-                    location.href = "I_001_Kilos_Producidos_Hora_Hombre.jsp?planta=PLANTA RST";
-                }
-                else
-                if (x.cellIndex === 3)
-                {
-                 x.backgroud='white'; x.style.color='red';
-                }
-                else
-                if (x.cellIndex === 4)
-                {
-                    location.href = "I_001_Kilos_Producidos_Hora_Hombre.jsp?planta=PLANTA DPF";
-                }
-                else
-                if (x.cellIndex === 5)
-                {
-                    location.href = "I_001_Kilos_Producidos_Hora_Hombre.jsp?planta=PLANTA RLRS";
-                }
-                else
-                if (x.cellIndex === 6)
-                {
-                    location.href = "I_001_Kilos_Producidos_Hora_Hombre.jsp?planta=PLANTA FPS";
-                }
-                if (x.cellIndex === 7)
-                {
-                    location.href = "I_001_Kilos_Producidos_Hora_Hombre.jsp?planta=PLANTA RSM";
-                }
-            }
-        };
-    }
-}
 
 
 

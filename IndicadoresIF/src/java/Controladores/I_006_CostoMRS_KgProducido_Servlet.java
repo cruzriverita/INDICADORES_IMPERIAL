@@ -26,10 +26,10 @@ import org.json.JSONObject;
  *
  * @author rcruz
  */
-public class I_003_KgProducidos_MRS_Servlet extends HttpServlet {
+public class I_006_CostoMRS_KgProducido_Servlet extends HttpServlet {
 
-    Modelo.ConexionBD conexion = new Modelo.ConexionBD();
-
+ 
+  Modelo.ConexionBD conexion = new Modelo.ConexionBD();
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -47,7 +47,7 @@ public class I_003_KgProducidos_MRS_Servlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet I_000_Produccion_Por_Planta_Mes</title>");
+            out.println("<title>Servlet I_000_Produccion_Por_Planta_Mes</title>");            
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet I_000_Produccion_Por_Planta_Mes at " + request.getContextPath() + "</h1>");
@@ -83,24 +83,23 @@ public class I_003_KgProducidos_MRS_Servlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        String anio, mes,opcion;
+        String anio,mes,opcion;
         List ListaValores = new LinkedList();
         JSONObject responseObj = new JSONObject();
-
+       
         JSONObject Obj = null;
 
         //Recuperar valores enviados desde el javascript.
         //anio = request.getParameter("aniojs");
-        mes = request.getParameter("mesjs");
-        anio = request.getParameter("aniojs");
+         mes = request.getParameter("mesjs");
+         anio=request.getParameter("aniojs");
         opcion = request.getParameter("opcion");
 
         String sql = "";
-
-        if (opcion.equals("ALL")) {
-        
-        sql = ConsultasBD_IndicadoresProduccion.I_003_Kg_Producidos_Mrs_General(mes, Integer.parseInt(anio));
-        List<Map<String, Object>> resultList = new ArrayList<>();
+         if (opcion.equals("ALL")) {
+         sql=ConsultasBD_IndicadoresProduccion.I_006_Mrs_Kg_Producidos_General(mes,Integer.parseInt(anio));
+         
+         List<Map<String, Object>> resultList = new ArrayList<>();
             resultList = conexion.select(sql);
 
             Iterator<Map<String, Object>> iterador = resultList.iterator();
@@ -137,10 +136,9 @@ public class I_003_KgProducidos_MRS_Servlet extends HttpServlet {
             } else {
                 response.getWriter().write(responseObj.toString());
             }
-        }
-            else
-            {
-            
+         }
+         else
+         {
                 /*Este if es para convertir el parametro enviado al nombre con el que esta almacenado
                 la planta en la tabla, ya que por la forma en que se llena la tabla por medio de SSIS
                 fue necesario cambiar el nombre de algunas tablas.*/
@@ -150,8 +148,8 @@ public class I_003_KgProducidos_MRS_Servlet extends HttpServlet {
                 } else if (opcion.equals("PLANTA RSM O&M")) {
                     opcion = "PLANTA MRS O&M";
                 }
-                
-            sql = ConsultasBD_IndicadoresProduccion.I_003_Kg_Producidos_Mrs_Planta(opcion, Integer.parseInt(anio));
+          sql = ConsultasBD_IndicadoresProduccion.I_006_Mrs_Kg_Producidos_Planta(opcion, Integer.parseInt(anio));
+        
             List<Map<String, Object>> resultList = new ArrayList<>();
             resultList = conexion.select(sql);
 
@@ -189,11 +187,9 @@ public class I_003_KgProducidos_MRS_Servlet extends HttpServlet {
                 response.getWriter().write("");
             } else {
                 response.getWriter().write(responseObj.toString());
-            }   
-            }
-        }
-
-    
+            } 
+         }
+    }
 
     /**
      * Returns a short description of the servlet.
@@ -204,5 +200,6 @@ public class I_003_KgProducidos_MRS_Servlet extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+
 
 }

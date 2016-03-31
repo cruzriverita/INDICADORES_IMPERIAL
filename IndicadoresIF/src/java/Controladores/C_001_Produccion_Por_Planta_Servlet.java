@@ -5,8 +5,7 @@ package Controladores;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
-import Modelo.ConsultasBD;
+import Modelo.ConsultasBD_IndicadoresProduccion;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -28,7 +27,6 @@ import org.json.JSONObject;
  * @author rcruz
  */
 public class C_001_Produccion_Por_Planta_Servlet extends HttpServlet {
-
 
     Modelo.ConexionBD conexion = new Modelo.ConexionBD();
 
@@ -57,7 +55,9 @@ public class C_001_Produccion_Por_Planta_Servlet extends HttpServlet {
             out.println("</html>");
         }
     }
+
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+
     /**
      * Handles the HTTP <code>GET</code> method.
      *
@@ -71,6 +71,7 @@ public class C_001_Produccion_Por_Planta_Servlet extends HttpServlet {
             throws ServletException, IOException {
         processRequest(request, response);
     }
+
     /**
      * Handles the HTTP <code>POST</code> method.
      *
@@ -83,7 +84,7 @@ public class C_001_Produccion_Por_Planta_Servlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        String anio, mes, opcion;
+        String anio, mes;
         List ListaValores = new LinkedList();
         JSONObject responseObj = new JSONObject();
         JSONObject Obj = null;
@@ -91,14 +92,10 @@ public class C_001_Produccion_Por_Planta_Servlet extends HttpServlet {
         //Recuperar valores enviados desde el javascript.
         mes = request.getParameter("mesjs");
         anio = request.getParameter("aniojs");
-        //opcion = request.getParameter("opcion");
-
         String sql = "";
 
-      
-       sql = ConsultasBD.C_001_Produccion_Por_Planta(mes, Integer.parseInt(anio));
-       
-
+        
+        sql = ConsultasBD_IndicadoresProduccion.C_001_Produccion_Por_Planta(mes, Integer.parseInt(anio));
         List<Map<String, Object>> resultList = new ArrayList<>();
         resultList = conexion.select(sql);
 
@@ -107,7 +104,6 @@ public class C_001_Produccion_Por_Planta_Servlet extends HttpServlet {
             Map<String, Object> mapa = iterador.next();
 
             String indicador = (String) mapa.get("Indicador");
-
             Float Cvalor1 = Float.parseFloat(mapa.get("RST").toString());
             Float Cvalor2 = Float.parseFloat(mapa.get("RSTP").toString());
             Float Cvalor3 = Float.parseFloat(mapa.get("KNIT").toString());
@@ -119,8 +115,8 @@ public class C_001_Produccion_Por_Planta_Servlet extends HttpServlet {
             Float Cvalor9 = Float.parseFloat(mapa.get("FPS").toString());
             Float Cvalor10 = Float.parseFloat(mapa.get("FPSP").toString());
             Float Cvalor11 = Float.parseFloat(mapa.get("RSM").toString());
-            Float Cvalor12= Float.parseFloat(mapa.get("RSMP").toString());
-            
+            Float Cvalor12 = Float.parseFloat(mapa.get("RSMP").toString());
+
             Obj = new JSONObject();
 
             try {
@@ -137,7 +133,7 @@ public class C_001_Produccion_Por_Planta_Servlet extends HttpServlet {
                 Obj.put("valor10", Cvalor10);
                 Obj.put("valor11", Cvalor11);
                 Obj.put("valor12", Cvalor12);
-                
+
                 ListaValores.add(Obj);
                 responseObj.put("ListaValores", ListaValores);
             } catch (JSONException ex) {

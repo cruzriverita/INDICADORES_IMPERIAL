@@ -52,6 +52,10 @@
         <servlet-name>C_001_Produccion_Por_Planta_Servlet</servlet-name>
         <servlet-class>Controladores.C_001_Produccion_Por_Planta_Servlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>I_006_CostoMRS_KgProducido_Servlet</servlet-name>
+        <servlet-class>Controladores.I_006_CostoMRS_KgProducido_Servlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>I_000_Produccion_Por_Planta_Mes_Servlet</servlet-name>
         <url-pattern>/I_000_Produccion_Por_Planta_Mes_Servlet</url-pattern>
@@ -103,6 +107,10 @@
     <servlet-mapping>
         <servlet-name>C_001_Produccion_Por_Planta_Servlet</servlet-name>
         <url-pattern>/C_001_Produccion_Por_Planta_Servlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>I_006_CostoMRS_KgProducido_Servlet</servlet-name>
+        <url-pattern>/I_006_CostoMRS_KgProducido_Servlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

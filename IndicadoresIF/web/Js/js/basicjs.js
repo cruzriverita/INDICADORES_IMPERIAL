@@ -1,9 +1,3 @@
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 
 $(document).ready(function () {
     // JS Array implementation, overlap mode
@@ -15,6 +9,8 @@ $(document).ready(function () {
         menuInactiveClass: 'mlpm_inactive',
         menuWidth: '100%',
         menuHeight: '100%',
+        backText: 'Regresar',
+        overlapWidth: 28, //tamaño de las pestañas del menu
         preventItemClick: false //Habilitar el click en el menu.
        
     });
@@ -25,9 +21,6 @@ $(document).ready(function () {
 
 
 });
-
-
-
 
 // JS Aray instead HTML Markup
 
@@ -69,23 +62,19 @@ var arrMenu = [
                                                 link:'C_001_Produccion_Por_Planta.jsp'
                                                 
                                             },
-                                             {
-                                                name:'Historico Por Planta',
-                                                link:''
-                                                
-                                            },
+                                            
                                             {
-                                                name: 'Kilos Producidos/ Hora - Hombre',
+                                                name: 'Kilos Producidos/Hora - Hombre',
                                                 link: 'I_001_Kilos_Producidos_Hora_Hombre.jsp'
 
                                             },
                                             {
-                                                name: 'Kg producidos/ Kw-h',
+                                                name: 'Kilos Producidos/Kw-h',
                                                 link: 'I_002_Kg_Producidos_Kwh.jsp'
 
                                             },
                                             {
-                                                name: 'Kg producidos/ $ MRS',
+                                                name: 'Kilos Producidos/$MRS',
                                                 link: 'I_003_KgProducidos_MRS.jsp'
 
                                             },
@@ -97,7 +86,10 @@ var arrMenu = [
                                                 name: 'Costo Kwh/Kg Producido',
                                                 link: 'I_005_CostoKWH_KgProducido.jsp'
                                             },
-                                           
+                                           {
+                                                name: 'Costo MRS/Kg Producido',
+                                                link: 'I_006_CostoMRS_KgProducido.jsp'
+                                            }
 
 
 
@@ -111,10 +103,7 @@ var arrMenu = [
                                 link: 'I_003_Costo_Energia_Q.jsp'
 
                             },
-                            {
-                                name: 'Costo MRS',
-                                link: '#'
-                            },
+                         
                             {
                                 name: 'Total Costos Directos',
                                 link: '#'

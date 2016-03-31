@@ -5,7 +5,7 @@
  */
 package Controladores;
 
-import Modelo.ConsultasBD;
+import Modelo.ConsultasBD_IndicadoresProduccion;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -90,7 +90,7 @@ public class I_003_Costo_Energia_Detalle_Servlet extends HttpServlet {
         String anio = request.getParameter("anio");
         String mes = request.getParameter("mes");
         String planta = request.getParameter("planta");
-        String sql = ConsultasBD.I_003_Costo_Energia_Detalle(mes, anio, planta);
+        String sql = ConsultasBD_IndicadoresProduccion.I_003_Costo_Energia_Detalle(mes, anio, planta);
 
         List<Map<String, Object>> resultList = new ArrayList<>();
         resultList = conexion.select(sql);

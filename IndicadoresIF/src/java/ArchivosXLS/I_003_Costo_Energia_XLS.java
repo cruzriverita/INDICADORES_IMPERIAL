@@ -5,7 +5,7 @@
  */
 package ArchivosXLS;
 
-import Modelo.ConsultasBD;
+import Modelo.ConsultasBD_IndicadoresProduccion;
 import Utilidades.Metodos_Generales_Excel;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -59,9 +59,9 @@ public class I_003_Costo_Energia_XLS extends HttpServlet {
         try {
 
             if (!opc.equals("money")) {
-                sql = ConsultasBD.I_003_Costo_Energia_KWH(anio);
+                sql = ConsultasBD_IndicadoresProduccion.I_003_Costo_Energia_KWH(anio);
             } else {
-                sql = ConsultasBD.I_003_Costo_Energia_Q(anio);
+                sql = ConsultasBD_IndicadoresProduccion.I_003_Costo_Energia_Q(anio);
             }
 
             response.setContentType("application/vnd.ms-excel");
