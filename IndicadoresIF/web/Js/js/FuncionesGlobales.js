@@ -78,10 +78,10 @@ function ConvertirMes(mes)
 
 
 //Colores elegidos a utilizar en todas las graficas 
-//amarillo,verde,negro,aqua
+//amarillo,azul,negro,aqua
 function Colores()
 {
-    var colors = ["#FFFF00", "#00FF00", "#000000", "#01DFD7"];
+    var colors = ["#FFFF00", "#848484", "#000000", "#01DFD7"];
     return colors;
 }
 
@@ -90,8 +90,8 @@ function Colores()
 
 var color = ''; //obtiene el color actaul de la celda de la tabla
 //Funcion que cambia de color una celda de una tabla 
-function CambiarColorCelda(x) {
-    var rows = document.getElementById('table').getElementsByTagName('tbody')[0].getElementsByTagName('tr');
+function CambiarColorCelda(x,element) {
+    var rows = document.getElementById(element).getElementsByTagName('tbody')[0].getElementsByTagName('tr');
     for (i = 0; i < rows.length; i++) {
         rows[i].onmouseover = function () {
             // alert("Columna " + x.cellIndex + "FILA " + this.rowIndex);
@@ -108,8 +108,8 @@ function CambiarColorCelda(x) {
 }
 
 //se utiliza la variable "color" y se regresa la celda a su color original.
-function ColorOriginalCelda(x) {
-    var rows = document.getElementById('table').getElementsByTagName('tbody')[0].getElementsByTagName('tr');
+function ColorOriginalCelda(x,element) {
+    var rows = document.getElementById(element).getElementsByTagName('tbody')[0].getElementsByTagName('tr');
     for (i = 0; i < rows.length; i++) {
         rows[i].onmouseout = function () {
             x.style.backgroundColor = color;
@@ -122,7 +122,7 @@ function ColorOriginalCelda(x) {
 function hideMes() {
     var e = document.getElementById("opciones");
     var val = e.options[e.selectedIndex].value;
-    if (val === "ALL")
+    if (val === "ALL" || val==="FPS MES")
     {
         document.getElementById('mes').style.display = "block";
         document.getElementById('lblmes').style.display = "block";
@@ -132,4 +132,134 @@ function hideMes() {
         document.getElementById('mes').style.display = "none";
         document.getElementById('lblmes').style.display = "none";
     }
+}
+
+function GetTitulo() {
+    var e = document.getElementById("indicador").value;
+    //var val = e.options[e.selectedIndex].value;
+    if (e === "INDICADOR1")
+    {
+      return "Kilos Producidos / Hora-Hombre ";
+    }
+    else if (e === "INDICADOR2")
+    {
+        return "Kilos Producidos / Kilovatio-Hora " ;
+    }
+     else if (e === "INDICADOR3")
+    {
+        return "Kilos Producidos / MRS " ;
+    }
+     else if (e === "INDICADOR4")
+    {
+        return "Costo Mo / Kg Producidos " ;
+    }
+     else if (e === "INDICADOR5")
+    {
+        return "Costo KWH / Kg Producidos " ;
+    }
+     else if (e === "INDICADOR6")
+    {
+        return "Costo MRS / Kg Producidos " ;
+    }   
+}
+
+function GetTituloEje() {
+    var e = document.getElementById("indicador").value;
+    //var val = e.options[e.selectedIndex].value;
+    if (e === "INDICADOR1")
+    {
+      return "Kilogramos / Hora-Hombre ";
+    }
+    else if (e === "INDICADOR2")
+    {
+        return "Kilogramos / Kilovatio-Hora " ;
+    }
+     else if (e === "INDICADOR3")
+    {
+        return "Kilogramos / MRS " ;
+    }
+     else if (e === "INDICADOR4")
+    {
+        return "($) Costo Mo / Kg Producido " ;
+    }
+     else if (e === "INDICADOR5")
+    {
+        return "($) Costo KWH / Kg Producido " ;
+    }
+     else if (e === "INDICADOR6")
+    {
+        return "($) Costo MRS / Kg Producido " ;
+    }   
+}
+
+function GetTituloDPF() {
+    var e = document.getElementById("indicador").value;
+    //var val = e.options[e.selectedIndex].value;
+    if (e === "INDICADOR1")
+    {
+      return "Docenas Producidas / Hora-Hombre ";
+    }
+    else if (e === "INDICADOR2")
+    {
+        return "Docenas Producidas / Kilovatio-Hora " ;
+    }
+     else if (e === "INDICADOR3")
+    {
+        return "Docenas Producidas / MRS " ;
+    }
+     else if (e === "INDICADOR4")
+    {
+        return "Costo Mo / Docenas Producidas " ;
+    }
+     else if (e === "INDICADOR5")
+    {
+        return "Costo KWH / Docenas Producidas " ;
+    }
+     else if (e === "INDICADOR6")
+    {
+        return "Costo MRS / Docenas Producidas " ;
+    }
+}
+
+function GetTituloDPFEje() {
+    var e = document.getElementById("indicador").value;
+    //var val = e.options[e.selectedIndex].value;
+    if (e === "INDICADOR1")
+    {
+      return "Docenas / Hora-Hombre ";
+    }
+    else if (e === "INDICADOR2")
+    {
+        return "Docenas / Kilovatio-Hora " ;
+    }
+     else if (e === "INDICADOR3")
+    {
+        return "Docenas / MRS " ;
+    }
+     else if (e === "INDICADOR4")
+    {
+        return "Costo Mo / Docena " ;
+    }
+     else if (e === "INDICADOR5")
+    {
+        return "Costo KWH / Docena " ;
+    }
+     else if (e === "INDICADOR6")
+    {
+        return "Costo MRS / Docena" ;
+    }
+}
+
+function MayorMenor()
+{
+      var e = document.getElementById("indicador").value;
+    if (e === "INDICADOR1" ||e === "INDICADOR2"||e === "INDICADOR3" )
+    {
+        return "Mayor";
+    }
+    else
+    {
+        return "Menor";
+    }
+    
 }

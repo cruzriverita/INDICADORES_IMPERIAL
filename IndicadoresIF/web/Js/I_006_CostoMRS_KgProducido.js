@@ -25,7 +25,7 @@ function DibujarChartPrincipal() {
                 },
                 dataType: "json", //Se reciben los datos en formato JSON                
                 success: function (data_) {
-                    if ($('#opciones option:selected').val() === "ALL")
+                    if ($('#opciones option:selected').val() === "ALL" || $('#opciones option:selected').val() === "FPS MES")
                     {
                         queryObject = eval('(' + JSON.stringify(data_) + ')');
                         queryObjectLen = queryObject.ListaValores.length;
@@ -44,6 +44,16 @@ function DibujarChartPrincipal() {
                         for (var i = 0; i < queryObjectLen; i++)
                         {
                             var planta = queryObject.ListaValores[i].planta;
+                            
+                            if (planta==="PLANTA LRS")
+                            {
+                                planta="PLANTA RLRS";
+                            }
+                            else if (planta==="PLANTA MRS O&M")
+                            {
+                                planta="PLANTA RSM O&M";
+                            }
+                            
                             var a1 = queryObject.ListaValores[i].valor1;
                             var a2 = queryObject.ListaValores[i].valor2;
                             var a3 = queryObject.ListaValores[i].valor3;
@@ -98,6 +108,8 @@ function DibujarChartPrincipal() {
                             var a2 = queryObject.ListaValores[i].valor2;
                             var a3 = queryObject.ListaValores[i].valor3;
                             var a6 = queryObject.ListaValores[i].valor6;
+                            var m=queryObject.ListaValores[i].mejormes;
+                            var a=queryObject.ListaValores[i].mejoranio;
                           
                             data.addRows([
                                 [planta, parseFloat(a1), /*String(a1),*/ parseFloat(a3),
@@ -111,6 +123,7 @@ function DibujarChartPrincipal() {
                             var options = {
                                 title: 'Costo MRS/Docenas Producidas ' + $("#anio").val() + ' ' + $('#opciones option:selected').val(),
                                 vAxis: {title: 'Dolares', titleTextStyle: {color: 'Black'}},
+                                hAxis: {title: '*El valor menor corresponde a '+ConvertirMes(m) +' de '+ a, titleTextStyle: {color: 'Blue'}},
                                 is3D: true,
                                 colors: Colores()
                             };
@@ -120,6 +133,7 @@ function DibujarChartPrincipal() {
                             var options = {
                                 title: 'Costo MRS/Kg Producidos ' + $("#anio").val() + ' ' + $('#opciones option:selected').val(),
                                 vAxis: {title: 'Dolares', titleTextStyle: {color: 'Black'}},
+                                 hAxis: {title: '*El valor menor corresponde a '+ConvertirMes(m) +' de '+ a, titleTextStyle: {color: 'Blue'}},
                                 is3D: true,
                                 colors: Colores()
                             };

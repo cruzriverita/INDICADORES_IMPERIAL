@@ -22,6 +22,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+
 /**
  *
  * @author rcruz
@@ -117,6 +118,14 @@ public class C_001_Produccion_Por_Planta_Servlet extends HttpServlet {
             Float Cvalor11 = Float.parseFloat(mapa.get("RSM").toString());
             Float Cvalor12 = Float.parseFloat(mapa.get("RSMP").toString());
 
+            Cvalor1 = Utilidades.MetodosGlobales.redondear(Cvalor1, 2);
+            Cvalor3 = Utilidades.MetodosGlobales.redondear(Cvalor3, 2);
+            Cvalor5 = Utilidades.MetodosGlobales.redondear(Cvalor5, 2);
+            Cvalor7 = Utilidades.MetodosGlobales.redondear(Cvalor7, 2);
+            Cvalor9 = Utilidades.MetodosGlobales.redondear(Cvalor9, 2);
+            Cvalor11 = Utilidades.MetodosGlobales.redondear(Cvalor11, 2);
+            
+            
             Obj = new JSONObject();
 
             try {
@@ -125,14 +134,14 @@ public class C_001_Produccion_Por_Planta_Servlet extends HttpServlet {
                 Obj.put("valor2", Cvalor2);
                 Obj.put("valor3", Cvalor3);
                 Obj.put("valor4", Cvalor4);
-                Obj.put("valor5", Cvalor5);
-                Obj.put("valor6", Cvalor6);
-                Obj.put("valor7", Cvalor7);
+                Obj.put("valor5",Cvalor5);
+                Obj.put("valor6",Cvalor6 );
+                Obj.put("valor7",Cvalor7);
                 Obj.put("valor8", Cvalor8);
-                Obj.put("valor9", Cvalor9);
-                Obj.put("valor10", Cvalor10);
-                Obj.put("valor11", Cvalor11);
-                Obj.put("valor12", Cvalor12);
+                Obj.put("valor9",Cvalor9);
+                Obj.put("valor10",Cvalor10 );
+                Obj.put("valor11",Cvalor11 );
+                Obj.put("valor12",Cvalor12 );
 
                 ListaValores.add(Obj);
                 responseObj.put("ListaValores", ListaValores);

@@ -94,47 +94,15 @@ public class I_001_Kilos_Producidos_Hora_Hombre_Servlet extends HttpServlet {
         String sql = "";
 
         if (opcion.equals("ALL")) {
-            sql = ConsultasBD_IndicadoresProduccion.I_001_Kilos_Producidos_Hora_Hombre_General(mes, Integer.parseInt(anio));
-        
-        List<Map<String, Object>> resultList = new ArrayList<>();
-        resultList = conexion.select(sql);
-
-        Iterator<Map<String, Object>> iterador = resultList.iterator();
-        while (iterador.hasNext()) {
-            Map<String, Object> mapa = iterador.next();
-
-            String Nplanta = (String) mapa.get("Planta");
-
-            Float Cvalor = Float.parseFloat(mapa.get("anio").toString());
-            Float Cvalor2 = Float.parseFloat(mapa.get("anio1").toString());
-            Float Cvalor3 = Float.parseFloat(mapa.get("mejor").toString());
-            Float Cvalor4 = Float.parseFloat(mapa.get("Acumulado").toString());
-            Float Cvalor5 = Float.parseFloat(mapa.get("Acumulado1").toString());
-            Float Cvalor6 = Float.parseFloat(mapa.get("PROMEDIO").toString());
-            Obj = new JSONObject();
-
-            try {
-                Obj.put("planta", Nplanta);
-                Obj.put("valor1", Cvalor);
-                Obj.put("valor2", Cvalor2);
-                Obj.put("valor3", Cvalor3);
-                Obj.put("valor4", Cvalor4);
-                Obj.put("valor5", Cvalor5);
-                Obj.put("valor6", Cvalor6);
-                ListaValores.add(Obj);
-                responseObj.put("ListaValores", ListaValores);
-            } catch (JSONException ex) {
-                Logger.getLogger(I_000_Produccion_Por_Planta_Mes_Servlet.class.getName()).log(Level.SEVERE, null, ex);
-            }
+           sql= ConsultasBD_IndicadoresProduccion.I_001_Kilos_Producidos_Hora_Hombre_General(mes, Integer.parseInt(anio),"<>");
+           this.Generales(sql, ListaValores, Obj, responseObj, response);
         }
-
-        if (Obj == null) {
-            response.getWriter().write("");
-        } else {
-            response.getWriter().write(responseObj.toString());
+       else
+            if (opcion.equals("FPS MES")) {
+          sql= ConsultasBD_IndicadoresProduccion.I_001_Kilos_Producidos_Hora_Hombre_General(mes, Integer.parseInt(anio),"=");
+           this.Generales(sql, ListaValores, Obj, responseObj, response);
         }
         
-        }
         else {
             //sql = ConsultasBD_IndicadoresProduccion.I_001_Kilos_Producidos_Hora_Hombre_Detalle(mes, Integer.parseInt(anio), opcion);
              sql = ConsultasBD_IndicadoresProduccion.I_001_Kilos_Producidos_Hora_Hombre_Planta(opcion, Integer.parseInt(anio));
@@ -158,6 +126,8 @@ public class I_001_Kilos_Producidos_Hora_Hombre_Servlet extends HttpServlet {
             //Float Cvalor4 = Float.parseFloat(mapa.get("Acumulado").toString());
             //Float Cvalor5 = Float.parseFloat(mapa.get("Acumulado1").toString());
             Float Cvalor6 = Float.parseFloat(mapa.get("PROMEDIO").toString());
+             String mejormes = String.valueOf (mapa.get("MEJORMES"));
+            String mejoranio = String.valueOf( mapa.get("MEJORANIO"));
             Obj = new JSONObject();
 
             try {
@@ -168,6 +138,8 @@ public class I_001_Kilos_Producidos_Hora_Hombre_Servlet extends HttpServlet {
                 //Obj.put("valor4", Cvalor4);
                 //Obj.put("valor5", Cvalor5);
                 Obj.put("valor6", Cvalor6);
+                Obj.put("mejormes", mejormes);
+                Obj.put("mejoranio", mejoranio);
                 ListaValores.add(Obj);
                 responseObj.put("ListaValores", ListaValores);
             } catch (JSONException ex) {
@@ -184,6 +156,54 @@ public class I_001_Kilos_Producidos_Hora_Hombre_Servlet extends HttpServlet {
         }
 
        
+    }
+    
+    public void Generales(String sql, List ListaValores,JSONObject Obj, JSONObject responseObj,HttpServletResponse response) throws IOException
+    {
+     //sql = ConsultasBD_IndicadoresProduccion.I_001_Kilos_Producidos_Hora_Hombre_General(mes, Integer.parseInt(anio));
+        
+        List<Map<String, Object>> resultList = new ArrayList<>();
+        resultList = conexion.select(sql);
+
+        Iterator<Map<String, Object>> iterador = resultList.iterator();
+        while (iterador.hasNext()) {
+            Map<String, Object> mapa = iterador.next();
+
+            String Nplanta = (String) mapa.get("Planta");
+
+            Float Cvalor = Float.parseFloat(mapa.get("anio").toString());
+            Float Cvalor2 = Float.parseFloat(mapa.get("anio1").toString());
+            Float Cvalor3 = Float.parseFloat(mapa.get("mejor").toString());
+            Float Cvalor4 = Float.parseFloat(mapa.get("Acumulado").toString());
+            Float Cvalor5 = Float.parseFloat(mapa.get("Acumulado1").toString());
+            Float Cvalor6 = Float.parseFloat(mapa.get("PROMEDIO").toString());
+            
+           
+            
+            Obj = new JSONObject();
+
+            try {
+                Obj.put("planta", Nplanta);
+                Obj.put("valor1", Cvalor);
+                Obj.put("valor2", Cvalor2);
+                Obj.put("valor3", Cvalor3);
+                Obj.put("valor4", Cvalor4);
+                Obj.put("valor5", Cvalor5);
+                Obj.put("valor6", Cvalor6);
+             
+                ListaValores.add(Obj);
+                responseObj.put("ListaValores", ListaValores);
+            } catch (JSONException ex) {
+                Logger.getLogger(I_000_Produccion_Por_Planta_Mes_Servlet.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+
+        if (Obj == null) {
+            response.getWriter().write("");
+        } else {
+            response.getWriter().write(responseObj.toString());
+        }
+        
     }
 
     /**

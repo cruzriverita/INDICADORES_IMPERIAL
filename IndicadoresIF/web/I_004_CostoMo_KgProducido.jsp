@@ -25,7 +25,7 @@
     %>
     <!-----------------------------------------Archivos y Fuentes JavaScript-------------------------------> 
     <script type="text/javascript" src="Js/js/FuncionesGlobales.js"></script>
-    <script type="text/javascript" src="Js/I_004_CostoMo_KgProducido.js"></script>
+    <script type="text/javascript" src="Js/JsGeneral.js"></script>
 
     <!------------------------------------------JS GOOGLE CHARTS-------------------------------------------> 
     <script type="text/javascript" src="Js/js/loader.js"></script>
@@ -74,7 +74,7 @@
         </div>
 
         <div id="DivPrincipal" class="divprincipal">
-            <form method="get" action="I_001_Kilos_Producidos_Hora_Hombre_XLS" style="padding:5px">
+            <form method="get" action="I_001_Kilos_Producidos_Hora_Hombre_XLS" style="padding:5px" class="formulario">
                 <input type="text" id="lblmes"  name="lblmes"  onkeypress="" value="Ingresar Mes" disabled="true" class="texto" /> 
                 <input type="text" id="lbla"  name="lbla"  onkeypress="" value="Ingresar Año" disabled="true" class="texto" /> 
                  <input type="text" id="lblP"  name="lblP"  onkeypress="" value="Planta" disabled="true" class="texto" /> 
@@ -83,8 +83,9 @@
            <input type="text" id="mes"  name="mes"  onkeypress="" value="<%=m%>" class="texto"/>  
                 <input type="text" id="anio"  name="anio"  onkeypress="" value="<%=a%>" class="texto"/>  
 
-                <select id="opciones" name="opciones" onchange="DibujarChartPrincipal();hideMes();" class="texto2">
-                    <option value="ALL" selected="ALL">Elegir Planta</option>
+                <select id="opciones" name="opciones" onchange="DibujarChartPrincipal();hideMes();" class="select">
+                    <option value="ALL" selected="ALL">Todas</option>
+                    <option value="FPS MES">FPS Mensual</option>
                     <option value="PLANTA RLRS">RLRS</option>
                     <option value="PLANTA RST">RST</option>      
                     <option value="PLANTA KNIT">KNIT</option>
@@ -95,7 +96,7 @@
 
 
                 <input type="button" value="Visualizar" onclick="DibujarChartPrincipal()" class="boton"/>
-
+<input type="hidden" id="indicador"  name="indicador" value="INDICADOR4"/>  
             </form> 
 
             <div id="GraficaPrincipal" class="divimagen"></div>

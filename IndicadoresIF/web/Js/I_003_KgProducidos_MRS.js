@@ -14,7 +14,9 @@ function DibujarChartPrincipal() {
                 dataType: "json", //Se reciben los datos en formato JSON                
                 success: function (data_) {
 
-                    if ($('#opciones option:selected').val() === "ALL")
+
+                    //Si se elige una de estas dos opciones entonces se muestra la grafica de barras, se separa DPF (trabaja con docenas y no KG)
+                    if ($('#opciones option:selected').val() === "ALL" || $('#opciones option:selected').val() === "FPS MES")
                     {
                         queryObject = eval('(' + JSON.stringify(data_) + ')');
                         queryObjectLen = queryObject.ListaValores.length;
@@ -25,14 +27,25 @@ function DibujarChartPrincipal() {
                         data.addColumn('string', 'Planta');                         //Planta
                         //data.addColumn('number', 'Acumulado ' + String(x - 1));   //Acumulado año anterior
                         data.addColumn('number', x - 1);                            //Año anterior
-                        data.addColumn('number', 'mejor');                          //Mejor
+                        data.addColumn('number', 'Mayor');                          //Mejor
                         data.addColumn('number', $("#anio").val());                 //Año actual
                         //data.addColumn('number', 'Acumulado ' + $("#anio").val());//Acumulado año actual 
-                        data.addColumn('number', 'promedio');                       //Promedio
+                        data.addColumn('number', 'Promedio ' + (x - 1));                       //Promedio
 
                         for (var i = 0; i < queryObjectLen; i++)
                         {
                             var planta = queryObject.ListaValores[i].planta;
+
+                            //Conversion de nombres por como estan almacenados en la tabl de mysql.
+                            if (planta === "PLANTA LRS")
+                            {
+                                planta = "PLANTA RLRS";
+                            }
+                            else if (planta === "PLANTA MRS O&M")
+                            {
+                                planta = "PLANTA RSM O&M";
+                            }
+                            /*-------------------------------------------------------------------*/
                             var a1 = queryObject.ListaValores[i].valor1;
                             var a2 = queryObject.ListaValores[i].valor2;
                             var a3 = queryObject.ListaValores[i].valor3;
@@ -52,12 +65,27 @@ function DibujarChartPrincipal() {
                             2, 3, 4
                         ]);
 
-                        var options = {
-                            title: 'Kilos Producidos/MRS ' + ConvertirMes($("#mes").val()) + ' ' + $("#anio").val(),
-                            vAxis: {title: 'Kilogramos', titleTextStyle: {color: 'Black'}},
-                            is3D: true,
-                            colors: Colores()
-                        };
+                        /*---------------------Si no es DPF en el titulo se colocan kg---------------*/
+                        if ($('#opciones option:selected').val() === "ALL") {
+                            var options = {
+                                title: 'Kilos Producidos/MRS ' + ConvertirMes($("#mes").val()) + ' ' + $("#anio").val(),
+                                vAxis: {title: 'Kg Producidos / MRS', titleTextStyle: {color: 'Black'}},
+                                is3D: true,
+                                colors: Colores()
+                            };
+                        }
+                        /*--------------------Si es DPF se pone docenas en el titulo---------------*/
+                        else
+                        {
+                            var options = {
+                                title: 'Docenas Producidas/MRS ' + ConvertirMes($("#mes").val()) + ' ' + $("#anio").val(),
+                                vAxis: {title: 'Docenas Producidas / MRS', titleTextStyle: {color: 'Black'}},
+                                is3D: true,
+                                colors: Colores()
+                            };
+
+                        }
+
 
                         var chart = new google.visualization.ColumnChart(document.getElementById('GraficaPrincipal'));
                         function ClickBarra() {
@@ -69,6 +97,7 @@ function DibujarChartPrincipal() {
                         chart.draw(data, options);
                     }
 
+                    /*Si se elige una planta especifica se ejecuta el siguiente codigo, una grafica lineal anual por aplanta*/
                     else
                     {
                         queryObject = eval('(' + JSON.stringify(data_) + ')');
@@ -79,10 +108,10 @@ function DibujarChartPrincipal() {
 
                         data.addColumn('string', 'mes');
                         data.addColumn('number', x - 1);
-                        data.addColumn('number', 'mejor');
+                        data.addColumn('number', 'Mayor');
                         data.addColumn('number', $("#anio").val());
                         //data.addColumn({type:'string', role:'annotation'});
-                        data.addColumn('number', 'Promedio');
+                        data.addColumn('number', 'Promedio ' + (x - 1));
                         //data.addColumn({type:'string', role:'annotation'});
 
                         for (var i = 0; i < queryObjectLen; i++)
@@ -92,7 +121,9 @@ function DibujarChartPrincipal() {
                             var a2 = queryObject.ListaValores[i].valor2;
                             var a3 = queryObject.ListaValores[i].valor3;
                             var a6 = queryObject.ListaValores[i].valor6;
-                          
+                            var m = queryObject.ListaValores[i].mejormes;
+                            var a = queryObject.ListaValores[i].mejoranio;
+
                             data.addRows([
                                 [planta, parseFloat(a1), /*String(a1),*/ parseFloat(a3),
                                     parseFloat(a2), /*String(a2),*/parseFloat(a6)
@@ -104,7 +135,8 @@ function DibujarChartPrincipal() {
                         {
                             var options = {
                                 title: 'Docenas Producidas/MRS ' + $("#anio").val() + ' ' + $('#opciones option:selected').val(),
-                                vAxis: {title: 'Docenas', titleTextStyle: {color: 'Black'}},
+                                vAxis: {title: 'Docenas Producidas / MRS', titleTextStyle: {color: 'Black'}},
+                                hAxis: {title: '*El valor mayor corresponde a ' + ConvertirMes(m) + ' de ' + a, titleTextStyle: {color: 'Blue'}},
                                 is3D: true,
                                 colors: Colores()
                             };
@@ -113,7 +145,8 @@ function DibujarChartPrincipal() {
                         {
                             var options = {
                                 title: 'Kilos Producidos/MRS ' + $("#anio").val() + ' ' + $('#opciones option:selected').val(),
-                                vAxis: {title: 'Kilogramos', titleTextStyle: {color: 'Black'}},
+                                vAxis: {title: 'Kg Producidos / MRS', titleTextStyle: {color: 'Black'}},
+                                hAxis: {title: '*El valor mayor corresponde a ' + ConvertirMes(m) + ' de ' + a, titleTextStyle: {color: 'Blue'}},
                                 is3D: true,
                                 colors: Colores()
                             };
@@ -122,11 +155,9 @@ function DibujarChartPrincipal() {
 
 
                         var chart = new google.visualization.LineChart(document.getElementById('GraficaPrincipal'));
-
-
                         function ClickBarra() {
                             var selectedItem = chart.getSelection()[0];
-                            if (selectedItem) {                           
+                            if (selectedItem) {
                             }
                         }
                         google.visualization.events.addListener(chart, 'select', ClickBarra);
@@ -139,7 +170,7 @@ function DibujarChartPrincipal() {
                     alert('No existen datos para el mes' + $("#mes").val());
                     document.getElementById("mes").value = 2; //MesActual();
                     location.reload();
-                },
-                async: false
+                }
+
             });
 }

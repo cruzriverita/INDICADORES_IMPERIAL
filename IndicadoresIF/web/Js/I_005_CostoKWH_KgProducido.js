@@ -4,6 +4,8 @@
  * and open the template in the editor.
  *//* global google */
 
+/* global google */
+
 function DibujarChartPrincipal() {
     $.ajax
             ({
@@ -12,24 +14,29 @@ function DibujarChartPrincipal() {
                 url: "I_005_CostoKWH_KgProducido_Servlet",
                 //Parametros leidos del jsp. anio y mes, parametros en enviados al servlet aniojs mesjs.         
                 data: {
-                    mesjs: $("#mes").val(), aniojs: $("#anio").val(),
+                    mesjs: $("#mes").val(), aniojs: $('#opciones2 option:selected').val(),//$("#anio").val(),
                     opcion: $('#opciones option:selected').val()
                 },
                 dataType: "json", //Se reciben los datos en formato JSON                
                 success: function (data_) {
-                    if ($('#opciones option:selected').val() === "ALL")
+                    if ($('#opciones option:selected').val() === "ALL" || $('#opciones option:selected').val() === "FPS MES")
                     {
                         queryObject = eval('(' + JSON.stringify(data_) + ')');
                         queryObjectLen = queryObject.ListaValores.length;
                         var data = new google.visualization.DataTable();
+                        
                         /*convertir #anio a entero*/
-                        var x = parseInt($("#anio").val(), 10);
+                        var x = parseInt($('#opciones2 option:selected').val(), 10);
+                        var a1=x-1;
+                        var a2=x+1;
+                        
+                        var titulo1=a1.toString().concat("/").concat(x.toString());
 
                         data.addColumn('string', 'Planta');                         //Planta
                         //data.addColumn('number', 'Acumulado ' + String(x - 1));   //Acumulado año anterior
-                        data.addColumn('number', x - 1);                            //Año anterior
-                        data.addColumn('number', 'mejor');                          //Mejor
-                        data.addColumn('number', $("#anio").val());                 //Año actual
+                        data.addColumn('number', titulo1);                            //Año anterior
+                        data.addColumn('number', 'Menor');                          //Mejor
+                        data.addColumn('number', x+1);                 //Año actual
                         //data.addColumn('number', 'Acumulado ' + $("#anio").val());//Acumulado año actual 
                         data.addColumn('number', 'promedio');                       //Promedio
 
@@ -56,8 +63,8 @@ function DibujarChartPrincipal() {
                         ]);
 
                         var options = {
-                            title: 'Costo KWH/Kg Producidos ' + ConvertirMes($("#mes").val()) + ' ' + $("#anio").val(),
-                            vAxis: {title: 'Dolares', titleTextStyle: {color: 'Black'}},
+                            title: 'Costo KWH / Kg Producidos ' + ConvertirMes($("#mes").val()) + ' ' + $("#anio").val(),
+                            vAxis: {title: '($) Costo KwH / Kg Producido', titleTextStyle: {color: 'Black'}},
                             is3D: true,
                             colors: Colores()
                         };
@@ -82,7 +89,7 @@ function DibujarChartPrincipal() {
 
                         data.addColumn('string', 'mes');
                         data.addColumn('number', x - 1);
-                        data.addColumn('number', 'mejor');
+                        data.addColumn('number', 'Menor');
                         data.addColumn('number', $("#anio").val());
                         //data.addColumn({type:'string', role:'annotation'});
                         data.addColumn('number', 'Promedio');
@@ -95,6 +102,8 @@ function DibujarChartPrincipal() {
                             var a2 = queryObject.ListaValores[i].valor2;
                             var a3 = queryObject.ListaValores[i].valor3;
                             var a6 = queryObject.ListaValores[i].valor6;
+                            var m=queryObject.ListaValores[i].mejormes;
+                            var a=queryObject.ListaValores[i].mejoranio;
                           
                             data.addRows([
                                 [planta, parseFloat(a1), /*String(a1),*/ parseFloat(a3),
@@ -106,8 +115,10 @@ function DibujarChartPrincipal() {
                         if ($('#opciones option:selected').val() === "PLANTA FPS")
                         {
                             var options = {
-                                title: 'Costo KWH/Docenas Producidas ' + $("#anio").val() + ' ' + $('#opciones option:selected').val(),
-                                vAxis: {title: 'Dolares', titleTextStyle: {color: 'Black'}},
+                                title: 'Costo KWH / Docenas Producidas ' + $("#anio").val() + ' ' + $('#opciones option:selected').val(),
+                                vAxis: {title: '($) Costo KwH / Kg Producido', titleTextStyle: {color: 'Black'}},
+                                   hAxis: {title: '*El valor menor corresponde a '+ConvertirMes(m) +' de '+ a, titleTextStyle: {color: 'Blue'}},
+                                
                                 is3D: true,
                                 colors: Colores()
                             };
@@ -115,8 +126,9 @@ function DibujarChartPrincipal() {
                         else
                         {
                             var options = {
-                                title: 'Costo KWH/Kg Producidos ' + $("#anio").val() + ' ' + $('#opciones option:selected').val(),
-                                vAxis: {title: 'Dolares', titleTextStyle: {color: 'Black'}},
+                                title: 'Costo KWH / Kg Producidos ' + $("#anio").val() + ' ' + $('#opciones option:selected').val(),
+                                vAxis: {title: '($) Costo KwH / Kg Producido', titleTextStyle: {color: 'Black'}},
+                                   hAxis: {title: '*El valor menor corresponde a '+ConvertirMes(m) +' de '+ a, titleTextStyle: {color: 'Blue'}},
                                 is3D: true,
                                 colors: Colores()
                             };
@@ -143,7 +155,7 @@ function DibujarChartPrincipal() {
                     alert('No existen datos para el mes' + $("#mes").val());
                     document.getElementById("mes").value = 2; //MesActual();
                     location.reload();
-                },
+                }
            
             });
 }

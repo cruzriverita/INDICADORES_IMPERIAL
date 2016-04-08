@@ -78,17 +78,30 @@
 
         <div id="DivPrincipal" class="divprincipal">
 
-            <form method="get" action="I_001_Kilos_Producidos_Hora_Hombre_XLS" style="padding:5px">
+            <form method="get" action="I_001_Kilos_Producidos_Hora_Hombre_XLS" style="padding:5px" class="formulario">
                 <input type="text" id="lblmes"  name="lblmes"  onkeypress="" value="Ingresar Mes" disabled="true" class="texto" /> 
                 <input type="text" id="lbla"  name="lbla"  onkeypress="" value="Ingresar Año" disabled="true" class="texto" /> 
                  <input type="text" id="lblP"  name="lblP"  onkeypress="" value="Planta" disabled="true" class="texto" /> 
                 <INPUT TYPE="SUBMIT" value="Exportar Datos" class="boton">
                 <br>
            <input type="text" id="mes"  name="mes"  onkeypress="" value="<%=m%>" class="texto"/>  
-                <input type="text" id="anio"  name="anio"  onkeypress="" value="<%=a%>" class="texto"/>  
+               <!--<input type="text" id="anio"  name="anio"  onkeypress="" value="<%=a%>" class="texto"/> --> 
 
-                <select id="opciones" name="opciones" onchange="DibujarChartPrincipal();hideMes();" class="texto2">
-                    <option value="ALL" selected="ALL">Elegir Planta</option>
+                <select id="opciones2" name="opciones2" onchange="" class="select">
+                    
+                    <option value="2015">2013/2015</option>
+                    <option value="2016" selected="2016">2014/2016</option>
+                    <option value="2017">2015/2017</option>
+                    <option value="2018">2016/2018</option>      
+                    <option value="2019">18/19</option>
+                    <option value="2020">19/20</option>   
+                    <option value="2021">20/21</option>
+                    <option value="2022">21/22</option>   
+                </select>
+                
+                <select id="opciones" name="opciones" onchange="DibujarChartPrincipal();hideMes();" class="select">
+                    <option value="ALL" selected="ALL">Todas</option>
+                    <option value="FPS MES">FPS Mensual</option>
                     <option value="PLANTA RLRS">RLRS</option>
                     <option value="PLANTA RST">RST</option>      
                     <option value="PLANTA KNIT">KNIT</option>
@@ -99,7 +112,7 @@
 
 
                 <input type="button" value="Visualizar" onclick="DibujarChartPrincipal()" class="boton"/>
-
+<input type="hidden" id="indicador"  name="indicador" value="INDICADOR5"/>  
             </form> 
 
             <div id="GraficaPrincipal" class="divimagen"></div>

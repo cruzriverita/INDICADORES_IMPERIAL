@@ -95,47 +95,17 @@ public class I_005_CostoKWH_KgProducido_Servlet extends HttpServlet {
         opcion = request.getParameter("opcion");
 
         String sql = "";
-         if (opcion.equals("ALL")) {
-         sql=ConsultasBD_IndicadoresProduccion.I_005_CostoKWH_Kg_Producido_General(mes,Integer.parseInt(anio));
-         
-         List<Map<String, Object>> resultList = new ArrayList<>();
-            resultList = conexion.select(sql);
-
-            Iterator<Map<String, Object>> iterador = resultList.iterator();
-            while (iterador.hasNext()) {
-                Map<String, Object> mapa = iterador.next();
-
-                String Nplanta = (String) mapa.get("Planta");
-
-                Float Cvalor = Float.parseFloat(mapa.get("anio").toString());
-                Float Cvalor2 = Float.parseFloat(mapa.get("anio1").toString());
-                Float Cvalor3 = Float.parseFloat(mapa.get("mejor").toString());
-                Float Cvalor4 = Float.parseFloat(mapa.get("Acumulado").toString());
-                Float Cvalor5 = Float.parseFloat(mapa.get("Acumulado1").toString());
-                Float Cvalor6 = Float.parseFloat(mapa.get("PROMEDIO").toString());
-                Obj = new JSONObject();
-
-                try {
-                    Obj.put("planta", Nplanta);
-                    Obj.put("valor1", Cvalor);
-                    Obj.put("valor2", Cvalor2);
-                    Obj.put("valor3", Cvalor3);
-                    Obj.put("valor4", Cvalor4);
-                    Obj.put("valor5", Cvalor5);
-                    Obj.put("valor6", Cvalor6);
-                    ListaValores.add(Obj);
-                    responseObj.put("ListaValores", ListaValores);
-                } catch (JSONException ex) {
-                    Logger.getLogger(I_003_KgProducidos_MRS_Servlet.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-
-            if (Obj == null) {
-                response.getWriter().write("");
-            } else {
-                response.getWriter().write(responseObj.toString());
-            }
-         }
+        
+             if (opcion.equals("ALL")) {
+          sql=ConsultasBD_IndicadoresProduccion.I_005_CostoKWH_Kg_Producido_General(mes,Integer.parseInt(anio),"<>");
+           Utilidades.MetodosGlobales.Generales(sql, ListaValores, Obj, responseObj, response,conexion);
+        }
+       else
+            if (opcion.equals("FPS MES")) {
+          sql=ConsultasBD_IndicadoresProduccion.I_005_CostoKWH_Kg_Producido_General(mes,Integer.parseInt(anio),"=");
+           Utilidades.MetodosGlobales.Generales(sql, ListaValores, Obj, responseObj, response,conexion);
+        }
+ 
          else
          {
           sql = ConsultasBD_IndicadoresProduccion.I_005_CostoKWH_Kg_Producido_Planta(opcion, Integer.parseInt(anio));
@@ -148,7 +118,8 @@ public class I_005_CostoKWH_KgProducido_Servlet extends HttpServlet {
                 Map<String, Object> mapa = iterador.next();
 
 
-                String Nmes = Utilidades.MetodosGlobales.get_mes((Integer) mapa.get("Mes"));
+                String Nmes = Utilidades.MetodosGlobales.get_mes((Integer) mapa.get("MES"));
+                //String Nmes = String.valueOf(mapa.get("MES"));
 
                 Float Cvalor = Float.parseFloat(mapa.get("2015").toString());
                 Float Cvalor2 = Float.parseFloat(mapa.get("2016").toString());
@@ -156,6 +127,8 @@ public class I_005_CostoKWH_KgProducido_Servlet extends HttpServlet {
                 //Float Cvalor4 = Float.parseFloat(mapa.get("Acumulado").toString());
                 //Float Cvalor5 = Float.parseFloat(mapa.get("Acumulado1").toString());
                 Float Cvalor6 = Float.parseFloat(mapa.get("PROMEDIO").toString());
+                String mejormes = String.valueOf(mapa.get("MEJORMES"));
+                String mejoranio = String.valueOf(mapa.get("MEJORANIO"));
                 Obj = new JSONObject();
 
                 try {
@@ -166,6 +139,9 @@ public class I_005_CostoKWH_KgProducido_Servlet extends HttpServlet {
                     //Obj.put("valor4", Cvalor4);
                     //Obj.put("valor5", Cvalor5);
                     Obj.put("valor6", Cvalor6);
+                    Obj.put("mejormes", mejormes);
+                    Obj.put("mejoranio", mejoranio);
+                    
                     ListaValores.add(Obj);
                     responseObj.put("ListaValores", ListaValores);
                 } catch (JSONException ex) {
@@ -180,6 +156,8 @@ public class I_005_CostoKWH_KgProducido_Servlet extends HttpServlet {
             } 
          }
     }
+    
+    
 
     /**
      * Returns a short description of the servlet.

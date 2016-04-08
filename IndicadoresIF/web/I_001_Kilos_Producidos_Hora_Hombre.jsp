@@ -32,13 +32,14 @@
  
     <!-----------------------------------------Archivos y Fuentes JavaScript-------------------------------> 
     <script type="text/javascript" src="Js/js/FuncionesGlobales.js"></script>
-    <script type="text/javascript" src="Js/I_001_Kilos_Producidos_Hora_Hombre.js"></script>
-  
+    <!--<script type="text/javascript" src="Js/I_001_Kilos_Producidos_Hora_Hombre.js"></script>-->
+  <script type="text/javascript" src="Js/JsGeneral.js"></script>
      <script type="text/javascript">
         //API de Google Chart, Se llama en cada jsp  
         /* global google */
-        google.charts.load('current', {'packages': ['corechart']});
-        google.charts.setOnLoadCallback(DibujarChartPrincipal);
+       // google.charts.load('current', {'packages': ['corechart']});
+    google.charts.load('current', {packages: ['corechart', 'line']});    
+    google.charts.setOnLoadCallback(DibujarChartPrincipal);
     </script>   
 
     <!------------------------------------------JS MENU DESPLEGABLE-------------------------------------------> 
@@ -90,8 +91,9 @@
                 <input type="text" id="mes"  name="mes"  onkeypress="" value="<%=m%>" class="texto"/>  
                 <input type="text" id="anio"  name="anio"  onkeypress="" value="<%=a%>" class="texto"/>  
    
-                <select id="opciones" name="opciones" onchange="DibujarChartPrincipal(); hideMes();" class="texto2">
+                <select id="opciones" name="opciones" onchange="DibujarChartPrincipal(); hideMes();" class="select">
                     <option value="ALL">Todas</option>
+                    <option value="FPS MES">FPS Mensual</option>
                     <option value="PLANTA RLRS">RLRS</option>
                     <option value="PLANTA RST">RST</option>      
                     <option value="PLANTA KNIT">KNIT</option>
@@ -99,8 +101,10 @@
                     <option value="PLANTA FPS">FPS</option>
                     <option value="PLANTA RSM O&M">RSM O&M</option>   
                 </select>
+                
 
                 <input type="button" value="Visualizar" onclick="DibujarChartPrincipal()" class="boton"/>
+                <input type="hidden" id="indicador"  name="indicador" value="INDICADOR1"/>  
             </form> 
 
             <div id="GraficaPrincipal" class="divimagen"></div>

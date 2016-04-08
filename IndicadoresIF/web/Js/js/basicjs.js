@@ -1,3 +1,4 @@
+//ITEMS DEL MENU EN JS
 
 $(document).ready(function () {
     // JS Array implementation, overlap mode
@@ -98,11 +99,7 @@ var arrMenu = [
                                 ]
 
                             },
-                            {
-                                name: 'Costo Energia',
-                                link: 'I_003_Costo_Energia_Q.jsp'
-
-                            },
+                           
                          
                             {
                                 name: 'Total Costos Directos',

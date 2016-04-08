@@ -17,18 +17,6 @@
         <servlet-class>ArchivosXLS.I_000_Produccion_Por_Planta_Commodity_XLS</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>I_003_Costo_Energia_Q_Servlet</servlet-name>
-        <servlet-class>Controladores.I_003_Costo_Energia_Q_Servlet</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>I_003_Costo_Energia_Detalle_Servlet</servlet-name>
-        <servlet-class>Controladores.I_003_Costo_Energia_Detalle_Servlet</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>I_003_Costo_Energia_XLS</servlet-name>
-        <servlet-class>ArchivosXLS.I_003_Costo_Energia_XLS</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>I_001_Kilos_Producidos_Hora_Hombre_Servlet</servlet-name>
         <servlet-class>Controladores.I_001_Kilos_Producidos_Hora_Hombre_Servlet</servlet-class>
     </servlet>
@@ -56,6 +44,18 @@
         <servlet-name>I_006_CostoMRS_KgProducido_Servlet</servlet-name>
         <servlet-class>Controladores.I_006_CostoMRS_KgProducido_Servlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>C_001_Produccion_Por_Planta_XLS</servlet-name>
+        <servlet-class>ArchivosXLS.C_001_Produccion_Por_Planta_XLS</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>C_001_Produccion_Por_Planta_Servlet2</servlet-name>
+        <servlet-class>Controladores.C_001_Produccion_Por_Planta_Servlet2</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>General_Servlet</servlet-name>
+        <servlet-class>Controladores.General_Servlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>I_000_Produccion_Por_Planta_Mes_Servlet</servlet-name>
         <url-pattern>/I_000_Produccion_Por_Planta_Mes_Servlet</url-pattern>
@@ -71,18 +71,6 @@
     <servlet-mapping>
         <servlet-name>I_000_Produccion_Por_Planta_Commodity_XLS</servlet-name>
         <url-pattern>/I_000_Produccion_Por_Planta_Commodity_XLS</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>I_003_Costo_Energia_Q_Servlet</servlet-name>
-        <url-pattern>/I_003_Costo_Energia_Q_Servlet</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>I_003_Costo_Energia_Detalle_Servlet</servlet-name>
-        <url-pattern>/I_003_Costo_Energia_Detalle_Servlet</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>I_003_Costo_Energia_XLS</servlet-name>
-        <url-pattern>/I_003_Costo_Energia_XLS</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>I_001_Kilos_Producidos_Hora_Hombre_Servlet</servlet-name>
@@ -111,6 +99,18 @@
     <servlet-mapping>
         <servlet-name>I_006_CostoMRS_KgProducido_Servlet</servlet-name>
         <url-pattern>/I_006_CostoMRS_KgProducido_Servlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>C_001_Produccion_Por_Planta_XLS</servlet-name>
+        <url-pattern>/C_001_Produccion_Por_Planta_XLS</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>C_001_Produccion_Por_Planta_Servlet2</servlet-name>
+        <url-pattern>/C_001_Produccion_Por_Planta_Servlet2</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>General_Servlet</servlet-name>
+        <url-pattern>/General_Servlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -96,11 +96,72 @@ public class I_003_KgProducidos_MRS_Servlet extends HttpServlet {
         opcion = request.getParameter("opcion");
 
         String sql = "";
+        switch (opcion) {
+            case "ALL":
+                sql = ConsultasBD_IndicadoresProduccion.I_003_Kg_Producidos_Mrs_General(mes, Integer.parseInt(anio),"<>");
+                this.Generales(sql, ListaValores, Obj, responseObj, response);
+                break;
+            case "FPS MES":
+                sql = ConsultasBD_IndicadoresProduccion.I_003_Kg_Producidos_Mrs_General(mes, Integer.parseInt(anio),"=");
+                this.Generales(sql, ListaValores, Obj, responseObj, response);
+                break;
+            default:
+                /*Este if es para convertir el parametro enviado al nombre con el que esta almacenado
+                la planta en la tabla, ya que por la forma en que se llena la tabla por medio de SSIS
+                fue necesario cambiar el nombre de algunas tablas.*/
+                switch (opcion) {
+                    case "PLANTA RLRS":
+                        opcion = "PLANTA LRS";
+                        break;
+                    case "PLANTA RSM O&M":
+                        opcion = "PLANTA MRS O&M";
+                        break;
+                }   sql = ConsultasBD_IndicadoresProduccion.I_003_Kg_Producidos_Mrs_Planta(opcion, Integer.parseInt(anio));
+                List<Map<String, Object>> resultList = new ArrayList<>();
+                resultList = conexion.select(sql);
+                Iterator<Map<String, Object>> iterador = resultList.iterator();
+                while (iterador.hasNext()) {
+                    Map<String, Object> mapa = iterador.next();
+                    
+                    
+                    String Nmes = Utilidades.MetodosGlobales.get_mes((Integer) mapa.get("Mes"));
+                    
+                    Float Cvalor = Float.parseFloat(mapa.get("2015").toString());
+                    Float Cvalor2 = Float.parseFloat(mapa.get("2016").toString());
+                    Float Cvalor3 = Float.parseFloat(mapa.get("mejor").toString());
+                    //Float Cvalor4 = Float.parseFloat(mapa.get("Acumulado").toString());
+                    //Float Cvalor5 = Float.parseFloat(mapa.get("Acumulado1").toString());
+                    Float Cvalor6 = Float.parseFloat(mapa.get("PROMEDIO").toString());
+                    String mejormes = String.valueOf(mapa.get("MEJORMES"));
+                    String mejoranio = String.valueOf(mapa.get("MEJORANIO"));
+                    Obj = new JSONObject();
+                    
+                    try {
+                        Obj.put("mes", Nmes);
+                        Obj.put("valor1", Cvalor);
+                        Obj.put("valor2", Cvalor2);
+                        Obj.put("valor3", Cvalor3);
+                        //Obj.put("valor4", Cvalor4);
+                        //Obj.put("valor5", Cvalor5);
+                        Obj.put("valor6", Cvalor6);
+                        Obj.put("mejormes", mejormes);
+                        Obj.put("mejoranio", mejoranio);
+                        ListaValores.add(Obj);
+                        responseObj.put("ListaValores", ListaValores);
+                    } catch (JSONException ex) {
+                        Logger.getLogger(I_000_Produccion_Por_Planta_Mes_Servlet.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }   if (Obj == null) {
+                response.getWriter().write("");
+            } else {
+                response.getWriter().write(responseObj.toString());
+            }   break;
+        }
+        }
 
-        if (opcion.equals("ALL")) {
-        
-        sql = ConsultasBD_IndicadoresProduccion.I_003_Kg_Producidos_Mrs_General(mes, Integer.parseInt(anio));
-        List<Map<String, Object>> resultList = new ArrayList<>();
+       public void Generales(String sql, List ListaValores,JSONObject Obj, JSONObject responseObj,HttpServletResponse response) throws IOException
+    {
+     List<Map<String, Object>> resultList = new ArrayList<>();
             resultList = conexion.select(sql);
 
             Iterator<Map<String, Object>> iterador = resultList.iterator();
@@ -137,64 +198,7 @@ public class I_003_KgProducidos_MRS_Servlet extends HttpServlet {
             } else {
                 response.getWriter().write(responseObj.toString());
             }
-        }
-            else
-            {
-            
-                /*Este if es para convertir el parametro enviado al nombre con el que esta almacenado
-                la planta en la tabla, ya que por la forma en que se llena la tabla por medio de SSIS
-                fue necesario cambiar el nombre de algunas tablas.*/
-                
-                if (opcion.equals("PLANTA RLRS")) {
-                    opcion = "PLANTA LRS";
-                } else if (opcion.equals("PLANTA RSM O&M")) {
-                    opcion = "PLANTA MRS O&M";
-                }
-                
-            sql = ConsultasBD_IndicadoresProduccion.I_003_Kg_Producidos_Mrs_Planta(opcion, Integer.parseInt(anio));
-            List<Map<String, Object>> resultList = new ArrayList<>();
-            resultList = conexion.select(sql);
-
-            Iterator<Map<String, Object>> iterador = resultList.iterator();
-            while (iterador.hasNext()) {
-                Map<String, Object> mapa = iterador.next();
-
-
-                String Nmes = Utilidades.MetodosGlobales.get_mes((Integer) mapa.get("Mes"));
-
-                Float Cvalor = Float.parseFloat(mapa.get("2015").toString());
-                Float Cvalor2 = Float.parseFloat(mapa.get("2016").toString());
-                Float Cvalor3 = Float.parseFloat(mapa.get("mejor").toString());
-                //Float Cvalor4 = Float.parseFloat(mapa.get("Acumulado").toString());
-                //Float Cvalor5 = Float.parseFloat(mapa.get("Acumulado1").toString());
-                Float Cvalor6 = Float.parseFloat(mapa.get("PROMEDIO").toString());
-                Obj = new JSONObject();
-
-                try {
-                    Obj.put("mes", Nmes);
-                    Obj.put("valor1", Cvalor);
-                    Obj.put("valor2", Cvalor2);
-                    Obj.put("valor3", Cvalor3);
-                    //Obj.put("valor4", Cvalor4);
-                    //Obj.put("valor5", Cvalor5);
-                    Obj.put("valor6", Cvalor6);
-                    ListaValores.add(Obj);
-                    responseObj.put("ListaValores", ListaValores);
-                } catch (JSONException ex) {
-                    Logger.getLogger(I_000_Produccion_Por_Planta_Mes_Servlet.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-
-            if (Obj == null) {
-                response.getWriter().write("");
-            } else {
-                response.getWriter().write(responseObj.toString());
-            }   
-            }
-        }
-
-    
-
+    }
     /**
      * Returns a short description of the servlet.
      *
