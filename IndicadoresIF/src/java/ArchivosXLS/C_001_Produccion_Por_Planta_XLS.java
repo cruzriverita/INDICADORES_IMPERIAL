@@ -6,7 +6,7 @@
 package ArchivosXLS;
 
 import Utilidades.Metodos_Generales_Excel;
-import Modelo.ConsultasBD_IndicadoresProduccion;
+import Modelo.Modelo_IndicadoresProduccion;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintWriter;
@@ -90,7 +90,7 @@ public class C_001_Produccion_Por_Planta_XLS extends HttpServlet {
         OutputStream out = null;
 
         try {
-            String sql = ConsultasBD_IndicadoresProduccion.C_001_Produccion_Por_Planta(mes, Integer.parseInt(anio));
+            String sql = Modelo_IndicadoresProduccion.C_001_Produccion_Por_Planta(mes, Integer.parseInt(anio));
             response.setContentType("application/vnd.ms-excel");
 
             response.setHeader("Content-Disposition",

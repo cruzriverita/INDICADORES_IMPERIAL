@@ -33,10 +33,7 @@ var arrMenu = [
         items: [
             /*HIJOS*/
             /*---------------------------------------PRODUCCION-------------------------------------*/
-            {
-                name: 'Demo',
-                link: 'I_000_Produccion_Por_Planta_Mes.jsp'
-            },
+            
             {
                 name: 'PRODUCCION',
                 icon: 'fa fa-gears',
@@ -199,8 +196,8 @@ var arrMenu = [
                         icon: 'fa fa-group',
                         items: [
                             {
-                                name: 'Rotacion De Personal',
-                                link: '#'
+                                name: 'Numero de Empleados',
+                                link: 'I_007_Numero_De_Empleados.jsp'
                             },
                             {
                                 name: 'Encuesta De Salida',

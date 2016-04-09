@@ -5,7 +5,7 @@
  */
 package Controladores;
 
-import Modelo.ConsultasBD_IndicadoresProduccion;
+import Modelo.Modelo_IndicadoresProduccion;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -97,18 +97,18 @@ public class I_005_CostoKWH_KgProducido_Servlet extends HttpServlet {
         String sql = "";
         
              if (opcion.equals("ALL")) {
-          sql=ConsultasBD_IndicadoresProduccion.I_005_CostoKWH_Kg_Producido_General(mes,Integer.parseInt(anio),"<>");
+          sql=Modelo_IndicadoresProduccion.I_005_CostoKWH_Kg_Producido_General(mes,Integer.parseInt(anio),"<>");
            Utilidades.MetodosGlobales.Generales(sql, ListaValores, Obj, responseObj, response,conexion);
         }
        else
             if (opcion.equals("FPS MES")) {
-          sql=ConsultasBD_IndicadoresProduccion.I_005_CostoKWH_Kg_Producido_General(mes,Integer.parseInt(anio),"=");
+          sql=Modelo_IndicadoresProduccion.I_005_CostoKWH_Kg_Producido_General(mes,Integer.parseInt(anio),"=");
            Utilidades.MetodosGlobales.Generales(sql, ListaValores, Obj, responseObj, response,conexion);
         }
  
          else
          {
-          sql = ConsultasBD_IndicadoresProduccion.I_005_CostoKWH_Kg_Producido_Planta(opcion, Integer.parseInt(anio));
+          sql = "";//ConsultasBD_IndicadoresProduccion.I_005_CostoKWH_Kg_Producido_Planta(opcion, Integer.parseInt(anio));
         
             List<Map<String, Object>> resultList = new ArrayList<>();
             resultList = conexion.select(sql);
@@ -145,7 +145,7 @@ public class I_005_CostoKWH_KgProducido_Servlet extends HttpServlet {
                     ListaValores.add(Obj);
                     responseObj.put("ListaValores", ListaValores);
                 } catch (JSONException ex) {
-                    Logger.getLogger(I_000_Produccion_Por_Planta_Mes_Servlet.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(C_001_Produccion_Por_Planta_Servlet.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
 

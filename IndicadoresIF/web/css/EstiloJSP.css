@@ -115,6 +115,15 @@ and open the template in the editor.
     padding-left: 85px;
 }
 
+.formato_parrafo
+{
+    padding-top: 0px;
+    padding-right: 0px;
+    padding-bottom: 0px;
+    padding-left: 200px;
+    font-size: 13px;
+    
+}
 //----------------------------------ESTILO PARA LAS TABLAS DE GOOGLE UTILIZADAS---------------------------
 
 .bold-green-font {

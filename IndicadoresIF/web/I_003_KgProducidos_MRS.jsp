@@ -26,7 +26,7 @@
     %>
     <!-----------------------------------------Archivos y Fuentes JavaScript-------------------------------> 
     <script type="text/javascript" src="Js/js/FuncionesGlobales.js"></script>
-    <script type="text/javascript" src="Js/JsGeneral.js"></script>
+    <script type="text/javascript" src="Js/IndicadoresProduccion.js"></script>
 
     <!--JS GOOGLE CHARTS--> 
     <script type="text/javascript" src="Js/js/loader.js"></script>
@@ -50,6 +50,7 @@
             });
 
             $('#opciones').val("<%=v%>");
+            $('#mes').val("<%=m%>");
             hideMes();
         });
     </script> 
@@ -87,7 +88,20 @@
                 <input type="text" id="lblP"  name="lblP"  onkeypress="" value="Planta" disabled="true" class="texto" /> 
                 <INPUT TYPE="SUBMIT" value="Exportar Datos" class="boton">
                 <br>
-                <input type="text" id="mes"  name="mes"  onkeypress="" value="<%=m%>" class="texto"/>  
+                               <select id="mes" name="mes" onchange="DibujarChartPrincipal()" class="select">
+                        <option value="1">Enero</option>
+                        <option value="2">Febrero</option>
+                        <option value="3">Marzo</option>
+                        <option value="4">Abril</option>      
+                        <option value="5">Mayo</option>
+                        <option value="6">Junio</option>   
+                        <option value="7">Julio</option>
+                        <option value="8">Agosto</option> 
+                        <option value="9">Septiembre</option>  
+                        <option value="10">Octubre</option>  
+                        <option value="11">Noviembre</option>  
+                        <option value="12">Diciembre</option>  
+                    </select> 
                 <input type="text" id="anio"  name="anio"  onkeypress="" value="<%=a%>" class="texto"/>  
 
                 <select id="opciones" name="opciones" onchange="DibujarChartPrincipal();hideMes();" class="select">

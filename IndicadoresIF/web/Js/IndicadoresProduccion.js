@@ -5,17 +5,18 @@ function DibujarChartPrincipal() {
             ({
                 type: "POST",
                 //Nombre del servlet de donde se reciben los datos en formato json.
-                url: "I_001_Kilos_Producidos_Hora_Hombre_Servlet",
+                url: "General_Servlet",
                 //Parametros leidos del jsp. anio y mes, parametros en enviados al servlet aniojs mesjs,opcion.         
                 data: {
                     mesjs: $("#mes").val(),
                     aniojs: $("#anio").val(),
-                    opcion: $('#opciones option:selected').val()
+                    opcion: $('#opciones option:selected').val(),
+                    indicador: $('#indicador').val()
                 },
                 dataType: "json", //Se reciben los datos en formato JSON                
                 success: function (data_) {
 
-                      //Si se elige una de estas dos opciones entonces se muestra la grafica de barras, se separa DPF (trabaja con docenas y no KG)
+                    //Si se elige una de estas dos opciones entonces se muestra la grafica de barras, se separa DPF (trabaja con docenas y no KG)
                     if ($('#opciones option:selected').val() === "ALL" || $('#opciones option:selected').val() === "FPS MES")
                     {
                         queryObject = eval('(' + JSON.stringify(data_) + ')');
@@ -26,9 +27,9 @@ function DibujarChartPrincipal() {
 
                         data.addColumn('string', 'Planta');                         //Planta
                         //data.addColumn('number', 'Acumulado ' + String(x - 1));   //Acumulado año anterior
-                        data.addColumn('number', x - 1);                            //Año anterior
-                        data.addColumn('number', 'Mayor');                          //Mejor
-                        data.addColumn('number', $("#anio").val());                 //Año actual
+                        data.addColumn('number', ConvertirMes($("#mes").val())+' '+(x - 1));                            //Año anterior
+                        data.addColumn('number', MayorMenor());                          //Mejor
+                        data.addColumn('number', ConvertirMes($("#mes").val())+' '+$("#anio").val());                 //Año actual
                         //data.addColumn('number', 'Acumulado ' + $("#anio").val());//Acumulado año actual 
                         data.addColumn('number', 'Promedio ' + (x - 1));                       //Promedio
 
@@ -49,36 +50,38 @@ function DibujarChartPrincipal() {
                             ]);
                         }
 
-                        if ($('#opciones option:selected').val() === "ALL") {
-                            var options = {
-                                title: 'Kilos Producidos / Hora-Hombre ' + ConvertirMes($("#mes").val()) + ' ' + $("#anio").val(),
-                                vAxis: {title: 'Kilogramos / Hora-Hombre', titleTextStyle: {color: 'Black'}},
-                                is3D: true,
-                                colors: Colores(),
-                                //Formato de anotaciones sobre la grafica si las llevara
-                                annotations: {
-                                    textStyle: {
-                                        //fontName: 'Times-Roman',
-                                        //fontSize: 10,
-                                        // bold: true,
-                                        // italic: true,
-                                        //color: '#fff',// The color of the text.
-                                        //auraColor: 'transparent' // The color of the text outline.
-                                        //opacity: 0.8 // The transparency of the text.
-                                    }
-                                }
-                            };
-                        }
-                        else
-                        {
-                            var options = {
-                                title: 'Docenas Producidas / Hora-Hombre ' + ConvertirMes($("#mes").val()) + ' ' + $("#anio").val(),
-                                vAxis: {title: 'Docenas / Hora-Hombre', titleTextStyle: {color: 'Black'}},
-                                is3D: true,
-                                colors: Colores()
-                            };
+                  
 
-                        }
+                   if ($('#opciones option:selected').val() === "ALL") {
+                                var options = {
+                                    title: GetTitulo() + ConvertirMes($("#mes").val()) + ' ' + $("#anio").val(),
+                                    vAxis: {title: GetTituloEje(), titleTextStyle: {color: 'Black'}},
+                                    is3D: true,
+                                    colors: Colores(),
+                                    //Formato de anotaciones sobre la grafica si las llevara
+                                    annotations: {
+                                        textStyle: {
+                                            //fontName: 'Times-Roman',
+                                            //fontSize: 10,
+                                            // bold: true,
+                                            // italic: true,
+                                            //color: '#fff',// The color of the text.
+                                            //auraColor: 'transparent' // The color of the text outline.
+                                            //opacity: 0.8 // The transparency of the text.
+                                        }
+                                    }
+                                };
+                            }
+                            else
+                            {
+                                var options = {
+                                    title: GetTituloDPF() + ConvertirMes($("#mes").val()) + ' ' + $("#anio").val(),
+                                    vAxis: {title:GetTituloDPFEje() , titleTextStyle: {color: 'Black'}},
+                                    is3D: true,
+                                    colors: Colores()
+                                };
+
+                            }
 
                         var chart = new google.visualization.ColumnChart(document.getElementById('GraficaPrincipal'));
 
@@ -103,9 +106,10 @@ function DibujarChartPrincipal() {
                         var data = new google.visualization.DataTable();
 
                         var x = parseInt($("#anio").val(), 10);
-                        data.addColumn('string', 'planta');
+                        data.addColumn('string', 'mes');
+                        data.addColumn({type: 'string', role: 'annotation'});
                         data.addColumn('number', x - 1);
-                        data.addColumn('number', 'Mayor');
+                        data.addColumn('number', MayorMenor());
                         data.addColumn('number', $("#anio").val());
                         //data.addColumn({type:'string', role:'annotation'});
                         data.addColumn('number', 'Promedio ' + (x - 1));
@@ -113,7 +117,7 @@ function DibujarChartPrincipal() {
 
                         for (var i = 0; i < queryObjectLen; i++)
                         {
-                            var planta = queryObject.ListaValores[i].planta;
+                            var mes = queryObject.ListaValores[i].mes;
                             var a1 = queryObject.ListaValores[i].valor1;
                             var a2 = queryObject.ListaValores[i].valor2;
                             var a3 = queryObject.ListaValores[i].valor3;
@@ -122,7 +126,7 @@ function DibujarChartPrincipal() {
                             var a = queryObject.ListaValores[i].mejoranio;
 
                             data.addRows([
-                                [planta, parseFloat(a1), /*String(a1),*/ parseFloat(a3),
+                                [mes,".", parseFloat(a1), /*String(a1),*/ parseFloat(a3),
                                     parseFloat(a2), /*String(a2),*/parseFloat(a6)
                                 ]
                             ]);
@@ -131,21 +135,27 @@ function DibujarChartPrincipal() {
                         if ($('#opciones option:selected').val() === "PLANTA FPS")
                         {
                             var options = {
-                                title: 'Docenas Producidas / Hora-Hombre ' + $("#anio").val() + ' ' + $('#opciones option:selected').val(),
-                                vAxis: {title: 'Docenas / Hora-Hombre', titleTextStyle: {color: 'Black'}},
-                                hAxis: {title: '*El valor mayor corresponde a ' + ConvertirMes(m) + ' de ' + a, titleTextStyle: {color: 'Blue'}},
+                                title: GetTituloDPF() + $("#anio").val() + ' ' + $('#opciones option:selected').val(),
+                                vAxis: {title: GetTituloDPFEje(), titleTextStyle: {color: 'Black'}},
+                                hAxis: {title: '*El valor '+MayorMenor()+' corresponde a ' + ConvertirMes(m) + ' de ' + a, titleTextStyle: {color: 'Blue'}},
                                 is3D: true,
-                                colors: Colores()
+                                colors: Colores(),
+                                 annotations: {
+                                 style: 'line'
+                                    }
                             };
                         }
                         else
                         {
                             var options = {
-                                title: 'Kilos Producidos / Hora-Hombre ' + $("#anio").val() + ' ' + $('#opciones option:selected').val(),
-                                vAxis: {title: 'Kilogramos / Hora-Hombre', titleTextStyle: {color: 'Black'}},
-                                hAxis: {title: '*El valor mayor corresponde a ' + ConvertirMes(m) + ' de ' + a, titleTextStyle: {color: 'Blue'}},
+                                title: GetTitulo() + $("#anio").val() + ' ' + $('#opciones option:selected').val(),
+                                vAxis: {title: GetTituloEje(), titleTextStyle: {color: 'Black'}},
+                                hAxis: {title: '*El valor '+ MayorMenor()+' corresponde a ' + ConvertirMes(m) + ' de ' + a, titleTextStyle: {color: 'Blue'}},
                                 is3D: true,
-                                colors: Colores()
+                                colors: Colores(),
+                                 annotations: {
+                                 style: 'line'
+                                    }
                             };
                         }
 
@@ -166,5 +176,6 @@ function DibujarChartPrincipal() {
                 }
             });
 }
+
 
 

@@ -25,7 +25,7 @@
     %>
     <!-----------------------------------------Archivos y Fuentes JavaScript-------------------------------> 
     <script type="text/javascript" src="Js/js/FuncionesGlobales.js"></script>
-    <script type="text/javascript" src="Js/I_005_CostoKWH_KgProducido.js"></script>
+    <script type="text/javascript" src="Js/IndicadoresProduccion.js"></script>
 
     <!--JS GOOGLE CHARTS--> 
     <script type="text/javascript" src="Js/js/loader.js"></script>
@@ -48,6 +48,7 @@
                 DibujarChartPrincipal();
             });
              $('#opciones').val("<%=v%>");
+             $('#mes').val("<%=m%>");
             hideMes();
         });
     </script> 
@@ -84,10 +85,23 @@
                  <input type="text" id="lblP"  name="lblP"  onkeypress="" value="Planta" disabled="true" class="texto" /> 
                 <INPUT TYPE="SUBMIT" value="Exportar Datos" class="boton">
                 <br>
-           <input type="text" id="mes"  name="mes"  onkeypress="" value="<%=m%>" class="texto"/>  
-               <!--<input type="text" id="anio"  name="anio"  onkeypress="" value="<%=a%>" class="texto"/> --> 
+                        <select id="mes" name="mes" onchange="DibujarChartPrincipal()" class="select">
+                        <option value="1">Enero</option>
+                        <option value="2">Febrero</option>
+                        <option value="3">Marzo</option>
+                        <option value="4">Abril</option>      
+                        <option value="5">Mayo</option>
+                        <option value="6">Junio</option>   
+                        <option value="7">Julio</option>
+                        <option value="8">Agosto</option> 
+                        <option value="9">Septiembre</option>  
+                        <option value="10">Octubre</option>  
+                        <option value="11">Noviembre</option>  
+                        <option value="12">Diciembre</option>  
+                    </select> 
+               <input type="text" id="anio"  name="anio"  onkeypress="" value="<%=a%>" class="texto"/> 
 
-                <select id="opciones2" name="opciones2" onchange="" class="select">
+          <!--      <select id="opciones2" name="opciones2" onchange="" class="select">
                     
                     <option value="2015">2013/2015</option>
                     <option value="2016" selected="2016">2014/2016</option>
@@ -97,7 +111,7 @@
                     <option value="2020">19/20</option>   
                     <option value="2021">20/21</option>
                     <option value="2022">21/22</option>   
-                </select>
+                </select>-->
                 
                 <select id="opciones" name="opciones" onchange="DibujarChartPrincipal();hideMes();" class="select">
                     <option value="ALL" selected="ALL">Todas</option>

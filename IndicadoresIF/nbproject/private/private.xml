@@ -2,33 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/C:/Users/rcruz/Documents/GitHub/INDICADORES/INDICADORES_IMPERIAL/IndicadoresIF/src/java/Controladores/I_003_KgProducidos_MRS_Servlet.java</file>
-            <file>file:/C:/Users/rcruz/Documents/GitHub/INDICADORES/INDICADORES_IMPERIAL/IndicadoresIF/web/Js/I_006_CostoMRS_KgProducido.js</file>
-            <file>file:/C:/Users/rcruz/Documents/GitHub/INDICADORES/INDICADORES_IMPERIAL/IndicadoresIF/src/java/Controladores/C_001_Produccion_Por_Planta_Servlet.java</file>
-            <file>file:/C:/Users/rcruz/Documents/GitHub/INDICADORES/INDICADORES_IMPERIAL/IndicadoresIF/web/I_005_CostoKWH_KgProducido.jsp</file>
-            <file>file:/C:/Users/rcruz/Documents/GitHub/INDICADORES/INDICADORES_IMPERIAL/IndicadoresIF/src/java/Controladores/I_005_CostoKWH_KgProducido_Servlet.java</file>
-            <file>file:/C:/Users/rcruz/Documents/GitHub/INDICADORES/INDICADORES_IMPERIAL/IndicadoresIF/web/I_001_Kilos_Producidos_Hora_Hombre.jsp</file>
-            <file>file:/C:/Users/rcruz/Documents/GitHub/INDICADORES/INDICADORES_IMPERIAL/IndicadoresIF/web/Js/I_003_KgProducidos_MRS.js</file>
-            <file>file:/C:/Users/rcruz/Documents/GitHub/INDICADORES/INDICADORES_IMPERIAL/IndicadoresIF/web/Js/I_005_CostoKWH_KgProducido.js</file>
-            <file>file:/C:/Users/rcruz/Documents/GitHub/INDICADORES/INDICADORES_IMPERIAL/IndicadoresIF/web/I_002_Kg_Producidos_Kwh.jsp</file>
-            <file>file:/C:/Users/rcruz/Documents/GitHub/INDICADORES/INDICADORES_IMPERIAL/IndicadoresIF/web/css/EstiloJSP.css</file>
-            <file>file:/C:/Users/rcruz/Documents/GitHub/INDICADORES/INDICADORES_IMPERIAL/IndicadoresIF/src/java/Modelo/ConexionBD.java</file>
-            <file>file:/C:/Users/rcruz/Documents/GitHub/INDICADORES/INDICADORES_IMPERIAL/IndicadoresIF/web/Js/I_004_CostoMo_KgProducido.js</file>
-            <file>file:/C:/Users/rcruz/Documents/GitHub/INDICADORES/INDICADORES_IMPERIAL/IndicadoresIF/web/Js/JsGeneral.js</file>
-            <file>file:/C:/Users/rcruz/Documents/GitHub/INDICADORES/INDICADORES_IMPERIAL/IndicadoresIF/src/java/Controladores/I_006_CostoMRS_KgProducido_Servlet.java</file>
-            <file>file:/C:/Users/rcruz/Documents/GitHub/INDICADORES/INDICADORES_IMPERIAL/IndicadoresIF/web/Js/I_001_Kilos_Producidos_Hora_Hombre.js</file>
-            <file>file:/C:/Users/rcruz/Documents/GitHub/INDICADORES/INDICADORES_IMPERIAL/IndicadoresIF/web/Js/C_001_Produccion_Por_Planta.js</file>
-            <file>file:/C:/Users/rcruz/Documents/GitHub/INDICADORES/INDICADORES_IMPERIAL/IndicadoresIF/src/java/Modelo/ConsultasBD_IndicadoresProduccion.java</file>
-            <file>file:/C:/Users/rcruz/Documents/GitHub/INDICADORES/INDICADORES_IMPERIAL/IndicadoresIF/web/I_004_CostoMo_KgProducido.jsp</file>
-            <file>file:/C:/Users/rcruz/Documents/GitHub/INDICADORES/INDICADORES_IMPERIAL/IndicadoresIF/src/java/Controladores/C_001_Produccion_Por_Planta_Servlet2.java</file>
-            <file>file:/C:/Users/rcruz/Documents/GitHub/INDICADORES/INDICADORES_IMPERIAL/IndicadoresIF/web/Js/I_002_Kg_Producidos_Kwh.js</file>
-            <file>file:/C:/Users/rcruz/Documents/GitHub/INDICADORES/INDICADORES_IMPERIAL/IndicadoresIF/src/java/Controladores/General_Servlet.java</file>
-            <file>file:/C:/Users/rcruz/Documents/GitHub/INDICADORES/INDICADORES_IMPERIAL/IndicadoresIF/src/java/Controladores/I_001_Kilos_Producidos_Hora_Hombre_Servlet.java</file>
-            <file>file:/C:/Users/rcruz/Documents/GitHub/INDICADORES/INDICADORES_IMPERIAL/IndicadoresIF/src/java/Controladores/I_004_CostoMo_KgProducido_Servlet.java</file>
-            <file>file:/C:/Users/rcruz/Documents/GitHub/INDICADORES/INDICADORES_IMPERIAL/IndicadoresIF/src/java/Controladores/I_002_Kg_Producidos_Kwh_Servlet.java</file>
-            <file>file:/C:/Users/rcruz/Documents/GitHub/INDICADORES/INDICADORES_IMPERIAL/IndicadoresIF/src/java/Controladores/I_000_Produccion_Por_Planta_Commodity_Servlet.java</file>
-            <file>file:/C:/Users/rcruz/Documents/GitHub/INDICADORES/INDICADORES_IMPERIAL/IndicadoresIF/src/java/Utilidades/MetodosGlobales.java</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>

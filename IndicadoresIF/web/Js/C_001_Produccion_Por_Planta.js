@@ -10,7 +10,7 @@ function DibujarTabla() {
                 type: "POST",
                 url: "C_001_Produccion_Por_Planta_Servlet",
                 data: {
-                    mesjs: $("#mes").val(),
+                    mesjs: $('#mes option:selected').val(),
                     aniojs: $("#anio").val(),
                     opcion: $('#opciones option:selected').val()
                 },

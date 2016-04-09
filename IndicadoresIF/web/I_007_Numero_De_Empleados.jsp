@@ -1,6 +1,6 @@
 <%-- 
-    Document   : I_001_Kilos_Producidos_Hora_Hombre
-    Created on : 9/03/2016, 09:07:09 AM
+    Document   : I_007_Numero_De_Empleados
+    Created on : 9/04/2016, 10:35:14 AM
     Author     : rcruz
 --%>
 
@@ -8,24 +8,6 @@
 <!DOCTYPE html>
 <html class="html">
 
-    <%
-        String planta = request.getParameter("planta");
-        String mes = request.getParameter("mes");
-        String an = request.getParameter("anio");
-        String v = "ALL";
-        String m = "2";
-        String a = "2016";
-        /*Se utiliza la decision para convertir el parmetro enviado como RSM ya que no se puede enviar
-         por url "RSM 0&M"*/
-        if (planta == null) {
-        } else if (planta.equals("PLANTA RSM")) {
-            v = "PLANTA RSM O&M";
-        } else {
-            v = planta;
-            a = an;
-            m = mes;
-        }
-    %>
         <!------------------------------------------JS GOOGLE CHARTS-------------------------------------------> 
     <script type="text/javascript" src="Js/js/loader.js"></script>
     <script type="text/javascript" src="Js/js/jquery-1.12.1.min.js"></script>
@@ -33,7 +15,7 @@
     <!-----------------------------------------Archivos y Fuentes JavaScript-------------------------------> 
     <script type="text/javascript" src="Js/js/FuncionesGlobales.js"></script>
     <!--<script type="text/javascript" src="Js/I_001_Kilos_Producidos_Hora_Hombre.js"></script>-->
-  <script type="text/javascript" src="Js/IndicadoresProduccion.js"></script>
+  <script type="text/javascript" src="Js/IndicadoresRRHH.js"></script>
      <script type="text/javascript">
         //API de Google Chart, Se llama en cada jsp  
         /* global google */
@@ -55,10 +37,6 @@
                 DibujarChartPrincipal();
             });
             
-            $('#opciones').val("<%=v%>");
-            $('#mes').val("<%=m%>");
-            hideMes();
-
 
         });
     </script> 
@@ -81,41 +59,23 @@
 
         <div id="DivPrincipal" class="divprincipal">
             <form method="get" action="I_001_Kilos_Producidos_Hora_Hombre_XLS" class="formulario">
-                <input type="text" id="lblmes"  name="lblmes"  onkeypress="" value="Ingresar Mes" disabled="true" class="texto" /> 
+                <input type="text" id="lblmes"  name="lblmes"  onkeypress="" value="Tipo" disabled="true" class="texto" /> 
                 <input type="text" id="lbla"  name="lbla"  onkeypress="" value="Ingresar Año" disabled="true" class="texto" /> 
-                <input type="text" id="lblP"  name="lblP"  onkeypress="" value="Planta" disabled="true" class="texto" /> 
+               
                 <INPUT TYPE="SUBMIT" value="Exportar Datos" class="boton">
                 <br>
-                <select id="mes" name="mes" onchange="DibujarChartPrincipal()" class="select">
-                        <option value="1">Enero</option>
-                        <option value="2">Febrero</option>
-                        <option value="3">Marzo</option>
-                        <option value="4">Abril</option>      
-                        <option value="5">Mayo</option>
-                        <option value="6">Junio</option>   
-                        <option value="7">Julio</option>
-                        <option value="8">Agosto</option> 
-                        <option value="9">Septiembre</option>  
-                        <option value="10">Octubre</option>  
-                        <option value="11">Noviembre</option>  
-                        <option value="12">Diciembre</option>  
+                <select id="tipo" name="tipo" onchange="DibujarChartPrincipal()" class="select">
+                        <option value="1">Nomina</option>
+                        <option value="2">Planilla</option>
+                      
                     </select> 
-                <input type="text" id="anio"  name="anio"  onkeypress="" value="<%=a%>" class="texto"/>  
+                <input type="text" id="anio"  name="anio"  onkeypress="" value="2016" class="texto"/>  
    
-                <select id="opciones" name="opciones" onchange="DibujarChartPrincipal(); hideMes();" class="select">
-                    <option value="ALL">Todas</option>
-                    <option value="FPS MES">FPS Mensual</option>
-                    <option value="PLANTA RLRS">RLRS</option>
-                    <option value="PLANTA RST">RST</option>      
-                    <option value="PLANTA KNIT">KNIT</option>
-                    <option value="PLANTA DPF">DPF</option>   
-                    <option value="PLANTA FPS">FPS</option>
-                    <option value="PLANTA RSM O&M">RSM O&M</option>   
-                </select>
+
                 
 
                 <input type="button" value="Visualizar" onclick="DibujarChartPrincipal()" class="boton"/>
-                <input type="hidden" id="indicador"  name="indicador" value="INDICADOR1"/>  
+                <input type="hidden" id="indicador"  name="indicador" value="INDICADOR7"/>  
             </form> 
 
             <div id="GraficaPrincipal" class="divimagen"></div>

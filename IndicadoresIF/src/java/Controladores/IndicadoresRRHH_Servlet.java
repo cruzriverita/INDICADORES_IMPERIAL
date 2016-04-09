@@ -5,7 +5,7 @@
  */
 package Controladores;
 
-import Modelo.ConsultasBD_IndicadoresProduccion;
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -26,9 +26,7 @@ import org.json.JSONObject;
  *
  * @author rcruz
  */
-public class I_000_Produccion_Por_Planta_Mes_Servlet extends HttpServlet {
-
-    
+public class IndicadoresRRHH_Servlet extends HttpServlet {
     Modelo.ConexionBD conexion = new Modelo.ConexionBD();
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -47,10 +45,10 @@ public class I_000_Produccion_Por_Planta_Mes_Servlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet I_000_Produccion_Por_Planta_Mes</title>");            
+            out.println("<title>Servlet IndicadoresRRHH_Servlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet I_000_Produccion_Por_Planta_Mes at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet IndicadoresRRHH_Servlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -82,50 +80,81 @@ public class I_000_Produccion_Por_Planta_Mes_Servlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-        String anio,mes;
+       
+        String anio, mes, tipo, indicador;
         List ListaValores = new LinkedList();
         JSONObject responseObj = new JSONObject();
-       
         JSONObject Obj = null;
 
         //Recuperar valores enviados desde el javascript.
-         anio = request.getParameter("aniojs");
-         mes = request.getParameter("mesjs");
-              
-        String sql=ConsultasBD_IndicadoresProduccion.I_000_Produccion_Por_Planta_Mes_01(anio, mes);
-         
+        mes = request.getParameter("mesjs");
+        anio = request.getParameter("aniojs");
+        tipo = request.getParameter("tipojs");
+        indicador = request.getParameter("indicador");
+
+        String sql = "";
         
+         if ("INDICADOR7".equals(indicador)) {
+            if (tipo.equals("1")) {
+                sql = Modelo.Modelo_IndicadoresRRHH.I_007_NumeroEmpleados(Integer.parseInt(anio), "N");
+             this.Generales(sql, ListaValores, Obj, responseObj, response);
+            }
+            else {
+                //sql = Modelo_IndicadoresProduccion.I_001_Kilos_Producidos_Hora_Hombre_Detalle(mes, Integer.parseInt(anio), opcion);
+                sql = sql = Modelo.Modelo_IndicadoresRRHH.I_007_NumeroEmpleados(Integer.parseInt(anio), "P");
+                 this.Generales(sql, ListaValores, Obj, responseObj, response);
+            }
+        } 
+        
+    }
+    
+     public void Generales(String sql, List ListaValores, JSONObject Obj, JSONObject responseObj, HttpServletResponse response) throws IOException {
+        //sql = Modelo_IndicadoresProduccion.I_001_Kilos_Producidos_Hora_Hombre_General(mes, Integer.parseInt(anio));
+
         List<Map<String, Object>> resultList = new ArrayList<>();
-        resultList=conexion.select(sql);
-      
-        Iterator<Map<String,Object>> iterador = resultList.iterator();
-        while(iterador.hasNext()){
-             Map<String,Object> mapa = iterador.next();
-           
-             String Nplanta =(String) mapa.get("PLANTA");
-             Float Cvalor = Float.parseFloat(mapa.get("VALOR").toString()); //.parseInt( mapa.get("VALOR").toString());
-            
-              Obj = new JSONObject();
-           
+        resultList = conexion.select(sql);
+
+        Iterator<Map<String, Object>> iterador = resultList.iterator();
+        while (iterador.hasNext()) {
+            Map<String, Object> mapa = iterador.next();
+
+            String periodo = String.valueOf(mapa.get("periodo"));
+
+            Float Cvalor = Float.parseFloat(mapa.get("anio1").toString());
+            Float Cvalor2 = Float.parseFloat(mapa.get("anio2").toString());
+            Float Cvalor3 = Float.parseFloat(mapa.get("MAYOR").toString());
+             String Cvalor4 = String.valueOf(mapa.get("MAYORMES"));
+            Integer Cvalor5 = Integer.parseInt(mapa.get("MAYORANIO").toString());
+            Float Cvalor6 = Float.parseFloat(mapa.get("MENOR").toString());
+            String Cvalor7 = String.valueOf(mapa.get("MENORMES"));
+            Integer Cvalor8 = Integer.parseInt(mapa.get("MENORANIO").toString());           
+            Float Cvalor9 = Float.parseFloat(mapa.get("PROMEDIO").toString());
+
+            Obj = new JSONObject();
+
             try {
-                Obj.put("planta", Nplanta);
-                Obj.put("valor", Cvalor);
-              
-                 ListaValores.add(Obj);
-                  responseObj.put("ListaValores", ListaValores);
+                Obj.put("periodo", periodo);
+                Obj.put("valor1", Cvalor);
+                Obj.put("valor2", Cvalor2);
+                Obj.put("valor3", Cvalor3);
+                Obj.put("valor4", Cvalor4);
+                Obj.put("valor5", Cvalor5);
+                Obj.put("valor6", Cvalor6);
+                Obj.put("valor7", Cvalor7);
+                Obj.put("valor8", Cvalor8);
+                Obj.put("valor9", Cvalor9);
+
+                ListaValores.add(Obj);
+                responseObj.put("ListaValores", ListaValores);
             } catch (JSONException ex) {
-                Logger.getLogger(I_000_Produccion_Por_Planta_Mes_Servlet.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(General_Servlet.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
- 
-   
-        if (Obj==null){
-         response.getWriter().write("");
-        }
-        
-        else{
-        response.getWriter().write(responseObj.toString());
+
+        if (Obj == null) {
+            response.getWriter().write("");
+        } else {
+            response.getWriter().write(responseObj.toString());
         }
     }
 

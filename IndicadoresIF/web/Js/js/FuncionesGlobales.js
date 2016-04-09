@@ -38,50 +38,57 @@ function AnioActual()
 function ConvertirMes(mes)
 {
     if (mes === "1") {
-        return "Enero";
+        return "Ene";
     }
     else if (mes === "2") {
-        return "Febrero";
+        return "Feb";
     }
     else if (mes === "3") {
-        return "Marzo";
+        return "Mar";
     }
     else if (mes === "4") {
-        return "Abril";
+        return "Abr";
     }
     else if (mes === "5") {
-        return "Mayo";
+        return "May";
     }
     else if (mes === "6") {
-        return "Junio";
+        return "Jun";
     }
     else if (mes === "7") {
-        return "Julio";
+        return "Jul";
     }
     else if (mes === "8") {
-        return "Agosto";
+        return "Ago";
     }
     else if (mes === "9") {
-        return "Septiembre";
+        return "Sep";
     }
     else if (mes === "10") {
-        return "Octubre";
+        return "Oct";
     }
     else if (mes === "11") {
-        return "Noviembre";
+        return "Nov";
     }
     else if (mes === "12") {
-        return "Diciembre";
+        return "Dic";
     }
 
 }
 
 
 //Colores elegidos a utilizar en todas las graficas 
-//amarillo,azul,negro,aqua
+//año anterior= amarillo ,mayor/menor=gris, añoactual=negro, promedio= aqua
+//
 function Colores()
 {
-    var colors = ["#FFFF00", "#848484", "#000000", "#01DFD7"];
+    var colors = ["#EAD008", "#848484", "#000000", "#01DFD7"];
+    return colors;
+}
+
+function Coloresrrhh()
+{
+    var colors = ["#EAD008", "#848484", "#000000", "#01DFD7","#FFB116"];
     return colors;
 }
 

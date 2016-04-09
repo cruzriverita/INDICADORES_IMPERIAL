@@ -5,7 +5,7 @@ package Controladores;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-import Modelo.ConsultasBD_IndicadoresProduccion;
+import Modelo.Modelo_IndicadoresProduccion;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -96,7 +96,7 @@ public class C_001_Produccion_Por_Planta_Servlet extends HttpServlet {
         String sql = "";
 
         
-        sql = ConsultasBD_IndicadoresProduccion.C_001_Produccion_Por_Planta(mes, Integer.parseInt(anio));
+        sql = Modelo_IndicadoresProduccion.C_001_Produccion_Por_Planta(mes, Integer.parseInt(anio));
         List<Map<String, Object>> resultList = new ArrayList<>();
         resultList = conexion.select(sql);
 
@@ -146,7 +146,7 @@ public class C_001_Produccion_Por_Planta_Servlet extends HttpServlet {
                 ListaValores.add(Obj);
                 responseObj.put("ListaValores", ListaValores);
             } catch (JSONException ex) {
-                Logger.getLogger(I_000_Produccion_Por_Planta_Mes_Servlet.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(C_001_Produccion_Por_Planta_Servlet.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
 

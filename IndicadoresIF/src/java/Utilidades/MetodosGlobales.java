@@ -5,7 +5,9 @@
  */
 package Utilidades;
 
-import Controladores.I_003_KgProducidos_MRS_Servlet;
+
+
+import Controladores.General_Servlet;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -107,7 +109,7 @@ public class MetodosGlobales {
                     ListaValores.add(Obj);
                     responseObj.put("ListaValores", ListaValores);
                 } catch (JSONException ex) {
-                    Logger.getLogger(I_003_KgProducidos_MRS_Servlet.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(General_Servlet.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
 
