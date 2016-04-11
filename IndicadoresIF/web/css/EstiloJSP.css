@@ -81,7 +81,7 @@ and open the template in the editor.
     background-color : white;
     text-align: center;
     float: left;
-    height: 14.5%;
+    height: 14%;
    
 }
 
@@ -90,15 +90,26 @@ and open the template in the editor.
     background-color : white;
     text-align: left ;
     float: left;
-    height: 22%;
+    height: 21%;
+    font-size: 12px;
 }
 
 .boton
 {
     width: 15%;  
-    height: 22%;
+    height: 21%;
+     float: left;
+     
 }
 
+.botongrande
+{
+    width: 15.5%;  
+    height: 21%;
+     float: left;
+     font-size: 12px;
+     
+}
 
 .divtabla {
     background-color:#ffffff;

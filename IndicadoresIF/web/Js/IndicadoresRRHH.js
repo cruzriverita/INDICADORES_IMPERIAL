@@ -8,7 +8,7 @@ function DibujarChartPrincipal() {
                 data: {
                     aniojs: $("#anio").val(),
                     tipojs: $('#tipo option:selected').val(),
-                    indicador: $('#indicador').val()
+                    indicador: $('#indicador option:selected').val() //$('#indicador').val()
                 },
                 dataType: "json", //Se reciben los datos en formato JSON                
                 success: function (data_) {
@@ -34,12 +34,13 @@ function DibujarChartPrincipal() {
 
                     for (var i = 0; i < queryObjectLen; i++)
                     {
-                         if ($('#tipo option:selected').val() === "1")
-                    {
-                        var periodo =  ConvertirMes(queryObject.ListaValores[i].periodo);
-                        
-                    }
-                            var a1 = queryObject.ListaValores[i].valor1;
+                        //Si se selecciona la opcion NOMINA se trabaja con meses.
+                        if ($('#tipo option:selected').val() === "1")
+                        {
+                            var periodo = ConvertirMes(queryObject.ListaValores[i].periodo);
+
+                        }
+                        var a1 = queryObject.ListaValores[i].valor1;
                         var a2 = queryObject.ListaValores[i].valor2;
                         var mayor = queryObject.ListaValores[i].valor3;
                         var mayormes = queryObject.ListaValores[i].valor4;
@@ -56,34 +57,76 @@ function DibujarChartPrincipal() {
                         ]);
                     }
 
-                    if ($('#tipo option:selected').val() === "1")
+
+                    if ($('#tipo option:selected').val() === "1") //Si es Nomina
                     {
-                        var options = {
-                            title: 'Numero de empleados ' + (x - 1) + '/' + x,
-                            vAxis: {title: 'Numero De Empleados', titleTextStyle: {color: 'Black'}},
-                            hAxis: {title: '*El valor menor corresponde a ' + ConvertirMes(menormes) + ' de ' + menoranio + '\n' +
-                                        'El valor mayor corresponde a ' + ConvertirMes(mayormes) + ' de ' + mayoranio, titleTextStyle: {color: 'Blue'}},
-                            is3D: true,
-                            colors: Coloresrrhh()
-                        };
+                        //Si es el indicador NUMERO DE EMPLEADOS
+                        if ($('#indicador option:selected').val() === "INDICADOR7")
+                        {
+                            var options = {
+                                title: 'Numero de empleados Nomina ' + (x - 1) + '/' + x,
+                                vAxis: {title: 'Numero De Empleados', titleTextStyle: {color: 'Black'}, gridlines: {count: 8}, viewWindow: {
+                                        min: (0),
+                                        max: (mayor + 50)
+                                    }},
+                                hAxis: {title: '*El valor menor corresponde a ' + ConvertirMes(menormes) + ' de ' + menoranio + '\n' +
+                                            'El valor mayor corresponde a ' + ConvertirMes(mayormes) + ' de ' + mayoranio, titleTextStyle: {color: 'Blue'}},
+                                is3D: true,
+                                colors: Coloresrrhh()
+                            };
+                        }
+                        else //Si es el indicador DEVENGADO/NO_EMPLEADOS
+                        {
+                            var options = {
+                                title: 'Devengado / No. Empleados Nomina ' + (x - 1) + '/' + x,
+                                vAxis: {title: 'Devengado / No. Empleados Nomina ', titleTextStyle: {color: 'Black'}, gridlines: {count: 9}, viewWindow: {
+                                        min: (menor - 1000),
+                                        max: (mayor + 500)
+                                    }},
+                                hAxis: {title: '*El valor menor corresponde a ' + ConvertirMes(menormes) + ' de ' + menoranio + '\n' +
+                                            'El valor mayor corresponde a ' + ConvertirMes(mayormes) + ' de ' + mayoranio, titleTextStyle: {color: 'Blue'}},
+                                is3D: true,
+                                colors: Coloresrrhh()
+                            };
 
+
+                        }
                     }
-                    else
+                    /*-----------------------------------Si es Planilla --------------------------------*/
+                    else 
                     {
+                        if ($('#indicador option:selected').val() === "INDICADOR7")
+                        {
+                            var options = {
+                                title: 'Numero de empleados Planilla ' + (x - 1) + '/' + x,
+                                vAxis: {title: 'Numero De Empleados', titleTextStyle: {color: 'Black'}, gridlines: {count: 9}, viewWindow: {
+                                        min: (0),
+                                        max: (mayor + 50)
+                                    }},
+                                hAxis: {title: '*El valor menor corresponde a la catorcena ' + menormes + ' de ' + menoranio + '\n' +
+                                            'El valor mayor corresponde a la catorcena ' + mayormes + ' de ' + mayoranio, titleTextStyle: {color: 'Blue'}},
+                                is3D: true,
+                                colors: Coloresrrhh()
+                            };
+                        }
+                        else
+                        {
+                            var options = {
+                                title: 'Devengado / No. Empleados Planilla ' + (x - 1) + '/' + x,
+                                vAxis: {title: 'Devengado / No. Empleados', titleTextStyle: {color: 'Black'}, gridlines: {count: 9}, viewWindow: {
+                                        min: (menor - 500),
+                                        max: (mayor + 500)
+                                    }},
+                                hAxis: {title: '*El valor menor corresponde a la catorcena ' + menormes + ' de ' + menoranio + '\n' +
+                                            'El valor mayor corresponde a la catorcena ' + mayormes + ' de ' + mayoranio, titleTextStyle: {color: 'Blue'}},
+                                is3D: true,
+                                colors: Coloresrrhh()
+                            };
 
-                        var options = {
-                            title: 'Numero de empleados ' + (x - 1) + '/' + x,
-                            vAxis: {title: 'Numero De Empleados', titleTextStyle: {color: 'Black'}},
-                            hAxis: {title: '*El valor menor corresponde a la catorcena ' + menormes + ' de ' + menoranio + '\n' +
-                                        'El valor mayor corresponde a la catorcena ' + mayormes + ' de ' + mayoranio, titleTextStyle: {color: 'Blue'}},
-                            is3D: true,
-                            colors: Coloresrrhh()
-                        };
-
-
+                        }
                     }
+                    
                     var chart = new google.visualization.LineChart(document.getElementById('GraficaPrincipal'));
-
 
                     function ClickBarra() {
                         var selectedItem = chart.getSelection()[0];

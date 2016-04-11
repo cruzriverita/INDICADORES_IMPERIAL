@@ -63,30 +63,32 @@ var arrMenu = [
                                             
                                             {
                                                 name: 'Kilos Producidos/Hora - Hombre',
-                                                link: 'I_001_Kilos_Producidos_Hora_Hombre.jsp'
+                                                link: 'I_001_IndicadoresProduccion.jsp?indicador=INDICADOR1'
 
                                             },
                                             {
                                                 name: 'Kilos Producidos/Kw-h',
-                                                link: 'I_002_Kg_Producidos_Kwh.jsp'
+                                                //link: 'I_002_Kg_Producidos_Kwh.jsp'
+                                                link: 'I_001_IndicadoresProduccion.jsp?indicador=INDICADOR2'
 
                                             },
                                             {
                                                 name: 'Kilos Producidos/$MRS',
-                                                link: 'I_003_KgProducidos_MRS.jsp'
-
+                                                //link: 'I_003_KgProducidos_MRS.jsp'
+                                                link: 'I_001_IndicadoresProduccion.jsp?indicador=INDICADOR3'
                                             },
                                             {
                                                 name: 'Costo Mo/Kg Producido',
-                                                link: 'I_004_CostoMo_KgProducido.jsp'
+                                                //link: 'I_004_CostoMo_KgProducido.jsp'
+                                                link: 'I_001_IndicadoresProduccion.jsp?indicador=INDICADOR4'
                                             },
                                             {
                                                 name: 'Costo Kwh/Kg Producido',
-                                                link: 'I_005_CostoKWH_KgProducido.jsp'
+                                                link: 'I_001_IndicadoresProduccion.jsp?indicador=INDICADOR5'
                                             },
                                            {
                                                 name: 'Costo MRS/Kg Producido',
-                                                link: 'I_006_CostoMRS_KgProducido.jsp'
+                                                link: 'I_001_IndicadoresProduccion.jsp?indicador=INDICADOR6'
                                             }
 
 
@@ -200,8 +202,8 @@ var arrMenu = [
                                 link: 'I_007_Numero_De_Empleados.jsp'
                             },
                             {
-                                name: 'Encuesta De Salida',
-                                link: '#'
+                                name: 'Devengado / No. Empleados',
+                                link: 'I_007_Numero_De_Empleados.jsp?indicador=INDICADOR8'
                             },
                             {
                                 name: 'Tabla de reemplazos',

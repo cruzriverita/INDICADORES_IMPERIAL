@@ -12,9 +12,11 @@
         String planta = request.getParameter("planta");
         String mes = request.getParameter("mes");
         String an = request.getParameter("anio");
+        String ind=request.getParameter("indicador");
         String v = "ALL";
         String m = "2";
         String a = "2016";
+        String vind="INDICADOR1";
         /*Se utiliza la decision para convertir el parmetro enviado como RSM ya que no se puede enviar
          por url "RSM 0&M"*/
         if (planta == null) {
@@ -24,6 +26,11 @@
             v = planta;
             a = an;
             m = mes;
+        }
+        
+        if (ind == null) {
+        } else {
+            vind = ind;
         }
     %>
         <!------------------------------------------JS GOOGLE CHARTS-------------------------------------------> 
@@ -114,8 +121,8 @@
                 </select>
                 
 
-                <input type="button" value="Visualizar" onclick="DibujarChartPrincipal()" class="boton"/>
-                <input type="hidden" id="indicador"  name="indicador" value="INDICADOR1"/>  
+                
+                <input type="hidden" id="indicador"  name="indicador" value="<%=vind%>"/>  
             </form> 
 
             <div id="GraficaPrincipal" class="divimagen"></div>

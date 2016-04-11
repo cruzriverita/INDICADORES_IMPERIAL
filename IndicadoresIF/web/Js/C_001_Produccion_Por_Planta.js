@@ -366,7 +366,7 @@ function DibujarTabla() {
 
                         //Redirecciona dependiendo de la celda a la que se le da click.
                         $("#table2 table tbody tr td").click(function () {
-                            Redireccionar2(this, 'table2');
+                            Redireccionar2FPS(this, 'table2');
                         });
 
                         //Cambiar color al estar sobre la celda
@@ -402,32 +402,32 @@ function Redireccionar(x, element) {
             {
                 if (x.cellIndex === 1)
                 {
-                    location.href = "I_001_Kilos_Producidos_Hora_Hombre.jsp?planta=ALL&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "";
+                    location.href = "I_001_IndicadoresProduccion.jsp?planta=ALL&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "&indicador=INDICADOR1";
                 }
                 else
                 if (x.cellIndex === 2)
                 {
-                    location.href = "I_001_Kilos_Producidos_Hora_Hombre.jsp?planta=PLANTA RST&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "";
+                    location.href = "I_001_IndicadoresProduccion.jsp?planta=PLANTA RST&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "&indicador=INDICADOR1";
                 }
                 else
                 if (x.cellIndex === 3)
                 {
-                    location.href = "I_001_Kilos_Producidos_Hora_Hombre.jsp?planta=PLANTA KNIT&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "";
+                    location.href = "I_001_IndicadoresProduccion.jsp?planta=PLANTA KNIT&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "&indicador=INDICADOR1";
                 }
                 else
                 if (x.cellIndex === 4)
                 {
-                    location.href = "I_001_Kilos_Producidos_Hora_Hombre.jsp?planta=PLANTA DPF&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "";
+                    location.href = "I_001_IndicadoresProduccion.jsp?planta=PLANTA DPF&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "&indicador=INDICADOR1";
                 }
                 else
                 if (x.cellIndex === 5)
                 {
-                    location.href = "I_001_Kilos_Producidos_Hora_Hombre.jsp?planta=PLANTA RLRS&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "";
+                    location.href = "I_001_IndicadoresProduccion.jsp?planta=PLANTA RLRS&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "&indicador=INDICADOR1";
                 }
                 else
                 if (x.cellIndex === 6)
                 {
-                     location.href = "I_001_Kilos_Producidos_Hora_Hombre.jsp?planta=PLANTA RSM&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "";
+                     location.href = "I_001_IndicadoresProduccion.jsp?planta=PLANTA RSM&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "&indicador=INDICADOR1";
                 }
                
             }
@@ -436,32 +436,32 @@ function Redireccionar(x, element) {
             {
                 if (x.cellIndex === 1)
                 {
-                    location.href = "I_002_Kg_Producidos_Kwh.jsp?planta=ALL&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "";
+                    location.href = "I_001_IndicadoresProduccion.jsp?planta=ALL&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "&indicador=INDICADOR2";
                 }
                 else
                 if (x.cellIndex === 2)
                 {
-                    location.href = "I_002_Kg_Producidos_Kwh.jsp?planta=PLANTA RST&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "";
+                    location.href = "I_001_IndicadoresProduccion.jsp?planta=PLANTA RST&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "&indicador=INDICADOR2";
                 }
                 else
                 if (x.cellIndex === 3)
                 {
-                    location.href = "I_002_Kg_Producidos_Kwh.jsp?planta=PLANTA KNIT&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "";
+                    location.href = "I_001_IndicadoresProduccion.jsp?planta=PLANTA KNIT&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "&indicador=INDICADOR2";
                 }
                 else
                 if (x.cellIndex === 4)
                 {
-                    location.href = "I_002_Kg_Producidos_Kwh.jsp?planta=PLANTA DPF&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "";
+                    location.href = "I_001_IndicadoresProduccion.jsp?planta=PLANTA DPF&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "&indicador=INDICADOR2";
                 }
                 else
                 if (x.cellIndex === 5)
                 {
-                    location.href = "I_002_Kg_Producidos_Kwh.jsp?planta=PLANTA RLRS&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "";
+                    location.href = "I_001_IndicadoresProduccion.jsp?planta=PLANTA RLRS&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "&indicador=INDICADOR2";
                 }
                 else
                 if (x.cellIndex === 6)
                 {
-                    location.href = "I_002_Kg_Producidos_Kwh.jsp?planta=PLANTA RSM&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "";
+                     location.href = "I_001_IndicadoresProduccion.jsp?planta=PLANTA RSM&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "&indicador=INDICADOR2";
                 }
               
             }
@@ -469,34 +469,34 @@ function Redireccionar(x, element) {
             else
             if (this.rowIndex === 3) /*Indicador 3*/
             {
-                if (x.cellIndex === 1)
+                  if (x.cellIndex === 1)
                 {
-                    location.href = "I_003_KgProducidos_MRS.jsp?planta=ALL&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "";
+                    location.href = "I_001_IndicadoresProduccion.jsp?planta=ALL&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "&indicador=INDICADOR3";
                 }
                 else
                 if (x.cellIndex === 2)
                 {
-                    location.href = "I_003_KgProducidos_MRS.jsp?planta=PLANTA RST&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "";
+                    location.href = "I_001_IndicadoresProduccion.jsp?planta=PLANTA RST&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "&indicador=INDICADOR3";
                 }
                 else
                 if (x.cellIndex === 3)
                 {
-                    location.href = "I_003_KgProducidos_MRS.jsp?planta=PLANTA KNIT&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "";
+                    location.href = "I_001_IndicadoresProduccion.jsp?planta=PLANTA KNIT&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "&indicador=INDICADOR3";
                 }
                 else
                 if (x.cellIndex === 4)
                 {
-                    location.href = "I_003_KgProducidos_MRS.jsp?planta=PLANTA DPF&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "";
+                    location.href = "I_001_IndicadoresProduccion.jsp?planta=PLANTA DPF&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "&indicador=INDICADOR3";
                 }
                 else
                 if (x.cellIndex === 5)
                 {
-                    location.href = "I_003_KgProducidos_MRS.jsp?planta=PLANTA RLRS&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "";
+                    location.href = "I_001_IndicadoresProduccion.jsp?planta=PLANTA RLRS&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "&indicador=INDICADOR3";
                 }
                 else
                 if (x.cellIndex === 6)
                 {
-                     location.href = "I_003_KgProducidos_MRS.jsp?planta=PLANTA RSM&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "";
+                     location.href = "I_001_IndicadoresProduccion.jsp?planta=PLANTA RSM&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "&indicador=INDICADOR3";
                 }
               
             }
@@ -514,39 +514,39 @@ function RedireccionarFPS(x, element) {
             {
                 if (x.cellIndex === 1)
                 {
-                    location.href = "I_001_Kilos_Producidos_Hora_Hombre.jsp?planta=FPS MES&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "";
+                    location.href = "I_001_IndicadoresProduccion.jsp?planta=FPS MES&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "&indicador=INDICADOR1";
                 }
                 else
                 if (x.cellIndex === 2)
                 {
-                    location.href = "I_001_Kilos_Producidos_Hora_Hombre.jsp?planta=PLANTA FPS&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "";
+                    location.href = "I_001_IndicadoresProduccion.jsp?planta=PLANTA FPS&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "&indicador=INDICADOR1";
                 }
             }
             else
             if (this.rowIndex === 2) /*Indicador 2*/
             {
-                if (x.cellIndex === 1)
+               if (x.cellIndex === 1)
                 {
-                    location.href = "I_002_Kg_Producidos_Kwh.jsp?planta=FPS MES&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "";
+                    location.href = "I_001_IndicadoresProduccion.jsp?planta=FPS MES&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "&indicador=INDICADOR2";
                 }
                 else
                 if (x.cellIndex === 2)
                 {
-                    location.href = "I_002_Kg_Producidos_Kwh.jsp?planta=PLANTA FPS&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "";
+                    location.href = "I_001_IndicadoresProduccion.jsp?planta=PLANTA FPS&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "&indicador=INDICADOR2";
                 }
             }
             
              else
             if (this.rowIndex === 3) /*Indicador 3*/
             {
-                if (x.cellIndex === 1)
+              if (x.cellIndex === 1)
                 {
-                    location.href = "I_003_KgProducidos_MRS.jsp?planta=FPS MES&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "";
+                    location.href = "I_001_IndicadoresProduccion.jsp?planta=FPS MES&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "&indicador=INDICADOR3";
                 }
                 else
                 if (x.cellIndex === 2)
                 {
-                    location.href = "I_003_KgProducidos_MRS.jsp?planta=PLANTA FPS&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "";
+                    location.href = "I_001_IndicadoresProduccion.jsp?planta=PLANTA FPS&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "&indicador=INDICADOR3";
                 }
             }
         };
@@ -561,108 +561,105 @@ function Redireccionar2(x, element) {
         rows[i].onclick = function () {
             //alert("Columna " + x.cellIndex + "FILA " + this.rowIndex);
 
-
-
-            if (this.rowIndex === 1) /*Indicador 4*/
+ if (this.rowIndex === 1) /*Indicador 1*/
             {
                 if (x.cellIndex === 1)
                 {
-                    location.href = "I_004_CostoMo_KgProducido.jsp?planta=ALL&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "";
+                    location.href = "I_001_IndicadoresProduccion.jsp?planta=ALL&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "&indicador=INDICADOR4";
                 }
                 else
                 if (x.cellIndex === 2)
                 {
-                    location.href = "I_004_CostoMo_KgProducido.jsp?planta=PLANTA RST&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "";
+                    location.href = "I_001_IndicadoresProduccion.jsp?planta=PLANTA RST&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "&indicador=INDICADOR4";
                 }
                 else
                 if (x.cellIndex === 3)
                 {
-                    location.href = "I_004_CostoMo_KgProducido.jsp?planta=PLANTA KNIT&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "";
+                    location.href = "I_001_IndicadoresProduccion.jsp?planta=PLANTA KNIT&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "&indicador=INDICADOR4";
                 }
                 else
                 if (x.cellIndex === 4)
                 {
-                    location.href = "I_004_CostoMo_KgProducido.jsp?planta=PLANTA DPF&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "";
+                    location.href = "I_001_IndicadoresProduccion.jsp?planta=PLANTA DPF&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "&indicador=INDICADOR4";
                 }
                 else
                 if (x.cellIndex === 5)
                 {
-                    location.href = "I_004_CostoMo_KgProducido.jsp?planta=PLANTA RLRS&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "";
+                    location.href = "I_001_IndicadoresProduccion.jsp?planta=PLANTA RLRS&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "&indicador=INDICADOR4";
                 }
                 else
                 if (x.cellIndex === 6)
                 {
-                    location.href = "I_004_CostoMo_KgProducido.jsp?planta=PLANTA RSM&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "";
+                     location.href = "I_001_IndicadoresProduccion.jsp?planta=PLANTA RSM&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "&indicador=INDICADOR4";
                 }
                
             }
-
             else
-            if (this.rowIndex === 2) /*Indicador 5*/
+            if (this.rowIndex === 2) /*Indicador 2*/
             {
                 if (x.cellIndex === 1)
                 {
-                    location.href = "I_005_CostoKWH_KgProducido.jsp?planta=ALL&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "";
+                    location.href = "I_001_IndicadoresProduccion.jsp?planta=ALL&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "&indicador=INDICADOR5";
                 }
                 else
                 if (x.cellIndex === 2)
                 {
-                    location.href = "I_005_CostoKWH_KgProducido.jsp?planta=PLANTA RST&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "";
+                    location.href = "I_001_IndicadoresProduccion.jsp?planta=PLANTA RST&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "&indicador=INDICADOR5";
                 }
                 else
                 if (x.cellIndex === 3)
                 {
-                    location.href = "I_005_CostoKWH_KgProducido.jsp?planta=PLANTA KNIT&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "";
+                    location.href = "I_001_IndicadoresProduccion.jsp?planta=PLANTA KNIT&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "&indicador=INDICADOR5";
                 }
                 else
                 if (x.cellIndex === 4)
                 {
-                    location.href = "I_005_CostoKWH_KgProducido.jsp?planta=PLANTA DPF&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "";
+                    location.href = "I_001_IndicadoresProduccion.jsp?planta=PLANTA DPF&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "&indicador=INDICADOR5";
                 }
                 else
                 if (x.cellIndex === 5)
                 {
-                    location.href = "I_005_CostoKWH_KgProducido.jsp?planta=PLANTA RLRS&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "";
+                    location.href = "I_001_IndicadoresProduccion.jsp?planta=PLANTA RLRS&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "&indicador=INDICADOR5";
                 }
                 else
                 if (x.cellIndex === 6)
                 {
-                    location.href = "I_005_CostoKWH_KgProducido.jsp?planta=PLANTA RSM&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "";
+                     location.href = "I_001_IndicadoresProduccion.jsp?planta=PLANTA RSM&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "&indicador=INDICADOR5";
                 }
-                
+              
             }
 
             else
-            if (this.rowIndex === 3) /*Indicador 6*/
+            if (this.rowIndex === 3) /*Indicador 3*/
             {
-                if (x.cellIndex === 1)
+                  if (x.cellIndex === 1)
                 {
-                    location.href = "I_006_CostoMRS_KgProducido.jsp?planta=ALL&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "";
+                    location.href = "I_001_IndicadoresProduccion.jsp?planta=ALL&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "&indicador=INDICADOR6";
                 }
                 else
                 if (x.cellIndex === 2)
                 {
-                    location.href = "I_006_CostoMRS_KgProducido.jsp?planta=PLANTA RST&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "";
+                    location.href = "I_001_IndicadoresProduccion.jsp?planta=PLANTA RST&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "&indicador=INDICADOR6";
                 }
                 else
                 if (x.cellIndex === 3)
                 {
-                    location.href = "I_006_CostoMRS_KgProducido.jsp?planta=PLANTA KNIT&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "";
+                    location.href = "I_001_IndicadoresProduccion.jsp?planta=PLANTA KNIT&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "&indicador=INDICADOR6";
                 }
                 else
                 if (x.cellIndex === 4)
                 {
-                    location.href = "I_006_CostoMRS_KgProducido.jsp?planta=PLANTA DPF&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "";
+                    location.href = "I_001_IndicadoresProduccion.jsp?planta=PLANTA DPF&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "&indicador=INDICADOR6";
                 }
                 else
                 if (x.cellIndex === 5)
                 {
-                    location.href = "I_006_CostoMRS_KgProducido.jsp?planta=PLANTA RLRS&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "";
+                    location.href = "I_001_IndicadoresProduccion.jsp?planta=PLANTA RLRS&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "&indicador=INDICADOR6";
                 }
                 else
                 if (x.cellIndex === 6)
                 {
-                     location.href = "I_006_CostoMRS_KgProducido.jsp?planta=PLANTA RSM&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "";
+                     location.href = "I_001_IndicadoresProduccion.jsp?planta=PLANTA RSM&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "&indicador=INDICADOR6";
                 }
               
             }
@@ -676,47 +673,44 @@ function Redireccionar2FPS(x, element) {
     for (i = 0; i < rows.length; i++) {
         rows[i].onclick = function () {
             //alert("Columna " + x.cellIndex + "FILA " + this.rowIndex);
-            if (this.rowIndex === 1) /*Indicador 4*/
+           if (this.rowIndex === 1) /*Indicador 1*/
             {
                 if (x.cellIndex === 1)
                 {
-                    location.href = "I_004_CostoMo_KgProducido.jsp?planta=FPS MES&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "";
+                    location.href = "I_001_IndicadoresProduccion.jsp?planta=FPS MES&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "&indicador=INDICADOR4";
                 }
                 else
                 if (x.cellIndex === 2)
                 {
-                    location.href = "I_004_CostoMo_KgProducido.jsp?planta=PLANTA FPS&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "";
+                    location.href = "I_001_IndicadoresProduccion.jsp?planta=PLANTA FPS&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "&indicador=INDICADOR4";
                 }
-                
             }
-
             else
-            if (this.rowIndex === 2) /*Indicador 5*/
+            if (this.rowIndex === 2) /*Indicador 2*/
             {
-                if (x.cellIndex === 1)
+               if (x.cellIndex === 1)
                 {
-                    location.href = "I_005_CostoKWH_KgProducido.jsp?planta=FPS MES&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "";
+                    location.href = "I_001_IndicadoresProduccion.jsp?planta=FPS MES&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "&indicador=INDICADOR5";
                 }
                 else
                 if (x.cellIndex === 2)
                 {
-                    location.href = "I_005_CostoKWH_KgProducido.jsp?planta=PLANTA FPS&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "";
+                    location.href = "I_001_IndicadoresProduccion.jsp?planta=PLANTA FPS&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "&indicador=INDICADOR5";
                 }
-                
             }
-
-            else
-            if (this.rowIndex === 3) /*Indicador 6*/
+            
+             else
+            if (this.rowIndex === 3) /*Indicador 3*/
             {
-                if (x.cellIndex === 1)
+              if (x.cellIndex === 1)
                 {
-                    location.href = "I_006_CostoMRS_KgProducido.jsp?planta=FPS MES&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "";
+                    location.href = "I_001_IndicadoresProduccion.jsp?planta=FPS MES&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "&indicador=INDICADOR6";
                 }
                 else
                 if (x.cellIndex === 2)
                 {
-                    location.href = "I_006_CostoMRS_KgProducido.jsp?planta=PLANTA FPS&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "";
-                }       
+                    location.href = "I_001_IndicadoresProduccion.jsp?planta=PLANTA FPS&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "&indicador=INDICADOR6";
+                }
             }
 
         };

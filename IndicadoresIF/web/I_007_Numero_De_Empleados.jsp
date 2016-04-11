@@ -4,9 +4,22 @@
     Author     : rcruz
 --%>
 
+<%@page import="java.util.Calendar"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html class="html">
+    
+    <%
+        String indicador = request.getParameter("indicador");
+        String vindicador = "INDICADOR7";
+
+        if (indicador == null) {
+
+        } else {
+            vindicador = indicador;
+
+        }
+    %>
 
         <!------------------------------------------JS GOOGLE CHARTS-------------------------------------------> 
     <script type="text/javascript" src="Js/js/loader.js"></script>
@@ -32,11 +45,12 @@
         //mantener la posicion actual del menu
         $(document).ready(function () {
             
-            $('#menu').multilevelpushmenu('expand', 'Produccion Por Planta');
+            $('#menu').multilevelpushmenu('expand', 'RRHH');
             $(window).resize(function () {
                 DibujarChartPrincipal();
             });
             
+            $('#indicador').val("<%=vindicador%>");
 
         });
     </script> 
@@ -59,23 +73,33 @@
 
         <div id="DivPrincipal" class="divprincipal">
             <form method="get" action="I_001_Kilos_Producidos_Hora_Hombre_XLS" class="formulario">
-                <input type="text" id="lblmes"  name="lblmes"  onkeypress="" value="Tipo" disabled="true" class="texto" /> 
-                <input type="text" id="lbla"  name="lbla"  onkeypress="" value="Ingresar Año" disabled="true" class="texto" /> 
-               
-                <INPUT TYPE="SUBMIT" value="Exportar Datos" class="boton">
-                <br>
-                <select id="tipo" name="tipo" onchange="DibujarChartPrincipal()" class="select">
-                        <option value="1">Nomina</option>
-                        <option value="2">Planilla</option>
-                      
-                    </select> 
-                <input type="text" id="anio"  name="anio"  onkeypress="" value="2016" class="texto"/>  
-   
-
                 
+                <input type="text" id="lblmes"  name="lblmes"  onkeypress="" value="Tipo" disabled="true" class="texto" /> 
+                <input type="text" id="lbla"  name="lbla"  onkeypress="" value="Ingresar Año" disabled="true" class="texto" />                  
+                <input type="text" id="lblindicador"  name="lblindicador"  onkeypress="" value="Indicador" disabled="true" class="texto" />  
+                <INPUT TYPE="SUBMIT" value="Exportar Datos" class="botongrande">
 
-                <input type="button" value="Visualizar" onclick="DibujarChartPrincipal()" class="boton"/>
-                <input type="hidden" id="indicador"  name="indicador" value="INDICADOR7"/>  
+                <br>
+                
+                <select id="tipo" name="tipo" onchange="DibujarChartPrincipal()" class="select">
+                    <option value="1">Nomina</option>
+                    <option value="2">Planilla</option>
+                </select> 
+                
+                
+                <select id="anio" name="anio" onchange="DibujarChartPrincipal()" class="select">
+                    <option value="<%=Utilidades.MetodosGlobales.year_actual-2%>"> <%=Utilidades.MetodosGlobales.year_actual-2%> </option>
+                    <option value="<%=Utilidades.MetodosGlobales.year_actual-1%>"> <%=Utilidades.MetodosGlobales.year_actual-1%> </option>
+                    <option value="<%=Utilidades.MetodosGlobales.year_actual%>" selected> <%=Utilidades.MetodosGlobales.year_actual%> </option>
+                    <option value="<%=Utilidades.MetodosGlobales.year_actual+1%>"> <%=Utilidades.MetodosGlobales.year_actual+1%> </option>
+                    <option value="<%=Utilidades.MetodosGlobales.year_actual+2%>"> <%=Utilidades.MetodosGlobales.year_actual+2%> </option>
+                </select>
+                
+                <select id="indicador" name="indicador" onchange="DibujarChartPrincipal()" class="select">
+                    <option value="INDICADOR7">No. Empleados</option>
+                    <option value="INDICADOR8">Devengado/Empleado</option>
+                </select>
+ 
             </form> 
 
             <div id="GraficaPrincipal" class="divimagen"></div>
