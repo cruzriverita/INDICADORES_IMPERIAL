@@ -1,5 +1,5 @@
 <%-- 
-    Document   : I_007_Numero_De_Empleados
+    Document   : I_002_Indicadores_RRHH
     Created on : 9/04/2016, 10:35:14 AM
     Author     : rcruz
 --%>
@@ -28,7 +28,7 @@
     <!-----------------------------------------Archivos y Fuentes JavaScript-------------------------------> 
     <script type="text/javascript" src="Js/js/FuncionesGlobales.js"></script>
     <!--<script type="text/javascript" src="Js/I_001_Kilos_Producidos_Hora_Hombre.js"></script>-->
-  <script type="text/javascript" src="Js/IndicadoresRRHH.js"></script>
+  <script type="text/javascript" src="Js/I_002_Indicadores_RRHH.js"></script>
      <script type="text/javascript">
         //API de Google Chart, Se llama en cada jsp  
         /* global google */
@@ -51,6 +51,7 @@
             });
             
             $('#indicador').val("<%=vindicador%>");
+            GetTituloG2();GetSubTituloG2();
 
         });
     </script> 
@@ -72,39 +73,63 @@
         </div>
 
         <div id="DivPrincipal" class="divprincipal">
-            <form method="get" action="I_001_Kilos_Producidos_Hora_Hombre_XLS" class="formulario">
+            <!-- <div class="DivWithScroll">-->
+            
+            <form method="get" action="I_002_Indicadores_RRHH_XLS" class="formulario">
+            
+                         
                 
+              <div style="float: left; width: 70%;">
+                  <div>
+                      <div class="divtexto">
                 <input type="text" id="lblmes"  name="lblmes"  onkeypress="" value="Tipo" disabled="true" class="texto" /> 
-                <input type="text" id="lbla"  name="lbla"  onkeypress="" value="Ingresar Año" disabled="true" class="texto" />                  
-                <input type="text" id="lblindicador"  name="lblindicador"  onkeypress="" value="Indicador" disabled="true" class="texto" />  
-                <INPUT TYPE="SUBMIT" value="Exportar Datos" class="botongrande">
+               </div>
+                <div class="divtexto">
+                <input type="text" id="lbla"  name="lbla"  onkeypress="" value="Año" disabled="true" class="texto" />                  
+                 </div>
 
-                <br>
+                         <div class="divboton">
+                                <input value="Exportar Datos" class="boton" type="SUBMIT">
+                            </div>
+                      
+                      
+                  </div>
                 
-                <select id="tipo" name="tipo" onchange="DibujarChartPrincipal()" class="select">
+                 <div style="clear:both;">  
+                     
+                     <div class="divselect">
+                <select id="tipo" name="tipo" onchange="DibujarChartPrincipal();GetTituloG2();GetSubTituloG2();" class="select">
                     <option value="1">Nomina</option>
                     <option value="2">Planilla</option>
                 </select> 
-                
-                
-                <select id="anio" name="anio" onchange="DibujarChartPrincipal()" class="select">
+                 </div>
+                <div class="divselect">
+                <select id="anio" name="anio" onchange="DibujarChartPrincipal();GetTituloG2();GetSubTituloG2();" class="select">
                     <option value="<%=Utilidades.MetodosGlobales.year_actual-2%>"> <%=Utilidades.MetodosGlobales.year_actual-2%> </option>
                     <option value="<%=Utilidades.MetodosGlobales.year_actual-1%>"> <%=Utilidades.MetodosGlobales.year_actual-1%> </option>
                     <option value="<%=Utilidades.MetodosGlobales.year_actual%>" selected> <%=Utilidades.MetodosGlobales.year_actual%> </option>
                     <option value="<%=Utilidades.MetodosGlobales.year_actual+1%>"> <%=Utilidades.MetodosGlobales.year_actual+1%> </option>
                     <option value="<%=Utilidades.MetodosGlobales.year_actual+2%>"> <%=Utilidades.MetodosGlobales.year_actual+2%> </option>
                 </select>
-                
-                <select id="indicador" name="indicador" onchange="DibujarChartPrincipal()" class="select">
-                    <option value="INDICADOR7">No. Empleados</option>
-                    <option value="INDICADOR8">Devengado/Empleado</option>
-                </select>
- 
-            </form> 
+                 </div>
 
+            <input type="hidden" id="indicador"  name="indicador" value="INDICADOR7"/>  
+                
+                </div>
+                    </div>
+                
+
+                </form> 
+                <br style="line-height: 10px">
+                <center>
+                    <div style="line-height: 5px">
+                    <h3 id="titulo"></h3>
+                <h4 id="subtitulo"></h4>
+                </div>
+                </center>
             <div id="GraficaPrincipal" class="divimagen"></div>
 
-        </div> 
+        <!--</div>--> 
 
     </body>
 </html>

@@ -26,7 +26,7 @@ import org.json.JSONObject;
  *
  * @author rcruz
  */
-public class IndicadoresRRHH_Servlet extends HttpServlet {
+public class I_002_Indicadores_RRHH_Servlet extends HttpServlet {
     Modelo.ConexionBD conexion = new Modelo.ConexionBD();
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -96,22 +96,22 @@ public class IndicadoresRRHH_Servlet extends HttpServlet {
         
          if ("INDICADOR7".equals(indicador)) {
             if (tipo.equals("1")) {
-                sql = Modelo.Modelo_IndicadoresRRHH.I_007_NumeroEmpleados(Integer.parseInt(anio), "N","P.No_Empleados","No_Empleados");
+                sql = Modelo.Modelo_IndicadoresRRHH.I_002_IndicadoresRRHH_Consulta(Integer.parseInt(anio), "N","P.No_Empleados","No_Empleados");
              this.Generales(sql, ListaValores, Obj, responseObj, response);
             }
             else {
                 //sql = Modelo_IndicadoresProduccion.I_001_Kilos_Producidos_Hora_Hombre_Detalle(mes, Integer.parseInt(anio), opcion);
-                sql = sql = Modelo.Modelo_IndicadoresRRHH.I_007_NumeroEmpleados(Integer.parseInt(anio), "P","P.No_Empleados","No_Empleados");
+                sql = sql = Modelo.Modelo_IndicadoresRRHH.I_002_IndicadoresRRHH_Consulta(Integer.parseInt(anio), "P","P.No_Empleados","No_Empleados");
                  this.Generales(sql, ListaValores, Obj, responseObj, response);
             }
         } 
         else if ("INDICADOR8".equals(indicador)) {
             if (tipo.equals("1")) {
-                sql = Modelo.Modelo_IndicadoresRRHH.I_007_NumeroEmpleados(Integer.parseInt(anio), "N", "P.Devengado/P.No_Empleados", "Devengado/No_Empleados");
+                sql = Modelo.Modelo_IndicadoresRRHH.I_002_IndicadoresRRHH_Consulta(Integer.parseInt(anio), "N", "P.Devengado/P.No_Empleados", "Devengado/No_Empleados");
                 this.Generales(sql, ListaValores, Obj, responseObj, response);
             } else {
                 
-                sql = Modelo.Modelo_IndicadoresRRHH.I_007_NumeroEmpleados(Integer.parseInt(anio), "P", "P.Devengado/P.No_Empleados", "Devengado/No_Empleados");
+                sql = Modelo.Modelo_IndicadoresRRHH.I_002_IndicadoresRRHH_Consulta(Integer.parseInt(anio), "P", "P.Devengado/P.No_Empleados", "Devengado/No_Empleados");
                 this.Generales(sql, ListaValores, Obj, responseObj, response);
             }
         }
@@ -157,7 +157,7 @@ public class IndicadoresRRHH_Servlet extends HttpServlet {
                 ListaValores.add(Obj);
                 responseObj.put("ListaValores", ListaValores);
             } catch (JSONException ex) {
-                Logger.getLogger(General_Servlet.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(I_001_Indicadores_Produccion_Servlet.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
 

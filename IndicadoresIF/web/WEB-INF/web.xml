@@ -1,16 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
     <servlet>
-        <servlet-name>I_000_Produccion_Por_Planta_Mes_Servlet</servlet-name>
-        <servlet-class>Controladores.I_000_Produccion_Por_Planta_Mes_Servlet</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>I_000_Produccion_Por_Planta_Mes_Servlet_XLS</servlet-name>
         <servlet-class>ArchivosXLS.I_000_Produccion_Por_Planta_Mes_XLS</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>I_000_Produccion_Por_Planta_Commodity_Servlet</servlet-name>
-        <servlet-class>Controladores.I_000_Produccion_Por_Planta_Commodity_Servlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>I_000_Produccion_Por_Planta_Commodity_XLS</servlet-name>
@@ -53,24 +45,24 @@
         <servlet-class>Controladores.C_001_Produccion_Por_Planta_Servlet2</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>General_Servlet</servlet-name>
-        <servlet-class>Controladores.General_Servlet</servlet-class>
+        <servlet-name>I_001_Indicadores_Produccion_Servlet</servlet-name>
+        <servlet-class>Controladores.I_001_Indicadores_Produccion_Servlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>IndicadoresRRHH_Servlet</servlet-name>
-        <servlet-class>Controladores.IndicadoresRRHH_Servlet</servlet-class>
+        <servlet-name>I_002_Indicadores_RRHH_Servlet</servlet-name>
+        <servlet-class>Controladores.I_002_Indicadores_RRHH_Servlet</servlet-class>
     </servlet>
-    <servlet-mapping>
-        <servlet-name>I_000_Produccion_Por_Planta_Mes_Servlet</servlet-name>
-        <url-pattern>/I_000_Produccion_Por_Planta_Mes_Servlet</url-pattern>
-    </servlet-mapping>
+    <servlet>
+        <servlet-name>I_001_Indicadores_Produccion_XLS</servlet-name>
+        <servlet-class>ArchivosXLS.I_001_Indicadores_Produccion_XLS</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>I_002_Indicadores_RRHH_XLS</servlet-name>
+        <servlet-class>ArchivosXLS.I_002_Indicadores_RRHH_XLS</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>I_000_Produccion_Por_Planta_Mes_Servlet_XLS</servlet-name>
         <url-pattern>/I_000_Produccion_Por_Planta_Mes_Servlet_XLS</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>I_000_Produccion_Por_Planta_Commodity_Servlet</servlet-name>
-        <url-pattern>/I_000_Produccion_Por_Planta_Commodity_Servlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>I_000_Produccion_Por_Planta_Commodity_XLS</servlet-name>
@@ -113,12 +105,20 @@
         <url-pattern>/C_001_Produccion_Por_Planta_Servlet2</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>General_Servlet</servlet-name>
-        <url-pattern>/General_Servlet</url-pattern>
+        <servlet-name>I_001_Indicadores_Produccion_Servlet</servlet-name>
+        <url-pattern>/I_001_Indicadores_Produccion_Servlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>IndicadoresRRHH_Servlet</servlet-name>
-        <url-pattern>/IndicadoresRRHH_Servlet</url-pattern>
+        <servlet-name>I_002_Indicadores_RRHH_Servlet</servlet-name>
+        <url-pattern>/I_002_Indicadores_RRHH_Servlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>I_001_Indicadores_Produccion_XLS</servlet-name>
+        <url-pattern>/I_001_Indicadores_Produccion_XLS</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>I_002_Indicadores_RRHH_XLS</servlet-name>
+        <url-pattern>/I_002_Indicadores_RRHH_XLS</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -107,16 +107,16 @@ public class C_001_Produccion_Por_Planta_Servlet extends HttpServlet {
             String indicador = (String) mapa.get("Indicador");
             Float Cvalor1 = Float.parseFloat(mapa.get("RST").toString());
             Float Cvalor2 = Float.parseFloat(mapa.get("RSTP").toString());
-            Float Cvalor3 = Float.parseFloat(mapa.get("KNIT").toString());
-            Float Cvalor4 = Float.parseFloat(mapa.get("KNITP").toString());
-            Float Cvalor5 = Float.parseFloat(mapa.get("DPF").toString());
-            Float Cvalor6 = Float.parseFloat(mapa.get("DPFP").toString());
-            Float Cvalor7 = Float.parseFloat(mapa.get("RLRS").toString());
-            Float Cvalor8 = Float.parseFloat(mapa.get("RLRSP").toString());
+            Float Cvalor3 = Float.parseFloat(mapa.get("RLRS").toString());
+            Float Cvalor4 = Float.parseFloat(mapa.get("RLRSP").toString());
+            Float Cvalor5 = Float.parseFloat(mapa.get("RSM").toString());
+            Float Cvalor6 = Float.parseFloat(mapa.get("RSMP").toString());
+            Float Cvalor7 = Float.parseFloat(mapa.get("KNIT").toString());
+            Float Cvalor8 = Float.parseFloat(mapa.get("KNITP").toString());
             Float Cvalor9 = Float.parseFloat(mapa.get("FPS").toString());
             Float Cvalor10 = Float.parseFloat(mapa.get("FPSP").toString());
-            Float Cvalor11 = Float.parseFloat(mapa.get("RSM").toString());
-            Float Cvalor12 = Float.parseFloat(mapa.get("RSMP").toString());
+            Float Cvalor11 = Float.parseFloat(mapa.get("DPF").toString());
+            Float Cvalor12 = Float.parseFloat(mapa.get("DPFP").toString());
 
             Cvalor1 = Utilidades.MetodosGlobales.redondear(Cvalor1, 2);
             Cvalor3 = Utilidades.MetodosGlobales.redondear(Cvalor3, 2);

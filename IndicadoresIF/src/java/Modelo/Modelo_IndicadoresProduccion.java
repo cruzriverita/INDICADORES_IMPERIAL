@@ -12,298 +12,72 @@ package Modelo;
 public class Modelo_IndicadoresProduccion {
 
     /*-------------------------------------I_0001-----------------------------------------------*/
-    public static String I_001_Kilos_Producidos_Hora_Hombre_General(String mes, Integer anio, String simbolo) {
-        return "SELECT  P.PLANTA,\n"
-                + "SUM( CASE WHEN P.ANIO=" + (anio - 1) + " THEN P.VALOR ELSE 0 END) AS 'anio',\n"
-                + "SUM( CASE WHEN P.ANIO=" + anio + " THEN P.VALOR ELSE 0 END) AS 'anio1',\n"
-                + "(select max (VALOR) from I_001_KilosProducidosHoraHombre WHERE PLANTA=P.PLANTA) AS 'mejor',\n"
-                + "ifnull((SELECT CASE \n"
-                + "WHEN MES=1 THEN (SELECT sum(ProduccionTotal)/SUM(HorasHombreTotales)\n"
-                + "from I_001_KilosProducidosHoraHombre WHERE MES = 1 AND PLANTA=P.PLANTA AND ANIO=" + (anio - 1) + ")\n"
-                + "WHEN MES=2 THEN (SELECT sum(ProduccionTotal)/SUM(HorasHombreTotales)\n"
-                + "from I_001_KilosProducidosHoraHombre WHERE MES BETWEEN 1 AND 2 AND PLANTA=P.PLANTA AND ANIO=" + (anio - 1) + ")\n"
-                + "WHEN MES=3 THEN (SELECT sum(ProduccionTotal)/SUM(HorasHombreTotales) \n"
-                + "from I_001_KilosProducidosHoraHombre WHERE MES BETWEEN 1 AND 3 AND PLANTA=P.PLANTA AND ANIO=" + (anio - 1) + ")\n"
-                + "ELSE 0 END as 'TOTAL 2015'\n"
-                + "from I_001_KilosProducidosHoraHombre PP\n"
-                + "WHERE MES=P.MES group by P.PLANTA),0) AS 'Acumulado',\n"
-                + "ifnull ((SELECT CASE \n"
-                + "WHEN MES=1 THEN (SELECT sum(ProduccionTotal)/SUM(HorasHombreTotales)\n"
-                + "from I_001_KilosProducidosHoraHombre WHERE MES = 1 AND PLANTA=P.PLANTA AND ANIO=" + (anio) + ")\n"
-                + "WHEN MES=2 THEN (SELECT sum(ProduccionTotal)/SUM(HorasHombreTotales)\n"
-                + "from I_001_KilosProducidosHoraHombre WHERE MES BETWEEN 1 AND 2 AND PLANTA=P.PLANTA AND ANIO=" + anio + ")\n"
-                + "WHEN MES=3 THEN (SELECT sum(ProduccionTotal)/SUM(HorasHombreTotales)\n"
-                + "from I_001_KilosProducidosHoraHombre WHERE MES BETWEEN 1 AND 3 AND PLANTA=P.PLANTA AND ANIO=" + anio + ")\n"
-                + "ELSE 0 END as 'TOTAL 2015' from I_001_KilosProducidosHoraHombre PP\n"
-                + "WHERE MES=P.MES group by P.PLANTA),0) AS 'Acumulado1',\n"
-                + "ifnull((select Promedio from I_001_KilosProducidosHoraHombreP where Planta=P.Planta\n"
+    public static String I_001_Kilos_Producidos_Hora_Hombre_General(String mes, Integer anio, String simbolo,String tabla, String tablap,String valor,String valmax,String maxmin,String orden) {
+      return "SELECT  P.PLANTA,\n"
+                + "SUM( CASE WHEN P.ANIO=" + (anio - 1) + " THEN "+valor+" ELSE 0 END) AS 'anio',\n"
+                + "SUM( CASE WHEN P.ANIO=" + anio + " THEN "+valor+" ELSE 0 END) AS 'anio1',\n"
+              
+              //+ "(select "+maxmin+" ("+valmax+") from "+tabla+" WHERE PLANTA=P.PLANTA) AS 'mejor',\n"
+              
+                + "(select " + valmax + " from " + tabla + "\n"
+                + "                where " + valmax + " in (select " + valmax + " from " + tabla + "\n"
+                + "                where " + valmax + ">0 AND PLANTA=P.PLANTA)\n"
+                + "                AND PLANTA=P.PLANTA ORDER BY " + valmax + " " + orden + " LIMIT 1) AS 'mejor',\n"
+              
+              + "ifnull((select Promedio from "+tablap+" where Planta=P.Planta\n"
                 + "AND MES = P.MES AND ANIO=" + (anio - 1) + "),0) AS 'PROMEDIO',"
-                + "(select MES from I_001_KilosProducidosHoraHombre \n"
-                + "where VALOR\n"
-                + "in (select max(VALOR) from I_001_KilosProducidosHoraHombre WHERE PLANTA=P.PLANTA)\n"
-                + "AND PLANTA=P.PLANTA) AS 'MEJORMES',\n"
+              
+                 + "(select MES from " + tabla + "\n"
+                + "                where " + valmax + " in (select " + valmax + " from " + tabla + "\n"
+                + "                where " + valmax + ">0 AND PLANTA=P.PLANTA)\n"
+                + "                AND PLANTA=P.PLANTA ORDER BY " + valmax + " " + orden + " LIMIT 1) AS 'MEJORMES',\n"
                 + "\n"
-                + "(select ANIO from I_001_KilosProducidosHoraHombre \n"
-                + "where VALOR\n"
-                + "in (select max(VALOR) from I_001_KilosProducidosHoraHombre WHERE PLANTA=P.PLANTA)\n"
-                + "AND PLANTA=P.PLANTA) AS 'MEJORANIO'"
-                + "FROM   I_001_KilosProducidosHoraHombre P\n"
-                + "where P.MES=" + mes + " and P.PLANTA" + simbolo + "'PLANTA FPS' GROUP BY P.PLANTA";
-    }
-
-    public static String IndicadoresProduccion_Consulta_Por_Planta_Lineal(String planta, Integer anio,String tabla, String tablap, String valor,String valmax,String orden) {
-        return "SELECT P.MES as MES,P.PLANTA,\n"
-                + "SUM( CASE \n"
-                + "WHEN P.ANIO=" + (anio - 2) + "\n"
-                + "THEN ifnull("+valor+",0)\n"
-                + "ELSE 0\n"
-                + "END) AS '2015',\n"
-                + "SUM( CASE \n"
-                + "WHEN P.ANIO=" + (anio-1) + "\n"
-                + "THEN ifnull("+valor+",0)\n"
-                + "ELSE 0\n"
-                + "END) AS '2016',\n"
-                
-                + "(select "+valmax+" from "+tabla+"\n" +
-"                where "+valmax+" in (select "+valmax+" from "+tabla+"\n" +
-"                where "+valmax+">0 AND PLANTA=P.PLANTA)\n" +
-"                AND PLANTA=P.PLANTA ORDER BY "+valmax+" "+orden+" LIMIT 1) AS 'mejor',\n"
-                
-                + "ifnull((select Promedio from "+tablap +" where Planta=P.Planta\n"
-                + "AND ANIO=" + (anio - 1) + " ),0) AS 'PROMEDIO',\n"
-                
-                + "(select MES from "+tabla+"\n" +
-"                where "+valmax+" in (select "+valmax+" from "+tabla+"\n" +
-"                where "+valmax+">0 AND PLANTA=P.PLANTA)\n" +
-"                AND PLANTA=P.PLANTA ORDER BY "+valmax+" "+orden+" LIMIT 1) AS 'MEJORMES',\n"
-                + "\n"
-                + "(select ANIO from "+tabla+"\n" +
-"                where "+valmax+" in (select "+valmax+" from "+tabla+"\n" +
-"                where "+valmax+">0 AND PLANTA=P.PLANTA)\n" +
-"                AND PLANTA=P.PLANTA ORDER BY "+valmax+" "+orden+" LIMIT 1) AS 'MEJORANIO'"
+                + "(select ANIO from " + tabla + "\n"
+                + "                where " + valmax + " in (select " + valmax + " from " + tabla + "\n"
+                + "                where " + valmax + ">0 AND PLANTA=P.PLANTA)\n"
+                + "                AND PLANTA=P.PLANTA ORDER BY " + valmax + " " + orden + " LIMIT 1) AS 'MEJORANIO'"
                 + "\n"
                 + "FROM   "+tabla+" P\n"
-                + "where \n"
-                + "P.PLANTA='" + planta + "'\n"
-                + "GROUP BY P.PLANTA,P.MES/*,P.ANIO ORDER BY P.ANIO,P.MES*/"
-                +"UNION ALL \n"
-                +"SELECT P.MES as MES,P.PLANTA,\n"
+                + "where P.MES=" + mes + " and P.PLANTA" + simbolo + "'PLANTA FPS' GROUP BY P.PLANTA "
+                + "ORDER BY P.PLANTA DESC ";
+    }
+
+    public static String IndicadoresProduccion_Consulta_Por_Planta_Lineal(String planta, Integer anio, String tabla, String tablap, String valor, String valmax, String orden) {
+       
+          return "SELECT P.MES as MES,P.PLANTA,\n"
                 + "SUM( CASE \n"
                 + "WHEN P.ANIO=" + (anio - 1) + "\n"
-                + "THEN ifnull("+valor+",0)\n"
+                + "THEN ifnull(" + valor + ",0)\n"
                 + "ELSE 0\n"
                 + "END) AS '2015',\n"
                 + "SUM( CASE \n"
-                + "WHEN P.ANIO=" + anio + "\n"
-                + "THEN ifnull("+valor+",0)\n"
+                + "WHEN P.ANIO=" + (anio) + "\n"
+                + "THEN ifnull(" + valor + ",0)\n"
                 + "ELSE 0\n"
                 + "END) AS '2016',\n"
-                
-                + "(select "+valmax+" from "+tabla+"\n" +
-"                where "+valmax+" in (select "+valmax+" from "+tabla+"\n" +
-"                where "+valmax+">0 AND PLANTA=P.PLANTA)\n" +
-"                AND PLANTA=P.PLANTA ORDER BY "+valmax+" "+orden+" LIMIT 1) AS 'mejor',\n"
-                
-                + "ifnull((select Promedio from "+tablap +" where Planta=P.Planta\n"
+                + "(select " + valmax + " from " + tabla + "\n"
+                + "                where " + valmax + " in (select " + valmax + " from " + tabla + "\n"
+                + "                where " + valmax + ">0 AND PLANTA=P.PLANTA)\n"
+                + "                AND PLANTA=P.PLANTA ORDER BY " + valmax + " " + orden + " LIMIT 1) AS 'mejor',\n"
+                + "ifnull((select Promedio from " + tablap + " where Planta=P.Planta\n"
                 + "AND ANIO=" + (anio - 1) + " ),0) AS 'PROMEDIO',\n"
-                
-                + "(select MES from "+tabla+"\n" +
-"                where "+valmax+" in (select "+valmax+" from "+tabla+"\n" +
-"                where "+valmax+">0 AND PLANTA=P.PLANTA)\n" +
-"                AND PLANTA=P.PLANTA ORDER BY "+valmax+" "+orden+" LIMIT 1) AS 'MEJORMES',\n"
+                + "(select MES from " + tabla + "\n"
+                + "                where " + valmax + " in (select " + valmax + " from " + tabla + "\n"
+                + "                where " + valmax + ">0 AND PLANTA=P.PLANTA)\n"
+                + "                AND PLANTA=P.PLANTA ORDER BY " + valmax + " " + orden + " LIMIT 1) AS 'MEJORMES',\n"
                 + "\n"
-                + "(select ANIO from "+tabla+"\n" +
-"                where "+valmax+" in (select "+valmax+" from "+tabla+"\n" +
-"                where "+valmax+">0 AND PLANTA=P.PLANTA)\n" +
-"                AND PLANTA=P.PLANTA ORDER BY "+valmax+" "+orden+" LIMIT 1) AS 'MEJORANIO'"
+                + "(select ANIO from " + tabla + "\n"
+                + "                where " + valmax + " in (select " + valmax + " from " + tabla + "\n"
+                + "                where " + valmax + ">0 AND PLANTA=P.PLANTA)\n"
+                + "                AND PLANTA=P.PLANTA ORDER BY " + valmax + " " + orden + " LIMIT 1) AS 'MEJORANIO'"
                 + "\n"
-                + "FROM   "+tabla+" P\n"
+                + "FROM   " + tabla + " P\n"
                 + "where \n"
                 + "P.PLANTA='" + planta + "'\n"
-                + "GROUP BY P.PLANTA,P.MES/*,P.ANIO ORDER BY P.ANIO,P.MES*/"
+                + "GROUP BY P.PLANTA,P.MES,P.ANIO ORDER BY P.ANIO,P.MES";
                 
-                ;
     }
 
-    /*-------------------------------------I_0002-----------------------------------------------*/
-    public static String I_002_Kg_Producidos_Kwh_General(String mes, Integer anio, String simbolo) {
-        return "SELECT  P.PLANTA,\n"
-                + "SUM( CASE WHEN P.ANIO=" + (anio - 1) + " THEN P.Kg/P.Kwh ELSE 0 END) AS 'anio',\n"
-                + "SUM( CASE WHEN P.ANIO=" + anio + " THEN P.Kg/P.Kwh ELSE 0 END) AS 'anio1',\n"
-                + "(select max (Kg/Kwh) from I_002_KgProducidosKwh WHERE PLANTA=P.PLANTA) AS 'mejor',\n"
-                + "ifnull((SELECT CASE \n"
-                + "WHEN MES=1 THEN (SELECT sum(kg)/SUM(kwh)\n"
-                + "from I_002_KgProducidosKwh WHERE MES = 1 AND PLANTA=P.PLANTA AND ANIO=" + (anio - 1) + ")\n"
-                + "WHEN MES=2 THEN (SELECT sum(kg)/SUM(kwh)\n"
-                + "from I_002_KgProducidosKwh WHERE MES BETWEEN 1 AND 2 AND PLANTA=P.PLANTA AND ANIO=" + (anio - 1) + ")\n"
-                + " WHEN MES=3 THEN (SELECT sum(kg)/SUM(kwh) \n"
-                + "from I_002_KgProducidosKwh WHERE MES BETWEEN 1 AND 3 AND PLANTA=P.PLANTA AND ANIO=" + (anio - 1) + ")\n"
-                + " ELSE 0 END as 'TOTAL 2015'\n"
-                + " from I_002_KgProducidosKwh PP\n"
-                + "WHERE MES=P.MES group by P.PLANTA),0) AS 'Acumulado',\n"
-                + "ifnull((SELECT CASE \n"
-                + "WHEN MES=1 THEN (SELECT sum(kg)/SUM(kwh)\n"
-                + "from I_002_KgProducidosKwh WHERE MES = 1 AND PLANTA=P.PLANTA AND ANIO=" + anio + ")\n"
-                + "WHEN MES=2 THEN (SELECT sum(kg)/SUM(kwh)\n"
-                + "from I_002_KgProducidosKwh WHERE MES BETWEEN 1 AND 2 AND PLANTA=P.PLANTA AND ANIO=" + anio + ")\n"
-                + " WHEN MES=3 THEN (SELECT sum(kg)/SUM(kwh) \n"
-                + "from I_002_KgProducidosKwh WHERE MES BETWEEN 1 AND 3 AND PLANTA=P.PLANTA AND ANIO=" + anio + ")\n"
-                + " ELSE 0 END as 'TOTAL 2015' from I_002_KgProducidosKwh PP WHERE MES=P.MES\n"
-                + "group by P.PLANTA),0) AS 'Acumulado1',\n"
-                + "ifnull((select Promedio from I_002_KgProducidosKwhP where Planta=P.Planta\n"
-                + "AND MES = P.MES AND ANIO=" + (anio - 1) + "),0) AS 'PROMEDIO'"
-                + "FROM   I_002_KgProducidosKwh P where P.MES=" + mes + " and P.PLANTA" + simbolo + "'PLANTA FPS'\n"
-                + "GROUP BY P.PLANTA";
-    }
-
-
-    /*-------------------------------------I_0003-----------------------------------------------*/
-    public static String I_003_Kg_Producidos_Mrs_General(String mes, Integer anio, String simbolo) {
-        return "SELECT  P.PLANTA,\n"
-                + "SUM( CASE WHEN P.ANIO=" + (anio - 1) + " THEN P.Kg/P.Mrs ELSE 0 END) AS 'anio',\n"
-                + "SUM( CASE WHEN P.ANIO=" + anio + " THEN P.Kg/P.Mrs ELSE 0 END) AS 'anio1',\n"
-                + "(select max (kg/Mrs) from I_003_Kgproducidos_MRS WHERE PLANTA=P.PLANTA) AS 'mejor',\n"
-                + "\n"
-                + "ifnull(( SELECT CASE \n"
-                + "WHEN MES=1 THEN (SELECT sum(Kg)/SUM(Mrs)\n"
-                + "from I_003_Kgproducidos_MRS WHERE MES = 1 AND PLANTA=P.PLANTA AND ANIO= " + (anio - 1) + " ) \n"
-                + "\n"
-                + "WHEN MES=2 THEN (SELECT sum(Kg)/SUM(Mrs)\n"
-                + "from I_003_Kgproducidos_MRS WHERE MES BETWEEN 1 AND 2 AND PLANTA=P.PLANTA AND ANIO=" + (anio - 1) + ")  \n"
-                + "\n"
-                + "WHEN MES=3 THEN (SELECT sum(Kg)/SUM(Mrs)\n"
-                + "from I_003_Kgproducidos_MRS WHERE MES BETWEEN 1 AND 3 AND PLANTA=P.PLANTA AND ANIO=" + (anio - 1) + ")  \n"
-                + "\n"
-                + "ELSE 0 END as 'TOTAL 2015'\n"
-                + "from I_003_Kgproducidos_MRS PP WHERE MES=P.MES group by P.PLANTA),0) AS 'Acumulado',\n"
-                + "\n"
-                + "ifnull((SELECT CASE \n"
-                + "WHEN MES=1 THEN (SELECT sum(Kg)/SUM(Mrs)\n"
-                + "from I_003_Kgproducidos_MRS WHERE MES = 1 AND PLANTA=P.PLANTA AND ANIO=" + anio + ") \n"
-                + "\n"
-                + "WHEN MES=2 THEN (SELECT sum(Kg)/SUM(Mrs)\n"
-                + "from I_003_Kgproducidos_MRS WHERE MES BETWEEN 1 AND 2 AND PLANTA=P.PLANTA AND ANIO=" + anio + ")  \n"
-                + "\n"
-                + "WHEN MES=3 THEN(SELECT sum(Kg)/SUM(Mrs)\n"
-                + "from I_003_Kgproducidos_MRS WHERE MES BETWEEN 1 AND 3 AND PLANTA=P.PLANTA AND ANIO=" + anio + ")  \n"
-                + "ELSE 0 END as 'TOTAL 2015'\n"
-                + "from I_003_Kgproducidos_MRS PP\n"
-                + "WHERE MES=P.MES group by P.PLANTA),0) AS 'Acumulado1',\n"
-                + "ifnull((select Promedio from I_003_Kgproducidos_MRSP where Planta=P.Planta\n"
-                + "AND MES = P.MES AND ANIO=" + (anio - 1) + "),0) AS 'PROMEDIO'"
-                + "FROM I_003_Kgproducidos_MRS P where P.MES=" + mes + " and P.PLANTA" + simbolo + "'PLANTA FPS' GROUP BY P.PLANTA";
-    }
-
-
-    /*----------------------------------------------------------------------------------------------------*/
-    public static String I_004_CostoMO_Kg_Producido_General(String mes, Integer anio, String simbolo) {
-        return "SELECT  P.PLANTA,\n"
-                + "SUM( CASE WHEN P.ANIO=" + (anio - 1) + " THEN P.VALOR ELSE 0 END) AS 'anio',\n"
-                + "SUM( CASE WHEN P.ANIO=" + (anio) + " THEN P.VALOR ELSE 0 END) AS 'anio1',\n"
-                + "(select min (VALOR) from I_004_CostoMoKgProducido WHERE PLANTA=P.PLANTA) AS 'mejor',\n"
-                + "ifnull((SELECT CASE \n"
-                + "WHEN MES=1 THEN (SELECT sum(TotalMO)/SUM(Produccion)\n"
-                + "from I_004_CostoMoKgProducido WHERE MES = 1 AND PLANTA=P.PLANTA AND ANIO=" + (anio - 1) + ")\n"
-                + "\n"
-                + "WHEN MES=2 THEN (SELECT sum(TotalMO)/SUM(Produccion)\n"
-                + "from I_004_CostoMoKgProducido WHERE MES BETWEEN 1 AND 2 AND PLANTA=P.PLANTA AND ANIO=" + (anio - 1) + ")\n"
-                + "\n"
-                + " WHEN MES=3 THEN (SELECT sum(TotalMO)/SUM(Produccion)\n"
-                + "from I_004_CostoMoKgProducido WHERE MES BETWEEN 1 AND 3 AND PLANTA=P.PLANTA AND ANIO=" + (anio - 1) + ")\n"
-                + "\n"
-                + " ELSE 0 END as 'TOTAL 2015' from I_004_CostoMoKgProducido PP WHERE MES=P.MES group by P.PLANTA),0) AS 'Acumulado',\n"
-                + "IFNULL((SELECT CASE \n"
-                + "WHEN MES=1 THEN (SELECT sum(TotalMO)/SUM(Produccion)\n"
-                + "from I_004_CostoMoKgProducido WHERE MES = 1 AND PLANTA=P.PLANTA AND ANIO=" + (anio) + ")\n"
-                + "WHEN MES=2 THEN (SELECT sum(TotalMO)/SUM(Produccion)\n"
-                + "from I_004_CostoMoKgProducido WHERE MES BETWEEN 1 AND 2 AND PLANTA=P.PLANTA AND ANIO=" + (anio) + ")\n"
-                + " WHEN MES=3 THEN(SELECT sum(TotalMO)/SUM(Produccion)\n"
-                + "from I_004_CostoMoKgProducido WHERE MES BETWEEN 1 AND 3 AND PLANTA=P.PLANTA AND ANIO=" + (anio) + ")\n"
-                + "ELSE 0 END as 'TOTAL 2015' from I_004_CostoMoKgProducido PP WHERE MES=P.MES group by P.PLANTA),0) AS 'Acumulado1',\n"
-                + "ifnull((select Promedio from I_004_CostoMoKgProducidoP where Planta=P.Planta\n"
-                + "AND MES = P.MES AND ANIO=" + (anio - 1) + "),0) AS 'PROMEDIO'"
-                + "FROM   I_004_CostoMoKgProducido P where P.MES=" + mes + " and P.PLANTA" + simbolo + "'PLANTA FPS'\n"
-                + "GROUP BY P.PLANTA";
-    }
-
-
-    public static String I_005_CostoKWH_Kg_Producido_General(String mes, Integer anio, String simbolo) {
-        return "select  P.PLANTA,\n"
-                + "sum(case when P.ANIO=" + (anio - 1) + " then P.QKwh/P.Kg else 0 end) as 'anio',\n"
-                + "sum(case when P.ANIO=" + anio + "   then P.QKwh/P.Kg else 0 end) as 'anio1',\n"
-                + "(select min (QKwh/Kg) from I_002_KgProducidosKwh where PLANTA=P.Planta) as 'mejor',\n"
-                + "ifnull((select case \n"
-                + "when MES=1 then (select sum(QKwh)/sum(kg)\n"
-                + "from I_002_KgProducidosKwh where MES = 1 and PLANTA=P.PLANTA and ANIO=" + (anio - 1) + ") \n"
-                + "\n"
-                + "when MES=2 then (select sum(QKwh)/sum(kg)\n"
-                + "from I_002_KgProducidosKwh where MES between 1 and 2 and PLANTA=P.PLANTA and ANIO=" + (anio - 1) + ")  \n"
-                + "\n"
-                + "when MES=3 then (select sum(QKwh)/sum(kg) \n"
-                + "from I_002_KgProducidosKwh where MES between 1 and 3 and PLANTA=P.PLANTA and ANIO=" + (anio - 1) + ")  \n"
-                + "else 0 end as 'TOTAL 2015'\n"
-                + "\n"
-                + "from I_002_KgProducidosKwh PP\n"
-                + "where MES=P.MES\n"
-                + "group by P.PLANTA),0) as 'Acumulado',\n"
-                + "\n"
-                + "ifnull((select case \n"
-                + "when MES=1 then (select sum(QKwh)/sum(kg)\n"
-                + "from I_002_KgProducidosKwh where MES = 1 and PLANTA=P.PLANTA and ANIO=" + anio + ") \n"
-                + "\n"
-                + "when MES=2 then (select sum(QKwh)/sum(kg)\n"
-                + "from I_002_KgProducidosKwh where MES between 1 and 2 and PLANTA=P.PLANTA and ANIO=" + anio + ")  \n"
-                + "\n"
-                + "when MES=3 then (select sum(QKwh)/sum(kg)\n"
-                + "from I_002_KgProducidosKwh where MES between 1 and 3 and PLANTA=P.PLANTA and ANIO=" + anio + ")  \n"
-                + "else 0 end as 'TOTAL 2015'\n"
-                + "\n"
-                + "from I_002_KgProducidosKwh PP\n"
-                + "where MES=P.MES\n"
-                + "group by P.PLANTA),0) as 'Acumulado1',\n"
-                + "ifnull((select Promedio from I_005_CostoKwh_KgProducidoP where Planta=P.Planta\n"
-                + "AND MES = P.MES AND ANIO=" + (anio - 1) + "),0) AS 'PROMEDIO'"
-                + "from   I_002_KgProducidosKwh P\n"
-                + "where P.MES=" + mes + "\n"
-                + "and P.PLANTA" + simbolo + "'PLANTA FPS'\n"
-                + "group by P.PLANTA";
-    }
-
-    public static String I_006_Mrs_Kg_Producidos_General(String mes, Integer anio, String simbolo) {
-        return "SELECT  P.PLANTA,\n"
-                + "SUM( CASE WHEN P.ANIO=" + (anio - 1) + " THEN P.Mrs/P.Kg ELSE 0 END) AS 'anio',\n"
-                + "SUM( CASE WHEN P.ANIO=" + anio + " THEN P.Mrs/P.Kg ELSE 0 END) AS 'anio1',\n"
-                + "(select min (Mrs/Kg) from I_003_Kgproducidos_MRS WHERE PLANTA=P.PLANTA) AS 'mejor',\n"
-                + "\n"
-                + "ifnull(( SELECT CASE \n"
-                + "WHEN MES=1 THEN (SELECT sum(Mrs)/SUM(Kg)\n"
-                + "from I_003_Kgproducidos_MRS WHERE MES = 1 AND PLANTA=P.PLANTA AND ANIO= " + (anio - 1) + " ) \n"
-                + "\n"
-                + "WHEN MES=2 THEN (SELECT sum(Mrs)/SUM(Kg)\n"
-                + "from I_003_Kgproducidos_MRS WHERE MES BETWEEN 1 AND 2 AND PLANTA=P.PLANTA AND ANIO=" + (anio - 1) + ")  \n"
-                + "\n"
-                + "WHEN MES=3 THEN (SELECT sum(Mrs)/SUM(Kg)\n"
-                + "from I_003_Kgproducidos_MRS WHERE MES BETWEEN 1 AND 3 AND PLANTA=P.PLANTA AND ANIO=" + (anio - 1) + ")  \n"
-                + "\n"
-                + "ELSE 0 END as 'TOTAL 2015'\n"
-                + "from I_003_Kgproducidos_MRS PP WHERE MES=P.MES group by P.PLANTA),0) AS 'Acumulado',\n"
-                + "\n"
-                + "ifnull((SELECT CASE \n"
-                + "WHEN MES=1 THEN (SELECT sum(Mrs)/SUM(Kg)\n"
-                + "from I_003_Kgproducidos_MRS WHERE MES = 1 AND PLANTA=P.PLANTA AND ANIO=" + anio + ") \n"
-                + "\n"
-                + "WHEN MES=2 THEN (SELECT sum(Mrs)/SUM(Kg)\n"
-                + "from I_003_Kgproducidos_MRS WHERE MES BETWEEN 1 AND 2 AND PLANTA=P.PLANTA AND ANIO=" + anio + ")  \n"
-                + "\n"
-                + "WHEN MES=3 THEN(SELECT sum(Mrs)/SUM(Kg)\n"
-                + "from I_003_Kgproducidos_MRS WHERE MES BETWEEN 1 AND 3 AND PLANTA=P.PLANTA AND ANIO=" + anio + ")  \n"
-                + "ELSE 0 END as 'TOTAL 2015'\n"
-                + "from I_003_Kgproducidos_MRS PP\n"
-                + "WHERE MES=P.MES group by P.PLANTA),0) AS 'Acumulado1',\n"
-                + "ifnull((select Promedio from I_006_MRS_KgproducidosP where Planta=P.Planta\n"
-                + "AND MES = P.MES AND ANIO=" + (anio - 1) + "),0) AS 'PROMEDIO'"
-                + "FROM I_003_Kgproducidos_MRS P where P.MES=" + mes + " and P.PLANTA" + simbolo + "'PLANTA FPS' GROUP BY P.PLANTA";
-    }
 
 
     public static String C_001_Produccion_Por_Planta(String mes, Integer anio) {

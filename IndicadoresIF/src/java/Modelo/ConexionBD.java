@@ -34,7 +34,7 @@ public class ConexionBD {
             Class.forName(driver);
             conn = DriverManager.getConnection(connectString, user, pass);
             if (conn != null) {
-                System.out.println("Conexion: " + connectString + "Exitosa !");
+                System.out.println("Conexion: " + connectString + " Exitosa !");
                 st = conn.createStatement();
             }
         } catch (SQLException ex) {

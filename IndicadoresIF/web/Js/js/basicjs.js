@@ -33,7 +33,10 @@ var arrMenu = [
         items: [
             /*HIJOS*/
             /*---------------------------------------PRODUCCION-------------------------------------*/
-            
+            {
+               name:'INICIO',
+               link:'index.jsp'  
+            },
             {
                 name: 'PRODUCCION',
                 icon: 'fa fa-gears',
@@ -45,17 +48,9 @@ var arrMenu = [
                         items: [
                             /*-----------------------------------NIETOS---------------------------*/
 
-                            {
-                                name: 'Produccion Por Planta',
-                                icon: '',
-                                link: 'C_001_Produccion_Por_Planta.jsp',
-                                items: [
-                                    {
-                                        title: 'Produccion Por Planta',
-                                        icon: '',
-                                        items: [
-                                            
-                                             {
+                      
+                           
+                           {
                                                 name:'Indicadores Produccion',
                                                 link:'C_001_Produccion_Por_Planta.jsp'
                                                 
@@ -89,16 +84,7 @@ var arrMenu = [
                                            {
                                                 name: 'Costo MRS/Kg Producido',
                                                 link: 'I_001_IndicadoresProduccion.jsp?indicador=INDICADOR6'
-                                            }
-
-
-
-                                        ]
-                                    }
-                                ]
-
-                            },
-                           
+                                            },
                          
                             {
                                 name: 'Total Costos Directos',
@@ -107,7 +93,8 @@ var arrMenu = [
                             {
                                 name: 'Total Costos Indirectos',
                                 link: '#'
-                            },
+                            }
+                            /*,
                             {
                                 name: 'Rendimiento de materia prima',
                                 link: '#'
@@ -139,7 +126,7 @@ var arrMenu = [
                             {
                                 name: 'Entregas internas en tiempo',
                                 link: '#'
-                            }
+                            }*/
                             //AQUI AGREGAR NUEVO ITEM
                         ]
                     }
@@ -198,19 +185,15 @@ var arrMenu = [
                         icon: 'fa fa-group',
                         items: [
                             {
-                                name: 'Numero de Empleados',
-                                link: 'I_007_Numero_De_Empleados.jsp'
+                                name: 'Cantidad de Empleados',
+                                link: 'I_002_Indicadores_RRHH.jsp?indicador=INDICADOR7'
                             },
                             {
                                 name: 'Devengado / No. Empleados',
-                                link: 'I_007_Numero_De_Empleados.jsp?indicador=INDICADOR8'
+                                link: 'I_002_Indicadores_RRHH.jsp?indicador=INDICADOR8'
                             },
                             {
                                 name: 'Tabla de reemplazos',
-                                link: '#'
-                            },
-                            {
-                                name: 'Total del cumplimiento de las actividades descritas en la política del Buen Vecino',
                                 link: '#'
                             }
                         ]

@@ -5,8 +5,8 @@
  */
 package ArchivosXLS;
 
-import Utilidades.Metodos_Generales_Excel;
 import Modelo.Modelo_IndicadoresProduccion;
+import Utilidades.Metodos_Generales_Excel;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintWriter;
@@ -19,21 +19,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import jxl.Workbook;
+import jxl.format.Colour;
 import jxl.write.Label;
+import jxl.write.WritableCell;
+import jxl.write.WritableFont;
 import jxl.write.WritableSheet;
 import jxl.write.WritableWorkbook;
 import jxl.write.WriteException;
-import jxl.format.Colour;
-import jxl.write.Formula;
-import jxl.write.WritableCell;
-import jxl.write.WritableFont;
 
 /**
  *
  * @author rcruz
  */
-public class C_001_Produccion_Por_Planta_XLS extends HttpServlet {
-
+public class I_001_Indicadores_Produccion_XLS extends HttpServlet {
     Modelo.ConexionBD conexion = new Modelo.ConexionBD();
     ArrayList<String> indicador = new ArrayList<>();
     ArrayList<Double> valoresRST = new ArrayList<>();
@@ -227,5 +225,4 @@ public class C_001_Produccion_Por_Planta_XLS extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
 }

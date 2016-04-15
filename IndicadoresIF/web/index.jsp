@@ -24,17 +24,21 @@
         <!-------------------------------------------------------------------------------------------------------> 
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Indicadores</title>
+       
+  
     </head>
     <body class="body">
+        
         <div id="DivMenu" class="MenuDesplegable">
             <div id="menu"> </div>
         </div>
         <div id="DivPrincipal" class="divprincipal">
             <center>
-                <h1>INDICADORES IMPERIAL</h1>
+                <h1>SISTEMA DE INFORMACION IMPERIAL</h1>
+                <img src="Images/Img_Indicadores.jpg" alt="Mountain View" style="width:40%;height:40%;">
             </center>
             
-            <div id="GraficaPrincipal" class="divimagen"></div>
+      
 
         </div> 
 

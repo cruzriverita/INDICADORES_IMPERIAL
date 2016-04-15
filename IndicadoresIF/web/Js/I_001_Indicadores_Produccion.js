@@ -5,12 +5,12 @@ function DibujarChartPrincipal() {
             ({
                 type: "POST",
                 //Nombre del servlet de donde se reciben los datos en formato json.
-                url: "General_Servlet",
+                url: "I_001_Indicadores_Produccion_Servlet",
                 //Parametros leidos del jsp. anio y mes, parametros en enviados al servlet aniojs mesjs,opcion.         
                 data: {
                     mesjs: $("#mes").val(),
                     aniojs: $("#anio").val(),
-                    opcion: $('#opciones option:selected').val(),
+                    opcion: $('#opciones option:selected').val(), //trae la planta seleccionada.
                     indicador: $('#indicador').val()
                 },
                 dataType: "json", //Se reciben los datos en formato JSON                
@@ -25,23 +25,28 @@ function DibujarChartPrincipal() {
                         /*convertir #anio a entero*/
                         var x = parseInt($("#anio").val(), 10);
 
-                        data.addColumn('string', 'Planta');                         //Planta
-                        //data.addColumn('number', 'Acumulado ' + String(x - 1));   //Acumulado año anterior
-                        data.addColumn('number', ConvertirMes($("#mes").val())+' '+(x - 1));                            //Año anterior
-                        data.addColumn('number', MayorMenor());                          //Mejor
+                        data.addColumn('string', 'Planta');                                  //Planta
+                        data.addColumn('number', ConvertirMes($("#mes").val())+' '+(x - 1)); //2015/2016                           //Año anterior
+                        data.addColumn('number', MayorMenor());                              //Mejor
                         data.addColumn('number', ConvertirMes($("#mes").val())+' '+$("#anio").val());                 //Año actual
-                        //data.addColumn('number', 'Acumulado ' + $("#anio").val());//Acumulado año actual 
-                        data.addColumn('number', 'Promedio ' + (x - 1));                       //Promedio
+                       
+                        data.addColumn('number', 'Promedio ' + (x - 1));                     //Promedio
+
 
                         for (var i = 0; i < queryObjectLen; i++)
                         {
                             var planta = queryObject.ListaValores[i].planta;
+                            
+                            //Colocar en el titulo "RSM" en lugar de "RSM O&M"                      
+                           if (planta==="PLANTA RSM O&M" || planta==="PLANTA MRS O&M" )
+                                planta = "PLANTA RSM";
+
                             var a1 = queryObject.ListaValores[i].valor1;
                             var a2 = queryObject.ListaValores[i].valor2;
                             var a3 = queryObject.ListaValores[i].valor3;
-                            //var a4 = queryObject.ListaValores[i].valor4;
-                            //var a5 = queryObject.ListaValores[i].valor5;
                             var a6 = queryObject.ListaValores[i].valor6;
+
+                           
 
                             data.addRows([
                                 [planta, /*parseFloat(a4)*/ parseFloat(a1), parseFloat(a3),
@@ -50,12 +55,12 @@ function DibujarChartPrincipal() {
                             ]);
                         }
 
-                  
-
+                        //Si se eligen todas las plantas
                    if ($('#opciones option:selected').val() === "ALL") {
                                 var options = {
-                                    title: GetTitulo() + ConvertirMes($("#mes").val()) + ' ' + $("#anio").val(),
-                                    vAxis: {title: GetTituloEje(), titleTextStyle: {color: 'Black'}},
+                                    title:'',
+                                    vAxis: {title: GetTituloEje()+'\n\n', 
+                                    titleTextStyle: {color: 'Black'}},
                                     is3D: true,
                                     colors: Colores(),
                                     //Formato de anotaciones sobre la grafica si las llevara
@@ -72,10 +77,11 @@ function DibujarChartPrincipal() {
                                     }
                                 };
                             }
+                            //Si se selecciona FPS
                             else
                             {
                                 var options = {
-                                    title: GetTituloDPF() + ConvertirMes($("#mes").val()) + ' ' + $("#anio").val(),
+                                    title: '',//GetTituloDPF() + ConvertirMes($("#mes").val()) + ' ' + $("#anio").val(),
                                     vAxis: {title:GetTituloDPFEje() , titleTextStyle: {color: 'Black'}},
                                     is3D: true,
                                     colors: Colores()
@@ -101,6 +107,11 @@ function DibujarChartPrincipal() {
                     //Si en el Select se elige una planta especifica se muestra por medio de grafica lineal
                     else
                     {
+                        //Colocar en el titulo "RSM" en lugar de "RSM O&M"
+                        var planta = $('#opciones option:selected').val();
+                        if (planta==="PLANTA RSM O&M" || planta==="PLANTA MRS O&M" )
+                            planta="PLANTA RSM";
+                        
                         queryObject = eval('(' + JSON.stringify(data_) + ')');
                         queryObjectLen = queryObject.ListaValores.length;
                         var data = new google.visualization.DataTable();
@@ -108,9 +119,9 @@ function DibujarChartPrincipal() {
                         var x = parseInt($("#anio").val(), 10);
                         data.addColumn('string', 'mes');
                         data.addColumn({type: 'string', role: 'annotation'});
-                        data.addColumn('number', x - 1);
+                        data.addColumn('number', (x-1));
                         data.addColumn('number', MayorMenor());
-                        data.addColumn('number', $("#anio").val());
+                        data.addColumn('number', x);
                         //data.addColumn({type:'string', role:'annotation'});
                         data.addColumn('number', 'Promedio ' + (x - 1));
                         //data.addColumn({type:'string', role:'annotation'});
@@ -119,7 +130,24 @@ function DibujarChartPrincipal() {
                         {
                             var mes = queryObject.ListaValores[i].mes;
                             var a1 = queryObject.ListaValores[i].valor1;
-                            var a2 = queryObject.ListaValores[i].valor2;
+                              var a2 = queryObject.ListaValores[i].valor2;
+                            
+                            if (mes==="Dic" && a1!==0 && a2===0)
+                            {
+                                a2=a1;
+                            }
+                            
+                            if (a1===0)
+                            {
+                                a1=null;
+                            }
+                            
+                            
+                          
+                            if (a2===0)
+                            {
+                                a2=null;
+                            }
                             var a3 = queryObject.ListaValores[i].valor3;
                             var a6 = queryObject.ListaValores[i].valor6;
                             var m = queryObject.ListaValores[i].mejormes;
@@ -135,22 +163,30 @@ function DibujarChartPrincipal() {
                         if ($('#opciones option:selected').val() === "PLANTA FPS")
                         {
                             var options = {
-                                title: GetTituloDPF() + $("#anio").val() + ' ' + $('#opciones option:selected').val(),
+                                title: '',//GetTituloDPF() + $("#anio").val() + ' ' + $('#opciones option:selected').val(),
                                 vAxis: {title: GetTituloDPFEje(), titleTextStyle: {color: 'Black'}},
-                                hAxis: {title: '*El valor '+MayorMenor()+' corresponde a ' + ConvertirMes(m) + ' de ' + a, titleTextStyle: {color: 'Blue'}},
+                                hAxis: {title: '*El valor "'+MayorMenor()+'" corresponde a ' + ConvertirMes(m) + ' de ' + a, titleTextStyle: {color: 'Blue'}},
                                 is3D: true,
                                 colors: Colores(),
                                  annotations: {
                                  style: 'line'
-                                    }
+                                    }, 
+                                     series: {
+                0: { pointShape: 'circle', pointSize: 5},
+               
+                2: { pointShape: 'square',pointSize: 5 },
+                3: { pointShape: 'none' },
+                4: { pointShape: '' },
+                5: { pointShape: 'polygon' }
+            }
                             };
                         }
                         else
                         {
                             var options = {
-                                title: GetTitulo() + $("#anio").val() + ' ' + $('#opciones option:selected').val(),
+                                title: '',//GetTitulo() + $("#anio").val() + ' ' + planta,
                                 vAxis: {title: GetTituloEje(), titleTextStyle: {color: 'Black'}},
-                                hAxis: {title: '*El valor '+ MayorMenor()+' corresponde a ' + ConvertirMes(m) + ' de ' + a, titleTextStyle: {color: 'Blue'}},
+                                hAxis: {title: '*El valor "'+ MayorMenor()+'" corresponde a ' + ConvertirMes(m) + ' de ' + a, titleTextStyle: {color: 'Blue'}},
                                 is3D: true,
                                 colors: Colores(),
                                  annotations: {

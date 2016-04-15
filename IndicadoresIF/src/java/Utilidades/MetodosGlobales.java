@@ -6,20 +6,10 @@
 package Utilidades;
 
 
-
-import Controladores.General_Servlet;
-import java.io.IOException;
 import java.math.BigDecimal;
-import java.util.ArrayList;
+
 import java.util.Calendar;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.servlet.http.HttpServletResponse;
-import org.json.JSONException;
-import org.json.JSONObject;
+
 
 /**
  *
@@ -79,45 +69,46 @@ public class MetodosGlobales {
         return bd.floatValue();
     }
     
-    
-                 public static void Generales(String sql, List ListaValores, JSONObject Obj, JSONObject responseObj, HttpServletResponse response,Modelo.ConexionBD conexion) throws IOException {
-         List<Map<String, Object>> resultList = new ArrayList<>();
-            resultList = conexion.select(sql);
-
-            Iterator<Map<String, Object>> iterador = resultList.iterator();
-            while (iterador.hasNext()) {
-                Map<String, Object> mapa = iterador.next();
-
-                String Nplanta = (String) mapa.get("Planta");
-
-                Float Cvalor = Float.parseFloat(mapa.get("anio").toString());
-                Float Cvalor2 = Float.parseFloat(mapa.get("anio1").toString());
-                Float Cvalor3 = Float.parseFloat(mapa.get("mejor").toString());
-                Float Cvalor4 = Float.parseFloat(mapa.get("Acumulado").toString());
-                Float Cvalor5 = Float.parseFloat(mapa.get("Acumulado1").toString());
-                Float Cvalor6 = Float.parseFloat(mapa.get("PROMEDIO").toString());
-                Obj = new JSONObject();
-
-                try {
-                    Obj.put("planta", Nplanta);
-                    Obj.put("valor1", Cvalor);
-                    Obj.put("valor2", Cvalor2);
-                    Obj.put("valor3", Cvalor3);
-                    Obj.put("valor4", Cvalor4);
-                    Obj.put("valor5", Cvalor5);
-                    Obj.put("valor6", Cvalor6);
-                    ListaValores.add(Obj);
-                    responseObj.put("ListaValores", ListaValores);
-                } catch (JSONException ex) {
-                    Logger.getLogger(General_Servlet.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-
-            if (Obj == null) {
-                response.getWriter().write("");
-            } else {
-                response.getWriter().write(responseObj.toString());
-            }
-             }
-
+   
+     public static String get_nombre_mes(int mes) {
+        String nmes = "";
+        if (mes == 1) {
+            nmes = "Enero";
+        }
+        if (mes == 2) {
+            nmes = "Febrero";
+        }
+        if (mes == 3) {
+            nmes = "Marzo";
+        }
+        if (mes == 4) {
+            nmes = "Abril";
+        }
+        if (mes == 5) {
+            nmes = "Mayo";
+        }
+        if (mes == 6) {
+            nmes = "Junio";
+        }
+        if (mes == 7) {
+            nmes = "Julio";
+        }
+        if (mes == 8) {
+            nmes = "Agosto";
+        }
+        if (mes == 9) {
+            nmes = "Septiembre";
+        }
+        if (mes == 10) {
+            nmes = "Octubre";
+        }
+        if (mes == 11) {
+            nmes = "Noviembre";
+        }
+        if (mes == 12) {
+            nmes = "Diciembre";
+        }
+        return nmes;
+    }
+  
 }

@@ -12,7 +12,7 @@ package Modelo;
 public class Modelo_IndicadoresRRHH {
 
     //valor, valmaxmin
-    public static String I_007_NumeroEmpleados(Integer anio, String tipo,String valor, String valmaxmin) {
+    public static String I_002_IndicadoresRRHH_Consulta(Integer anio, String tipo,String valor, String valmaxmin) {
         return "SELECT P.periodo,\n"
                 + "SUM( CASE \n"
                 + "WHEN P.ANIO="+(anio-1)+"\n"
@@ -52,5 +52,46 @@ public class Modelo_IndicadoresRRHH {
                 + "FROM   I_007_Nomina_Planilla P\n"
                 + "where tipo='"+tipo+"'\n"
                 + "group by P.periodo";
+    }
+    
+    public static String Consulta_Excel_Indicadores_RRHH(Integer anio, String tipo) {
+        return "select *, \n"
+                + "t.anio2-t.anio1 as 'NoEmpleados' ,\n"
+                + "t.devengado2-t.devengado1 as 'Devengado',\n"
+                + "(t.devengado2-t.devengado1)/t.devengado1 as 'Porcentaje'\n"
+                + "\n"
+                + "\n"
+                + "from (\n"
+                + "SELECT P.periodo,\n"
+                + "SUM( CASE \n"
+                + "WHEN P.ANIO="+(anio-1)+"\n"
+                + "THEN ifnull(P.No_Empleados,0)\n"
+                + "ELSE 0\n"
+                + "END) AS 'anio1',\n"
+                + "\n"
+                + "SUM( CASE \n"
+                + "WHEN P.ANIO="+(anio-1)+"\n"
+                + "THEN ifnull(P.Devengado,0)\n"
+                + "ELSE 0\n"
+                + "END) AS 'Devengado1',\n"
+                + "\n"
+                + "SUM( CASE \n"
+                + "WHEN P.ANIO="+anio+"\n"
+                + "THEN ifnull(P.No_Empleados,0)\n"
+                + "ELSE 0\n"
+                + "END) AS 'anio2',\n"
+                + "\n"
+                + "\n"
+                + "\n"
+                + "SUM( CASE \n"
+                + "WHEN P.ANIO="+anio+"\n"
+                + "THEN ifnull(P.Devengado,0)\n"
+                + "ELSE 0\n"
+                + "END) AS 'Devengado2'\n"
+                + "\n"
+                + "FROM   I_007_Nomina_Planilla P\n"
+                + "where tipo='"+tipo+"'\n"
+                + "group by P.periodo\n"
+                + ") as t";
     }
 }

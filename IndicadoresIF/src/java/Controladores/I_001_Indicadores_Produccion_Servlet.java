@@ -26,7 +26,7 @@ import org.json.JSONObject;
  *
  * @author rcruz
  */
-public class General_Servlet extends HttpServlet {
+public class I_001_Indicadores_Produccion_Servlet extends HttpServlet {
 
     Modelo.ConexionBD conexion = new Modelo.ConexionBD();
 
@@ -97,10 +97,10 @@ public class General_Servlet extends HttpServlet {
 
         if ("INDICADOR1".equals(indicador)) {
             if (opcion.equals("ALL")) {
-                sql = Modelo_IndicadoresProduccion.I_001_Kilos_Producidos_Hora_Hombre_General(mes, Integer.parseInt(anio), "<>");
+                sql = Modelo_IndicadoresProduccion.I_001_Kilos_Producidos_Hora_Hombre_General(mes, Integer.parseInt(anio), "<>","I_001_KilosProducidosHoraHombre","I_001_KilosProducidosHoraHombreP","P.VALOR","VALOR","max","DESC");
                 this.Generales(sql, ListaValores, Obj, responseObj, response);
             } else if (opcion.equals("FPS MES")) {
-                sql = Modelo_IndicadoresProduccion.I_001_Kilos_Producidos_Hora_Hombre_General(mes, Integer.parseInt(anio), "=");
+                sql = Modelo_IndicadoresProduccion.I_001_Kilos_Producidos_Hora_Hombre_General(mes, Integer.parseInt(anio), "=","I_001_KilosProducidosHoraHombre","I_001_KilosProducidosHoraHombreP","P.VALOR","VALOR","max","DESC");
                 this.Generales(sql, ListaValores, Obj, responseObj, response);
             } else {
                 //sql = Modelo_IndicadoresProduccion.I_001_Kilos_Producidos_Hora_Hombre_Detalle(mes, Integer.parseInt(anio), opcion);
@@ -109,10 +109,11 @@ public class General_Servlet extends HttpServlet {
             }
         } else if ("INDICADOR2".equals(indicador)) {
             if (opcion.equals("ALL")) {
-                sql = Modelo_IndicadoresProduccion.I_002_Kg_Producidos_Kwh_General(mes, Integer.parseInt(anio), "<>");
+                //sql = Modelo_IndicadoresProduccion.I_002_Kg_Producidos_Kwh_General(mes, Integer.parseInt(anio), "<>");
+                sql = Modelo_IndicadoresProduccion.I_001_Kilos_Producidos_Hora_Hombre_General(mes, Integer.parseInt(anio), "<>","I_002_KgProducidosKwh","I_002_KgProducidosKwhP","P.Kg/P.Kwh","Kg/Kwh","max","DESC");
                 this.Generales(sql, ListaValores, Obj, responseObj, response);
             } else if (opcion.equals("FPS MES")) {
-                sql = Modelo_IndicadoresProduccion.I_002_Kg_Producidos_Kwh_General(mes, Integer.parseInt(anio), "=");
+               sql = Modelo_IndicadoresProduccion.I_001_Kilos_Producidos_Hora_Hombre_General(mes, Integer.parseInt(anio), "=","I_002_KgProducidosKwh","I_002_KgProducidosKwhP","P.Kg/P.Kwh","Kg/Kwh","max","DESC");
                 this.Generales(sql, ListaValores, Obj, responseObj, response);
             } else {
                 //sql = Modelo_IndicadoresProduccion.I_001_Kilos_Producidos_Hora_Hombre_Detalle(mes, Integer.parseInt(anio), opcion);
@@ -122,10 +123,12 @@ public class General_Servlet extends HttpServlet {
             }
         } else if ("INDICADOR3".equals(indicador)) {
             if (opcion.equals("ALL")) {
-                sql = Modelo_IndicadoresProduccion.I_003_Kg_Producidos_Mrs_General(mes, Integer.parseInt(anio), "<>");
+                //sql = Modelo_IndicadoresProduccion.I_003_Kg_Producidos_Mrs_General(mes, Integer.parseInt(anio), "<>");
+                sql = Modelo_IndicadoresProduccion.I_001_Kilos_Producidos_Hora_Hombre_General(mes, Integer.parseInt(anio), "<>","I_003_Kgproducidos_MRS","I_003_Kgproducidos_MRSP","P.Kg/P.Mrs","Kg/Mrs","max","DESC");
                 this.Generales(sql, ListaValores, Obj, responseObj, response);
             } else if (opcion.equals("FPS MES")) {
-                sql = Modelo_IndicadoresProduccion.I_003_Kg_Producidos_Mrs_General(mes, Integer.parseInt(anio), "=");
+                //sql = Modelo_IndicadoresProduccion.I_003_Kg_Producidos_Mrs_General(mes, Integer.parseInt(anio), "=");
+                sql = Modelo_IndicadoresProduccion.I_001_Kilos_Producidos_Hora_Hombre_General(mes, Integer.parseInt(anio), "=","I_003_Kgproducidos_MRS","I_003_Kgproducidos_MRSP","P.Kg/P.Mrs","Kg/Mrs","max","DESC");
                 this.Generales(sql, ListaValores, Obj, responseObj, response);
             } else {
                 switch (opcion) {
@@ -142,10 +145,11 @@ public class General_Servlet extends HttpServlet {
             }
         } else if ("INDICADOR4".equals(indicador)) {
             if (opcion.equals("ALL")) {
-                sql = Modelo_IndicadoresProduccion.I_004_CostoMO_Kg_Producido_General(mes, Integer.parseInt(anio), "<>");
+                //sql = Modelo_IndicadoresProduccion.I_004_CostoMO_Kg_Producido_General(mes, Integer.parseInt(anio), "<>");
+                sql = Modelo_IndicadoresProduccion.I_001_Kilos_Producidos_Hora_Hombre_General(mes, Integer.parseInt(anio), "<>","I_004_CostoMoKgProducido","I_004_CostoMoKgProducidoP","P.VALOR","VALOR","min","ASC");
                 this.Generales(sql, ListaValores, Obj, responseObj, response);
             } else if (opcion.equals("FPS MES")) {
-                sql = Modelo_IndicadoresProduccion.I_004_CostoMO_Kg_Producido_General(mes, Integer.parseInt(anio), "=");
+               sql = Modelo_IndicadoresProduccion.I_001_Kilos_Producidos_Hora_Hombre_General(mes, Integer.parseInt(anio), "=","I_004_CostoMoKgProducido","I_004_CostoMoKgProducidoP","P.VALOR","VALOR","min","ASC");
                 this.Generales(sql, ListaValores, Obj, responseObj, response);
             } else {
 
@@ -155,10 +159,12 @@ public class General_Servlet extends HttpServlet {
             }
         } else if ("INDICADOR5".equals(indicador)) {
             if (opcion.equals("ALL")) {
-                sql = Modelo_IndicadoresProduccion.I_005_CostoKWH_Kg_Producido_General(mes, Integer.parseInt(anio), "<>");
+                //sql = Modelo_IndicadoresProduccion.I_005_CostoKWH_Kg_Producido_General(mes, Integer.parseInt(anio), "<>");
+                sql = Modelo_IndicadoresProduccion.I_001_Kilos_Producidos_Hora_Hombre_General(mes, Integer.parseInt(anio), "<>","I_002_KgProducidosKwh","I_005_CostoKwh_KgProducidoP","P.QKwh/P.Kg","QKwh/Kg","min","ASC");
                 this.Generales(sql, ListaValores, Obj, responseObj, response);
             } else if (opcion.equals("FPS MES")) {
-                sql = Modelo_IndicadoresProduccion.I_005_CostoKWH_Kg_Producido_General(mes, Integer.parseInt(anio), "=");
+                //sql = Modelo_IndicadoresProduccion.I_005_CostoKWH_Kg_Producido_General(mes, Integer.parseInt(anio), "=");
+                sql = Modelo_IndicadoresProduccion.I_001_Kilos_Producidos_Hora_Hombre_General(mes, Integer.parseInt(anio), "=","I_002_KgProducidosKwh","I_005_CostoKwh_KgProducidoP","P.QKwh/P.Kg","QKwh/Kg","min","ASC");
                 this.Generales(sql, ListaValores, Obj, responseObj, response);
             } else {
                 //sql = Modelo_IndicadoresProduccion.I_001_Kilos_Producidos_Hora_Hombre_Detalle(mes, Integer.parseInt(anio), opcion);
@@ -167,10 +173,11 @@ public class General_Servlet extends HttpServlet {
             }
         } else if ("INDICADOR6".equals(indicador)) {
             if (opcion.equals("ALL")) {
-                sql = Modelo_IndicadoresProduccion.I_006_Mrs_Kg_Producidos_General(mes, Integer.parseInt(anio), "<>");
+                //sql = Modelo_IndicadoresProduccion.I_006_Mrs_Kg_Producidos_General(mes, Integer.parseInt(anio), "<>");
+                sql = Modelo_IndicadoresProduccion.I_001_Kilos_Producidos_Hora_Hombre_General(mes, Integer.parseInt(anio), "<>","I_003_Kgproducidos_MRS","I_006_MRS_KgproducidosP","P.Mrs/P.Kg","Mrs/Kg","min","ASC");
                 this.Generales(sql, ListaValores, Obj, responseObj, response);
             } else if (opcion.equals("FPS MES")) {
-                sql = Modelo_IndicadoresProduccion.I_006_Mrs_Kg_Producidos_General(mes, Integer.parseInt(anio), "=");
+                sql = Modelo_IndicadoresProduccion.I_001_Kilos_Producidos_Hora_Hombre_General(mes, Integer.parseInt(anio), "=","I_003_Kgproducidos_MRS","I_006_MRS_KgproducidosP","P.Mrs/P.Kg","Mrs/Kg","min","ASC");
                 this.Generales(sql, ListaValores, Obj, responseObj, response);
             } else {
                 if (opcion.equals("PLANTA RLRS")) {
@@ -200,8 +207,8 @@ public class General_Servlet extends HttpServlet {
             Float Cvalor = Float.parseFloat(mapa.get("anio").toString());
             Float Cvalor2 = Float.parseFloat(mapa.get("anio1").toString());
             Float Cvalor3 = Float.parseFloat(mapa.get("mejor").toString());
-            Float Cvalor4 = Float.parseFloat(mapa.get("Acumulado").toString());
-            Float Cvalor5 = Float.parseFloat(mapa.get("Acumulado1").toString());
+           // Float Cvalor4 = Float.parseFloat(mapa.get("Acumulado").toString());
+            //Float Cvalor5 = Float.parseFloat(mapa.get("Acumulado1").toString());
             Float Cvalor6 = Float.parseFloat(mapa.get("PROMEDIO").toString());
 
             Obj = new JSONObject();
@@ -211,14 +218,14 @@ public class General_Servlet extends HttpServlet {
                 Obj.put("valor1", Cvalor);
                 Obj.put("valor2", Cvalor2);
                 Obj.put("valor3", Cvalor3);
-                Obj.put("valor4", Cvalor4);
-                Obj.put("valor5", Cvalor5);
+              //  Obj.put("valor4", Cvalor4);
+              //  Obj.put("valor5", Cvalor5);
                 Obj.put("valor6", Cvalor6);
 
                 ListaValores.add(Obj);
                 responseObj.put("ListaValores", ListaValores);
             } catch (JSONException ex) {
-                Logger.getLogger(General_Servlet.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(I_001_Indicadores_Produccion_Servlet.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
 
@@ -238,7 +245,7 @@ public class General_Servlet extends HttpServlet {
         while (iterador.hasNext()) {
             Map<String, Object> mapa = iterador.next();
 
-            String Nmes = Utilidades.MetodosGlobales.get_mes((Integer) mapa.get("MES"));
+            String Nmes = Utilidades.MetodosGlobales.get_mes((Integer) mapa.get("Mes"));
             //String Nmes = String.valueOf(mapa.get("MES"));
 
             Float Cvalor = Float.parseFloat(mapa.get("2015").toString());
