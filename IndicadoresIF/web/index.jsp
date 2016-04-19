@@ -23,23 +23,21 @@
         <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
         <!-------------------------------------------------------------------------------------------------------> 
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Indicadores</title>
+        <link rel="stylesheet" href="css/styles.css">
+        <title>Indicadores Imperial</title>
        
-  
     </head>
     <body class="body">
         
-        <div id="DivMenu" class="MenuDesplegable">
-            <div id="menu"> </div>
-        </div>
+         <script type="text/javascript" src="Js/js/CuerpoMenuHorizontal.js"></script>
+        
         <div id="DivPrincipal" class="divprincipal">
             <center>
                 <h1>SISTEMA DE INFORMACION IMPERIAL</h1>
-                <img src="Images/Img_Indicadores.jpg" alt="Mountain View" style="width:40%;height:40%;">
+                <br>
+                <br>
+                <img src="Images/Img_Indicadores.jpg" alt="Mountain View" style="width:30%;height:30%;">
             </center>
-            
-      
-
         </div> 
 
     </body>

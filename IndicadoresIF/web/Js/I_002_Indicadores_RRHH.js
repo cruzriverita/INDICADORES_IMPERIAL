@@ -14,6 +14,7 @@ function DibujarChartPrincipal() {
                 },
                 dataType: "json", //Se reciben los datos en formato JSON                
                 success: function (data_) {
+                    var tamlinea=5;
 
                     queryObject = eval('(' + JSON.stringify(data_) + ')');
                     queryObjectLen = queryObject.ListaValores.length;
@@ -83,7 +84,7 @@ function DibujarChartPrincipal() {
                                 hAxis: {title: '*El valor menor corresponde a ' + ConvertirMes(menormes) + ' de ' + menoranio + '\n' +
                                             '*El valor mayor corresponde a ' + ConvertirMes(mayormes) + ' de ' + mayoranio, titleTextStyle: {color: 'Blue'}},
                                 is3D: true,
-                                colors: Coloresrrhh()
+                                colors: Coloresrrhh(),lineWidth: tamlinea
                             };
                         }
                         else //Si es el indicador DEVENGADO/NO_EMPLEADOS
@@ -98,7 +99,7 @@ function DibujarChartPrincipal() {
                                 hAxis: {title: '*El valor menor corresponde a ' + ConvertirMes(menormes) + ' de ' + menoranio + '\n' +
                                             '*El valor mayor corresponde a ' + ConvertirMes(mayormes) + ' de ' + mayoranio, titleTextStyle: {color: 'Blue'}},
                                 is3D: true,
-                                colors: Coloresrrhh()
+                                colors: Coloresrrhh(),lineWidth: tamlinea
                             };
 
 
@@ -118,7 +119,7 @@ function DibujarChartPrincipal() {
                                 hAxis: {title: 'Catorcena\n'+'*El valor menor corresponde a la catorcena ' + menormes + ' de ' + menoranio + '\n' +
                                             '*El valor mayor corresponde a la catorcena ' + mayormes + ' de ' + mayoranio, titleTextStyle: {color: 'Blue'}},
                                 is3D: true,
-                                colors: Coloresrrhh()
+                                colors: Coloresrrhh(),lineWidth: tamlinea
                             };
                         }
                         else
@@ -132,7 +133,7 @@ function DibujarChartPrincipal() {
                                 hAxis: {title: 'Catorcena\n'+'*El valor menor corresponde a la catorcena ' + menormes + ' de ' + menoranio + '\n' +
                                             '*El valor mayor corresponde a la catorcena ' + mayormes + ' de ' + mayoranio, titleTextStyle: {color: 'Blue'}},
                                 is3D: true,
-                                colors: Coloresrrhh()
+                                colors: Coloresrrhh(),lineWidth: tamlinea
                             };
 
                         }

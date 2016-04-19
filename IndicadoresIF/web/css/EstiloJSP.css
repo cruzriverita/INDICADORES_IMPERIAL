@@ -18,33 +18,25 @@ and open the template in the editor.
 }
 .divprincipal {
     background-color:#ffffff;
-    height:95%;
-    width:65%;
+    height:90%;
+    width:100%;
     float: right;
     border: 5px solid black;
 }
 
-.formularioS
-{
-    padding: 5px;
-    width: 700px;
-    height: 99px;   
-}
-
-
-
 .formulario
 {
-    padding: 5px;
+    padding: 15px;
     width: 95%;
     height: 5%;   
 }
 
 .divimagen {
     background-color:#ffffff;
-    height:73%;
+    height:70%;
     width:90%;
-    float:right;
+    float: right;
+    //padding-left: 80px;
 }
 
 .MenuDesplegable {
@@ -72,7 +64,7 @@ and open the template in the editor.
 .divtablascroll {
     background-color:#ffffff;
     height:90px;
-    width:650px;
+    width:70%;
 
 }
 
@@ -194,7 +186,7 @@ float:left;
     padding-top: 0px;
     padding-right: 0px;
     padding-bottom: 0px;
-    padding-left: 225px;
+    padding-left: 475px;
     font-size: 13px;
     
 }

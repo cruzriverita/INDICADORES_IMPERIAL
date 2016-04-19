@@ -41,15 +41,17 @@
         <link rel="stylesheet" href="css/EstiloJSP.css">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="css/styles.css">
         <title>Produccion Por Planta</title>
     </head>
 
     <body class="body">
 
-        <div id="DivMenu" class="MenuDesplegable">
+         <!-- <div id="DivMenu" class="MenuDesplegable">
             <div id="menu"> </div>
-        </div>
+        </div>-->
 
+         <script type="text/javascript" src="Js/js/CuerpoMenuHorizontal.js"></script>
         <div id="DivPrincipal" class="divprincipal">
 
             <div class="DivWithScroll">
@@ -128,6 +130,7 @@
                     </div>
                 </CENTER>
                 
+               
                 <div> 
                     <p class="formato_parrafo">  *En color verde se muestran los valores mayores al promedio<br/>
                         *En color rojo se muestran los valores menores al promedio</p>

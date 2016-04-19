@@ -107,6 +107,7 @@ function DibujarChartPrincipal() {
                     //Si en el Select se elige una planta especifica se muestra por medio de grafica lineal
                     else
                     {
+                         var tamlinea=5;
                         //Colocar en el titulo "RSM" en lugar de "RSM O&M"
                         var planta = $('#opciones option:selected').val();
                         if (planta==="PLANTA RSM O&M" || planta==="PLANTA MRS O&M" )
@@ -178,7 +179,7 @@ function DibujarChartPrincipal() {
                 3: { pointShape: 'none' },
                 4: { pointShape: '' },
                 5: { pointShape: 'polygon' }
-            }
+            },lineWidth: tamlinea
                             };
                         }
                         else
@@ -191,7 +192,7 @@ function DibujarChartPrincipal() {
                                 colors: Colores(),
                                  annotations: {
                                  style: 'line'
-                                    }
+                                    },lineWidth: tamlinea
                             };
                         }
 

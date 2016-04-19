@@ -59,7 +59,7 @@
         //mantener la posicion actual del menu
         $(document).ready(function () {
 
-            $('#menu').multilevelpushmenu('expand', 'PRODUCCION');
+            //$('#menu').multilevelpushmenu('expand', 'PRODUCCION');
             $(window).resize(function () {
                 DibujarChartPrincipal();
             });
@@ -81,18 +81,22 @@
         <link rel="stylesheet" href="css/EstiloJSP.css">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
-        <title>Produccion Por Planta</title>
+        <link rel="stylesheet" href="css/styles.css">
+        <title>PRODUCCION</title>
+       
     </head>
 
     <body class="body" >
 
-        <div id="DivMenu" class="MenuDesplegable">
+       <!-- <div id="DivMenu" class="MenuDesplegable">
             <div id="menu"> </div>
-        </div>
+        </div>-->
 
+         <script type="text/javascript" src="Js/js/CuerpoMenuHorizontal.js"></script>
+        
         <div id="DivPrincipal" class="divprincipal">
 
-            <div class="DivWithScroll">
+           <!-- <div class="DivWithScroll">-->
                 <form method="get" action="I_001_Kilos_Producidos_Hora_Hombre_XLS" class="formulario">
                     <div style="float: left; width: 70%;">
                         <div>
@@ -165,9 +169,12 @@
                 <h4 id="subtitulo"></h4>
                 </div>
                 </center>
+               
+               
                 <div id="GraficaPrincipal" class="divimagen"></div>
+               
 
-            </div> 
+            <!--</div>--> 
         </div> 
 
     </body>
