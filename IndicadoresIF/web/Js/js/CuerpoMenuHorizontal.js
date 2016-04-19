@@ -153,7 +153,7 @@ lines += '            </li>';
 
 /********************************************INVENTARIOS********************************************/
 
-lines += '            <li class=\'active has-sub\'><a href=\'#\'><span>INVENTARIOS</span></a>';
+lines += '            <li class=\'active has-sub\'><a href=\'C_003_Indicadores_Inventarios.jsp\'><span>INVENTARIOS</span></a>';
 lines += '              <ul>';
 
 lines += '            <li class=\'has-sub\'><a href=\'#\'><span>Rotacion De Inventarios</span></a>';
