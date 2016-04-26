@@ -99,7 +99,7 @@ function DibujarTabla() {
                             'tableCell': '',
                             'rowNumberCell': 'black-font'};
 
-                        var options = {'showRowNumber': true, 'allowHtml': false, 'cssClassNames': cssClassNames};
+                        var options = {'showRowNumber': true, 'allowHtml': false, 'cssClassNames': cssClassNames,width: '50%', height: '100%'};
                         var table = new google.visualization.Table(document.getElementById('table'));
                         table.draw(data, options);
 
@@ -169,7 +169,7 @@ function DibujarTabla() {
                             'tableCell': '',
                             'rowNumberCell': 'black-font'};
 
-                        var options = {'showRowNumber': true, 'allowHtml': false, 'cssClassNames': cssClassNames};
+                        var options = {'showRowNumber': true, 'allowHtml': false, 'cssClassNames': cssClassNames,width: '50%', height: '100%'};
                         var table = new google.visualization.Table(document.getElementById('table'));
                         table.draw(data, options);
 
@@ -294,7 +294,7 @@ function DibujarTabla() {
                             'tableCell': '',
                             'rowNumberCell': 'black-font'};
 
-                        var options = {'showRowNumber': true, 'allowHtml': false, 'cssClassNames': cssClassNames};
+                        var options = {'showRowNumber': true, 'allowHtml': false, 'cssClassNames': cssClassNames,width: '50%', height: '100%'};
                         var table = new google.visualization.Table(document.getElementById('table2'));
                         table.draw(data, options);
 
@@ -359,7 +359,7 @@ function DibujarTabla() {
                             'tableCell': '',
                             'rowNumberCell': 'black-font'};
 
-                        var options = {'showRowNumber': true, 'allowHtml': false, 'cssClassNames': cssClassNames};
+                        var options = {'showRowNumber': true, 'allowHtml': false, 'cssClassNames': cssClassNames,width: '50%', height: '100%'};
                         var table = new google.visualization.Table(document.getElementById('table2'));
                         table.draw(data, options);
 

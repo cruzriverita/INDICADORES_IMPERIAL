@@ -25,20 +25,21 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="css/styles.css">
         <title>Indicadores Imperial</title>
-       
+
     </head>
     <body class="body">
-        
-         <script type="text/javascript" src="Js/js/CuerpoMenuHorizontal.js"></script>
-        
-        <div id="DivPrincipal" class="divprincipal">
-            <center>
-                <h1>SISTEMA DE INFORMACION IMPERIAL</h1>
-                <br>
-                <br>
-                <img src="Images/Img_Indicadores.jpg" alt="Mountain View" style="width:30%;height:30%;">
-            </center>
-        </div> 
 
+        <script type="text/javascript" src="Js/js/CuerpoMenuHorizontal.js"></script>
+
+        <div id="DivPrincipal" class="divprincipal">
+            <div class="DivWithScroll">
+                <center>
+                    <h1>SISTEMA DE INFORMACION IMPERIAL</h1>
+                    <br>
+                    <br>
+                    <img src="Images/Img_Indicadores.jpg" alt="Mountain View" style="width:30%;height:30%;">
+                </center>
+            </div> 
+        </div> 
     </body>
 </html>

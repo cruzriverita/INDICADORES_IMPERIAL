@@ -18,15 +18,10 @@
         google.charts.setOnLoadCallback(DibujarTabla);
     </script>    
 
-    <!------------------------------------------JS MENU DESPLEGABLE-------------------------------------------> 
-    <script type="text/javascript" src="Js/js/modernizr.min.js"></script>
-    <script src="Js/js/jquery.multilevelpushmenu.min.js"></script>
-    <script type="text/javascript" src="Js/js/basicjs.js"></script>
-
     <script type="text/javascript">
         //mantener la posicion actual del menu
         $(document).ready(function () {
-            $('#menu').multilevelpushmenu('expand', 'PRODUCCION');
+
             $(window).resize(function () {
                 DibujarTabla();
             });
@@ -34,10 +29,9 @@
             $('#mes').val(<%=mes%>);
         });
     </script> 
+
     <head>
         <link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,300italic,700&subset=latin,cyrillic-ext,latin-ext,cyrillic' rel='stylesheet' type='text/css'>
-        <link rel="stylesheet" href="css/jquery.multilevelpushmenu_red.css">
-        <link rel="stylesheet" href="css/basicjs.css">
         <link rel="stylesheet" href="css/EstiloJSP.css">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
@@ -47,43 +41,38 @@
 
     <body class="body">
 
-         <!-- <div id="DivMenu" class="MenuDesplegable">
-            <div id="menu"> </div>
-        </div>-->
+        <script type="text/javascript" src="Js/js/CuerpoMenuHorizontal.js"></script>
 
-         <script type="text/javascript" src="Js/js/CuerpoMenuHorizontal.js"></script>
         <div id="DivPrincipal" class="divprincipal">
 
             <div class="DivWithScroll">
 
 
-                <form method="get" action="C_001_Produccion_Por_Planta_XLS" class="formulario">
-
+                <form method="get" action="C_001_Produccion_Por_Planta_XLS" class="formulario" >
 
                     <div style="float: left; width: 70%;">
-                        
                         <div>
                             <div class="divtexto" id="divlblmes">
                                 <input id="lblmes" name="lblmes" onkeypress="" value="Mes" disabled="true" class="texto" type="text"> 
                             </div>
-                            
+
                             <div class="divtexto">
                                 <input id="lbla" name="lbla" onkeypress="" value="Año" disabled="true" class="texto" type="text"> 
                             </div>
-                            
+
                             <div class="divtexto">
                                 <input id="lblP" name="lblP" onkeypress="" value="Planta" disabled="true" class="texto" type="text"> 
                             </div>
-                            
-                            <div class="divboton">
-                                <input value="Exportar Datos" class="boton" type="SUBMIT">
-                            </div>
+
+                           
+
 
                         </div>
+
+                        
                         
                         <div style="clear:both;">                
 
-                          
                             <div class="divselect" id="divselectmes">
                                 <select id="mes" name="mes" onchange="DibujarTabla()" class="select">
                                     <option value="1">Enero</option>
@@ -100,55 +89,65 @@
                                     <option value="12">Diciembre</option>  
                                 </select>
                             </div>
-                            
+
                             <div class="divselect">
                                 <select id="anio" name="anio" onchange="DibujarTabla()" class="select">
-                                   <option value="<%=Utilidades.MetodosGlobales.year_actual - 2%>"> <%=Utilidades.MetodosGlobales.year_actual - 2%> </option>
+                                    <option value="<%=Utilidades.MetodosGlobales.year_actual - 2%>"> <%=Utilidades.MetodosGlobales.year_actual - 2%> </option>
                                     <option value="<%=Utilidades.MetodosGlobales.year_actual - 1%>"> <%=Utilidades.MetodosGlobales.year_actual - 1%> </option>
                                     <option value="<%=Utilidades.MetodosGlobales.year_actual%>" selected> <%=Utilidades.MetodosGlobales.year_actual%> </option>
                                     <option value="<%=Utilidades.MetodosGlobales.year_actual + 1%>"> <%=Utilidades.MetodosGlobales.year_actual + 1%> </option>
                                     <option value="<%=Utilidades.MetodosGlobales.year_actual + 2%>"> <%=Utilidades.MetodosGlobales.year_actual + 2%> </option>
                                 </select>
                             </div>
-                            
+
                             <div class="divselect">
                                 <select id="opciones" name="opciones" onchange="DibujarTabla();" class="select">
                                     <option value="ALL">Todas</option>                
                                     <option value="PLANTA FPS">FPS</option>                    
                                 </select>
                             </div>
-                      
+
+
                         </div>
-                   
+
                     </div>
+                                <div class="divboton" id="divb">
+                                    <input   type="image" style="height:48px;width:48px;"  onmouseover="this.style.background='#0fa1e0'; ShowDef();" onmouseout="this.style.background='white'; HideDef();" src="Images/dd.svg">
+                                </div>
+
+                                <div class="DefStyle" id="EmaliographyDef">Descargar</div>
                 </form> 
+
                 <br>
+
                 <CENTER>
                     <h2> INDICADORES PRODUCCION</h2>
                     <h4> Produccion Kilogramos</h4>
-                    <div id="table" class="divtablascroll">
+                    <div id="table" >
                     </div>
                 </CENTER>
-                
-               
-                <div> 
-                    <p class="formato_parrafo">  *En color verde se muestran los valores mayores al promedio<br/>
-                        *En color rojo se muestran los valores menores al promedio</p>
-                </div>
-                
+
+                <center>
+                    <div> 
+                        <p style="font-size: 13px">  *En color verde se muestran los valores mayores al promedio<br/>
+                            *En color rojo se muestran los valores menores al promedio</p>
+                    </div>
+                </CENTER>
+                <br>
                 <CENTER>
                     <h4> Produccion Costos</h4>
-                    <div id="table2" class="divtablascroll">
+                    <div id="table2">
                     </div>
-                    
+
+                </CENTER>
+                <center>
+                    <div> 
+                        <p style="font-size: 13px" >*En color verde se muestran los valores menores al promedio<br/>
+                            *En color rojo se muestran los valores mayores al promedio</p>        
+                    </div>
                 </CENTER>
 
-                <p class="formato_parrafo">*En color verde se muestran los valores menores al promedio<br/>
-                    *En color rojo se muestran los valores mayores al promedio</p>        
             </div>
-
-
         </div>
-    </div>
-</body>
+    </body>
 </html>

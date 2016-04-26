@@ -131,14 +131,6 @@ public class I_001_Indicadores_Produccion_Servlet extends HttpServlet {
                 sql = Modelo_IndicadoresProduccion.I_001_Kilos_Producidos_Hora_Hombre_General(mes, Integer.parseInt(anio), "=","I_003_Kgproducidos_MRS","I_003_Kgproducidos_MRSP","P.Kg/P.Mrs","Kg/Mrs","max","DESC");
                 this.Generales(sql, ListaValores, Obj, responseObj, response);
             } else {
-                switch (opcion) {
-                    case "PLANTA RLRS":
-                        opcion = "PLANTA LRS";
-                        break;
-                    case "PLANTA RSM O&M":
-                        opcion = "PLANTA MRS O&M";
-                        break;
-                }
                 //sql = Modelo_IndicadoresProduccion.I_001_Kilos_Producidos_Hora_Hombre_Detalle(mes, Integer.parseInt(anio), opcion);
                 sql = Modelo_IndicadoresProduccion.IndicadoresProduccion_Consulta_Por_Planta_Lineal(opcion, Integer.parseInt(anio), "I_003_Kgproducidos_MRS", "I_003_Kgproducidos_MRSP", "P.Kg/P.Mrs", "Kg/Mrs", "DESC");
                 this.Especifico(sql, ListaValores, Obj, responseObj, response);
@@ -180,11 +172,6 @@ public class I_001_Indicadores_Produccion_Servlet extends HttpServlet {
                 sql = Modelo_IndicadoresProduccion.I_001_Kilos_Producidos_Hora_Hombre_General(mes, Integer.parseInt(anio), "=","I_003_Kgproducidos_MRS","I_006_MRS_KgproducidosP","P.Mrs/P.Kg","Mrs/Kg","min","ASC");
                 this.Generales(sql, ListaValores, Obj, responseObj, response);
             } else {
-                if (opcion.equals("PLANTA RLRS")) {
-                    opcion = "PLANTA LRS";
-                } else if (opcion.equals("PLANTA RSM O&M")) {
-                    opcion = "PLANTA MRS O&M";
-                }
                 sql = Modelo_IndicadoresProduccion.IndicadoresProduccion_Consulta_Por_Planta_Lineal(opcion, Integer.parseInt(anio), "I_003_Kgproducidos_MRS", "I_006_MRS_KgproducidosP", "P.Mrs/P.Kg", "Mrs/Kg", "ASC");
                 this.Especifico(sql, ListaValores, Obj, responseObj, response);
             }
@@ -207,7 +194,8 @@ public class I_001_Indicadores_Produccion_Servlet extends HttpServlet {
             Float Cvalor = Float.parseFloat(mapa.get("anio").toString());
             Float Cvalor2 = Float.parseFloat(mapa.get("anio1").toString());
             Float Cvalor3 = Float.parseFloat(mapa.get("mejor").toString());
-           // Float Cvalor4 = Float.parseFloat(mapa.get("Acumulado").toString());
+            Float Cvalor4 = Float.parseFloat(mapa.get("peor").toString());
+
             //Float Cvalor5 = Float.parseFloat(mapa.get("Acumulado1").toString());
             Float Cvalor6 = Float.parseFloat(mapa.get("PROMEDIO").toString());
 
@@ -218,7 +206,7 @@ public class I_001_Indicadores_Produccion_Servlet extends HttpServlet {
                 Obj.put("valor1", Cvalor);
                 Obj.put("valor2", Cvalor2);
                 Obj.put("valor3", Cvalor3);
-              //  Obj.put("valor4", Cvalor4);
+                Obj.put("valor4", Cvalor4);
               //  Obj.put("valor5", Cvalor5);
                 Obj.put("valor6", Cvalor6);
 
@@ -251,11 +239,13 @@ public class I_001_Indicadores_Produccion_Servlet extends HttpServlet {
             Float Cvalor = Float.parseFloat(mapa.get("2015").toString());
             Float Cvalor2 = Float.parseFloat(mapa.get("2016").toString());
             Float Cvalor3 = Float.parseFloat(mapa.get("mejor").toString());
-                //Float Cvalor4 = Float.parseFloat(mapa.get("Acumulado").toString());
+            Float Cvalor4 = Float.parseFloat(mapa.get("peor").toString());
             //Float Cvalor5 = Float.parseFloat(mapa.get("Acumulado1").toString());
             Float Cvalor6 = Float.parseFloat(mapa.get("PROMEDIO").toString());
             String mejormes = String.valueOf(mapa.get("MEJORMES"));
             String mejoranio = String.valueOf(mapa.get("MEJORANIO"));
+            String peormes = String.valueOf(mapa.get("PEORMES"));
+            String peoranio = String.valueOf(mapa.get("PEORANIO"));
             Obj = new JSONObject();
 
             try {
@@ -263,11 +253,13 @@ public class I_001_Indicadores_Produccion_Servlet extends HttpServlet {
                 Obj.put("valor1", Cvalor);
                 Obj.put("valor2", Cvalor2);
                 Obj.put("valor3", Cvalor3);
-                    //Obj.put("valor4", Cvalor4);
+                Obj.put("valor4", Cvalor4);
                 //Obj.put("valor5", Cvalor5);
                 Obj.put("valor6", Cvalor6);
                 Obj.put("mejormes", mejormes);
                 Obj.put("mejoranio", mejoranio);
+                Obj.put("peormes", peormes);
+                Obj.put("peoranio", peoranio);
 
                 ListaValores.add(Obj);
                 responseObj.put("ListaValores", ListaValores);

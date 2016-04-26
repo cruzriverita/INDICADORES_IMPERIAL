@@ -5,19 +5,19 @@ function DibujarChartPrincipal() {
             ({
                 type: "POST",
                 //Nombre del servlet de donde se reciben los datos en formato json.
-                url: "I_001_Indicadores_Produccion_Servlet",
+                url: "I_003_Indicadores_Inventarios_Planta_Servlet",
                 //Parametros leidos del jsp. anio y mes, parametros en enviados al servlet aniojs mesjs,opcion.         
                 data: {
                     mesjs: $("#mes").val(),
                     aniojs: $("#anio").val(),
                     opcion: $('#opciones option:selected').val(), //trae la planta seleccionada.
-                    indicador: $('#indicador').val()
+                    tipojs: $('#tipo2').val()
                 },
                 dataType: "json", //Se reciben los datos en formato JSON                
                 success: function (data_) {
 
                     //Si se elige una de estas dos opciones entonces se muestra la grafica de barras, se separa DPF (trabaja con docenas y no KG)
-                    if ($('#opciones option:selected').val() === "ALL" || $('#opciones option:selected').val() === "FPS MES")
+                    if ($('#opciones option:selected').val() === "ALL")
                     {
                         queryObject = eval('(' + JSON.stringify(data_) + ')');
                         queryObjectLen = queryObject.ListaValores.length;
@@ -37,9 +37,6 @@ function DibujarChartPrincipal() {
                         {
                             var planta = queryObject.ListaValores[i].planta;
 
-                            //Colocar en el titulo "RSM" en lugar de "RSM O&M"                      
-                            if (planta === "PLANTA RSM O&M" || planta === "PLANTA MRS O&M")
-                                planta = "PLANTA RSM";
                             
                           
 

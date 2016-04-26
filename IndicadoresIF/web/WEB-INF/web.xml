@@ -64,6 +64,14 @@
         <servlet-name>C_003_Indicadores_Inventarios_Servlet</servlet-name>
         <servlet-class>Controladores.C_003_Indicadores_Inventarios_Servlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>I_003_Indicadores_Inventarios_Servlet</servlet-name>
+        <servlet-class>Controladores.I_003_Indicadores_Inventarios_Servlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>I_003_Indicadores_Inventarios_Planta_Servlet</servlet-name>
+        <servlet-class>Controladores.I_003_Indicadores_Inventarios_Planta_Servlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>I_000_Produccion_Por_Planta_Mes_Servlet_XLS</servlet-name>
         <url-pattern>/I_000_Produccion_Por_Planta_Mes_Servlet_XLS</url-pattern>
@@ -127,6 +135,14 @@
     <servlet-mapping>
         <servlet-name>C_003_Indicadores_Inventarios_Servlet</servlet-name>
         <url-pattern>/C_003_Indicadores_Inventarios_Servlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>I_003_Indicadores_Inventarios_Servlet</servlet-name>
+        <url-pattern>/I_003_Indicadores_Inventarios_Servlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>I_003_Indicadores_Inventarios_Planta_Servlet</servlet-name>
+        <url-pattern>/I_003_Indicadores_Inventarios_Planta_Servlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

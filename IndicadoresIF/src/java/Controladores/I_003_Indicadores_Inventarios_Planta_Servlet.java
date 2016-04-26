@@ -5,8 +5,6 @@
  */
 package Controladores;
 
-import Modelo.Modelo_IndicadoresProduccion;
-import Modelo.Modelo_Indicadores_Inventarios;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -27,10 +25,8 @@ import org.json.JSONObject;
  *
  * @author rcruz
  */
-public class C_003_Indicadores_Inventarios_Servlet extends HttpServlet {
-
-     Modelo.ConexionBD conexion = new Modelo.ConexionBD();
-
+public class I_003_Indicadores_Inventarios_Planta_Servlet extends HttpServlet {
+    Modelo.ConexionBD conexion = new Modelo.ConexionBD();
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -48,17 +44,16 @@ public class C_003_Indicadores_Inventarios_Servlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet I_000_Produccion_Por_Planta_Mes</title>");
+            out.println("<title>Servlet I_003_Indicadores_Inventarios_Planta_Servlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet I_000_Produccion_Por_Planta_Mes at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet I_003_Indicadores_Inventarios_Planta_Servlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-
     /**
      * Handles the HTTP <code>GET</code> method.
      *
@@ -84,26 +79,37 @@ public class C_003_Indicadores_Inventarios_Servlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-        String anio, opcion;
+       String anio, articulo, mes;
         List ListaValores = new LinkedList();
         JSONObject responseObj = new JSONObject();
         JSONObject Obj = null;
 
         //Recuperar valores enviados desde el javascript.
-       // opcion = request.getParameter("opcionjs");
+        articulo = request.getParameter("tipojs");
         anio = request.getParameter("aniojs");
-        String sql = "";
-        sql = Modelo_Indicadores_Inventarios.Inventarios_Promedio_Indice(Integer.parseInt(anio),"indice");
+        mes = request.getParameter("mesjs");
+   
 
-        /*if (opcion.equals("1")){
-        sql = Modelo_Indicadores_Inventarios.Inventarios_Promedio_Indice(Integer.parseInt(anio),"indice");
-        }
-        else
-        {
-            sql = Modelo_Indicadores_Inventarios.Inventarios_Promedio_Indice(Integer.parseInt(anio),"dias");
-        }
-        */
+        String sql = "";
+        
+  
+            if (articulo.equals("3")) {            
+                sql = Modelo.Modelo_Indicadores_Inventarios.I_003_Indicadores_Inventarios_Planta(Integer.parseInt(anio), this.GetArticulo(articulo), "indice",mes);
+                this.Generales(sql, ListaValores, Obj, responseObj, response);
+            }
+            
+            else {
+                //sql = Modelo.Modelo_Indicadores_Inventarios.I_003_Indicadores_Inventarios_General(Integer.parseInt(anio), this.GetArticulo(articulo), "P.dias", "dias");
+                //this.Generales(sql, ListaValores, Obj, responseObj, response);
+            }
+        
+
+
+    }
+    
+     public void Generales(String sql, List ListaValores, JSONObject Obj, JSONObject responseObj, HttpServletResponse response) throws IOException {
+        //sql = Modelo_IndicadoresProduccion.I_001_Kilos_Producidos_Hora_Hombre_General(articulo, Integer.parseInt(anio));
+
         List<Map<String, Object>> resultList = new ArrayList<>();
         resultList = conexion.select(sql);
 
@@ -111,30 +117,22 @@ public class C_003_Indicadores_Inventarios_Servlet extends HttpServlet {
         while (iterador.hasNext()) {
             Map<String, Object> mapa = iterador.next();
 
-            String tipo = (String) mapa.get("tipo");
-            Float Cvalor1 = Float.parseFloat(mapa.get("indice").toString());
-            Float Cvalor2 = Float.parseFloat(mapa.get("indice2").toString());
-            Float Cvalor3 = Float.parseFloat(mapa.get("dia").toString());
-            Float Cvalor4 = Float.parseFloat(mapa.get("dia2").toString());
+            String planta = String.valueOf(mapa.get("planta"));
 
-            Cvalor1 = Utilidades.MetodosGlobales.redondear(Cvalor1, 2);
-            Cvalor2 = Utilidades.MetodosGlobales.redondear(Cvalor2, 2);
-            Cvalor3 = Utilidades.MetodosGlobales.redondear(Cvalor3, 2);
-            Cvalor4 = Utilidades.MetodosGlobales.redondear(Cvalor4, 2);
+            Float Cvalor = Float.parseFloat(mapa.get("valor").toString());
             
+
             Obj = new JSONObject();
 
             try {
-                Obj.put("tipo", tipo);
-                Obj.put("valor1", Cvalor1);
-                Obj.put("valor2", Cvalor2);
-                Obj.put("valor3", Cvalor3);
-                Obj.put("valor4", Cvalor4);
+                Obj.put("planta", planta);
+                Obj.put("valor", Cvalor);
+            
 
                 ListaValores.add(Obj);
                 responseObj.put("ListaValores", ListaValores);
             } catch (JSONException ex) {
-                Logger.getLogger(C_003_Indicadores_Inventarios_Servlet.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(I_001_Indicadores_Produccion_Servlet.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
 
@@ -155,5 +153,22 @@ public class C_003_Indicadores_Inventarios_Servlet extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
-
+    public String GetArticulo(String valor_Select) {
+        if (valor_Select.equals("1")) {
+            return "A";
+        } else if (valor_Select.equals("2")) {
+            return "PF";
+        } else if (valor_Select.equals("3")) {
+            return "HP";
+        } else if (valor_Select.equals("4")) {
+            return "HC";
+        } else if (valor_Select.equals("5")) {
+            return "TC";
+        } else if (valor_Select.equals("6")) {
+            return "TT";
+        } else {
+            return "";
+        }
+     
+     }
 }

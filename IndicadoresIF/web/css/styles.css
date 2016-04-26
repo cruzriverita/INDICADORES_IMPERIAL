@@ -27,7 +27,7 @@ and open the template in the editor.
   background: -webkit-linear-gradient(top, #333333 0%, #141414 100%);
   background: -o-linear-gradient(top, #333333 0%, #141414 100%);
   background: -ms-linear-gradient(top, #333333 0%, #141414 100%);
-  background: linear-gradient(to bottom, #333333 0%, #141414 100%);
+  background: -ms-linear-gradient(to bottom, #333333 0%, #141414 100%);
   border-bottom: 2px solid #0fa1e0;
   width: auto;
 }
@@ -44,7 +44,7 @@ and open the template in the editor.
   background: -webkit-linear-gradient(top, #333333 0%, #141414 100%);
   background: -o-linear-gradient(top, #333333 0%, #141414 100%);
   background: -ms-linear-gradient(top, #333333 0%, #141414 100%);
-  background: linear-gradient(to bottom, #333333 0%, #141414 100%);
+  background: -ms-linear-gradient(to bottom, #333333 0%, #141414 100%);
   color: #ffffff;
   display: block;
   font-family: Helvetica, Arial, Verdana, sans-serif;

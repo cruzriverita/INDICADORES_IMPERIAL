@@ -14,7 +14,8 @@ function DibujarChartPrincipal() {
                 },
                 dataType: "json", //Se reciben los datos en formato JSON                
                 success: function (data_) {
-                    var tamlinea=5;
+                    
+                    var tamlinea = tamalinea();
 
                     queryObject = eval('(' + JSON.stringify(data_) + ')');
                     queryObjectLen = queryObject.ListaValores.length;
@@ -23,8 +24,8 @@ function DibujarChartPrincipal() {
                     /*convertir #anio a entero*/
                     var x = parseInt($('#anio').val(), 10);
 
-
                     data.addColumn('string', 'periodo');
+                    data.addColumn({type: 'string', role: 'annotation'})
 
                     data.addColumn('number', x - 1); //año anterior  
                     data.addColumn('number', 'Mayor historico');
@@ -32,28 +33,22 @@ function DibujarChartPrincipal() {
                     data.addColumn('number', 'promedio');
                     data.addColumn('number', 'Menor historico');
 
-
-
-
                     for (var i = 0; i < queryObjectLen; i++)
                     {
-                         var periodo = queryObject.ListaValores[i].periodo;
+                        var periodo = queryObject.ListaValores[i].periodo;
+                        
                         //Si se selecciona la opcion NOMINA se trabaja con meses.
                         if ($('#tipo option:selected').val() === "1")
                         {
                             periodo = ConvertirMes(queryObject.ListaValores[i].periodo);
                         }
 
+
                         var a1 = queryObject.ListaValores[i].valor1;
-                        if (a1===0)
-                            {
-                                a1=null;
-                            }
                         var a2 = queryObject.ListaValores[i].valor2;
-                         if (a2===0)
-                            {
-                                a2=null;
-                            }
+                        a1 = DevolverNull(a1);
+                        a2 = DevolverNull(a2);
+
                         var mayor = queryObject.ListaValores[i].valor3;
                         var mayormes = queryObject.ListaValores[i].valor4;
                         var mayoranio = queryObject.ListaValores[i].valor5;
@@ -63,7 +58,7 @@ function DibujarChartPrincipal() {
                         var promedio = queryObject.ListaValores[i].valor9;
 
                         data.addRows([
-                            [periodo, parseFloat(a1), parseFloat(mayor),
+                            [periodo, "", parseFloat(a1), parseFloat(mayor),
                                 parseFloat(a2), parseFloat(promedio), parseFloat(menor)
                             ]
                         ]);
@@ -76,69 +71,101 @@ function DibujarChartPrincipal() {
                         if ($('#indicador').val() === "INDICADOR7")
                         {
                             var options = {
-                                title: '',//Cantidad de empleados Nomina '+ x,
+                                title: '', //Cantidad de empleados Nomina '+ x,
                                 vAxis: {title: 'Cantidad de empleados', titleTextStyle: {color: 'Black'}, gridlines: {count: 20}, viewWindow: {
-                                        min: (menor-10),
+                                        min: (menor - 10),
                                         max: (mayor + 20)
                                     }},
-                                hAxis: {title: '*El valor menor corresponde a ' + ConvertirMes(menormes) + ' de ' + menoranio + '\n' +
-                                            '*El valor mayor corresponde a ' + ConvertirMes(mayormes) + ' de ' + mayoranio, titleTextStyle: {color: 'Blue'}},
+                                hAxis: {title: '*El valor "Menor historico" corresponde a ' + ConvertirMes(menormes) + ' de ' + menoranio + '\n' +
+                                            '*El valor "Mayor historico" corresponde a ' + ConvertirMes(mayormes) + ' de ' + mayoranio, titleTextStyle: {color: 'Blue'}},
                                 is3D: true,
-                                colors: Coloresrrhh(),lineWidth: tamlinea
+                                colors: Coloresrrhh(),
+                                annotations: {
+                                    style: 'line'
+                                },
+                                series: {
+                                    0: {pointShape: 'circle', pointSize: tamapunto()},
+                                    2: {pointShape: 'circle', pointSize: tamapunto()}
+
+                                }, lineWidth: tamlinea
                             };
                         }
                         else //Si es el indicador DEVENGADO/NO_EMPLEADOS
                         {
                             var options = {
-                                title: '',//Promedio Devengado por empleado (Nomina) ' + x,
+                                title: '', //Promedio Devengado por empleado (Nomina) ' + x,
                                 vAxis: {title: '(Q) Promedio devengado por empleado ', titleTextStyle: {color: 'Black'},
                                     gridlines: {count: 20}, viewWindow: {
                                         min: (menor - 100),
                                         max: (mayor + 100)
                                     }},
-                                hAxis: {title: '*El valor menor corresponde a ' + ConvertirMes(menormes) + ' de ' + menoranio + '\n' +
-                                            '*El valor mayor corresponde a ' + ConvertirMes(mayormes) + ' de ' + mayoranio, titleTextStyle: {color: 'Blue'}},
+                                hAxis: {title: '*El valor "Menor historico" corresponde a ' + ConvertirMes(menormes) + ' de ' + menoranio + '\n' +
+                                            '*El valor "Mayor historico" corresponde a ' + ConvertirMes(mayormes) + ' de ' + mayoranio, titleTextStyle: {color: 'Blue'}},
                                 is3D: true,
-                                colors: Coloresrrhh(),lineWidth: tamlinea
+                                colors: Coloresrrhh(),
+                                annotations: {
+                                    style: 'line'
+                                },
+                                series: {
+                                    0: {pointShape: 'circle', pointSize: tamapunto()},
+                                    2: {pointShape: 'circle', pointSize: tamapunto()}
+
+                                }, lineWidth: tamlinea
                             };
 
 
                         }
                     }
                     /*-----------------------------------Si es Planilla --------------------------------*/
-                    else 
+                    else
                     {
                         if ($('#indicador').val() === "INDICADOR7")
                         {
                             var options = {
-                                title: '',//'Cantidad de empleados Planilla '+ x,
+                                title: '', //'Cantidad de empleados Planilla '+ x,
                                 vAxis: {title: 'Cantidad de empleados', titleTextStyle: {color: 'Black'}, gridlines: {count: 20}, viewWindow: {
-                                        min: (menor-10),
+                                        min: (menor - 10),
                                         max: (mayor + 10)
                                     }},
-                                hAxis: {title: 'Catorcena\n'+'*El valor menor corresponde a la catorcena ' + menormes + ' de ' + menoranio + '\n' +
-                                            '*El valor mayor corresponde a la catorcena ' + mayormes + ' de ' + mayoranio, titleTextStyle: {color: 'Blue'}},
+                                hAxis: {title: 'Catorcena\n' + '*El valor "Menor historico" corresponde a la catorcena ' + menormes + ' de ' + menoranio + '\n' +
+                                            '*El valor "Mayor historico" corresponde a la catorcena ' + mayormes + ' de ' + mayoranio, titleTextStyle: {color: 'Blue'}},
                                 is3D: true,
-                                colors: Coloresrrhh(),lineWidth: tamlinea
+                                colors: Coloresrrhh(),
+                                annotations: {
+                                    style: 'line'
+                                },
+                                series: {
+                                    0: {pointShape: 'circle', pointSize: tamapunto()},
+                                    2: {pointShape: 'circle', pointSize: tamapunto()}
+
+                                }, lineWidth: tamlinea
                             };
                         }
                         else
                         {
                             var options = {
-                                title: '',//Promedio devengado por empleado (Planilla) ' + x,
+                                title: '', //Promedio devengado por empleado (Planilla) ' + x,
                                 vAxis: {title: '(Q) Promedio devengado por empleado', titleTextStyle: {color: 'Black'}, gridlines: {count: 20}, viewWindow: {
                                         min: (menor - 100),
                                         max: (mayor + 100)
                                     }},
-                                hAxis: {title: 'Catorcena\n'+'*El valor menor corresponde a la catorcena ' + menormes + ' de ' + menoranio + '\n' +
+                                hAxis: {title: 'Catorcena\n' + '*El valor menor corresponde a la catorcena ' + menormes + ' de ' + menoranio + '\n' +
                                             '*El valor mayor corresponde a la catorcena ' + mayormes + ' de ' + mayoranio, titleTextStyle: {color: 'Blue'}},
                                 is3D: true,
-                                colors: Coloresrrhh(),lineWidth: tamlinea
+                                colors: Coloresrrhh(),
+                                annotations: {
+                                    style: 'line'
+                                },
+                                series: {
+                                    0: {pointShape: 'circle', pointSize: tamapunto()},
+                                    2: {pointShape: 'circle', pointSize: tamapunto()}
+
+                                }, lineWidth: tamlinea
                             };
 
                         }
                     }
-                    
+
                     var chart = new google.visualization.LineChart(document.getElementById('GraficaPrincipal'));
 
                     function ClickBarra() {
@@ -159,4 +186,42 @@ function DibujarChartPrincipal() {
                 }
 
             });
+}
+
+
+function GetTituloG2() {
+    var e = document.getElementById("indicador").value;
+
+    var t = document.getElementById("tipo");
+    var val = t.options[t.selectedIndex].value;
+
+    if (val === "1") {
+        if (e === "INDICADOR7")
+        {
+            document.getElementById('titulo').innerHTML = "Cantidad de empleados Nomina";
+        }
+
+        else if (e === "INDICADOR8")
+        {
+            document.getElementById('titulo').innerHTML = "Promedio Devengado por empleado (Nomina) ";
+        }
+    }
+    else
+    {
+
+        if (e === "INDICADOR7")
+        {
+            document.getElementById('titulo').innerHTML = "Cantidad de empleados Planilla";
+        }
+
+        else if (e === "INDICADOR8")
+        {
+            document.getElementById('titulo').innerHTML = "Promedio Devengado por empleado (Planilla) ";
+        }
+    }
+}
+
+function GetSubTituloG2() {
+    var anio = document.getElementById("anio").value;
+    document.getElementById('subtitulo').innerHTML = anio;
 }

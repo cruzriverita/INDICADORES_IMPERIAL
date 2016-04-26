@@ -9,7 +9,8 @@ and open the template in the editor.
 */
 
 .html{
-    height: 100%;
+    height: 98%;
+    width: 98%
 }
 .body{
     height: 100%;
@@ -19,7 +20,7 @@ and open the template in the editor.
 .divprincipal {
     background-color:#ffffff;
     height:90%;
-    width:100%;
+    width:99.4%;
     float: right;
     border: 5px solid black;
 }
@@ -102,15 +103,38 @@ and open the template in the editor.
 .divboton
 {
     
-   width: 17%;
-   border: 2px solid #ccc;
-   float:left;
+   width: 3.4%;
+   height: 150%;
+  border: 2px solid #0fa1e0;
+  // float:left;
   //margin: 50px auto 10px;
-  overflow: hidden;
-  background-color: chocolate;
+  //overflow: hidden;
+  //background-color: #0fa1e0;
   
-  float: left; margin-left: 3%; margin-top: -0.2%;
+  float: right; 
+  //margin-left: 1px;  padding-left: 1px; 
 }
+
+
+
+		    
+
+		    .DefStyle
+		    {
+		    	font-family:Verdana;
+		    	color:Gray;
+		    	font-size:12px;
+		    	border-width:1px;
+		    	border-color:Black;
+		    	//border-style:outset;
+		    	//padding:5px,5px,5px,5px,5px;
+		    	display:none;
+                        //float: right;
+                        padding-right: 4px;
+                        width: 900px;
+                        height: 400px;
+
+		    }
 
 .select{
     //width: 15.8%;
@@ -145,6 +169,7 @@ float:left;
 {
            text-align: left;
    padding: 5px 8px;
+
     width: 130%;
     border: none;
     box-shadow: none;
@@ -178,7 +203,8 @@ float:left;
     padding-top: 0px;
     padding-right: 0px;
     padding-bottom: 0px;
-    padding-left: 85px;
+    padding-left: 585px;
+    font-size: 13px;
 }
 
 .formato_parrafo

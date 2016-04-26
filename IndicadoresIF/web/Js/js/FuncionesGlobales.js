@@ -1,3 +1,4 @@
+//Javascript que contiene funciones utilizadas en diferentes jsp por lo tanto se toman como "globales"
 
 //Genera un color de manera aleatoria para colocar a cada elemento de la grafica de barras.
 function GenerarColorRandom()
@@ -78,18 +79,20 @@ function ConvertirMes(mes)
 
 
 //Colores elegidos a utilizar en todas las graficas 
-//año anterior= amarillo ,mayor/menor=gris, añoactual=negro, promedio= aqua
-//
-function Colores()
-{
-    var colors = ["#EAD008", "#848484", "#000000", "#01DFD7"];
-    return colors;
-}
-
+//año anterior= amarillo ,mejor=verde, añoactual=negro, promedio= aqua, peor=rojo
 function Coloresrrhh()
 {
-    var colors = ["#EAD008", "#848484", "#000000", "#01DFD7", "#FFB116"];
+    var e = document.getElementById("indicador").value;
+    //Si es uno de los 3 indicadores de costos entonces el menor es color verde (menos costos es mejor) y el mayor es el rojo.
+    if (e==="INDICADOR4" || e==="INDICADOR5" || e==="INDICADOR6" ){
+    var colors = ["#EAD008", "#FF0000", "#000000", "#01DFD7",  "#40FF00"];
     return colors;
+    }
+    else
+    {
+    var colors = ["#EAD008", "#40FF00", "#000000", "#01DFD7", "#FF0000"];
+    return colors;
+    }
 }
 
 
@@ -261,19 +264,7 @@ function GetTituloDPFEje() {
     }
 }
 
-function MayorMenor()
-{
-    var e = document.getElementById("indicador").value;
-    if (e === "INDICADOR1" || e === "INDICADOR2" || e === "INDICADOR3")
-    {
-        return "Mayor historico";
-    }
-    else
-    {
-        return "Menor historico";
-    }
 
-}
 
 
 function GetTituloG() {
@@ -389,40 +380,123 @@ function get_nombre_mes(mes) {
     return nmes;
 }
 
-function GetTituloG2() {
-    var e = document.getElementById("indicador").value;
+function tamalinea ()
+{
+    return 5;
+}
 
-    var t = document.getElementById("tipo");
-    var val = t.options[t.selectedIndex].value;
+function tamapunto()
+{
+    return 9;
+}
 
-    if (val === "1") {
-        if (e === "INDICADOR7")
-        {
-            document.getElementById('titulo').innerHTML = "Cantidad de empleados Nomina";
-        }
-
-        else if (e === "INDICADOR8")
-        {
-            document.getElementById('titulo').innerHTML = "Promedio Devengado por empleado (Nomina) ";
-        }
+//Se devuelve null para no dibujar valores que sean "0" en la grafica.
+function DevolverNull(valor)
+{
+    var a1 = valor;
+    if (a1 === 0)
+    {
+        return null;
     }
     else
     {
-
-        if (e === "INDICADOR7")
-        {
-            document.getElementById('titulo').innerHTML = "Cantidad de empleados Planilla";
-        }
-
-        else if (e === "INDICADOR8")
-        {
-            document.getElementById('titulo').innerHTML = "Promedio Devengado por empleado (Planilla) ";
-        }
+        return valor;
     }
 }
 
-function GetSubTituloG2() {
 
-    var anio = document.getElementById("anio").value;
-    document.getElementById('subtitulo').innerHTML = anio;
+function ShowDef()
+			{
+			    document.getElementById("EmaliographyDef").style.display="block";
+			}
+			function HideDef()
+			{
+				document.getElementById("EmaliographyDef").style.display="none";
+			}
+                        
+                        function ShowDef2()
+			{
+			    document.getElementById("GraficaPrincipal2").style.display="block";
+			}
+			function HideDef2()
+			{
+				document.getElementById("GraficaPrincipal2").style.display="none";
+			}
+                        
+                        
+                        
+function DibujarChartPrincipal2(mes,anio) {
+ $.ajax
+            ({
+                type: "POST",
+                //Nombre del servlet de donde se reciben los datos en formato json.
+                url: "I_003_Indicadores_Inventarios_Planta_Servlet",
+                //Parametros leidos del jsp. anio y mes, parametros en enviados al servlet aniojs mesjs,opcion.         
+                data: {
+                    mesjs: mes,
+                    aniojs: anio,
+                    tipojs: $('#tipo2').val()
+                },
+                dataType: "json", //Se reciben los datos en formato JSON                
+                success: function (data_) {
+
+
+                    
+                        //Colocar en el titulo "RSM" en lugar de "RSM O&M"
+                        var planta = $('#opciones option:selected').val();
+                        if (planta === "PLANTA RSM O&M" || planta === "PLANTA MRS O&M")
+                            planta = "PLANTA RSM";
+                        
+                      
+
+                        queryObject = eval('(' + JSON.stringify(data_) + ')');
+                        queryObjectLen = queryObject.ListaValores.length;
+                        var data = new google.visualization.DataTable();
+
+
+
+                        data.addColumn('string', 'planta');
+
+                        data.addColumn('number', 'Valor');
+        
+
+                        for (var i = 0; i < queryObjectLen; i++)
+                        {
+                            var planta = queryObject.ListaValores[i].planta;
+                            var a1 = queryObject.ListaValores[i].valor;
+
+
+                            a1=DevolverNull(a1);
+                         
+                            data.addRows([
+                                [planta,parseFloat(a1)
+                                ]
+                            ]);
+                        }
+
+                       
+                       var options = {
+          title: 'My Daily Activities',
+          is3D: true
+        };;
+                        
+
+                        var chart = new google.visualization.PieChart(document.getElementById('GraficaPrincipal2'));
+                        function ClickBarra() {
+                            var selectedItem = chart.getSelection()[0];
+                            if (selectedItem) {
+                                
+                            }
+                        }
+                        google.visualization.events.addListener(chart, 'select', ClickBarra);
+                        chart.draw(data, options);
+                    
+                },
+                error: function () {
+                    //alert('No existen datos para los parametros elegidos');
+                    //document.getElementById("mes").value = 2; //MesActual();
+                    //location.reload();
+                ShowDef2();
+                }
+            });
 }

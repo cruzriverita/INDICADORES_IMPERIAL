@@ -13,17 +13,10 @@ lines += '            <li class=\'active has-sub\'><a href=\'C_001_Produccion_Po
 
 lines += '              <ul>';
 lines += '              <li class=\'has-sub\'><a href=\'I_001_IndicadoresProduccion.jsp?indicador=INDICADOR1\'><span>Kilos Producidos/Hora - Hombre</span></a>';
-//lines += '              <ul>';
-//lines += '                    <li><a href=\'#\'><span>Sub Product</span></a></li>';
-//lines += '                    <li class=\'last\'><a href=\'#\'><span>Sub Product</span></a></li>';
-//lines += '              </ul>';
 
 lines += '            </li>';
 lines += '            <li class=\'has-sub\'><a href=\'I_001_IndicadoresProduccion.jsp?indicador=INDICADOR2\'><span>Kilos Producidos/Kw-h</span></a>';
-//lines += '                <ul>';
-//lines += '                    <li><a href=\'#\'><span>Sub Product</span></a></li>';
-//lines += '                    <li class=\'last\'><a href=\'#\'><span>Sub Product</span></a></li>';
-//lines += '                </ul>';
+
 lines += '            </li>';
 
 lines += '            <li class=\'has-sub\'><a href=\'I_001_IndicadoresProduccion.jsp?indicador=INDICADOR3\'><span>Kilos Producidos/$MRS</span></a>';
@@ -34,7 +27,7 @@ lines += '            <li class=\'has-sub\'><a href=\'I_001_IndicadoresProduccio
 lines += '            </li>';
 lines += '            <li class=\'has-sub\'><a href=\'I_001_IndicadoresProduccion.jsp?indicador=INDICADOR6\'><span>Costo MRS/Kg Producido</span></a>';
 lines += '            </li>';
-lines += '        </ul>';
+lines += '            </ul>';
 lines += '            </li>';
 
 /***************************************************RRHH********************************************/
@@ -156,7 +149,7 @@ lines += '            </li>';
 lines += '            <li class=\'active has-sub\'><a href=\'C_003_Indicadores_Inventarios.jsp\'><span>INVENTARIOS</span></a>';
 lines += '              <ul>';
 
-lines += '            <li class=\'has-sub\'><a href=\'#\'><span>Rotacion De Inventarios</span></a>';
+lines += '            <li class=\'has-sub\'><a href=\'I_003_Indicadores_Inventarios.jsp\'><span>Rotacion De Inventarios</span></a>';
 lines += '            </li>';
 
 lines += '            <li class=\'has-sub\'><a href=\'#\'><span>Rotacion de Inventarios financiero</span></a>';

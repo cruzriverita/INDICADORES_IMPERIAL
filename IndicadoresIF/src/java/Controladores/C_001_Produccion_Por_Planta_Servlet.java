@@ -93,11 +93,11 @@ public class C_001_Produccion_Por_Planta_Servlet extends HttpServlet {
         //Recuperar valores enviados desde el javascript.
         mes = request.getParameter("mesjs");
         anio = request.getParameter("aniojs");
-        String sql = "";
+        String sql;// = "";
 
         
         sql = Modelo_IndicadoresProduccion.C_001_Produccion_Por_Planta(mes, Integer.parseInt(anio));
-        List<Map<String, Object>> resultList = new ArrayList<>();
+        List<Map<String, Object>> resultList; //= new ArrayList<>();
         resultList = conexion.select(sql);
 
         Iterator<Map<String, Object>> iterador = resultList.iterator();
