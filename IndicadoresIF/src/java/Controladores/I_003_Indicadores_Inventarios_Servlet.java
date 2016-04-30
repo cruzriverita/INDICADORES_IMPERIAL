@@ -122,6 +122,11 @@ public class I_003_Indicadores_Inventarios_Servlet extends HttpServlet {
      public void Generales(String sql, List ListaValores, JSONObject Obj, JSONObject responseObj, HttpServletResponse response) throws IOException {
         //sql = Modelo_IndicadoresProduccion.I_001_Kilos_Producidos_Hora_Hombre_General(articulo, Integer.parseInt(anio));
 
+         String cadena = "";
+         String mayormes="";
+         String menormes="";
+         Integer mayoranio=0;
+         Integer menoranio=0;
         List<Map<String, Object>> resultList = new ArrayList<>();
         resultList = conexion.select(sql);
 
@@ -134,13 +139,21 @@ public class I_003_Indicadores_Inventarios_Servlet extends HttpServlet {
             Float Cvalor = Float.parseFloat(mapa.get("anio1").toString());
             Float Cvalor2 = Float.parseFloat(mapa.get("anio2").toString());
             Float Cvalor3 = Float.parseFloat(mapa.get("MAYOR").toString());
-             String Cvalor4 = String.valueOf(mapa.get("MAYORMES"));
+            String Cvalor4 = String.valueOf(mapa.get("MAYORMES"));
             Integer Cvalor5 = Integer.parseInt(mapa.get("MAYORANIO").toString());
             Float Cvalor6 = Float.parseFloat(mapa.get("MENOR").toString());
             String Cvalor7 = String.valueOf(mapa.get("MENORMES"));
             Integer Cvalor8 = Integer.parseInt(mapa.get("MENORANIO").toString());           
             Float Cvalor9 = Float.parseFloat(mapa.get("PROMEDIO").toString());
+            
+            if (cadena.equals(""))
+            {  cadena=periodo+","+Cvalor+","+Cvalor3+","+Cvalor9+","+Cvalor6+","+Cvalor2;
+            }else
+            {
+            cadena = cadena+","+periodo+","+Cvalor+","+Cvalor3+","+Cvalor9+","+Cvalor6+","+Cvalor2 ;
+            }
 
+            
             Obj = new JSONObject();
 
             try {
@@ -160,12 +173,20 @@ public class I_003_Indicadores_Inventarios_Servlet extends HttpServlet {
             } catch (JSONException ex) {
                 Logger.getLogger(I_001_Indicadores_Produccion_Servlet.class.getName()).log(Level.SEVERE, null, ex);
             }
+            
+            mayormes=Cvalor4;
+            menormes=Cvalor7;
+            mayoranio=Cvalor5;
+            menoranio=Cvalor8;
+            
         }
 
         if (Obj == null) {
             response.getWriter().write("");
         } else {
-            response.getWriter().write(responseObj.toString());
+            //response.getWriter().write(responseObj.toString());
+            response.getWriter().write(cadena+","+mayormes+","+menormes+","+mayoranio+","+menoranio);
+
         }
                 
     }

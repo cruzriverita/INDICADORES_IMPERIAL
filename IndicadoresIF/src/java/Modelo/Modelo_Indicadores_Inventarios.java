@@ -83,14 +83,14 @@ public class Modelo_Indicadores_Inventarios {
          + "\n"
          + "FROM   I_009_Rotacion_Inventarios_General P\n"
          + "where tipo='"+tipo+"'\n"
-         + "group by P.mes";
+         + "group by P.mes ";
 
    
     }
       
     
     
-        public static String I_003_Indicadores_Inventarios_Planta(Integer anio, String tipo,String valor, String mes /*String valmaxmin,String planta*/) {
+        public static String I_003_Indicadores_Inventarios_Planta(Integer anio, String tipo,String valor/*, String mes*/ /*String valmaxmin,String planta*/) {
        /* return "SELECT P.mes,\n"
                 + "SUM( CASE \n"
                 + "WHEN P.ANIO="+(anio-1)+"\n"
@@ -130,11 +130,55 @@ public class Modelo_Indicadores_Inventarios {
                 + "FROM   I_009_Rotacion_Inventarios_Planta P\n"
                 + "where tipo='"+tipo+"'  AND P.planta='"+planta+"'\n"
                 + "group by P.mes, P.planta";]*/
-            return "select planta,sum("+valor+") as 'valor'\n"
+           /* return "select planta,sum("+valor+") as 'valor'\n"
                     + "from I_009_Rotacion_Inventarios_Planta\n"
                     + "where tipo='"+tipo+"'\n"
                     + "and MES="+mes+" and anio="+anio+"\n"
-                    + "GROUP BY planta,anio";
+         + "GROUP BY planta,anio";*/
+        return "select planta,\n"
+                + "sum(case \n"
+                + "when mes=1 then ifnull("+valor+",0)\n"
+                + "else 0 end) as 'ene',\n"
+                + "sum(case \n"
+                + "when mes=2 then ifnull("+valor+",0)\n"
+                + "else 0 end) as 'feb',\n"
+                + "sum(case \n"
+                + "when mes=3 then ifnull("+valor+",0)\n"
+                + "else 0 end) as 'mar',\n"
+                + "sum(case \n"
+                + "when mes=4 then ifnull("+valor+",0)\n"
+                + "else 0 end) as 'abr',\n"
+                + "sum(case \n"
+                + "when mes=5 then ifnull("+valor+",0)\n"
+                + "else 0 end) as 'may',\n"
+                + "sum(case \n"
+                + "when mes=6 then ifnull("+valor+",0)\n"
+                + "else 0 end) as 'jun',\n"
+                 + "sum(case \n"
+                + "when mes=7 then ifnull("+valor+",0)\n"
+                + "else 0 end) as 'jul',\n"
+                 + "sum(case \n"
+                + "when mes=8 then ifnull("+valor+",0)\n"
+                + "else 0 end) as 'ago',\n"
+                 + "sum(case \n"
+                + "when mes=9 then ifnull("+valor+",0)\n"
+                + "else 0 end) as 'sep',\n"
+                 + "sum(case \n"
+                + "when mes=10 then ifnull("+valor+",0)\n"
+                + "else 0 end) as 'oct',\n"
+                 + "sum(case \n"
+                + "when mes=11 then ifnull("+valor+",0)\n"
+                + "else 0 end) as 'nov',\n"
+                 + "sum(case \n"
+                + "when mes=12 then ifnull("+valor+",0)\n"
+                + "else 0 end) as 'dic'\n"
+                
+                
+                
+                + "\n"
+                + "from I_009_Rotacion_Inventarios_Planta\n"
+                + "where tipo='"+tipo+"' AND ANIO="+anio+"\n"
+                + "GROUP BY planta,anio";
     }
 
 

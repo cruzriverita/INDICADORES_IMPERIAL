@@ -40,6 +40,8 @@
     <!-----------------------------------------Archivos y Fuentes JavaScript-------------------------------> 
     <script type="text/javascript" src="Js/js/FuncionesGlobales.js"></script>
     <script type="text/javascript" src="Js/I_001_Indicadores_Produccion.js"></script>
+    <script type="text/javascript" src="Js/js/CuerpoMenuHorizontal.js"></script>
+
     <script type="text/javascript">
         //API de Google Chart, Se llama en cada jsp  
         /* global google */
@@ -49,21 +51,17 @@
     </script>   
 
     <script type="text/javascript">
-        //mantener la posicion actual del menu
-        $(document).ready(function () {
 
-            //$('#menu').multilevelpushmenu('expand', 'PRODUCCION');
+        $(document).ready(function () {
             $(window).resize(function () {
                 DibujarChartPrincipal();
             });
-
+            //Setear valores por defecto para los parametros.
             $('#opciones').val("<%=v%>");
             $('#mes').val("<%=m%>");
             hideMes();
             GetTituloG();
             GetSubTituloG();
-
-
         });
     </script> 
 
@@ -78,13 +76,12 @@
     </head>
 
     <body class="body" >
-
-        <script type="text/javascript" src="Js/js/CuerpoMenuHorizontal.js"></script>
-
         <div id="DivPrincipal" class="divprincipal">
             <div class="DivWithScroll">
                 <form method="get" action="I_001_Kilos_Producidos_Hora_Hombre_XLS" class="formulario">
+
                     <div style="float: left; width: 70%;">
+
                         <div>
                             <div class="divtexto" id="divlblmes">
                                 <input type="text" id="lblmes"  name="lblmes"  onkeypress="" value="Mes" disabled="true" class="texto" /> 
@@ -95,18 +92,13 @@
                             <div class="divtexto">
                                 <input type="text" id="lblP"  name="lblP"  onkeypress="" value="Planta" disabled="true" class="texto" /> 
                             </div>
-
-                            <!-- <div class="divboton">
-                                 <input value="Exportar Datos" class="boton" type="SUBMIT">
-                             </div>-->
-
                         </div>
 
                         <div style="clear:both;">    
                             <div class="divselect" id="divselectmes">
                                 <select id="mes" name="mes" onchange="DibujarChartPrincipal();
-            GetTituloG();
-            GetSubTituloG();" class="select">
+                                        GetTituloG();
+                                        GetSubTituloG();" class="select">
                                     <option value="1">Enero</option>
                                     <option value="2">Febrero</option>
                                     <option value="3">Marzo</option>
@@ -125,18 +117,22 @@
                                 <select id="anio" name="anio" onchange="DibujarChartPrincipal();
                                         GetTituloG();
                                         GetSubTituloG();" class="select">
+                                    
                                     <option value="<%=Utilidades.MetodosGlobales.year_actual - 2%>"> <%=Utilidades.MetodosGlobales.year_actual - 2%> </option>
                                     <option value="<%=Utilidades.MetodosGlobales.year_actual - 1%>"> <%=Utilidades.MetodosGlobales.year_actual - 1%> </option>
                                     <option value="<%=Utilidades.MetodosGlobales.year_actual%>" selected> <%=Utilidades.MetodosGlobales.year_actual%> </option>
                                     <option value="<%=Utilidades.MetodosGlobales.year_actual + 1%>"> <%=Utilidades.MetodosGlobales.year_actual + 1%> </option>
                                     <option value="<%=Utilidades.MetodosGlobales.year_actual + 2%>"> <%=Utilidades.MetodosGlobales.year_actual + 2%> </option>
                                 </select>
+                                
                             </div>
+                                
                             <div class="divselect">
                                 <select id="opciones" name="opciones" onchange="DibujarChartPrincipal();
                                         hideMes();
                                         GetTituloG();
                                         GetSubTituloG();" class="select">
+                                    
                                     <option value="ALL">Todas</option>
                                     <option value="FPS MES">FPS Mensual</option>
                                     <option value="PLANTA RST">RST</option> 
@@ -155,6 +151,7 @@
                     <input type="hidden" id="indicador"  name="indicador" value="<%=vind%>"/>  
                 </form> 
                 <br style="line-height: 10px">
+                
                 <center>
                     <div style="line-height: 5px">
                         <h3 id="titulo"></h3>
@@ -162,9 +159,7 @@
                     </div>
                 </center>
 
-
                 <div id="GraficaPrincipal" class="divimagen"></div>
-
             </div> 
         </div>
     </body>

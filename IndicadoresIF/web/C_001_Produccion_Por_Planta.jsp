@@ -8,23 +8,26 @@
 <!DOCTYPE html>
 <html class="html">
     <% String mes = String.valueOf(Utilidades.MetodosGlobales.month_actual);%>
+
     <script type="text/javascript" src="Js/js/loader.js"></script>
     <script type="text/javascript" src="Js/js/jquery-1.12.1.min.js"></script>
     <script type="text/javascript" src="Js/js/FuncionesGlobales.js"></script>
     <script type="text/javascript" src="Js/C_001_Produccion_Por_Planta.js"></script>
+    <script type="text/javascript" src="Js/js/CuerpoMenuHorizontal.js"></script>
+    
     <script type="text/javascript">
+
         /* global google */
         google.charts.load('current', {'packages': ['table']});
         google.charts.setOnLoadCallback(DibujarTabla);
     </script>    
 
     <script type="text/javascript">
-        //mantener la posicion actual del menu
         $(document).ready(function () {
-
             $(window).resize(function () {
                 DibujarTabla();
             });
+            //Setear valores de inicio para los parametros. 
             $('#opciones').val("ALL");
             $('#mes').val(<%=mes%>);
         });
@@ -39,18 +42,15 @@
         <title>Produccion Por Planta</title>
     </head>
 
+
+
     <body class="body">
-
-        <script type="text/javascript" src="Js/js/CuerpoMenuHorizontal.js"></script>
-
         <div id="DivPrincipal" class="divprincipal">
-
             <div class="DivWithScroll">
-
-
                 <form method="get" action="C_001_Produccion_Por_Planta_XLS" class="formulario" >
 
                     <div style="float: left; width: 70%;">
+
                         <div>
                             <div class="divtexto" id="divlblmes">
                                 <input id="lblmes" name="lblmes" onkeypress="" value="Mes" disabled="true" class="texto" type="text"> 
@@ -64,13 +64,8 @@
                                 <input id="lblP" name="lblP" onkeypress="" value="Planta" disabled="true" class="texto" type="text"> 
                             </div>
 
-                           
-
-
                         </div>
 
-                        
-                        
                         <div style="clear:both;">                
 
                             <div class="divselect" id="divselectmes">
@@ -106,16 +101,17 @@
                                     <option value="PLANTA FPS">FPS</option>                    
                                 </select>
                             </div>
-
-
                         </div>
-
                     </div>
-                                <div class="divboton" id="divb">
-                                    <input   type="image" style="height:48px;width:48px;"  onmouseover="this.style.background='#0fa1e0'; ShowDef();" onmouseout="this.style.background='white'; HideDef();" src="Images/dd.svg">
-                                </div>
 
-                                <div class="DefStyle" id="EmaliographyDef">Descargar</div>
+                    <div class="divboton" id="divb">
+                        <input   type="image" style="height:100%;width:100%;"  onmouseover="this.style.background = '#0fa1e0';
+                                ShowDef();" onmouseout="this.style.background = 'white';
+                                HideDef();" src="Images/dd.svg">
+                    </div>
+
+                    <div class="DefStyle" id="EmaliographyDef">Descargar</div>
+
                 </form> 
 
                 <br>
@@ -132,21 +128,20 @@
                         <p style="font-size: 13px">  *En color verde se muestran los valores mayores al promedio<br/>
                             *En color rojo se muestran los valores menores al promedio</p>
                     </div>
-                </CENTER>
+                </center>
                 <br>
                 <CENTER>
                     <h4> Produccion Costos</h4>
                     <div id="table2">
                     </div>
-
                 </CENTER>
+
                 <center>
                     <div> 
                         <p style="font-size: 13px" >*En color verde se muestran los valores menores al promedio<br/>
                             *En color rojo se muestran los valores mayores al promedio</p>        
                     </div>
                 </CENTER>
-
             </div>
         </div>
     </body>

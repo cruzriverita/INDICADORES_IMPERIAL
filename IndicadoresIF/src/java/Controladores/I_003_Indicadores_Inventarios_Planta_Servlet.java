@@ -79,7 +79,7 @@ public class I_003_Indicadores_Inventarios_Planta_Servlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       String anio, articulo, mes;
+       String anio, articulo, tipo;
         List ListaValores = new LinkedList();
         JSONObject responseObj = new JSONObject();
         JSONObject Obj = null;
@@ -87,21 +87,31 @@ public class I_003_Indicadores_Inventarios_Planta_Servlet extends HttpServlet {
         //Recuperar valores enviados desde el javascript.
         articulo = request.getParameter("tipojs");
         anio = request.getParameter("aniojs");
-        mes = request.getParameter("mesjs");
+        tipo = request.getParameter("tipo");
    
 
         String sql = "";
         
   
-            if (articulo.equals("3")) {            
-                sql = Modelo.Modelo_Indicadores_Inventarios.I_003_Indicadores_Inventarios_Planta(Integer.parseInt(anio), this.GetArticulo(articulo), "indice",mes);
+          //  if (articulo.equals("3")) {            
+               
+            
+             if (tipo.equals("1")) {            
+              sql = Modelo.Modelo_Indicadores_Inventarios.I_003_Indicadores_Inventarios_Planta(Integer.parseInt(anio), this.GetArticulo(articulo), "indice");
                 this.Generales(sql, ListaValores, Obj, responseObj, response);
             }
             
             else {
+               sql = Modelo.Modelo_Indicadores_Inventarios.I_003_Indicadores_Inventarios_Planta(Integer.parseInt(anio), this.GetArticulo(articulo), "dias");
+                this.Generales(sql, ListaValores, Obj, responseObj, response);
+            }
+            
+            //}
+            
+           // else {
                 //sql = Modelo.Modelo_Indicadores_Inventarios.I_003_Indicadores_Inventarios_General(Integer.parseInt(anio), this.GetArticulo(articulo), "P.dias", "dias");
                 //this.Generales(sql, ListaValores, Obj, responseObj, response);
-            }
+        //    }
         
 
 
@@ -110,6 +120,7 @@ public class I_003_Indicadores_Inventarios_Planta_Servlet extends HttpServlet {
      public void Generales(String sql, List ListaValores, JSONObject Obj, JSONObject responseObj, HttpServletResponse response) throws IOException {
         //sql = Modelo_IndicadoresProduccion.I_001_Kilos_Producidos_Hora_Hombre_General(articulo, Integer.parseInt(anio));
 
+         String cadena="";
         List<Map<String, Object>> resultList = new ArrayList<>();
         resultList = conexion.select(sql);
 
@@ -119,28 +130,52 @@ public class I_003_Indicadores_Inventarios_Planta_Servlet extends HttpServlet {
 
             String planta = String.valueOf(mapa.get("planta"));
 
-            Float Cvalor = Float.parseFloat(mapa.get("valor").toString());
+            Float ene = Float.parseFloat(mapa.get("ene").toString());
+            Float feb = Float.parseFloat(mapa.get("feb").toString());
+            Float mar = Float.parseFloat(mapa.get("mar").toString());
+            Float abr = Float.parseFloat(mapa.get("abr").toString());
             
+            Float may = Float.parseFloat(mapa.get("may").toString());
+            Float jun = Float.parseFloat(mapa.get("jun").toString());
+            Float jul = Float.parseFloat(mapa.get("jul").toString());
+            Float ago = Float.parseFloat(mapa.get("ago").toString());
+            Float sep = Float.parseFloat(mapa.get("sep").toString());
+            Float oct = Float.parseFloat(mapa.get("oct").toString());
+            Float nov = Float.parseFloat(mapa.get("nov").toString());
+            Float dic = Float.parseFloat(mapa.get("dic").toString());
+            
+            
+            if (cadena.equals(""))
+            { 
+                cadena=planta+","+ene+","+feb+","+mar+","+abr+","+may+","+jun+","+jul+","+ago+","+sep+","+oct+","+nov+","+dic;
+            }
+            else
+            {
+            cadena = cadena+","+planta+","+ene+","+feb+","+mar+","+abr+","+may+","+jun+","+jul+","+ago+","+sep+","+oct+","+nov+","+dic;
+            }
 
-            Obj = new JSONObject();
+          /*  Obj = new JSONObject();
 
             try {
                 Obj.put("planta", planta);
-                Obj.put("valor", Cvalor);
+                Obj.put("valor", ene);
             
 
                 ListaValores.add(Obj);
                 responseObj.put("ListaValores", ListaValores);
             } catch (JSONException ex) {
                 Logger.getLogger(I_001_Indicadores_Produccion_Servlet.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            }*/
         }
 
-        if (Obj == null) {
+          response.getWriter().write(cadena);
+        /*if (Obj == null) {
             response.getWriter().write("");
         } else {
-            response.getWriter().write(responseObj.toString());
-        }
+            //response.getWriter().write(responseObj.toString());
+             response.getWriter().write(cadena);
+      
+        }*/
     }
 
     /**

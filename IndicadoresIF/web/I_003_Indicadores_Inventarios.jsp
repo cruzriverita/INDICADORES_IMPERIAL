@@ -30,8 +30,8 @@
         } else {
             vtipo = tipo;
         }
-        
-          if (tipoinv == null) {
+
+        if (tipoinv == null) {
 
         } else {
             vtipoinv = tipoinv;
@@ -45,7 +45,8 @@
     <!-----------------------------------------Archivos y Fuentes JavaScript-------------------------------> 
     <script type="text/javascript" src="Js/js/FuncionesGlobales.js"></script>
     <script type="text/javascript" src="Js/I_003_Indicadores_Inventarios.js"></script>
-    <script type="text/javascript" src="Js/prototype.js"></script>
+
+
     <script type="text/javascript">
         //API de Google Chart, Se llama en cada jsp  
         /* global google */
@@ -56,14 +57,15 @@
     <script type="text/javascript">
 
         $(document).ready(function () {
-
             $(window).resize(function () {
+
                 DibujarChartPrincipal();
             });
 
             $('#indicador').val("<%=vindicador%>");
             $('#tipo2').val("<%=vtipo%>");
             $('#tipo').val("<%=vtipoinv%>");
+            $('#anio').val("2015");
             GetTituloG3();
             GetSubTituloG3();
 
@@ -76,6 +78,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="css/styles.css">
+
+
         <title>Inventarios</title>
     </head>
 
@@ -101,15 +105,15 @@
                                 <input type="text" id="lblart"  name="lblart"  onkeypress="" value="Tipo Inventario" disabled="true" class="texto" /> 
                             </div>
 
-                           
+
                         </div>
 
                         <div style="clear:both;">  
 
                             <div class="divselect">
                                 <select id="anio" name="anio" onchange="DibujarChartPrincipal();
-            GetTituloG3();
-            GetSubTituloG3();" class="select">
+                                GetTituloG3();
+                                GetSubTituloG3();" class="select">
 
                                     <option value="<%=Utilidades.MetodosGlobales.year_actual - 2%>"> <%=Utilidades.MetodosGlobales.year_actual - 2%> </option>
                                     <option value="<%=Utilidades.MetodosGlobales.year_actual - 1%>"> <%=Utilidades.MetodosGlobales.year_actual - 1%> </option>
@@ -147,10 +151,12 @@
                         </div>
                     </div>
                     <div class="divboton" id="divb">
-                        <input   type="image" style="height:48px;width:48px;"  onmouseover="this.style.background='#0fa1e0'; ShowDef();" onmouseout="this.style.background='white'; HideDef();" src="Images/dd.svg">
+                        <input   type="image" style="height:48px;width:48px;"  onmouseover="this.style.background = '#0fa1e0';
+                                ShowDef();" onmouseout="this.style.background = 'white';
+                                        HideDef();" src="Images/dd.svg">
                     </div>
+                    <div class="DefStyle" id="EmaliographyDef">Descarga</div>
 
-                    <div class="DefStyle" id="EmaliographyDef">Descargar</div>
 
                 </form> 
 
@@ -163,15 +169,12 @@
                     </div>
                 </center>
 
-              
-                     <center>
-                <div id="GraficaPrincipal2" class="DefStyle"></div>
-                </center>
+                <div id="hidden_div" style="display:none; width: 400px" ></div>
                 <div id="GraficaPrincipal" class="divimagen">
-                 
+
                 </div>
-                
             </div>
         </div>
-    </body>
+    </div>
+</body>
 </html>

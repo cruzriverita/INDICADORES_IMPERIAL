@@ -40,12 +40,6 @@ and open the template in the editor.
     //padding-left: 80px;
 }
 
-.MenuDesplegable {
-    background-color:#ffffff;
-    height:100%;
-    width:25%;
-    float:left;       
-}
 
 .DivWithScroll{
     height:98%;
@@ -76,8 +70,8 @@ and open the template in the editor.
     text-align: center;
     float: left;
     height: 14%;*/
-        text-align: left;
-   padding: 5px 8px;
+    text-align: left;
+    padding: 5px 8px;
     width: 130%;
     border: none;
     box-shadow: none;
@@ -86,55 +80,51 @@ and open the template in the editor.
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-   
+
 }
 
 .divtexto
 {
-    
+
     width: 16%;
-   border: 1px solid #ccc;
-   float:left;
-  //margin: 50px auto 10px;
-  overflow: hidden;
-  
+    border: 1px solid #ccc;
+    float:left;
+    //margin: 50px auto 10px;
+    overflow: hidden;
+
 }
 
 .divboton
 {
-    
-   width: 3.4%;
-   height: 150%;
-  border: 2px solid #0fa1e0;
-  // float:left;
-  //margin: 50px auto 10px;
-  //overflow: hidden;
-  //background-color: #0fa1e0;
-  
-  float: right; 
-  //margin-left: 1px;  padding-left: 1px; 
+
+    width: 3.4%;
+    height: 150%;
+    border: 2px solid #0fa1e0;
+    // float:left;
+    //margin: 50px auto 10px;
+    //overflow: hidden;
+    //background-color: #0fa1e0;
+
+    float: right; 
+    //margin-left: 1px;  padding-left: 1px; 
 }
 
+.DefStyle
+{
+    font-family:Verdana;
+    color:Gray;
+    font-size:12px;
+    border-width:1px;
+    border-color:Black;
+    //border-style:outset;
+    //padding:5px,5px,5px,5px,5px;
+    display:none;
+    float: right;
+    padding-right: 1%;
+    //width: 900px;3
+    //height: 400px;
 
-
-		    
-
-		    .DefStyle
-		    {
-		    	font-family:Verdana;
-		    	color:Gray;
-		    	font-size:12px;
-		    	border-width:1px;
-		    	border-color:Black;
-		    	//border-style:outset;
-		    	//padding:5px,5px,5px,5px,5px;
-		    	display:none;
-                        //float: right;
-                        padding-right: 4px;
-                        width: 900px;
-                        height: 400px;
-
-		    }
+}
 
 .select{
     //width: 15.8%;
@@ -150,26 +140,23 @@ and open the template in the editor.
     -moz-appearance: none;
     appearance: none;
 
-   
+
 }
 
 .divselect {
     width: 16%;
-   border: 1px solid #ccc;
-float:left;
-  //margin: 50px auto 10px;
-  overflow: hidden;
-  background: #fff url("http://www.csslab.cl/ejemplos/select/arrowdown.gif") no-repeat 90% center;
+    border: 1px solid #ccc;
+    float:left;
+    //margin: 50px auto 10px;
+    overflow: hidden;
+    background: #fff url("http://www.csslab.cl/ejemplos/select/arrowdown.gif") no-repeat 90% center;
 }
-
-
 
 
 .boton
 {
-           text-align: left;
-   padding: 5px 8px;
-
+    text-align: left;
+    padding: 5px 8px;
     width: 130%;
     border: none;
     box-shadow: none;
@@ -178,17 +165,15 @@ float:left;
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-   
-     
 }
 
 .botongrande
 {
     width: 15.5%;  
     height: 21%;
-     float: left;
-     font-size: 12px;
-     
+    float: left;
+    font-size: 12px;
+
 }
 
 .divtabla {
@@ -214,63 +199,66 @@ float:left;
     padding-bottom: 0px;
     padding-left: 475px;
     font-size: 13px;
-    
+
 }
-//----------------------------------ESTILO PARA LAS TABLAS DE GOOGLE UTILIZADAS---------------------------
+
+
+
+/*******************************************ESTILO PARA LAS TABLAS DE GOOGLE UTILIZADAS******************************************/
 
 .bold-green-font {
     font-weight: bold;
     color: green;
-  }
+}
 
-  .bold-font {
+.bold-font {
     font-weight: bold;
-  }
+}
 
-  .right-text {
+.right-text {
     text-align: right;
-  }
+}
 
-  .large-font {
+.large-font {
     font-size: 15px;
-  }
+}
 
-  .italic-darkblue-font {
+.italic-darkblue-font {
     font-style: italic;
     color: darkblue;
-  }
+}
 
-  .italic-purple-font {
+.italic-purple-font {
     font-style: italic;
     color: purple;
-  }
+}
 
-  .underline-blue-font {
+.underline-blue-font {
     text-decoration: underline;
     color: blue;
-  }
+}
 
-  .gold-border {
+.gold-border {
     border: 3px solid gold;
-  }
+}
 
-  .deeppink-border {
+.deeppink-border {
     border: 3px solid deeppink;
-  }
+}
 
-  .red-background {
+.red-background {
     background-color: red;
-  }
+}
 
-  .orchid-background {
+.orchid-background {
     background-color: orchid;
-  }
+}
 
-  .beige-background {
+.beige-background {
     background-color: beige;
-  }
-  
-  .green-background {
+}
+
+.green-background {
     background-color: greenyellow;
-  }
-  
+}
+

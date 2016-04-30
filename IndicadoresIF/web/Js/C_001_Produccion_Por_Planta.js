@@ -29,8 +29,6 @@ function DibujarTabla() {
                         data.addColumn('number', 'KNIT');
                         data.addColumn('number', 'DPF');
 
-                        //data.addColumn('number', 'FPS');
-
 
                         data.addRows(queryObjectLen);
                         for (var i = 0; i < queryObjectLen; i++)
@@ -88,7 +86,7 @@ function DibujarTabla() {
 
 
                         /*Opciones Css de la tabla, los valores asignados a las propiedades estan declarados como
-                        clases en el archivo Estilo.css*/
+                         clases en el archivo Estilo.css*/
                         var cssClassNames = {
                             'headerRow': 'large-font bold-font',
                             'tableRow': '',
@@ -99,7 +97,7 @@ function DibujarTabla() {
                             'tableCell': '',
                             'rowNumberCell': 'black-font'};
 
-                        var options = {'showRowNumber': true, 'allowHtml': false, 'cssClassNames': cssClassNames,width: '50%', height: '100%'};
+                        var options = {'showRowNumber': true, 'allowHtml': false, 'cssClassNames': cssClassNames, width: '50%', height: '100%'};
                         var table = new google.visualization.Table(document.getElementById('table'));
                         table.draw(data, options);
 
@@ -169,7 +167,7 @@ function DibujarTabla() {
                             'tableCell': '',
                             'rowNumberCell': 'black-font'};
 
-                        var options = {'showRowNumber': true, 'allowHtml': false, 'cssClassNames': cssClassNames,width: '50%', height: '100%'};
+                        var options = {'showRowNumber': true, 'allowHtml': false, 'cssClassNames': cssClassNames, width: '50%', height: '100%'};
                         var table = new google.visualization.Table(document.getElementById('table'));
                         table.draw(data, options);
 
@@ -195,7 +193,7 @@ function DibujarTabla() {
                 },
                 error: function () {
                     alert('No existen datos para los parametros elegidos');
-                    document.getElementById("mes").value=MesActual();
+                    document.getElementById("mes").value = MesActual();
                     location.reload();
                 }
 
@@ -294,7 +292,7 @@ function DibujarTabla() {
                             'tableCell': '',
                             'rowNumberCell': 'black-font'};
 
-                        var options = {'showRowNumber': true, 'allowHtml': false, 'cssClassNames': cssClassNames,width: '50%', height: '100%'};
+                        var options = {'showRowNumber': true, 'allowHtml': false, 'cssClassNames': cssClassNames, width: '50%', height: '100%'};
                         var table = new google.visualization.Table(document.getElementById('table2'));
                         table.draw(data, options);
 
@@ -359,7 +357,7 @@ function DibujarTabla() {
                             'tableCell': '',
                             'rowNumberCell': 'black-font'};
 
-                        var options = {'showRowNumber': true, 'allowHtml': false, 'cssClassNames': cssClassNames,width: '50%', height: '100%'};
+                        var options = {'showRowNumber': true, 'allowHtml': false, 'cssClassNames': cssClassNames, width: '50%', height: '100%'};
                         var table = new google.visualization.Table(document.getElementById('table2'));
                         table.draw(data, options);
 
@@ -396,7 +394,7 @@ function Redireccionar(x, element) {
     var rows = document.getElementById(element).getElementsByTagName('tbody')[0].getElementsByTagName('tr');
     for (i = 0; i < rows.length; i++) {
         rows[i].onclick = function () {
-           
+
             if (this.rowIndex === 1) /*Indicador 1*/
             {
                 if (x.cellIndex === 1)

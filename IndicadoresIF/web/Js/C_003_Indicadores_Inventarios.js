@@ -11,13 +11,15 @@
  * and open the template in the editor.*/
 /* global google */
 
+//TABLA DE INDICADORES DE INVENTARIOS.
+
 function DibujarTabla() {
     $.ajax
             ({
                 type: "POST",
                 url: "C_003_Indicadores_Inventarios_Servlet",
                 data: {
-                    aniojs: $("#anio").val(),
+                    aniojs: $("#anio").val()
                     //opcionjs: $('#opciones option:selected').val()
                 },
                 dataType: "json", //Se reciben los datos en formato JSON                
@@ -42,10 +44,9 @@ function DibujarTabla() {
                         var a3 = queryObject.ListaValores[i].valor3; //valor año actual 
                         var a4 = queryObject.ListaValores[i].valor4; //valor año anterior
 
-                        //Agregar 
+                        //1ra columna de la tabla, tipo de inventario de tipo string 
                         data.setCell(i, 0, tipo);
-
-
+                        
                         //Comparar promedio vs valor actual para elegir color de la celda
                         if (a2 > a1) {
                             data.setCell(i, 1, parseFloat(a1), a1, {'className': 'red-background'});

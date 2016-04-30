@@ -110,7 +110,7 @@ function DibujarChartPrincipal() {
 
                     }
 
-/*********************************************GRAFICA LINEAL****************************************************************/
+/************************************************GRAFICA LINEAL**************************************************************************/
                     //Si en el Select se elige una planta especifica se muestra por medio de grafica lineal
                     else
                     {

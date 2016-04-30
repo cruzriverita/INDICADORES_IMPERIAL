@@ -50,9 +50,7 @@
 
 
 
-                            <div class="divboton">
-                                <input value="Exportar Datos" class="boton" type="SUBMIT">
-                            </div>
+
 
                         </div>
 
@@ -74,6 +72,11 @@
                         </div>
 
                     </div>
+                                   <div class="divboton" id="divb">
+                                    <input   type="image" style="height:48px;width:48px;"  onmouseover="this.style.background='#0fa1e0'; ShowDef();" onmouseout="this.style.background='white'; HideDef();" src="Images/dd.svg">
+                                </div>
+
+                                <div class="DefStyle" id="EmaliographyDef">Descargar</div>
 
                 </form> 
 

@@ -84,14 +84,14 @@ function Coloresrrhh()
 {
     var e = document.getElementById("indicador").value;
     //Si es uno de los 3 indicadores de costos entonces el menor es color verde (menos costos es mejor) y el mayor es el rojo.
-    if (e==="INDICADOR4" || e==="INDICADOR5" || e==="INDICADOR6" ){
-    var colors = ["#EAD008", "#FF0000", "#000000", "#01DFD7",  "#40FF00"];
-    return colors;
+    if (e === "INDICADOR4" || e === "INDICADOR5" || e === "INDICADOR6") {
+        var colors = ["#EAD008", "#FF0000", "#000000", "#01DFD7", "#40FF00"];
+        return colors;
     }
     else
     {
-    var colors = ["#EAD008", "#40FF00", "#000000", "#01DFD7", "#FF0000"];
-    return colors;
+        var colors = ["#EAD008", "#40FF00", "#000000", "#01DFD7", "#FF0000"];
+        return colors;
     }
 }
 
@@ -380,7 +380,7 @@ function get_nombre_mes(mes) {
     return nmes;
 }
 
-function tamalinea ()
+function tamalinea()
 {
     return 5;
 }
@@ -406,97 +406,16 @@ function DevolverNull(valor)
 
 
 function ShowDef()
-			{
-			    document.getElementById("EmaliographyDef").style.display="block";
-			}
-			function HideDef()
-			{
-				document.getElementById("EmaliographyDef").style.display="none";
-			}
-                        
-                        function ShowDef2()
-			{
-			    document.getElementById("GraficaPrincipal2").style.display="block";
-			}
-			function HideDef2()
-			{
-				document.getElementById("GraficaPrincipal2").style.display="none";
-			}
-                        
-                        
-                        
-function DibujarChartPrincipal2(mes,anio) {
- $.ajax
-            ({
-                type: "POST",
-                //Nombre del servlet de donde se reciben los datos en formato json.
-                url: "I_003_Indicadores_Inventarios_Planta_Servlet",
-                //Parametros leidos del jsp. anio y mes, parametros en enviados al servlet aniojs mesjs,opcion.         
-                data: {
-                    mesjs: mes,
-                    aniojs: anio,
-                    tipojs: $('#tipo2').val()
-                },
-                dataType: "json", //Se reciben los datos en formato JSON                
-                success: function (data_) {
-
-
-                    
-                        //Colocar en el titulo "RSM" en lugar de "RSM O&M"
-                        var planta = $('#opciones option:selected').val();
-                        if (planta === "PLANTA RSM O&M" || planta === "PLANTA MRS O&M")
-                            planta = "PLANTA RSM";
-                        
-                      
-
-                        queryObject = eval('(' + JSON.stringify(data_) + ')');
-                        queryObjectLen = queryObject.ListaValores.length;
-                        var data = new google.visualization.DataTable();
-
-
-
-                        data.addColumn('string', 'planta');
-
-                        data.addColumn('number', 'Valor');
-        
-
-                        for (var i = 0; i < queryObjectLen; i++)
-                        {
-                            var planta = queryObject.ListaValores[i].planta;
-                            var a1 = queryObject.ListaValores[i].valor;
-
-
-                            a1=DevolverNull(a1);
-                         
-                            data.addRows([
-                                [planta,parseFloat(a1)
-                                ]
-                            ]);
-                        }
-
-                       
-                       var options = {
-          title: 'My Daily Activities',
-          is3D: true
-        };;
-                        
-
-                        var chart = new google.visualization.PieChart(document.getElementById('GraficaPrincipal2'));
-                        function ClickBarra() {
-                            var selectedItem = chart.getSelection()[0];
-                            if (selectedItem) {
-                                
-                            }
-                        }
-                        google.visualization.events.addListener(chart, 'select', ClickBarra);
-                        chart.draw(data, options);
-                    
-                },
-                error: function () {
-                    //alert('No existen datos para los parametros elegidos');
-                    //document.getElementById("mes").value = 2; //MesActual();
-                    //location.reload();
-                ShowDef2();
-                }
-            });
+{
+    document.getElementById("EmaliographyDef").style.display = "block";
 }
+function HideDef()
+{
+    document.getElementById("EmaliographyDef").style.display = "none";
+}
+
+
+
+
+
+

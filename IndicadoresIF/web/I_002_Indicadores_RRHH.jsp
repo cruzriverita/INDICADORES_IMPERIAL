@@ -49,6 +49,7 @@
             GetSubTituloG2();
 
         });
+
     </script> 
 
     <head>
@@ -67,18 +68,15 @@
             <div class="DivWithScroll">
 
                 <form method="get" action="I_002_Indicadores_RRHH_XLS" class="formulario">
-                    
+
                     <div style="float: left; width: 70%;">
+
                         <div>
                             <div class="divtexto">
                                 <input type="text" id="lblmes"  name="lblmes"  onkeypress="" value="Tipo" disabled="true" class="texto" /> 
                             </div>
                             <div class="divtexto">
                                 <input type="text" id="lbla"  name="lbla"  onkeypress="" value="Año" disabled="true" class="texto" />                  
-                            </div>
-
-                            <div class="divboton">
-                                <input value="Exportar Datos" class="boton" type="SUBMIT">
                             </div>
 
                         </div>
@@ -110,6 +108,12 @@
                         </div>
                     </div>
 
+                    <div class="divboton" id="divb">
+                        <input   type="image" style="height:48px;width:48px;"  onmouseover="this.style.background = '#0fa1e0';
+                                ShowDef();" onmouseout="this.style.background = 'white';
+                                        HideDef();" src="Images/dd.svg">
+                    </div>
+                    <div class="DefStyle" id="EmaliographyDef">Descarga</div>
 
                 </form> 
                 <br style="line-height: 10px">
