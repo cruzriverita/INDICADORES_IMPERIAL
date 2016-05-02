@@ -168,8 +168,8 @@ function DibujarChartPrincipal() {
                             var options = {
                                 title: '',
                                 vAxis: {title: GetTituloDPFEje(), titleTextStyle: {color: 'Black'}},
-                                hAxis: {title: '*El valor "' + "Mayor historico" + '" corresponde a ' + ConvertirMes(m) + ' de ' + a + '\n'
-                                            + '*El valor "' + "Menor historico" + '" corresponde a ' + ConvertirMes(mm) + ' de ' + aa
+                                hAxis: {title: '*El valor "' + "Menor historico" + '" corresponde a ' + ConvertirMes(mm) + ' de ' + aa  + '\n'
+                                            + '*El valor "' + "Mayor historico" + '" corresponde a ' + ConvertirMes(m) + ' de ' + a
                                     , titleTextStyle: {color: 'Blue'}},
                                 is3D: true,
                                 colors: Coloresrrhh(),
@@ -188,8 +188,8 @@ function DibujarChartPrincipal() {
                             var options = {
                                 title: '',
                                 vAxis: {title: GetTituloEje(), titleTextStyle: {color: 'Black'}},
-                                hAxis: {title: '*El valor "' + "Mayor historico" + '" corresponde a ' + ConvertirMes(m) + ' de ' + a + '\n'
-                                            + '*El valor "' + "Menor historico" + '" corresponde a ' + ConvertirMes(mm) + ' de ' + aa
+                                hAxis: {title: '*El valor "' + "Menor historico" + '" corresponde a ' + ConvertirMes(mm) + ' de ' + aa  + '\n'
+                                            + '*El valor "' + "Mayor historico" + '" corresponde a ' + ConvertirMes(m) + ' de ' + a
 
                                     , titleTextStyle: {color: 'Blue'}},
                                 is3D: true,
@@ -218,7 +218,7 @@ function DibujarChartPrincipal() {
                 },
                 error: function () {
                     alert('No existen datos para los parametros elegidos');
-                    document.getElementById("mes").value = 2; //MesActual();
+                    //document.getElementById("mes").value = 2; //MesActual();
                     location.reload();
                 }
             });

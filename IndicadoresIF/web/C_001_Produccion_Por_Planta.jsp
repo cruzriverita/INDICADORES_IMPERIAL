@@ -27,9 +27,11 @@
             $(window).resize(function () {
                 DibujarTabla();
             });
-            //Setear valores de inicio para los parametros. 
+            //Setear valores de inicio (por defecto) para los parametros. 
             $('#opciones').val("ALL");
-            $('#mes').val(<%=mes%>);
+            //$('#mes').val(<%=mes%>);
+            $('#mes').val(<%=3%>);
+            $('anio').val (<%=Utilidades.MetodosGlobales.year_actual%>);
         });
     </script> 
 

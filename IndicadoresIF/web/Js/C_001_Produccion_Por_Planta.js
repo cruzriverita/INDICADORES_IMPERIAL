@@ -192,9 +192,10 @@ function DibujarTabla() {
 
                 },
                 error: function () {
-                    alert('No existen datos para los parametros elegidos');
-                    document.getElementById("mes").value = MesActual();
-                    location.reload();
+                    /*Solo se mostrara el mensaje en una de las dos tablas para evitar doble mensaje de error*/
+                    //alert('No existen datos para los parametros elegidos');
+                    //document.getElementById("mes").value = MesActual();
+                    //location.reload();
                 }
 
             });
@@ -380,8 +381,8 @@ function DibujarTabla() {
                 },
                 error: function () {
                     alert('No existen datos para los parametros elegidos');
-                    document.getElementById("mes").value = MesActual();
-                    location.reload();
+                    //location.reload(); //Para cargar la pagina nuevamente y que se cargue con los valores de parametros por defecto.
+                    window.location.href = window.location;
                 }
 
             });

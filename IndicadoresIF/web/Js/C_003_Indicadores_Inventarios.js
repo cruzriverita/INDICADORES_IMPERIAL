@@ -102,7 +102,7 @@ function DibujarTabla() {
                 },
                 error: function () {
                     alert('No existen datos para los parametros elegidos');
-                    document.getElementById("anio").value = (AnioActual() - 1);
+                    //document.getElementById("anio").value = (AnioActual() - 1);
                     location.reload();
                 }
 

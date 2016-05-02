@@ -47,11 +47,6 @@
                             <div class="divtexto">
                                 <input id="lbla" name="lbla" onkeypress="" value="Año" disabled="true" class="texto" type="text"> 
                             </div>
-
-
-
-
-
                         </div>
 
                         <div style="clear:both;">                

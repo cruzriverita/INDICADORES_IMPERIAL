@@ -17,7 +17,6 @@ public class Modelo_IndicadoresProduccion {
                 + "SUM( CASE WHEN P.ANIO=" + (anio - 1) + " THEN "+valor+" ELSE 0 END) AS 'anio',\n"
                 + "SUM( CASE WHEN P.ANIO=" + anio + " THEN "+valor+" ELSE 0 END) AS 'anio1',\n"
               
-              //+ "(select "+maxmin+" ("+valmax+") from "+tabla+" WHERE PLANTA=P.PLANTA) AS 'mejor',\n"
               
                 + "(select " + valmax + " from " + tabla + "\n"
                 + "                where " + valmax + " in (select " + valmax + " from " + tabla + "\n"

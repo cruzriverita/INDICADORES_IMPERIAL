@@ -181,7 +181,7 @@ function DibujarChartPrincipal() {
                 error: function () {
 
                     alert('No existen datos para el mes' + $("#mes").val());
-                    document.getElementById("mes").value = 2; //MesActual();
+                    //document.getElementById("mes").value = 2; //MesActual();
                     location.reload();
                 }
 

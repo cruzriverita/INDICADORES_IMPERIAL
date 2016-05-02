@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 
+/*Se manejan los elementos del menu como una variable string en javascritp y se utiliza en los jsp's*/
+
 var lines = '<div id=\'cssmenu\'>';
 lines += '        <ul>';
 lines += '            <li><a href=\'index.jsp\'><span>INICIO</span></a></li>';
