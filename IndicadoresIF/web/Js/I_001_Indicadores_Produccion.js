@@ -163,28 +163,6 @@ function DibujarChartPrincipal() {
                             ]);
                         }
 
-                        if ($('#opciones option:selected').val() === "PLANTA FPS")
-                        {
-                            var options = {
-                                title: '',
-                                vAxis: {title: GetTituloDPFEje(), titleTextStyle: {color: 'Black'}},
-                                hAxis: {title: '*El valor "' + "Menor historico" + '" corresponde a ' + ConvertirMes(mm) + ' de ' + aa  + '\n'
-                                            + '*El valor "' + "Mayor historico" + '" corresponde a ' + ConvertirMes(m) + ' de ' + a
-                                    , titleTextStyle: {color: 'Blue'}},
-                                is3D: true,
-                                colors: Coloresrrhh(),
-                                annotations: {
-                                    style: 'line'
-                                },
-                                series: {
-                                    0: {pointShape: 'circle', pointSize: tamapunto()},
-                                    2: {pointShape: 'circle', pointSize: tamapunto()}
-                                  
-                                }, lineWidth: tamlinea
-                            };
-                        }
-                        else
-                        {
                             var options = {
                                 title: '',
                                 vAxis: {title: GetTituloEje(), titleTextStyle: {color: 'Black'}},
@@ -204,7 +182,7 @@ function DibujarChartPrincipal() {
                                 }
                                 , lineWidth: tamlinea
                             };
-                        }
+                        
 
                         var chart = new google.visualization.LineChart(document.getElementById('GraficaPrincipal'));
                         function ClickBarra() {

@@ -11,27 +11,22 @@ package Modelo;
 //Consultas que traen informacion de la BD para los indicadores.
 public class Modelo_IndicadoresProduccion {
 
-    /*-------------------------------------I_0001-----------------------------------------------*/
-    public static String I_001_Kilos_Producidos_Hora_Hombre_General(String mes, Integer anio, String simbolo,String tabla, String tablap,String valor,String valmax,String maxmin,String orden) {
-      return "SELECT  P.PLANTA,\n"
-                + "SUM( CASE WHEN P.ANIO=" + (anio - 1) + " THEN "+valor+" ELSE 0 END) AS 'anio',\n"
-                + "SUM( CASE WHEN P.ANIO=" + anio + " THEN "+valor+" ELSE 0 END) AS 'anio1',\n"
-              
-              
+    /*-------------------------------Consulta utilizada para la grafica general de barras----------------------------*/
+    public static String I_001_Kilos_Producidos_Hora_Hombre_General(String mes, Integer anio, String simbolo, String tabla, String tablap, String valor, String valmax, String maxmin, String orden) {
+        return "SELECT  P.PLANTA,\n"
+                + "SUM( CASE WHEN P.ANIO=" + (anio - 1) + " THEN " + valor + " ELSE 0 END) AS 'anio',\n"
+                + "SUM( CASE WHEN P.ANIO=" + anio + " THEN " + valor + " ELSE 0 END) AS 'anio1',\n"
                 + "(select " + valmax + " from " + tabla + "\n"
                 + "                where " + valmax + " in (select " + valmax + " from " + tabla + "\n"
                 + "                where " + valmax + ">0 AND PLANTA=P.PLANTA)\n"
                 + "                AND PLANTA=P.PLANTA ORDER BY " + valmax + " " + "DESC" + " LIMIT 1) AS 'mejor',\n"
-              
-              + "(select " + valmax + " from " + tabla + "\n"
+                + "(select " + valmax + " from " + tabla + "\n"
                 + "                where " + valmax + " in (select " + valmax + " from " + tabla + "\n"
                 + "                where " + valmax + ">0 AND PLANTA=P.PLANTA)\n"
                 + "                AND PLANTA=P.PLANTA ORDER BY " + valmax + " " + "ASC" + " LIMIT 1) AS 'peor',\n"
-              
-              + "ifnull((select Promedio from "+tablap+" where Planta=P.Planta\n"
+                + "ifnull((select Promedio from " + tablap + " where Planta=P.Planta\n"
                 + "AND MES = P.MES AND ANIO=" + (anio - 1) + "),0) AS 'PROMEDIO',"
-              
-                 + "(select MES from " + tabla + "\n"
+                + "(select MES from " + tabla + "\n"
                 + "                where " + valmax + " in (select " + valmax + " from " + tabla + "\n"
                 + "                where " + valmax + ">0 AND PLANTA=P.PLANTA)\n"
                 + "                AND PLANTA=P.PLANTA ORDER BY " + valmax + " " + "DESC" + " LIMIT 1) AS 'MEJORMES',\n"
@@ -40,8 +35,7 @@ public class Modelo_IndicadoresProduccion {
                 + "                where " + valmax + " in (select " + valmax + " from " + tabla + "\n"
                 + "                where " + valmax + ">0 AND PLANTA=P.PLANTA)\n"
                 + "                AND PLANTA=P.PLANTA ORDER BY " + valmax + " " + "DESC" + " LIMIT 1) AS 'MEJORANIO',"
-              
-               + "(select MES from " + tabla + "\n"
+                + "(select MES from " + tabla + "\n"
                 + "                where " + valmax + " in (select " + valmax + " from " + tabla + "\n"
                 + "                where " + valmax + ">0 AND PLANTA=P.PLANTA)\n"
                 + "                AND PLANTA=P.PLANTA ORDER BY " + valmax + " " + "ASC" + " LIMIT 1) AS 'PEORMES',\n"
@@ -51,14 +45,15 @@ public class Modelo_IndicadoresProduccion {
                 + "                where " + valmax + ">0 AND PLANTA=P.PLANTA)\n"
                 + "                AND PLANTA=P.PLANTA ORDER BY " + valmax + " " + "ASC" + " LIMIT 1) AS 'PEORANIO'"
                 + "\n"
-                + "FROM   "+tabla+" P\n"
+                + "FROM   " + tabla + " P\n"
                 + "where P.MES=" + mes + " and P.PLANTA" + simbolo + "'PLANTA FPS' GROUP BY P.PLANTA "
                 + "ORDER BY P.PLANTA DESC ";
     }
 
+    /*-------------------------------Consulta utilizada para la grafica lineal----------------------------*/
     public static String IndicadoresProduccion_Consulta_Por_Planta_Lineal(String planta, Integer anio, String tabla, String tablap, String valor, String valmax, String orden) {
-       
-          return "SELECT P.MES as MES,P.PLANTA,\n"
+
+        return "SELECT P.MES as MES,P.PLANTA,\n"
                 + "SUM( CASE \n"
                 + "WHEN P.ANIO=" + (anio - 1) + "\n"
                 + "THEN ifnull(" + valor + ",0)\n"
@@ -69,19 +64,16 @@ public class Modelo_IndicadoresProduccion {
                 + "THEN ifnull(" + valor + ",0)\n"
                 + "ELSE 0\n"
                 + "END) AS '2016',\n"
-                  
                 + "(select " + valmax + " from " + tabla + "\n"
                 + "                where " + valmax + " in (select " + valmax + " from " + tabla + "\n"
                 + "                where " + valmax + ">0 AND PLANTA=P.PLANTA)\n"
                 + "                AND PLANTA=P.PLANTA ORDER BY " + valmax + " " + "DESC" + " LIMIT 1) AS 'mejor',\n"
-                  + "(select " + valmax + " from " + tabla + "\n"
+                + "(select " + valmax + " from " + tabla + "\n"
                 + "                where " + valmax + " in (select " + valmax + " from " + tabla + "\n"
                 + "                where " + valmax + ">0 AND PLANTA=P.PLANTA)\n"
                 + "                AND PLANTA=P.PLANTA ORDER BY " + valmax + " " + "ASC" + " LIMIT 1) AS 'peor',\n"
-                  
                 + "ifnull((select Promedio from " + tablap + " where Planta=P.Planta\n"
                 + "AND ANIO=" + (anio - 1) + " ),0) AS 'PROMEDIO',\n"
-                  
                 + "(select MES from " + tabla + "\n"
                 + "                where " + valmax + " in (select " + valmax + " from " + tabla + "\n"
                 + "                where " + valmax + ">0 AND PLANTA=P.PLANTA)\n"
@@ -91,8 +83,7 @@ public class Modelo_IndicadoresProduccion {
                 + "                where " + valmax + " in (select " + valmax + " from " + tabla + "\n"
                 + "                where " + valmax + ">0 AND PLANTA=P.PLANTA)\n"
                 + "                AND PLANTA=P.PLANTA ORDER BY " + valmax + " " + "DESC" + " LIMIT 1) AS 'MEJORANIO',"
-                  
-                  + "(select MES from " + tabla + "\n"
+                + "(select MES from " + tabla + "\n"
                 + "                where " + valmax + " in (select " + valmax + " from " + tabla + "\n"
                 + "                where " + valmax + ">0 AND PLANTA=P.PLANTA)\n"
                 + "                AND PLANTA=P.PLANTA ORDER BY " + valmax + " " + "ASC" + " LIMIT 1) AS 'PEORMES',\n"
@@ -101,17 +92,15 @@ public class Modelo_IndicadoresProduccion {
                 + "                where " + valmax + " in (select " + valmax + " from " + tabla + "\n"
                 + "                where " + valmax + ">0 AND PLANTA=P.PLANTA)\n"
                 + "                AND PLANTA=P.PLANTA ORDER BY " + valmax + " " + "ASC" + " LIMIT 1) AS 'PEORANIO'"
-                  
                 + "\n"
                 + "FROM   " + tabla + " P\n"
                 + "where \n"
                 + "P.PLANTA='" + planta + "'\n"
                 + "GROUP BY P.PLANTA,P.MES /*,P.ANIO ORDER BY P.ANIO,P.MES*/";
-                
+
     }
 
-
-
+    /*-------------------------------Consulta utilizada para la tabla de indicadores de produccion(KG)-----------------------------*/
     public static String C_001_Produccion_Por_Planta(String mes, Integer anio) {
         return "SELECT  'Kg Producidos/Hora-Hombre' as Indicador,\n"
                 + "SUM( CASE WHEN P.PLANTA='PLANTA RST' THEN P.ProduccionTotal/P.HorasHombreTotales ELSE 0 END) AS 'RST',\n"
@@ -180,7 +169,8 @@ public class Modelo_IndicadoresProduccion {
                 + "\n";
 
     }
-
+    
+/*-------------------------------Consulta utilizada para la tabla de indicadores de produccion (COSTOS)-----------------------------*/
     public static String C_001_Produccion_Por_Planta2(String mes, Integer anio) {
         return "SELECT  'Costo Mo/Kg Producido' as Indicador,\n"
                 + "SUM( CASE WHEN P.PLANTA='PLANTA RST' THEN P.TotalMO/P.Produccion ELSE 0 END) AS 'RST',\n"

@@ -11,7 +11,7 @@ package Modelo;
  */
 public class Modelo_Indicadores_Inventarios {
 
-    public static String Inventarios_Promedio_Indice(Integer anio, String tipoinv) {
+    public static String Inventarios_tabla_general(Integer anio, String mes) {
         return "SELECT anio, \n"
                 + "( CASE \n"
                 + "WHEN P.tipo='A'\n"
@@ -35,13 +35,20 @@ public class Modelo_Indicadores_Inventarios {
                 + "ELSE ''\n"
                 + "END) AS 'tipo'\n"
                 + ",\n"
-                + "ifnull(" + "indice" + ",0) as indice,\n"
-                + "ifnull((select " + "indice" + " from I_009_Rotacion_Inventarios_Promedio where anio=" + (anio - 1) + " and tipo = P.tipo),0) as 'indice2',\n"
-               
-                + "ifnull(" + "dias" + ",0) as dia,\n"
-                + "ifnull((select " + "dias" + " from I_009_Rotacion_Inventarios_Promedio where anio=" + (anio - 1) + " and tipo = P.tipo),0) as 'dia2'\n"
-                + "FROM INDICADORES.I_009_Rotacion_Inventarios_Promedio P\n"
-                + "WHERE P.anio=" + anio + "; ";
+                + "ifnull(indice,0) as indicea,\n"
+                + "\n"
+                + "ifnull((select indice from I_009_Rotacion_Inventarios_General where anio="+(anio-1)+" and tipo = P.tipo and mes=P.mes),0) as 'indicev',\n"
+                + "\n"
+                + "ifnull((select indice from I_009_Rotacion_Inventarios_Promedio where anio="+(anio-1)+" and tipo = P.tipo),0) as 'indicep',\n"
+                + "\n"
+                + "\n"
+                + "ifnull(dias,0) as diaa,\n"
+                + "ifnull((select dias from I_009_Rotacion_Inventarios_General where anio="+(anio-1)+" and tipo = P.tipo and mes=P.mes),0) as 'diav',\n"
+                + "ifnull((select dias from I_009_Rotacion_Inventarios_Promedio where anio="+(anio-1)+" and tipo = P.tipo),0) as 'diap'\n"
+                + "\n"
+                + "\n"
+                + "FROM INDICADORES.I_009_Rotacion_Inventarios_General P\n"
+                + "WHERE P.anio="+(anio)+" And P.mes="+(mes)+"; ";
     }
 
     public static String I_003_Indicadores_Inventarios_General(Integer anio, String tipo, String valor, String valmaxmin) {
@@ -62,21 +69,21 @@ public class Modelo_Indicadores_Inventarios {
          + "\n"
          + "(SELECT mes from I_009_Rotacion_Inventarios_General\n"
          + "where "+valmaxmin+" in (select max("+valmaxmin+") from I_009_Rotacion_Inventarios_General WHERE Tipo=P.TIPO) \n"
-         + "ORDER BY 1 DESC LIMIT 1) as 'MAYORMES',\n"
+         + "AND Tipo = P.TIPO ORDER BY 1 DESC LIMIT 1) as 'MAYORMES',\n"
          + "\n"
          + "(SELECT ANIO from I_009_Rotacion_Inventarios_General\n"
          + "where "+valmaxmin+" in (select max("+valmaxmin+") from I_009_Rotacion_Inventarios_General WHERE Tipo=P.TIPO ) \n"
-         + "ORDER BY 1 DESC LIMIT 1) as 'MAYORANIO',\n"
+         + "AND Tipo = P.TIPO ORDER BY 1 DESC LIMIT 1) as 'MAYORANIO',\n"
          + "\n"
          + "(select min("+valmaxmin+") from I_009_Rotacion_Inventarios_General WHERE Tipo=P.TIPO) as 'MENOR',\n"
          + "\n"
          + "(SELECT mes from I_009_Rotacion_Inventarios_General\n"
          + "where "+valmaxmin+" in (select min("+valmaxmin+") from I_009_Rotacion_Inventarios_General WHERE Tipo=P.TIPO ) \n"
-         + "ORDER BY 1 ASC LIMIT 1) as 'MENORMES',\n"
+         + "AND Tipo = P.TIPO ORDER BY 1 ASC LIMIT 1) as 'MENORMES',\n"
          + "\n"
          + "(SELECT ANIO from I_009_Rotacion_Inventarios_General\n"
          + "where "+valmaxmin+" in (select min("+valmaxmin+") from I_009_Rotacion_Inventarios_General WHERE Tipo=P.TIPO) \n"
-         + "ORDER BY 1 ASC LIMIT 1) as 'MENORANIO',\n"
+         + "AND Tipo = P.TIPO ORDER BY 1 ASC LIMIT 1) as 'MENORANIO',\n"
          + "\n"
          + "ifnull((SELECT SUM("+valmaxmin+")/COUNT(*) FROM I_009_Rotacion_Inventarios_General WHERE tipo=P.Tipo\n"
          + "AND ANIO="+(anio-1)+"),0) as 'PROMEDIO'\n"
@@ -84,14 +91,10 @@ public class Modelo_Indicadores_Inventarios {
          + "FROM   I_009_Rotacion_Inventarios_General P\n"
          + "where tipo='"+tipo+"'\n"
          + "group by P.mes ";
-
    
     }
       
-    
-    
-        public static String I_003_Indicadores_Inventarios_Planta(Integer anio, String tipo,String valor/*, String mes*/ /*String valmaxmin,String planta*/) {
-
+ public static String I_003_Indicadores_Inventarios_Planta(Integer anio, String tipo,String valor/*, String mes*/ /*String valmaxmin,String planta*/) {
         return "select planta,\n"
                 + "sum(case \n"
                 + "when mes=1 then ifnull("+valor+",0)\n"
@@ -129,14 +132,24 @@ public class Modelo_Indicadores_Inventarios {
                  + "sum(case \n"
                 + "when mes=12 then ifnull("+valor+",0)\n"
                 + "else 0 end) as 'dic'\n"
-                
-                
-                
                 + "\n"
                 + "from I_009_Rotacion_Inventarios_Planta\n"
                 + "where tipo='"+tipo+"' AND ANIO="+anio+"\n"
                 + "GROUP BY planta,anio";
     }
 
-
+       public static String Consulta_Excel_Resumen(Integer anio) {
+        return "SELECT tipo,indice,dias FROM INDICADORES.I_009_Rotacion_Inventarios_Promedio\n"
+                + "WHERE ANIO=" + anio;
+    }
+       
+         public static String Consulta_Excel_Detalle1(Integer anio,String tipo) {
+         return "SELECT mes,indice,dias FROM INDICADORES.I_009_Rotacion_Inventarios_General where anio="+anio+" and tipo = '"+tipo+"';";
+    }
+      
+     public static String Consulta_Excel_Detalle2(Integer anio, String tipo, String planta) {
+        return "SELECT mes,indice,dias,planta FROM INDICADORES.I_009_Rotacion_Inventarios_Planta\n"
+                + "where anio="+anio+"\n"
+                + "and tipo='"+tipo+"' and planta = '"+planta+"' order by mes;";
+    }
 }

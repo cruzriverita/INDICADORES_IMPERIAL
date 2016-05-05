@@ -13,10 +13,12 @@
         String indicador = request.getParameter("indicador");
         String tipo = request.getParameter("tipo2");
         String tipoinv = request.getParameter("tipo");
+        String anio = request.getParameter("anio");
 
         String vindicador = "INDICADOR9";
         String vtipo = "1";
         String vtipoinv = "1";
+        String vanio = "2015";
 
         if (indicador == null) {
 
@@ -36,6 +38,13 @@
         } else {
             vtipoinv = tipoinv;
         }
+        
+        if (anio == null) {
+
+        } else {
+            vanio = anio;
+        }
+        
     %>
 
     <!------------------------------------------JS GOOGLE CHARTS-------------------------------------------> 
@@ -65,7 +74,7 @@
             $('#indicador').val("<%=vindicador%>");
             $('#tipo2').val("<%=vtipo%>");
             $('#tipo').val("<%=vtipoinv%>");
-            $('#anio').val("2015");
+            $('#anio').val("<%=vanio%>");
             GetTituloG3();
             GetSubTituloG3();
 
@@ -129,7 +138,7 @@
                                         GetTituloG3();
                                         GetSubTituloG3();" class="select">
                                     <option value="1">Rotacion Inventarios</option>
-                                    <option value="2">Antiguedad</option>
+                                    <option value="2">Dias Inventario</option>
                                 </select> 
                             </div>
 
@@ -150,13 +159,15 @@
 
                         </div>
                     </div>
+                    
+                    <!--
                     <div class="divboton" id="divb">
                         <input   type="image" style="height:48px;width:48px;"  onmouseover="this.style.background = '#0fa1e0';
                                 ShowDef();" onmouseout="this.style.background = 'white';
                                         HideDef();" src="Images/dd.svg">
                     </div>
                     <div class="DefStyle" id="EmaliographyDef">Descarga</div>
-
+                    -->
 
                 </form> 
 

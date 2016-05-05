@@ -133,14 +133,14 @@
                                         GetTituloG();
                                         GetSubTituloG();" class="select">
                                     
-                                    <option value="ALL">Todas</option>
-                                    <option value="FPS MES">FPS Mensual</option>
+                                    <option value="ALL">Todas Las Plantas</option>
+                                   <!-- <option value="FPS MES">FPS Mensual</option>-->
                                     <option value="PLANTA RST">RST</option> 
                                     <option value="PLANTA RSM O&M">RSM</option> 
                                     <option value="PLANTA RLRS">RLRS</option>  
                                     <option value="PLANTA KNIT">KNIT</option>
                                     <option value="PLANTA DPF">DPF</option> 
-                                    <option value="PLANTA FPS">FPS</option>
+                                   <!-- <option value="PLANTA FPS">FPS</option> -->
 
                                 </select>
                             </div>

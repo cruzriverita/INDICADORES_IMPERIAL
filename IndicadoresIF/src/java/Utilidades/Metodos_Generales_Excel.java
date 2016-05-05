@@ -21,7 +21,7 @@ import jxl.format.BorderLineStyle;
  */
 public class Metodos_Generales_Excel {
 
-    
+        //Formato titulos de celda excel.
         public static WritableCellFormat Formato_headers_Excel(Colour colour_background, WritableFont.FontName font, int size) throws WriteException {
         Border border = Border.ALL;
         BorderLineStyle borderLineStyle = BorderLineStyle.THIN;
@@ -35,7 +35,7 @@ public class Metodos_Generales_Excel {
     }
 
     
-    //Color, fuente y tamaño de fuente 
+    //Formato a las celdas texto. Parametros: Color, fuente y tamaño de fuente 
     public static WritableCellFormat Formato_Cuerpo_Excel(Colour colour_background, WritableFont.FontName font, int size) throws WriteException {
         Border border = Border.ALL;
         BorderLineStyle borderLineStyle = BorderLineStyle.THIN;
@@ -50,7 +50,7 @@ public class Metodos_Generales_Excel {
     
     
     
-
+    //Formato con cuatro decimales
     public static WritableCellFormat FormatoNumericoDecimal(Colour colour_background, WritableFont.FontName font, int size) throws WriteException {
         Border border = Border.ALL;
         BorderLineStyle borderLineStyle = BorderLineStyle.THIN;     
@@ -63,6 +63,20 @@ public class Metodos_Generales_Excel {
         return FormatoDecimal;
     }
     
+    //Formato con dos decimales.
+    public static WritableCellFormat FormatoNumericoDecimal2(Colour colour_background, WritableFont.FontName font, int size) throws WriteException {
+        Border border = Border.ALL;
+        BorderLineStyle borderLineStyle = BorderLineStyle.THIN;     
+        WritableFont fuente = new WritableFont(font, size);
+        NumberFormat decimal = new NumberFormat("#,###.##");
+        WritableCellFormat FormatoDecimal = new WritableCellFormat(decimal);
+        FormatoDecimal.setBorder(border, borderLineStyle);
+        FormatoDecimal.setFont(fuente);
+        FormatoDecimal.setBackground(colour_background);
+        return FormatoDecimal;
+    }
+    
+    //Formato para numeros enteros.
      public static WritableCellFormat FormatoNumericoEntero(Colour colour_background, WritableFont.FontName font, int size) throws WriteException {
         Border border = Border.ALL;
         BorderLineStyle borderLineStyle = BorderLineStyle.THIN;     
@@ -75,6 +89,7 @@ public class Metodos_Generales_Excel {
         return FormatoEntero;
     }
      
+     //Formato % 
        public static WritableCellFormat FormatoNumericoPorcentaje(Colour colour_background, WritableFont.FontName font, int size) throws WriteException {
         Border border = Border.ALL;
         BorderLineStyle borderLineStyle = BorderLineStyle.THIN;     
@@ -87,6 +102,7 @@ public class Metodos_Generales_Excel {
         return FormatoEntero;
     }
     
+       //Formato para titulos de hojas.
      public static WritableCellFormat Titulo () throws WriteException {
         WritableFont cellFont = new WritableFont(WritableFont.ARIAL, 16);
         

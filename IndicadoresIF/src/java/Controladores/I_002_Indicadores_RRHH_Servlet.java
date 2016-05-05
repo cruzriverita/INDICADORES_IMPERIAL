@@ -5,7 +5,6 @@
  */
 package Controladores;
 
-
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -27,7 +26,9 @@ import org.json.JSONObject;
  * @author rcruz
  */
 public class I_002_Indicadores_RRHH_Servlet extends HttpServlet {
+
     Modelo.ConexionBD conexion = new Modelo.ConexionBD();
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -45,7 +46,7 @@ public class I_002_Indicadores_RRHH_Servlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet IndicadoresRRHH_Servlet</title>");            
+            out.println("<title>Servlet IndicadoresRRHH_Servlet</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet IndicadoresRRHH_Servlet at " + request.getContextPath() + "</h1>");
@@ -80,7 +81,7 @@ public class I_002_Indicadores_RRHH_Servlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       
+
         String anio, mes, tipo, indicador;
         List ListaValores = new LinkedList();
         JSONObject responseObj = new JSONObject();
@@ -93,33 +94,35 @@ public class I_002_Indicadores_RRHH_Servlet extends HttpServlet {
         indicador = request.getParameter("indicador");
 
         String sql = "";
-        
-         if ("INDICADOR7".equals(indicador)) {
-            if (tipo.equals("1")) {
-                sql = Modelo.Modelo_IndicadoresRRHH.I_002_IndicadoresRRHH_Consulta(Integer.parseInt(anio), "N","P.No_Empleados","No_Empleados");
-             this.Generales(sql, ListaValores, Obj, responseObj, response);
-            }
-            else {
-                //sql = Modelo_IndicadoresProduccion.I_001_Kilos_Producidos_Hora_Hombre_Detalle(mes, Integer.parseInt(anio), opcion);
-                sql = sql = Modelo.Modelo_IndicadoresRRHH.I_002_IndicadoresRRHH_Consulta(Integer.parseInt(anio), "P","P.No_Empleados","No_Empleados");
-                 this.Generales(sql, ListaValores, Obj, responseObj, response);
-            }
-        } 
-        else if ("INDICADOR8".equals(indicador)) {
-            if (tipo.equals("1")) {
-                sql = Modelo.Modelo_IndicadoresRRHH.I_002_IndicadoresRRHH_Consulta(Integer.parseInt(anio), "N", "P.Devengado/P.No_Empleados", "Devengado/No_Empleados");
-                this.Generales(sql, ListaValores, Obj, responseObj, response);
-            } else {
-                
-                sql = Modelo.Modelo_IndicadoresRRHH.I_002_IndicadoresRRHH_Consulta(Integer.parseInt(anio), "P", "P.Devengado/P.No_Empleados", "Devengado/No_Empleados");
-                this.Generales(sql, ListaValores, Obj, responseObj, response);
+
+        if (null != indicador) {
+            switch (indicador) {
+                case "INDICADOR7":
+                    if (tipo.equals("1")) {
+                        sql = Modelo.Modelo_IndicadoresRRHH.I_002_IndicadoresRRHH_Consulta(Integer.parseInt(anio), "N", "P.No_Empleados", "No_Empleados");
+                        this.Generales(sql, ListaValores, Obj, responseObj, response);
+                    } else {
+                        //sql = Modelo_IndicadoresProduccion.I_001_Kilos_Producidos_Hora_Hombre_Detalle(mes, Integer.parseInt(anio), opcion);
+                        sql = Modelo.Modelo_IndicadoresRRHH.I_002_IndicadoresRRHH_Consulta(Integer.parseInt(anio), "P", "P.No_Empleados", "No_Empleados");
+                        this.Generales(sql, ListaValores, Obj, responseObj, response);
+                    }
+                    break;
+                case "INDICADOR8":
+                    if (tipo.equals("1")) {
+                        sql = Modelo.Modelo_IndicadoresRRHH.I_002_IndicadoresRRHH_Consulta(Integer.parseInt(anio), "N", "P.Devengado/P.No_Empleados", "Devengado/No_Empleados");
+                        this.Generales(sql, ListaValores, Obj, responseObj, response);
+                    } else {
+
+                        sql = Modelo.Modelo_IndicadoresRRHH.I_002_IndicadoresRRHH_Consulta(Integer.parseInt(anio), "P", "P.Devengado/P.No_Empleados", "Devengado/No_Empleados");
+                        this.Generales(sql, ListaValores, Obj, responseObj, response);
+                    }
+                    break;
             }
         }
 
     }
-    
-     public void Generales(String sql, List ListaValores, JSONObject Obj, JSONObject responseObj, HttpServletResponse response) throws IOException {
-        //sql = Modelo_IndicadoresProduccion.I_001_Kilos_Producidos_Hora_Hombre_General(mes, Integer.parseInt(anio));
+
+    public void Generales(String sql, List ListaValores, JSONObject Obj, JSONObject responseObj, HttpServletResponse response) throws IOException {
 
         List<Map<String, Object>> resultList = new ArrayList<>();
         resultList = conexion.select(sql);
@@ -133,11 +136,11 @@ public class I_002_Indicadores_RRHH_Servlet extends HttpServlet {
             Float Cvalor = Float.parseFloat(mapa.get("anio1").toString());
             Float Cvalor2 = Float.parseFloat(mapa.get("anio2").toString());
             Float Cvalor3 = Float.parseFloat(mapa.get("MAYOR").toString());
-             String Cvalor4 = String.valueOf(mapa.get("MAYORMES"));
+            String Cvalor4 = String.valueOf(mapa.get("MAYORMES"));
             Integer Cvalor5 = Integer.parseInt(mapa.get("MAYORANIO").toString());
             Float Cvalor6 = Float.parseFloat(mapa.get("MENOR").toString());
             String Cvalor7 = String.valueOf(mapa.get("MENORMES"));
-            Integer Cvalor8 = Integer.parseInt(mapa.get("MENORANIO").toString());           
+            Integer Cvalor8 = Integer.parseInt(mapa.get("MENORANIO").toString());
             Float Cvalor9 = Float.parseFloat(mapa.get("PROMEDIO").toString());
 
             Obj = new JSONObject();

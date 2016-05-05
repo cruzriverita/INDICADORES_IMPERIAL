@@ -8,7 +8,6 @@ package Controladores;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -93,29 +92,30 @@ public class I_003_Indicadores_Inventarios_Servlet extends HttpServlet {
         tipo = request.getParameter("tipojs");
         indicador = request.getParameter("indicador");
 
-        String sql = "";
+        String sql ;
         
-        if ("INDICADOR9".equals(indicador)) {
-            if (tipo.equals("1")) {            
-                sql = Modelo.Modelo_Indicadores_Inventarios.I_003_Indicadores_Inventarios_General(Integer.parseInt(anio), this.GetArticulo(articulo), "P.indice", "indice");
-                this.Generales(sql, ListaValores, Obj, responseObj, response);
-            }
-            
-            else {
-                sql = Modelo.Modelo_Indicadores_Inventarios.I_003_Indicadores_Inventarios_General(Integer.parseInt(anio), this.GetArticulo(articulo), "P.dias", "dias");
-                this.Generales(sql, ListaValores, Obj, responseObj, response);
-            }
-        } 
-        else if ("INDICADOR10".equals(indicador)) {
-            if (tipo.equals("1")) {
-                sql = Modelo.Modelo_IndicadoresRRHH.I_002_IndicadoresRRHH_Consulta(Integer.parseInt(anio), "N", "P.Devengado/P.No_Empleados", "Devengado/No_Empleados");
-                this.Generales(sql, ListaValores, Obj, responseObj, response);
-            } else {
-                
-                sql = Modelo.Modelo_IndicadoresRRHH.I_002_IndicadoresRRHH_Consulta(Integer.parseInt(anio), "P", "P.Devengado/P.No_Empleados", "Devengado/No_Empleados");
-                this.Generales(sql, ListaValores, Obj, responseObj, response);
-            }
-        }
+        if (null != indicador) switch (indicador) {
+         case "INDICADOR9":
+             if (tipo.equals("1")) {
+                 sql = Modelo.Modelo_Indicadores_Inventarios.I_003_Indicadores_Inventarios_General(Integer.parseInt(anio), this.GetArticulo(articulo), "P.indice", "indice");
+                 this.Generales(sql, ListaValores, Obj, responseObj, response);
+             }
+             
+             else {
+                 sql = Modelo.Modelo_Indicadores_Inventarios.I_003_Indicadores_Inventarios_General(Integer.parseInt(anio), this.GetArticulo(articulo), "P.dias", "dias");
+                 this.Generales(sql, ListaValores, Obj, responseObj, response);
+             }break;
+         case "INDICADOR10":
+             if (tipo.equals("1")) {
+                 sql = Modelo.Modelo_IndicadoresRRHH.I_002_IndicadoresRRHH_Consulta(Integer.parseInt(anio), "N", "P.Devengado/P.No_Empleados", "Devengado/No_Empleados");
+                 this.Generales(sql, ListaValores, Obj, responseObj, response);
+             } else {
+                 
+                 sql = Modelo.Modelo_IndicadoresRRHH.I_002_IndicadoresRRHH_Consulta(Integer.parseInt(anio), "P", "P.Devengado/P.No_Empleados", "Devengado/No_Empleados");
+                 this.Generales(sql, ListaValores, Obj, responseObj, response);
+             }
+             break;
+     }
 
     }
     
@@ -127,7 +127,7 @@ public class I_003_Indicadores_Inventarios_Servlet extends HttpServlet {
          String menormes="";
          Integer mayoranio=0;
          Integer menoranio=0;
-        List<Map<String, Object>> resultList = new ArrayList<>();
+        List<Map<String, Object>> resultList;
         resultList = conexion.select(sql);
 
         Iterator<Map<String, Object>> iterador = resultList.iterator();
@@ -192,21 +192,22 @@ public class I_003_Indicadores_Inventarios_Servlet extends HttpServlet {
     }
      
     public String GetArticulo(String valor_Select) {
-        if (valor_Select.equals("1")) {
-            return "A";
-        } else if (valor_Select.equals("2")) {
-            return "PF";
-        } else if (valor_Select.equals("3")) {
-            return "HP";
-        } else if (valor_Select.equals("4")) {
-            return "HC";
-        } else if (valor_Select.equals("5")) {
-            return "TC";
-        } else if (valor_Select.equals("6")) {
-            return "TT";
-        } else {
-            return "";
-        }
+     switch (valor_Select) {
+         case "1":
+             return "A";
+         case "2":
+             return "PF";
+         case "3":
+             return "HP";
+         case "4":
+             return "HC";
+         case "5":
+             return "TC";
+         case "6":
+             return "TT";
+         default:
+             return "";
+     }
      
      }
 

@@ -266,7 +266,7 @@ function GetTituloDPFEje() {
 
 
 
-
+//Obtener el titulo de las graficas de produccion.
 function GetTituloG() {
     var e = document.getElementById("indicador").value;
 
@@ -331,14 +331,14 @@ function GetTituloG() {
     }
 }
 
-
+//Obtener subtitulo para las graficas de produccion.
 function GetSubTituloG() {
     var mes = document.getElementById("mes").value;
     var anio = document.getElementById("anio").value;
     document.getElementById('subtitulo').innerHTML = get_nombre_mes(parseInt(mes)) + " " + anio;
 }
 
-
+//Devolver el nombre del mes recibe un string.
 function get_nombre_mes(mes) {
     var nmes = "";
     if (mes === 1) {
@@ -380,11 +380,13 @@ function get_nombre_mes(mes) {
     return nmes;
 }
 
+//Grosor de la linea para las graficas lineales.
 function tamalinea()
 {
     return 5;
 }
 
+//tamaño de los puntos en la grafica lineal.
 function tamapunto()
 {
     return 9;
@@ -404,7 +406,7 @@ function DevolverNull(valor)
     }
 }
 
-
+//Mostrar/esconder leyenda "Descargar" en el evento MOUSEOVER del boton.
 function ShowDef()
 {
     document.getElementById("EmaliographyDef").style.display = "block";

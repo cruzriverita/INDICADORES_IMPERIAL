@@ -89,8 +89,10 @@ public class I_002_Indicadores_RRHH_XLS extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
         anio = request.getParameter("anio");
         tipo = request.getParameter("tipo");
+        indicador= request.getParameter("indicador");
         
         OutputStream out = null;
 
@@ -148,7 +150,7 @@ public class I_002_Indicadores_RRHH_XLS extends HttpServlet {
 
             }
 
-            Label Titulo = new Label(0, 0, "INDICADORES RRHH", Metodos_Generales_Excel.Titulo());
+            Label Titulo = new Label(0, 0, GetTituloHoja(tipo), Metodos_Generales_Excel.Titulo());
             s.addCell(Titulo);
             s.mergeCells(0, 0, 8, 0);
             //altura de la fila, en este caso la fila 0
@@ -278,4 +280,18 @@ public class I_002_Indicadores_RRHH_XLS extends HttpServlet {
             return "Catorcena";
         }
     }
+    
+    public String GetTituloHoja(String tipo) {
+        if (tipo.equals("N")) {
+            /*if (indicador.equals("INDICADOR7")) {
+                return "Cantidad Empleados Nomina";
+            } else {
+                return "Promedio Devengado Nomina";
+            }*/
+            return "Comparativo Nominas";
+        } else {
+            return "Comparativo Planillas";
+        }
+    }
+
 }

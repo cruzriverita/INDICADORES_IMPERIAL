@@ -30,7 +30,7 @@ function DibujarChartPrincipal() {
                     data.addColumn('number', x - 1); //año anterior  
                     data.addColumn('number', 'Mayor historico');
                     data.addColumn('number', x);   //año actual  
-                    data.addColumn('number', 'promedio');
+                    data.addColumn('number', 'Promedio '+ (x-1));
                     data.addColumn('number', 'Menor historico');
 
                     for (var i = 0; i < queryObjectLen; i++)
@@ -188,7 +188,7 @@ function DibujarChartPrincipal() {
             });
 }
 
-
+//Obtener titulo para las graficas de RRHH
 function GetTituloG2() {
     var e = document.getElementById("indicador").value;
 

@@ -85,7 +85,7 @@ public class C_003_Indicadores_Inventarios_Servlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        String anio, opcion;
+        String anio, mes;
         List ListaValores = new LinkedList();
         JSONObject responseObj = new JSONObject();
         JSONObject Obj = null;
@@ -93,15 +93,16 @@ public class C_003_Indicadores_Inventarios_Servlet extends HttpServlet {
         //Recuperar valores enviados desde el javascript.
        // opcion = request.getParameter("opcionjs");
         anio = request.getParameter("aniojs");
-        String sql = "";
-        sql = Modelo_Indicadores_Inventarios.Inventarios_Promedio_Indice(Integer.parseInt(anio),"indice");
+        mes=request.getParameter("mesjs");
+        String sql;
+        sql = Modelo_Indicadores_Inventarios.Inventarios_tabla_general(Integer.parseInt(anio),mes);
 
         /*if (opcion.equals("1")){
-        sql = Modelo_Indicadores_Inventarios.Inventarios_Promedio_Indice(Integer.parseInt(anio),"indice");
+        sql = Modelo_Indicadores_Inventarios.Inventarios_tabla_general(Integer.parseInt(anio),"indice");
         }
         else
         {
-            sql = Modelo_Indicadores_Inventarios.Inventarios_Promedio_Indice(Integer.parseInt(anio),"dias");
+            sql = Modelo_Indicadores_Inventarios.Inventarios_tabla_general(Integer.parseInt(anio),"dias");
         }
         */
         List<Map<String, Object>> resultList = new ArrayList<>();
@@ -112,15 +113,20 @@ public class C_003_Indicadores_Inventarios_Servlet extends HttpServlet {
             Map<String, Object> mapa = iterador.next();
 
             String tipo = (String) mapa.get("tipo");
-            Float Cvalor1 = Float.parseFloat(mapa.get("indice").toString());
-            Float Cvalor2 = Float.parseFloat(mapa.get("indice2").toString());
-            Float Cvalor3 = Float.parseFloat(mapa.get("dia").toString());
-            Float Cvalor4 = Float.parseFloat(mapa.get("dia2").toString());
+            Float Cvalor1 = Float.parseFloat(mapa.get("indicea").toString());
+            Float Cvalor2 = Float.parseFloat(mapa.get("indicev").toString());
+            Float Cvalor3 = Float.parseFloat(mapa.get("indicep").toString());
+            
+            Float Cvalor4 = Float.parseFloat(mapa.get("diaa").toString());
+            Float Cvalor5 = Float.parseFloat(mapa.get("diav").toString());
+            Float Cvalor6 = Float.parseFloat(mapa.get("diap").toString());
 
             Cvalor1 = Utilidades.MetodosGlobales.redondear(Cvalor1, 2);
             Cvalor2 = Utilidades.MetodosGlobales.redondear(Cvalor2, 2);
             Cvalor3 = Utilidades.MetodosGlobales.redondear(Cvalor3, 2);
             Cvalor4 = Utilidades.MetodosGlobales.redondear(Cvalor4, 2);
+            Cvalor5 = Utilidades.MetodosGlobales.redondear(Cvalor5, 2);
+            Cvalor6 = Utilidades.MetodosGlobales.redondear(Cvalor6, 2);
             
             Obj = new JSONObject();
 
@@ -130,6 +136,8 @@ public class C_003_Indicadores_Inventarios_Servlet extends HttpServlet {
                 Obj.put("valor2", Cvalor2);
                 Obj.put("valor3", Cvalor3);
                 Obj.put("valor4", Cvalor4);
+                Obj.put("valor5", Cvalor5);
+                Obj.put("valor6", Cvalor6);
 
                 ListaValores.add(Obj);
                 responseObj.put("ListaValores", ListaValores);

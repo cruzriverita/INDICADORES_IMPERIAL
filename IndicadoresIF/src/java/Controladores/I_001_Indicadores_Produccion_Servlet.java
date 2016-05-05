@@ -8,7 +8,6 @@ package Controladores;
 import Modelo.Modelo_IndicadoresProduccion;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -93,88 +92,112 @@ public class I_001_Indicadores_Produccion_Servlet extends HttpServlet {
         opcion = request.getParameter("opcion");
         indicador = request.getParameter("indicador");
 
-        String sql = "";
+        String sql;
 
-        if ("INDICADOR1".equals(indicador)) {
-            if (opcion.equals("ALL")) {
-                sql = Modelo_IndicadoresProduccion.I_001_Kilos_Producidos_Hora_Hombre_General(mes, Integer.parseInt(anio), "<>","I_001_KilosProducidosHoraHombre","I_001_KilosProducidosHoraHombreP","P.VALOR","VALOR","max","DESC");
-                this.Generales(sql, ListaValores, Obj, responseObj, response);
-            } else if (opcion.equals("FPS MES")) {
-                sql = Modelo_IndicadoresProduccion.I_001_Kilos_Producidos_Hora_Hombre_General(mes, Integer.parseInt(anio), "=","I_001_KilosProducidosHoraHombre","I_001_KilosProducidosHoraHombreP","P.VALOR","VALOR","max","DESC");
-                this.Generales(sql, ListaValores, Obj, responseObj, response);
-            } else {
-                //sql = Modelo_IndicadoresProduccion.I_001_Kilos_Producidos_Hora_Hombre_Detalle(mes, Integer.parseInt(anio), opcion);
-                sql = Modelo_IndicadoresProduccion.IndicadoresProduccion_Consulta_Por_Planta_Lineal(opcion, Integer.parseInt(anio), "I_001_KilosProducidosHoraHombre", "I_001_KilosProducidosHoraHombreP", "P.VALOR", "VALOR", "DESC");
-                this.Especifico(sql, ListaValores, Obj, responseObj, response);
-            }
-        } else if ("INDICADOR2".equals(indicador)) {
-            if (opcion.equals("ALL")) {
+        if (null != indicador) switch (indicador) {
+            case "INDICADOR1":
+                if (opcion.equals("ALL")) {
+                    sql = Modelo_IndicadoresProduccion.I_001_Kilos_Producidos_Hora_Hombre_General(mes, Integer.parseInt(anio), "<>","I_001_KilosProducidosHoraHombre","I_001_KilosProducidosHoraHombreP","P.VALOR","VALOR","max","DESC");
+                    this.Generales(sql, ListaValores, Obj, responseObj, response);
+                } else if (opcion.equals("FPS MES")) {
+                    sql = Modelo_IndicadoresProduccion.I_001_Kilos_Producidos_Hora_Hombre_General(mes, Integer.parseInt(anio), "=","I_001_KilosProducidosHoraHombre","I_001_KilosProducidosHoraHombreP","P.VALOR","VALOR","max","DESC");
+                    this.Generales(sql, ListaValores, Obj, responseObj, response);
+                } else {
+                    //sql = Modelo_IndicadoresProduccion.I_001_Kilos_Producidos_Hora_Hombre_Detalle(mes, Integer.parseInt(anio), opcion);
+                    sql = Modelo_IndicadoresProduccion.IndicadoresProduccion_Consulta_Por_Planta_Lineal(opcion, Integer.parseInt(anio), "I_001_KilosProducidosHoraHombre", "I_001_KilosProducidosHoraHombreP", "P.VALOR", "VALOR", "DESC");
+                    this.Especifico(sql, ListaValores, Obj, responseObj, response);
+                }   break;
+            case "INDICADOR2":
+        switch (opcion) {
+            case "ALL":
                 //sql = Modelo_IndicadoresProduccion.I_002_Kg_Producidos_Kwh_General(mes, Integer.parseInt(anio), "<>");
                 sql = Modelo_IndicadoresProduccion.I_001_Kilos_Producidos_Hora_Hombre_General(mes, Integer.parseInt(anio), "<>","I_002_KgProducidosKwh","I_002_KgProducidosKwhP","P.Kg/P.Kwh","Kg/Kwh","max","DESC");
                 this.Generales(sql, ListaValores, Obj, responseObj, response);
-            } else if (opcion.equals("FPS MES")) {
-               sql = Modelo_IndicadoresProduccion.I_001_Kilos_Producidos_Hora_Hombre_General(mes, Integer.parseInt(anio), "=","I_002_KgProducidosKwh","I_002_KgProducidosKwhP","P.Kg/P.Kwh","Kg/Kwh","max","DESC");
+                break;
+            case "FPS MES":
+                sql = Modelo_IndicadoresProduccion.I_001_Kilos_Producidos_Hora_Hombre_General(mes, Integer.parseInt(anio), "=","I_002_KgProducidosKwh","I_002_KgProducidosKwhP","P.Kg/P.Kwh","Kg/Kwh","max","DESC");
                 this.Generales(sql, ListaValores, Obj, responseObj, response);
-            } else {
+                break;
+            default:
                 //sql = Modelo_IndicadoresProduccion.I_001_Kilos_Producidos_Hora_Hombre_Detalle(mes, Integer.parseInt(anio), opcion);
                 //sql = Modelo_IndicadoresProduccion.I_002_Kg_Producidos_Kwh_Planta(opcion, Integer.parseInt(anio));
                 sql = Modelo_IndicadoresProduccion.IndicadoresProduccion_Consulta_Por_Planta_Lineal(opcion, Integer.parseInt(anio), "I_002_KgProducidosKwh", "I_002_KgProducidosKwhP", "P.Kg/P.Kwh", "Kg/Kwh", "DESC");
                 this.Especifico(sql, ListaValores, Obj, responseObj, response);
-            }
-        } else if ("INDICADOR3".equals(indicador)) {
-            if (opcion.equals("ALL")) {
+                break;
+        }
+break;
+            case "INDICADOR3":
+        switch (opcion) {
+            case "ALL":
                 //sql = Modelo_IndicadoresProduccion.I_003_Kg_Producidos_Mrs_General(mes, Integer.parseInt(anio), "<>");
                 sql = Modelo_IndicadoresProduccion.I_001_Kilos_Producidos_Hora_Hombre_General(mes, Integer.parseInt(anio), "<>","I_003_Kgproducidos_MRS","I_003_Kgproducidos_MRSP","P.Kg/P.Mrs","Kg/Mrs","max","DESC");
                 this.Generales(sql, ListaValores, Obj, responseObj, response);
-            } else if (opcion.equals("FPS MES")) {
+                break;
+            case "FPS MES":
                 //sql = Modelo_IndicadoresProduccion.I_003_Kg_Producidos_Mrs_General(mes, Integer.parseInt(anio), "=");
                 sql = Modelo_IndicadoresProduccion.I_001_Kilos_Producidos_Hora_Hombre_General(mes, Integer.parseInt(anio), "=","I_003_Kgproducidos_MRS","I_003_Kgproducidos_MRSP","P.Kg/P.Mrs","Kg/Mrs","max","DESC");
                 this.Generales(sql, ListaValores, Obj, responseObj, response);
-            } else {
+                break;
+            default:
                 //sql = Modelo_IndicadoresProduccion.I_001_Kilos_Producidos_Hora_Hombre_Detalle(mes, Integer.parseInt(anio), opcion);
                 sql = Modelo_IndicadoresProduccion.IndicadoresProduccion_Consulta_Por_Planta_Lineal(opcion, Integer.parseInt(anio), "I_003_Kgproducidos_MRS", "I_003_Kgproducidos_MRSP", "P.Kg/P.Mrs", "Kg/Mrs", "DESC");
                 this.Especifico(sql, ListaValores, Obj, responseObj, response);
-            }
-        } else if ("INDICADOR4".equals(indicador)) {
-            if (opcion.equals("ALL")) {
+                break;
+        }
+break;
+            case "INDICADOR4":
+        switch (opcion) {
+            case "ALL":
                 //sql = Modelo_IndicadoresProduccion.I_004_CostoMO_Kg_Producido_General(mes, Integer.parseInt(anio), "<>");
                 sql = Modelo_IndicadoresProduccion.I_001_Kilos_Producidos_Hora_Hombre_General(mes, Integer.parseInt(anio), "<>","I_004_CostoMoKgProducido","I_004_CostoMoKgProducidoP","P.VALOR","VALOR","min","ASC");
                 this.Generales(sql, ListaValores, Obj, responseObj, response);
-            } else if (opcion.equals("FPS MES")) {
-               sql = Modelo_IndicadoresProduccion.I_001_Kilos_Producidos_Hora_Hombre_General(mes, Integer.parseInt(anio), "=","I_004_CostoMoKgProducido","I_004_CostoMoKgProducidoP","P.VALOR","VALOR","min","ASC");
+                break;
+            case "FPS MES":
+                sql = Modelo_IndicadoresProduccion.I_001_Kilos_Producidos_Hora_Hombre_General(mes, Integer.parseInt(anio), "=","I_004_CostoMoKgProducido","I_004_CostoMoKgProducidoP","P.VALOR","VALOR","min","ASC");
                 this.Generales(sql, ListaValores, Obj, responseObj, response);
-            } else {
-
+                break;
+            default:
                 sql = Modelo_IndicadoresProduccion.IndicadoresProduccion_Consulta_Por_Planta_Lineal(opcion, Integer.parseInt(anio), "I_004_CostoMoKgProducido", "I_004_CostoMoKgProducidoP", "P.VALOR", "VALOR", "ASC");
-
                 this.Especifico(sql, ListaValores, Obj, responseObj, response);
-            }
-        } else if ("INDICADOR5".equals(indicador)) {
-            if (opcion.equals("ALL")) {
+                break;
+        }
+break;
+            case "INDICADOR5":
+        switch (opcion) {
+            case "ALL":
                 //sql = Modelo_IndicadoresProduccion.I_005_CostoKWH_Kg_Producido_General(mes, Integer.parseInt(anio), "<>");
                 sql = Modelo_IndicadoresProduccion.I_001_Kilos_Producidos_Hora_Hombre_General(mes, Integer.parseInt(anio), "<>","I_002_KgProducidosKwh","I_005_CostoKwh_KgProducidoP","P.QKwh/P.Kg","QKwh/Kg","min","ASC");
                 this.Generales(sql, ListaValores, Obj, responseObj, response);
-            } else if (opcion.equals("FPS MES")) {
+                break;
+            case "FPS MES":
                 //sql = Modelo_IndicadoresProduccion.I_005_CostoKWH_Kg_Producido_General(mes, Integer.parseInt(anio), "=");
                 sql = Modelo_IndicadoresProduccion.I_001_Kilos_Producidos_Hora_Hombre_General(mes, Integer.parseInt(anio), "=","I_002_KgProducidosKwh","I_005_CostoKwh_KgProducidoP","P.QKwh/P.Kg","QKwh/Kg","min","ASC");
                 this.Generales(sql, ListaValores, Obj, responseObj, response);
-            } else {
+                break;
+            default:
                 //sql = Modelo_IndicadoresProduccion.I_001_Kilos_Producidos_Hora_Hombre_Detalle(mes, Integer.parseInt(anio), opcion);
-              sql = Modelo_IndicadoresProduccion.IndicadoresProduccion_Consulta_Por_Planta_Lineal(opcion, Integer.parseInt(anio), "I_002_KgProducidosKwh", "I_005_CostoKwh_KgProducidoP", "P.QKwh/P.Kg", "QKwh/Kg", "ASC");
+                sql = Modelo_IndicadoresProduccion.IndicadoresProduccion_Consulta_Por_Planta_Lineal(opcion, Integer.parseInt(anio), "I_002_KgProducidosKwh", "I_005_CostoKwh_KgProducidoP", "P.QKwh/P.Kg", "QKwh/Kg", "ASC");
                 this.Especifico(sql, ListaValores, Obj, responseObj, response);
-            }
-        } else if ("INDICADOR6".equals(indicador)) {
-            if (opcion.equals("ALL")) {
+                break;
+        }
+break;
+            case "INDICADOR6":
+        switch (opcion) {
+            case "ALL":
                 //sql = Modelo_IndicadoresProduccion.I_006_Mrs_Kg_Producidos_General(mes, Integer.parseInt(anio), "<>");
                 sql = Modelo_IndicadoresProduccion.I_001_Kilos_Producidos_Hora_Hombre_General(mes, Integer.parseInt(anio), "<>","I_003_Kgproducidos_MRS","I_006_MRS_KgproducidosP","P.Mrs/P.Kg","Mrs/Kg","min","ASC");
                 this.Generales(sql, ListaValores, Obj, responseObj, response);
-            } else if (opcion.equals("FPS MES")) {
+                break;
+            case "FPS MES":
                 sql = Modelo_IndicadoresProduccion.I_001_Kilos_Producidos_Hora_Hombre_General(mes, Integer.parseInt(anio), "=","I_003_Kgproducidos_MRS","I_006_MRS_KgproducidosP","P.Mrs/P.Kg","Mrs/Kg","min","ASC");
                 this.Generales(sql, ListaValores, Obj, responseObj, response);
-            } else {
+                break;
+            default:
                 sql = Modelo_IndicadoresProduccion.IndicadoresProduccion_Consulta_Por_Planta_Lineal(opcion, Integer.parseInt(anio), "I_003_Kgproducidos_MRS", "I_006_MRS_KgproducidosP", "P.Mrs/P.Kg", "Mrs/Kg", "ASC");
                 this.Especifico(sql, ListaValores, Obj, responseObj, response);
-            }
+                break;
+        }
+break;
         }
 
     }//fin response
@@ -182,7 +205,7 @@ public class I_001_Indicadores_Produccion_Servlet extends HttpServlet {
     public void Generales(String sql, List ListaValores, JSONObject Obj, JSONObject responseObj, HttpServletResponse response) throws IOException {
         //sql = Modelo_IndicadoresProduccion.I_001_Kilos_Producidos_Hora_Hombre_General(mes, Integer.parseInt(anio));
 
-        List<Map<String, Object>> resultList = new ArrayList<>();
+        List<Map<String, Object>> resultList;
         resultList = conexion.select(sql);
 
         Iterator<Map<String, Object>> iterador = resultList.iterator();
@@ -226,7 +249,7 @@ public class I_001_Indicadores_Produccion_Servlet extends HttpServlet {
 
     public void Especifico(String sql, List ListaValores, JSONObject Obj, JSONObject responseObj, HttpServletResponse response) throws IOException {
 
-        List<Map<String, Object>> resultList = new ArrayList<>();
+        List<Map<String, Object>> resultList ;
         resultList = conexion.select(sql);
 
         Iterator<Map<String, Object>> iterador = resultList.iterator();

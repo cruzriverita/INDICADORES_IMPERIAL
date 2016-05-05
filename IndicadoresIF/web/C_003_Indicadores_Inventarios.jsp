@@ -16,7 +16,7 @@
 
     <script type="text/javascript">
         $(document).ready(function () {
-           // $('#opciones').val("1");
+            // $('#opciones').val("1");
             $('#anio').val("2015");
         });
     </script> 
@@ -39,10 +39,14 @@
             <div class="DivWithScroll">
 
 
-                <form method="get" action="C_001_Produccion_Por_Planta_XLS" class="formulario">
+                <form method="get" action="C_003_Indicadores_Inventarios_XLS" class="formulario">
 
                     <div style="float: left; width: 70%;">
                         <div>
+
+                            <div class="divtexto" id="divlblmes">
+                                <input id="lblmes" name="lblmes" onkeypress="" value="Mes" disabled="true" class="texto" type="text"> 
+                            </div>
 
                             <div class="divtexto">
                                 <input id="lbla" name="lbla" onkeypress="" value="Año" disabled="true" class="texto" type="text"> 
@@ -63,30 +67,51 @@
 
                             </div>
 
+                            <div class="divselect" id="divselectmes">
+                                <select id="mes" name="mes" onchange="DibujarTabla()" class="select">
+                                    <option value="1">Enero</option>
+                                    <option value="2">Febrero</option>
+                                    <option value="3">Marzo</option>
+                                    <option value="4">Abril</option>      
+                                    <option value="5">Mayo</option>
+                                    <option value="6">Junio</option>   
+                                    <option value="7">Julio</option>
+                                    <option value="8">Agosto</option> 
+                                    <option value="9">Septiembre</option>  
+                                    <option value="10">Octubre</option>  
+                                    <option value="11">Noviembre</option>  
+                                    <option value="12">Diciembre</option>  
+                                </select>
+                            </div>
+
 
                         </div>
 
                     </div>
-                                   <div class="divboton" id="divb">
-                                    <input   type="image" style="height:48px;width:48px;"  onmouseover="this.style.background='#0fa1e0'; ShowDef();" onmouseout="this.style.background='white'; HideDef();" src="Images/dd.svg">
-                                </div>
+                    <div class="divboton" id="divb">
+                        <input   type="image" style="height:48px;width:48px;"  onmouseover="this.style.background = '#0fa1e0';
+                                ShowDef();" onmouseout="this.style.background = 'white';
+                                        HideDef();" src="Images/dd.svg">
+                    </div>
 
-                                <div class="DefStyle" id="EmaliographyDef">Descargar</div>
+                    <div class="DefStyle" id="EmaliographyDef">Descargar</div>
 
                 </form> 
 
                 <br>
 
-                <CENTER>
+                <center>
                     <h2>Rotacion De Inventarios</h2>
-                    <div id="table">
-                    </div>
-                </CENTER>
+                </center>
+                <br>
+                <div id="table" style="width: 130%;padding-left: 15%">
+                </div>
+
 
                 <center>
                     <div> 
-                        <p>*En color verde se muestran los valores mayores al promedio<br/>
-                         *En color rojo se muestran los valores menores al promedio</p>
+                        <p>*Para la columna  "Indice del mes" en color verde se muestran los valores mayores al promedio y en rojo los menores.<br/>
+                            *Para la columna "Dias de inventario" en color verde se muestran los valores menores al promedio y en rojo los mayores.</p>
                     </div>
                 </center>
             </div>

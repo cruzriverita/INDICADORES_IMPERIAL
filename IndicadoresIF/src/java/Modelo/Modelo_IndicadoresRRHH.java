@@ -11,7 +11,7 @@ package Modelo;
  */
 public class Modelo_IndicadoresRRHH {
 
-    //valor, valmaxmin
+ 
     public static String I_002_IndicadoresRRHH_Consulta(Integer anio, String tipo,String valor, String valmaxmin) {
         return "SELECT P.periodo,\n"
                 + "SUM( CASE \n"

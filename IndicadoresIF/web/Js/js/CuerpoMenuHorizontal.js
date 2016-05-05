@@ -33,7 +33,7 @@ lines += '            </ul>';
 lines += '            </li>';
 
 /***************************************************RRHH********************************************/
-lines += '            <li class=\'active has-sub\'><a href=\'#\'><span>RRHH</span></a>';
+lines += '            <li class=\'active has-sub\'><a href=\'I_002_Indicadores_RRHH.jsp?indicador=INDICADOR7\'><span>RRHH</span></a>';
 lines += '              <ul>';
 
 lines += '            <li class=\'has-sub\'><a href=\'I_002_Indicadores_RRHH.jsp?indicador=INDICADOR7\'><span>Cantidad de Empleados</span></a>';
@@ -181,7 +181,7 @@ lines += '            </li>';
 
 /********************************************SEGURIDAD INDUSTRIAL********************************************/
 
-lines += '            <li class=\'active has-sub\'><a href=\'#\'><span>SEGURIDAD INDUSTRIAL</span></a>';
+lines += '              <li class=\'active has-sub\'><a href=\'#\'><span>SEGURIDAD INDUSTRIAL</span></a>';
 lines += '              <ul>';
 
 lines += '            <li class=\'has-sub\'><a href=\'#\'><span>Incidentes Por Mes</span></a>';

@@ -16,8 +16,7 @@ function DibujarTabla() {
                 },
                 dataType: "json", //Se reciben los datos en formato JSON                
                 success: function (data_) {
-                    if ($('#opciones option:selected').val() === "ALL")
-                    {
+
                         queryObject = eval('(' + JSON.stringify(data_) + ')');
                         queryObjectLen = queryObject.ListaValores.length;
                         var data = new google.visualization.DataTable();
@@ -42,12 +41,10 @@ function DibujarTabla() {
                             var a6 = queryObject.ListaValores[i].valor6;
                             var a7 = queryObject.ListaValores[i].valor7;
                             var a8 = queryObject.ListaValores[i].valor8;
-                            //var a9 = queryObject.ListaValores[i].valor9;
-                            //var a10 = queryObject.ListaValores[i].valor10;
                             var a11 = queryObject.ListaValores[i].valor11;
                             var a12 = queryObject.ListaValores[i].valor12;
 
-                            //Agregar 
+                            //Agregar nombre del indicador.
                             data.setCell(i, 0, indicador);
 
                             //Comparar promedio vs valor actual para elegir color de la celda
@@ -71,11 +68,6 @@ function DibujarTabla() {
                             } else {
                                 data.setCell(i, 4, parseFloat(a7), a7, {'className': 'green-background'});
                             }
-                            /*if (a10 > a9) {
-                             data.setCell(i, 5, parseFloat(a9), a9, {'className': 'red-background'});
-                             } else {
-                             data.setCell(i, 5, parseFloat(a9), a9, {'className': 'green-background'});
-                             }*/
                             if (a12 > a11) {
                                 data.setCell(i, 5, parseFloat(a11), a11, {'className': 'red-background'});
                             } else {
@@ -116,80 +108,6 @@ function DibujarTabla() {
                             ColorOriginalCelda(this, 'table');
                         });
 
-                    }
-
-                    /*---------------------solo FPS-----------------*/
-                    else
-                    {
-                        queryObject = eval('(' + JSON.stringify(data_) + ')');
-                        queryObjectLen = queryObject.ListaValores.length;
-                        var data = new google.visualization.DataTable();
-
-                        data.addColumn('string', 'INDICADOR');
-
-                        data.addColumn('number', 'FPS');
-
-
-                        data.addRows(queryObjectLen);
-                        for (var i = 0; i < queryObjectLen; i++)
-                        {
-                            var indicador = queryObject.ListaValores[i].indicador;
-                            var nindicador = indicador.replace("Kg", "Docenas");
-                            nindicador = nindicador.replace("Producidos", "Producidas");
-
-
-                            var a9 = queryObject.ListaValores[i].valor9;
-                            var a10 = queryObject.ListaValores[i].valor10;
-
-                            //Agregar 
-                            data.setCell(i, 0, nindicador);
-
-                            //Comparar promedio vs valor actual para elegir color de la celda
-
-                            if (a10 > a9) {
-                                data.setCell(i, 1, parseFloat(a9), a9, {'className': 'red-background'});
-                            } else {
-                                data.setCell(i, 1, parseFloat(a9), a9, {'className': 'green-background'});
-                            }
-
-                        }
-
-
-
-                        //Opciones Css de la tabla
-                        var cssClassNames = {
-                            'headerRow': 'large-font bold-font',
-                            'tableRow': '',
-                            //'oddTableRow': 'beige-background',
-                            //'selectedTableRow': 'orange-background large-font',
-                            //'hoverTableRow': '',
-                            'headerCell': 'gold-border',
-                            'tableCell': '',
-                            'rowNumberCell': 'black-font'};
-
-                        var options = {'showRowNumber': true, 'allowHtml': false, 'cssClassNames': cssClassNames, width: '50%', height: '100%'};
-                        var table = new google.visualization.Table(document.getElementById('table'));
-                        table.draw(data, options);
-
-                        //Redirecciona dependiendo de la celda a la que se le da click.
-                        $("#table table tbody tr td").click(function () {
-                            RedireccionarFPS(this, 'table');
-                        });
-
-                        //Cambiar color al estar sobre la celda
-                        $("#table table tbody tr td").mouseover(function () {
-                            CambiarColorCelda(this, 'table');
-                        });
-
-                        //Regresar al color original la celda
-                        $("#table table tbody tr td").mouseout(function () {
-                            ColorOriginalCelda(this, 'table');
-                        });
-
-                    }
-
-
-
                 },
                 error: function () {
                     /*Solo se mostrara el mensaje en una de las dos tablas para evitar doble mensaje de error*/
@@ -212,8 +130,6 @@ function DibujarTabla() {
                 dataType: "json", //Se reciben los datos en formato JSON                
                 success: function (data_) {
 
-                    if ($('#opciones option:selected').val() === "ALL")
-                    {
                         queryObject = eval('(' + JSON.stringify(data_) + ')');
                         queryObjectLen = queryObject.ListaValores.length;
                         var data = new google.visualization.DataTable();
@@ -237,14 +153,9 @@ function DibujarTabla() {
                             var a6 = queryObject.ListaValores[i].valor6;
                             var a7 = queryObject.ListaValores[i].valor7;
                             var a8 = queryObject.ListaValores[i].valor8;
-                            // var a9 = queryObject.ListaValores[i].valor9;
-                            //var a10 = queryObject.ListaValores[i].valor10;
+
                             var a11 = queryObject.ListaValores[i].valor11;
                             var a12 = queryObject.ListaValores[i].valor12;
-
-                            //Agregar 
-
-
 
                             data.setCell(i, 0, indicador);
                             //Comparar promedio vs valor actual para elegir color de la celda
@@ -268,11 +179,7 @@ function DibujarTabla() {
                             } else {
                                 data.setCell(i, 4, parseFloat(a7), a7, {'className': 'green-background'});
                             }
-                            /*if (a9 > a10) {
-                             data.setCell(i, 5, parseFloat(a9), a9, {'className': 'red-background'});
-                             } else {
-                             data.setCell(i, 5, parseFloat(a9), a9, {'className': 'green-background'});
-                             }*/
+
                             if (a11 > a12) {
                                 data.setCell(i, 5, parseFloat(a11), a11, {'className': 'red-background'});
                             } else {
@@ -311,73 +218,6 @@ function DibujarTabla() {
                         $("#table2 table tbody tr td").mouseout(function () {
                             ColorOriginalCelda(this, 'table2');
                         });
-
-                    }
-                    else
-                    {
-
-                        queryObject = eval('(' + JSON.stringify(data_) + ')');
-                        queryObjectLen = queryObject.ListaValores.length;
-                        var data = new google.visualization.DataTable();
-
-                        data.addColumn('string', 'INDICADOR');
-
-                        data.addColumn('number', 'FPS');
-
-
-                        data.addRows(queryObjectLen);
-                        for (var i = 0; i < queryObjectLen; i++)
-                        {
-                            var indicador = queryObject.ListaValores[i].indicador;
-                            var nindicador = indicador.replace("Kg", "Docena");
-                            nindicador = nindicador.replace("Producido", "Producida");
-
-                            var a9 = queryObject.ListaValores[i].valor9;
-                            var a10 = queryObject.ListaValores[i].valor10;
-
-
-                            data.setCell(i, 0, nindicador);
-                            //Comparar promedio vs valor actual para elegir color de la celda
-
-                            if (a9 > a10) {
-                                data.setCell(i, 1, parseFloat(a9), a9, {'className': 'red-background'});
-                            } else {
-                                data.setCell(i, 1, parseFloat(a9), a9, {'className': 'green-background'});
-                            }
-                        }
-
-
-                        //Opciones Css de la tabla
-                        var cssClassNames = {
-                            'headerRow': 'large-font bold-font',
-                            'tableRow': '',
-                            //'oddTableRow': 'beige-background',
-                            //'selectedTableRow': 'orange-background large-font',
-                            //'hoverTableRow': '',
-                            'headerCell': 'gold-border',
-                            'tableCell': '',
-                            'rowNumberCell': 'black-font'};
-
-                        var options = {'showRowNumber': true, 'allowHtml': false, 'cssClassNames': cssClassNames, width: '50%', height: '100%'};
-                        var table = new google.visualization.Table(document.getElementById('table2'));
-                        table.draw(data, options);
-
-                        //Redirecciona dependiendo de la celda a la que se le da click.
-                        $("#table2 table tbody tr td").click(function () {
-                            Redireccionar2FPS(this, 'table2');
-                        });
-
-                        //Cambiar color al estar sobre la celda
-                        $("#table2 table tbody tr td").mouseover(function () {
-                            CambiarColorCelda(this, 'table2');
-                        });
-
-                        //Regresar al color original la celda
-                        $("#table2 table tbody tr td").mouseout(function () {
-                            ColorOriginalCelda(this, 'table2');
-                        });
-                    }
-
                 },
                 error: function () {
                     alert('No existen datos para los parametros elegidos');
@@ -503,55 +343,6 @@ function Redireccionar(x, element) {
 }
 
 
-function RedireccionarFPS(x, element) {
-    var rows = document.getElementById(element).getElementsByTagName('tbody')[0].getElementsByTagName('tr');
-    for (i = 0; i < rows.length; i++) {
-        rows[i].onclick = function () {
-            //alert("Columna " + x.cellIndex + "FILA " + this.rowIndex);
-            if (this.rowIndex === 1) /*Indicador 1*/
-            {
-                if (x.cellIndex === 1)
-                {
-                    location.href = "I_001_IndicadoresProduccion.jsp?planta=FPS MES&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "&indicador=INDICADOR1";
-                }
-                else
-                if (x.cellIndex === 2)
-                {
-                    location.href = "I_001_IndicadoresProduccion.jsp?planta=PLANTA FPS&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "&indicador=INDICADOR1";
-                }
-            }
-            else
-            if (this.rowIndex === 2) /*Indicador 2*/
-            {
-                if (x.cellIndex === 1)
-                {
-                    location.href = "I_001_IndicadoresProduccion.jsp?planta=FPS MES&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "&indicador=INDICADOR2";
-                }
-                else
-                if (x.cellIndex === 2)
-                {
-                    location.href = "I_001_IndicadoresProduccion.jsp?planta=PLANTA FPS&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "&indicador=INDICADOR2";
-                }
-            }
-
-            else
-            if (this.rowIndex === 3) /*Indicador 3*/
-            {
-                if (x.cellIndex === 1)
-                {
-                    location.href = "I_001_IndicadoresProduccion.jsp?planta=FPS MES&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "&indicador=INDICADOR3";
-                }
-                else
-                if (x.cellIndex === 2)
-                {
-                    location.href = "I_001_IndicadoresProduccion.jsp?planta=PLANTA FPS&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "&indicador=INDICADOR3";
-                }
-            }
-        };
-    }
-}
-
-
 //se ejecuta al dar clic sobre una celda de la tabla de indicadores basados en costos
 function Redireccionar2(x, element) {
     var rows = document.getElementById(element).getElementsByTagName('tbody')[0].getElementsByTagName('tr');
@@ -665,54 +456,3 @@ function Redireccionar2(x, element) {
         };
     }
 }
-
-function Redireccionar2FPS(x, element) {
-    var rows = document.getElementById(element).getElementsByTagName('tbody')[0].getElementsByTagName('tr');
-    for (i = 0; i < rows.length; i++) {
-        rows[i].onclick = function () {
-            //alert("Columna " + x.cellIndex + "FILA " + this.rowIndex);
-            if (this.rowIndex === 1) /*Indicador 1*/
-            {
-                if (x.cellIndex === 1)
-                {
-                    location.href = "I_001_IndicadoresProduccion.jsp?planta=FPS MES&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "&indicador=INDICADOR4";
-                }
-                else
-                if (x.cellIndex === 2)
-                {
-                    location.href = "I_001_IndicadoresProduccion.jsp?planta=PLANTA FPS&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "&indicador=INDICADOR4";
-                }
-            }
-            else
-            if (this.rowIndex === 2) /*Indicador 2*/
-            {
-                if (x.cellIndex === 1)
-                {
-                    location.href = "I_001_IndicadoresProduccion.jsp?planta=FPS MES&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "&indicador=INDICADOR5";
-                }
-                else
-                if (x.cellIndex === 2)
-                {
-                    location.href = "I_001_IndicadoresProduccion.jsp?planta=PLANTA FPS&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "&indicador=INDICADOR5";
-                }
-            }
-
-            else
-            if (this.rowIndex === 3) /*Indicador 3*/
-            {
-                if (x.cellIndex === 1)
-                {
-                    location.href = "I_001_IndicadoresProduccion.jsp?planta=FPS MES&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "&indicador=INDICADOR6";
-                }
-                else
-                if (x.cellIndex === 2)
-                {
-                    location.href = "I_001_IndicadoresProduccion.jsp?planta=PLANTA FPS&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "&indicador=INDICADOR6";
-                }
-            }
-
-        };
-    }
-}
-
-

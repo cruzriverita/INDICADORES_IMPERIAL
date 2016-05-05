@@ -120,8 +120,8 @@ function DibujarChartPrincipal() {
     {
 
         primaryOptions = {
-            title: '', //'Cantidad de empleados Planilla '+ x,
-            tooltip: {isHtml: true}, // This MUST be set to true for your chart to show.
+            title: '', 
+            tooltip: {isHtml: true}, 
             vAxis: {title: 'Dias de inventario', titleTextStyle: {color: 'Black'}, gridlines: {count: 20}, viewWindow: {
                     min: (menor - 1),
                     max: (mayor + 1)
@@ -129,7 +129,7 @@ function DibujarChartPrincipal() {
             hAxis: {title: '*El valor "Menor historico" corresponde a ' + ConvertirMes(menormes) + ' de ' + menoranio + '\n' +
                         '*El valor "Mayor historico" corresponde a ' + ConvertirMes(mayormes) + ' de ' + mayoranio, titleTextStyle: {color: 'Blue'}},
             is3D: true,
-            colors: ["#EAD008", "#40FF00", "#01DFD7", "#FF0000", "#000000"],
+            colors: ["#EAD008", "#FF0000", "#01DFD7", "#40FF00", "#000000"],
             annotations: {
                 style: 'line'
             },
@@ -169,7 +169,9 @@ function DibujarChartPrincipal() {
     else
     {
         tooltipOptions = {
-            title: 'Rotacion de Inventarios (Plantas)',
+            width: 400,
+            height: 300,
+            title: 'Dias De Inventario (Plantas)',
             is3D: true,
             //chartArea: {  width: "100%", height: "70%" },
 
@@ -222,7 +224,7 @@ function DibujarChartPrincipal() {
             var tooltipImg = '<center><h3>' + primaryData[i][0].toString() + ' ' + $("#anio").val() + '</h3></center><br><img src="' + tooltipChart.getImageURI() + '">';
 
             // Si el tipo de inventario (algodon, poliester, etc) no tiene subgrafica se agrega esta opcion
-            var tooltipImg2 = '<h2>' + '&nbsp&nbsp' + primaryData[i][0].toString() + '<br><br>' + '&nbsp&nbsp' + $("#anio").val() + ': ' + primaryData[i][6].toString() + '&nbsp&nbsp' + '</h2>';
+            var tooltipImg2 = '<h2>' + '&nbsp&nbsp' + primaryData[i][0].toString() + '' + '</h2> <h3> &nbsp&nbsp ' + $("#anio").val() + ':  ' + primaryData[i][6].toString() + '&nbsp&nbsp&nbsp' + '</h3>';
 
             // Add the new tooltip image to your data rows.
             // Se agrega de acuerdo al tipo de inventario.
@@ -254,7 +256,7 @@ function drawPrimaryChart() {
 
     data.addColumn('number', x - 1);
     data.addColumn('number', 'Mayor historico');
-    data.addColumn('number', 'promedio');
+    data.addColumn('number', 'Promedio '+(x-1));
     data.addColumn('number', 'Menor historico');
     data.addColumn('number', x);
 
@@ -285,11 +287,11 @@ function GetTituloG3() {
 
     if (val === "1") {
 
-        document.getElementById('titulo').innerHTML = "Rotacion de Inventarios por Indice del mes - " + GetNombreArticulo(val2);
+        document.getElementById('titulo').innerHTML = "Rotacion de Inventarios Indice del mes - " + GetNombreArticulo(val2);
     }
     else
     {
-        document.getElementById('titulo').innerHTML = "Rotacion de Inventarios por antiguedad - " + GetNombreArticulo(val2);
+        document.getElementById('titulo').innerHTML = "Dias De Inventario - " + GetNombreArticulo(val2);
     }
 }
 
@@ -312,6 +314,6 @@ function GetNombreArticulo(valor)
     else if (valor === "5")
         return "Tela Cruda";
     else if (valor === "6")
-        return "Tela Producida";
+        return "Tela Terminada";
 }
 

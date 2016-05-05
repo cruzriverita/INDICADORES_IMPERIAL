@@ -28,7 +28,7 @@
                 DibujarTabla();
             });
             //Setear valores de inicio (por defecto) para los parametros. 
-            $('#opciones').val("ALL");
+            //$('#opciones').val("ALL");
             //$('#mes').val(<%=mes%>);
             $('#mes').val(<%=3%>);
             $('anio').val (<%=Utilidades.MetodosGlobales.year_actual%>);
@@ -55,17 +55,19 @@
 
                         <div>
                             <div class="divtexto" id="divlblmes">
-                                <input id="lblmes" name="lblmes" onkeypress="" value="Mes" disabled="true" class="texto" type="text"> 
+                                <input type="text" id="lblmes"  name="lblmes"  onkeypress="" value="Mes" disabled="true" class="texto" /> 
                             </div>
 
                             <div class="divtexto">
                                 <input id="lbla" name="lbla" onkeypress="" value="Año" disabled="true" class="texto" type="text"> 
                             </div>
-
+                            
+                            <!--
                             <div class="divtexto">
                                 <input id="lblP" name="lblP" onkeypress="" value="Planta" disabled="true" class="texto" type="text"> 
                             </div>
-
+                            -->
+                            
                         </div>
 
                         <div style="clear:both;">                
@@ -97,12 +99,12 @@
                                 </select>
                             </div>
 
-                            <div class="divselect">
+                           <!-- <div class="divselect">
                                 <select id="opciones" name="opciones" onchange="DibujarTabla();" class="select">
                                     <option value="ALL">Todas</option>                
-                                    <option value="PLANTA FPS">FPS</option>                    
+                                    <option value="PLANTA FPS">FPS</option>                   
                                 </select>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
 
