@@ -107,39 +107,39 @@ lines += '              <ul>';
 
 lines += '              <li class=\'has-sub\'><a href=\'#\'><span>Indices De Liquidez</span></a>';
 lines += '              <ul>';
-lines += '                    <li><a href=\'#\'><span>Liquidez Corriente</span></a></li>';
-lines += '                    <li class=\'last\'><a href=\'#\'><span>Prueba Acida</span></a></li>';
+lines += '                    <li><a href=\'I_004_Indicadores_Financieros.jsp?indicador=1\'><span>Liquidez Corriente</span></a></li>';
+lines += '                    <li class=\'last\'><a href=\'I_004_Indicadores_Financieros.jsp?indicador=2\'><span>Prueba Acida</span></a></li>';
 lines += '              </ul>';
 lines += '            </li>';
 
 
 lines += '              <li class=\'has-sub\'><a href=\'#\'><span>Indices De Endeudamiento</span></a>';
 lines += '              <ul>';
-lines += '                    <li><a href=\'#\'><span>Apalancamiento Financiero</span></a></li>';
-lines += '                    <li class=\'last\'><a href=\'#\'><span>Indice de Endeudamiento</span></a></li>';
+lines += '                    <li><a href=\'I_004_Indicadores_Financieros.jsp?indicador=3\'><span>Apalancamiento Financiero</span></a></li>';
+lines += '                    <li class=\'last\'><a href=\'I_004_Indicadores_Financieros.jsp?indicador=4\'><span>Indice de Endeudamiento</span></a></li>';
 lines += '              </ul>';
 lines += '            </li>';
 
 
 lines += '              <li class=\'has-sub\'><a href=\'#\'><span>Indices De Rentabilidad</span></a>';
 lines += '              <ul>';
-lines += '                    <li><a href=\'#\'><span>Rentabilidad Neta del Activo</span></a></li>';
-lines += '                    <li class=\'last\'><a href=\'#\'><span>Margen Bruto</span></a></li>';
-lines += '                    <li><a href=\'#\'><span>Margen Operacional</span></a></li>';
-lines += '                    <li class=\'last\'><a href=\'#\'><span>Rendimiento sobre Activos Totales</span></a></li>';
+lines += '                    <li><a href=\'I_004_Indicadores_Financieros.jsp?indicador=5\'><span>Rentabilidad Neta del Activo</span></a></li>';
+lines += '                    <li><a href=\'I_004_Indicadores_Financieros.jsp?indicador=6\'><span>Margen Bruto</span></a></li>';
+lines += '                    <li><a href=\'I_004_Indicadores_Financieros.jsp?indicador=7\'><span>Margen Operacional</span></a></li>';
+lines += '                    <li class=\'last\'><a href=\'I_004_Indicadores_Financieros.jsp?indicador=8\'><span>Rendimiento sobre Activos Totales</span></a></li>';
 lines += '              </ul>';
 lines += '            </li>';
 
 lines += '              <li class=\'has-sub\'><a href=\'#\'><span>Indices De Gestion</span></a>';
 lines += '              <ul>';
-lines += '                    <li><a href=\'#\'><span>Impacto de Gastos Administrativos y Ventas</span></a></li>';
-lines += '                    <li class=\'last\'><a href=\'#\'><span>Impacto Carga Financiera</span></a></li>';
+lines += '                    <li><a href=\'I_004_Indicadores_Financieros.jsp?indicador=9\'><span>Impacto de Gastos Administrativos y Ventas</span></a></li>';
+lines += '                    <li class=\'last\'><a href=\'I_004_Indicadores_Financieros.jsp?indicador=10\'><span>Impacto Carga Financiera</span></a></li>';
 lines += '              </ul>';
 lines += '            </li>';
 
 lines += '              <li class=\'has-sub\'><a href=\'#\'><span>Monto pagado por multas</span></a>';
 lines += '              <ul>';
-lines += '                    <li><a href=\'#\'><span>Total pagado por multas y retificaciones</span></a></li>';
+lines += '                    <li><a href=\'I_004_Indicadores_Financieros.jsp?indicador=11\'><span>Total pagado por multas y retificaciones</span></a></li>';
 lines += '              </ul>';
 lines += '            </li>';
 
