@@ -7,7 +7,7 @@
     <script type="text/javascript" src="Js/js/loader.js"></script>
     <script type="text/javascript" src="Js/js/jquery-1.12.1.min.js"></script>
     <script type="text/javascript" src="Js/js/FuncionesGlobales.js"></script>
-    <script type="text/javascript" src="Js/C_003_Indicadores_Inventarios.js"></script>
+    <script type="text/javascript" src="Js/C_004_Indicadores_Financieros.js"></script>
     <script type="text/javascript">
         /* global google */
         google.charts.load('current', {'packages': ['table']});
@@ -39,7 +39,7 @@
             <div class="DivWithScroll">
 
 
-                <form method="get" action="C_003_Indicadores_Inventarios_XLS" class="formulario">
+                <form method="get" action="" class="formulario">
 
                     <div style="float: left; width: 70%;">
                         <div>
@@ -101,20 +101,21 @@
                 <br>
 
                 <center>
-                    <h2>Rotacion De Inventarios</h2>
+                    <h2>Indicadores Financieros</h2>
                 </center>
                 <br>
-                 <center>
-                <div id="table">
+                <center>
+                 <div id="table">
                 </div>
 
 
-               
-                    <div> 
-                        <p>*Para la columna  "Indice del mes" en color verde se muestran los valores mayores al promedio y en rojo los menores.<br/>
-                            *Para la columna "Dias de inventario" en color verde se muestran los valores menores al promedio y en rojo los mayores.</p>
+                
+                    <div > 
+                        <p >
+                            *En color verde se muestran los valores mayores al promedio del año anterior.<br/>
+                            *En color rojo se muestran los valores menores al promedio del año anterior.</p>
                     </div>
-                </center>
+                </center>>
             </div>
         </div>
     </body>

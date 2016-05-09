@@ -10,6 +10,35 @@ package Modelo;
  * @author rcruz
  */
 public class Modelo_Indicadores_Financieros {
+    
+    
+    
+    public static String Consulta_Tabla_Indicadores_Financieros(Integer anio, String mes) {
+        return "select Nindicador,\n"
+                + "\n"
+                + "sum(CASE WHEN Empresa=1 then valor else 0 end) as 'Imperial Fashion',\n"
+                + "\n"
+                + "ifnull((select sum(valor)/count(valor) from I_010_Financieros where empresa = 1\n"
+                + "AND MES = P.MES AND ANIO="+(anio-1)+"),0) AS 'pif',\n"
+                + "\n"
+                + "\n"
+                + "sum(CASE WHEN Empresa=2 then valor else 0 end) as 'MT Textil',\n"
+                + "\n"
+                + "ifnull((select sum(valor)/count(valor) from I_010_Financieros where empresa = 2\n"
+                + "AND MES = P.MES AND ANIO="+(anio-1)+"),0) AS 'pmt',\n"
+                + "\n"
+                + "\n"
+                + "sum(CASE WHEN Empresa=3 then valor else 0 end) as 'Blake',\n"
+                + "\n"
+                + "ifnull((select sum(valor)/count(valor) from I_010_Financieros where empresa = 3\n"
+                + "AND MES = P.MES AND ANIO="+(anio-1)+"),0) AS 'pbl'\n"
+                + "\n"
+                + " from I_010_Financieros P\n"
+                + " where mes="+mes+"\n"
+                + " and anio="+(anio)+"\n"
+                + " group by Nindicador";
+    }
+
 
     public static String Consulta_Financieros_General(int anio, String mes, String indicador) {
 

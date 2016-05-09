@@ -101,7 +101,7 @@ lines += '        </ul>';
 lines += '            </li>';
 
 /************************************************FINANCIEROS********************************************/
-lines += '            <li class=\'active has-sub\'><a href=\'#\'><span>FINANCIEROS</span></a>';
+lines += '            <li class=\'active has-sub\'><a href=\'C_004_Indicadores_Financieros.jsp\'><span>FINANCIEROS</span></a>';
 
 lines += '              <ul>';
 

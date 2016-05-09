@@ -11,7 +11,7 @@ function DibujarTabla() {
     $.ajax
             ({
                 type: "POST",
-                url: "C_003_Indicadores_Inventarios_Servlet",
+                url: "C_004_Indicadores_Financieros_Servlet",
                 data: {
                     aniojs: $("#anio").val(),
                     mesjs:  $("#mes").val()
@@ -27,57 +27,53 @@ function DibujarTabla() {
 
                     var x = parseInt($("#anio").val(), 10);
                     
-                    data.addColumn('string', '');
+                    data.addColumn('string', 'INDICADOR');
                     
-                    data.addColumn('number', '' + (x));
-                    data.addColumn('number', '' + (x-1));
+                    data.addColumn('number', 'Imperial Fashion');
+                    data.addColumn('number', 'MT Textil');
                     
-                    data.addColumn('number', ''+ (x));                   
-                    data.addColumn('number', ''+ (x-1));
+                    data.addColumn('number', 'Blake');                   
+                    //data.addColumn('number', ''+ (x-1));
 
                     data.addRows(queryObjectLen);
                     for (var i = 0; i < queryObjectLen; i++)
                     {
                         var tipo = queryObject.ListaValores[i].tipo;
-                        var a1 = queryObject.ListaValores[i].valor1; //valor año actual 
-                        var a2 = queryObject.ListaValores[i].valor2; //valor año anterior
-                        var a3 = queryObject.ListaValores[i].valor3; //valor promedio año anterior
+                        
+                        var a1 = queryObject.ListaValores[i].valor1; //IF
+                        var a2 = queryObject.ListaValores[i].valor2; //MT
+                        var a3 = queryObject.ListaValores[i].valor3; //Blake
                         
                         
-                        var a4 = queryObject.ListaValores[i].valor4; //valor dias año actual
-                        var a5 = queryObject.ListaValores[i].valor5; //valor dias año anterior
-                        var a6 = queryObject.ListaValores[i].valor6; //valor dias promedio año anterior
-
+                        var a4 = queryObject.ListaValores[i].valor4; //promedio IF
+                        var a5 = queryObject.ListaValores[i].valor5; //promedio MT
+                        var a6 = queryObject.ListaValores[i].valor6; //Promedio blake
+                        //
                         //1ra columna de la tabla, tipo de inventario de tipo string 
                         data.setCell(i, 0, tipo);
                         
                         
                         
                         //Comparar promedio vs valor actual para elegir color de la celda
-                        if (a3 > a1) {
+                        if (a4 > a1) {
                             data.setCell(i, 1, parseFloat(a1), a1, {'className': 'red-background'});
                         } else {
                             data.setCell(i, 1, parseFloat(a1), a1, {'className': 'green-background'});
                         }
                         
-                        if (a3 > a2) {
+                        if (a5 > a2) {
                             data.setCell(i, 2, parseFloat(a2), a2, {'className': 'red-background'});
                         } else {
                             data.setCell(i, 2, parseFloat(a2), a2, {'className': 'green-background'});
                         }
                         
-                        if (a4 > a6) {
+                        if (a6 > a3) {
                             data.setCell(i, 3, parseFloat(a4), a4, {'className': 'red-background'});
                         } else {
                             data.setCell(i, 3, parseFloat(a4), a4, {'className': 'green-background'});
                         }
 
-                        if (a5 > a6) {
-                            data.setCell(i, 4, parseFloat(a5), a5, {'className': 'red-background'});
-                        } else {
-                            data.setCell(i, 4, parseFloat(a5), a5, {'className': 'green-background'});
-                        }
-
+                        
 
                     }
 
@@ -94,40 +90,9 @@ function DibujarTabla() {
                         'tableCell': '',
                         'rowNumberCell': 'black-font'};
 
-                    var options = {'showRowNumber': true, 'allowHtml': false, 'cssClassNames': cssClassNames,height: '100%'};
+                    var options = {'showRowNumber': true, 'allowHtml': false, 'cssClassNames': cssClassNames, height: '100%'};
 
-                    //var table = new google.visualization.Table(document.getElementById('table'));
-
-                    /*****************************************merge columnas para titulo***********************/
-                    var divTableChart;
-                    divTableChart = document.getElementById('table');
-
-                    var table = new google.visualization.Table(divTableChart);
-
-                    google.visualization.events.addListener(table, 'ready', function () {
-                        var headerRow;
-                        var newRow;
-
-                        // get header row and clone to keep google chart style
-                        headerRow = divTableChart.getElementsByTagName('THEAD')[0].rows[0];
-                        newRow = headerRow.cloneNode(true);
-
-                        // modify new row to combine cells and add labels
-                        newRow.deleteCell(newRow.cells.length - 1);
-                        newRow.deleteCell(newRow.cells.length - 1);
-                        newRow.deleteCell(newRow.cells.length - 1);
-
-                        newRow.cells[0].colSpan = 2;
-                        newRow.cells[0].innerHTML = 'Tipo De Inventario';
-                        newRow.cells[1].colSpan = 2;
-                        newRow.cells[1].innerHTML = 'Indice Del Mes';
-                        newRow.cells[2].colSpan = 2;
-                        newRow.cells[2].innerHTML = 'Dias de Inventario';
-
-                        // insert new / cloned row
-                        divTableChart.getElementsByTagName('THEAD')[0].insertBefore(newRow, headerRow);
-                    });
-
+                    var table = new google.visualization.Table(document.getElementById('table'));
 
                     
                     table.draw(data, options);
