@@ -8,13 +8,13 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html class="html">
-
+    
+    <!---------------------------------------------CODIGO JSP---------------------------------------------->
     <%
         String indicador = request.getParameter("indicador");
         String tipo = request.getParameter("tipo2");
         String tipoinv = request.getParameter("tipo");
         String anio = request.getParameter("anio");
-
         String vindicador = "INDICADOR9";
         String vtipo = "1";
         String vtipoinv = "1";
@@ -24,7 +24,6 @@
 
         } else {
             vindicador = indicador;
-
         }
 
         if (tipo == null) {
@@ -38,24 +37,25 @@
         } else {
             vtipoinv = tipoinv;
         }
-        
+
         if (anio == null) {
 
         } else {
             vanio = anio;
         }
-        
     %>
-
-    <!------------------------------------------JS GOOGLE CHARTS-------------------------------------------> 
-    <script type="text/javascript" src="Js/js/loader.js"></script>
-    <script type="text/javascript" src="Js/js/jquery-1.12.1.min.js"></script>
+    
+    <!-----------------------------------------------------------------------------------------------------> 
 
     <!-----------------------------------------Archivos y Fuentes JavaScript-------------------------------> 
+    <script type="text/javascript" src="Js/js/loader.js"></script>
+    <script type="text/javascript" src="Js/js/jquery-1.12.1.min.js"></script>
     <script type="text/javascript" src="Js/js/FuncionesGlobales.js"></script>
+    <!-----------------------------------------------------------------------------------------------------> 
+
+
+    <!------------------------------------------JS GOOGLE CHARTS-------------------------------------------> 
     <script type="text/javascript" src="Js/I_003_Indicadores_Inventarios.js"></script>
-
-
     <script type="text/javascript">
         //API de Google Chart, Se llama en cada jsp  
         /* global google */
@@ -63,6 +63,9 @@
         google.charts.setOnLoadCallback(DibujarChartPrincipal);
     </script>   
 
+    <!-----------------------------------------------------------------------------------------------------> 
+
+    <!---------------------------------Se ejecuta al cargar la pagina--------------------------------------> 
     <script type="text/javascript">
 
         $(document).ready(function () {
@@ -80,14 +83,15 @@
 
         });
     </script> 
-
+    <!-----------------------------------------------------------------------------------------------------> 
     <head>
+        <!---------------------------------------------ARCHIVOS CSS-------------------------------------------> 
         <link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,300italic,700&subset=latin,cyrillic-ext,latin-ext,cyrillic' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" href="css/EstiloJSP.css">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="css/styles.css">
-
+        <!----------------------------------------------------------------------------------------------------->
 
         <title>Inventarios</title>
     </head>
@@ -114,7 +118,6 @@
                                 <input type="text" id="lblart"  name="lblart"  onkeypress="" value="Tipo Inventario" disabled="true" class="texto" /> 
                             </div>
 
-
                         </div>
 
                         <div style="clear:both;">  
@@ -124,11 +127,11 @@
                                 GetTituloG3();
                                 GetSubTituloG3();" class="select">
 
-                                    <option value="<%=Utilidades.MetodosGlobales.year_actual - 2%>"> <%=Utilidades.MetodosGlobales.year_actual - 2%> </option>
-                                    <option value="<%=Utilidades.MetodosGlobales.year_actual - 1%>"> <%=Utilidades.MetodosGlobales.year_actual - 1%> </option>
-                                    <option value="<%=Utilidades.MetodosGlobales.year_actual%>" selected> <%=Utilidades.MetodosGlobales.year_actual%> </option>
-                                    <option value="<%=Utilidades.MetodosGlobales.year_actual + 1%>"> <%=Utilidades.MetodosGlobales.year_actual + 1%> </option>
-                                    <option value="<%=Utilidades.MetodosGlobales.year_actual + 2%>"> <%=Utilidades.MetodosGlobales.year_actual + 2%> </option>
+                                    <option value="<%=Utilidades.Metodos_Globales.year_actual - 2%>"> <%=Utilidades.Metodos_Globales.year_actual - 2%> </option>
+                                    <option value="<%=Utilidades.Metodos_Globales.year_actual - 1%>"> <%=Utilidades.Metodos_Globales.year_actual - 1%> </option>
+                                    <option value="<%=Utilidades.Metodos_Globales.year_actual%>" selected> <%=Utilidades.Metodos_Globales.year_actual%> </option>
+                                    <option value="<%=Utilidades.Metodos_Globales.year_actual + 1%>"> <%=Utilidades.Metodos_Globales.year_actual + 1%> </option>
+                                    <option value="<%=Utilidades.Metodos_Globales.year_actual + 2%>"> <%=Utilidades.Metodos_Globales.year_actual + 2%> </option>
 
                                 </select>
                             </div>
@@ -159,16 +162,6 @@
 
                         </div>
                     </div>
-                    
-                    <!--
-                    <div class="divboton" id="divb">
-                        <input   type="image" style="height:48px;width:48px;"  onmouseover="this.style.background = '#0fa1e0';
-                                ShowDef();" onmouseout="this.style.background = 'white';
-                                        HideDef();" src="Images/dd.svg">
-                    </div>
-                    <div class="DefStyle" id="EmaliographyDef">Descarga</div>
-                    -->
-
                 </form> 
 
                 <br style="line-height: 10px">
@@ -186,6 +179,5 @@
                 </div>
             </div>
         </div>
-    </div>
-</body>
+    </body>
 </html>

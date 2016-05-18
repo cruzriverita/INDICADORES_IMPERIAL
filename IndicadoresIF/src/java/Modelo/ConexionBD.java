@@ -21,8 +21,8 @@ public class ConexionBD {
 
     String driver = "com.mysql.jdbc.Driver";
     String server = "192.168.1.107";
-    String BaseDatos="INDICADORES";
-    String connectString = "jdbc:mysql://"+server+"/"+BaseDatos;
+    String BaseDatos = "INDICADORES";
+    String connectString = "jdbc:mysql://" + server + "/" + BaseDatos;
     String user = "root";
     String pass = "root";
 
@@ -38,8 +38,8 @@ public class ConexionBD {
                 st = conn.createStatement();
             }
         } catch (SQLException ex) {
-            System.out.println("NO SE HA PODIDO CONECTAR CON LA BASE DE DATOS, " + ex.getMessage() + ex.getErrorCode());
-         
+            System.out.println("No se ha podido realizar la conexion! " + ex.getMessage() +" "+ ex.getErrorCode());
+
         } catch (ClassNotFoundException ex) {
             System.out.println(ex.getCause());
         }
@@ -54,7 +54,7 @@ public class ConexionBD {
         ResultSet rs;
         try {
             rs = st.executeQuery(query);
-            Map<String, Object> row ;
+            Map<String, Object> row;
 
             ResultSetMetaData metaData = rs.getMetaData();
             Integer columnCount = metaData.getColumnCount();
@@ -85,6 +85,4 @@ public class ConexionBD {
         }
     }
 
-  
-    
 }

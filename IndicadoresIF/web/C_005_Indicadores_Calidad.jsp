@@ -1,25 +1,12 @@
 <%-- 
-    Document   : I_002_Indicadores_RRHH
-    Created on : 9/04/2016, 10:35:14 AM
+    Document   : C_005_Indicadores_Calidad
+    Created on : May 12, 2016, 10:22:30 AM
     Author     : rcruz
 --%>
-
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html class="html">
-    <!---------------------------------------------CODIGO JSP---------------------------------------------->
-    <%
-        String indicador = request.getParameter("indicador");
-        String vindicador = "INDICADOR7";
-
-        if (indicador == null) {
-
-        } else {
-            vindicador = indicador;
-        }
-    %>
-    <!-----------------------------------------------------------------------------------------------------> 
 
     <!-----------------------------------------Archivos y Fuentes JavaScript-------------------------------> 
     <script type="text/javascript" src="Js/js/loader.js"></script>
@@ -28,34 +15,24 @@
     <!-----------------------------------------------------------------------------------------------------> 
 
     <!------------------------------------------JS GOOGLE CHARTS-------------------------------------------> 
-    <script type="text/javascript" src="Js/I_002_Indicadores_RRHH.js"></script>
-
+    <script type="text/javascript" src="Js/C_005_Indicadores_Calidad.js"></script>
     <script type="text/javascript">
-        //API de Google Chart, Se llama en cada jsp  
         /* global google */
-        google.charts.load('current', {packages: ['corechart', 'line']});
-        google.charts.setOnLoadCallback(DibujarChartPrincipal);
+        google.charts.load('current', {'packages': ['table']});
+        google.charts.setOnLoadCallback(DibujarTabla);
     </script>   
     <!-----------------------------------------------------------------------------------------------------> 
 
     <!---------------------------------Se ejecuta al cargar la pagina--------------------------------------> 
     <script type="text/javascript">
-        //mantener la posicion actual del menu
         $(document).ready(function () {
-
-            $(window).resize(function () {
-                DibujarChartPrincipal();
-            });
-
-            $('#indicador').val("<%=vindicador%>");
-            GetTituloG2();
-            GetSubTituloG2();
-
+            //Valores por defecto al cargar la pagina, seteados con javascript
+            $('#anio').val("2015");
+         
         });
-
     </script> 
     <!-----------------------------------------------------------------------------------------------------> 
-    
+
     <head>
         <!---------------------------------------------ARCHIVOS CSS-------------------------------------------> 
         <link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,300italic,700&subset=latin,cyrillic-ext,latin-ext,cyrillic' rel='stylesheet' type='text/css'>
@@ -63,76 +40,97 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="css/styles.css">
-        <!----------------------------------------------------------------------------------------------------->
+        <!-----------------------------------------------------------------------------------------------------> 
 
-        <title>Produccion Por Planta</title>
+        <title>Calidad</title>
     </head>
 
     <body class="body">
 
         <script type="text/javascript" src="Js/js/CuerpoMenuHorizontal.js"></script>
+
         <div id="DivPrincipal" class="divprincipal">
+
             <div class="DivWithScroll">
 
-                <form method="get" action="I_002_Indicadores_RRHH_XLS" class="formulario">
+                <form method="get" action="" class="formulario">
 
                     <div style="float: left; width: 70%;">
 
                         <div>
-                            <div class="divtexto">
-                                <input type="text" id="lblmes"  name="lblmes"  onkeypress="" value="Tipo" disabled="true" class="texto" /> 
+
+                            <div class="divtexto" id="divlblmes">
+                                <input id="lblmes" name="lblmes" onkeypress="" value="Mes" disabled="true" class="texto" type="text"> 
                             </div>
+
                             <div class="divtexto">
-                                <input type="text" id="lbla"  name="lbla"  onkeypress="" value="Año" disabled="true" class="texto" />                  
+                                <input id="lbla" name="lbla" onkeypress="" value="Año" disabled="true" class="texto" type="text"> 
                             </div>
 
                         </div>
 
-                        <div style="clear:both;">  
+                        <div style="clear:both;">                
 
-                            <div class="divselect">
-                                <select id="tipo" name="tipo" onchange="DibujarChartPrincipal();
-            GetTituloG2();
-            GetSubTituloG2();" class="select">
-                                    <option value="1">Nomina</option>
-                                    <option value="2">Planilla</option>
-                                </select> 
-                            </div>
 
                             <div class="divselect">
 
-                                <select id="anio" name="anio" onchange="DibujarChartPrincipal();
-                                        GetTituloG2();
-                                        GetSubTituloG2();" class="select">
+                                <select id="anio" name="anio" onchange="DibujarTabla()" class="select">
                                     <option value="<%=Utilidades.Metodos_Globales.year_actual - 2%>"> <%=Utilidades.Metodos_Globales.year_actual - 2%> </option>
                                     <option value="<%=Utilidades.Metodos_Globales.year_actual - 1%>"> <%=Utilidades.Metodos_Globales.year_actual - 1%> </option>
                                     <option value="<%=Utilidades.Metodos_Globales.year_actual%>" selected> <%=Utilidades.Metodos_Globales.year_actual%> </option>
                                     <option value="<%=Utilidades.Metodos_Globales.year_actual + 1%>"> <%=Utilidades.Metodos_Globales.year_actual + 1%> </option>
                                     <option value="<%=Utilidades.Metodos_Globales.year_actual + 2%>"> <%=Utilidades.Metodos_Globales.year_actual + 2%> </option>
                                 </select>
+
                             </div>
 
-                            <input type="hidden" id="indicador"  name="indicador" value="INDICADOR7"/>  
+                            <div class="divselect" id="divselectmes">
+
+                                <select id="mes" name="mes" onchange="DibujarTabla()" class="select">
+                                    <option value="1">Enero</option>
+                                    <option value="2">Febrero</option>
+                                    <option value="3">Marzo</option>
+                                    <option value="4">Abril</option>      
+                                    <option value="5">Mayo</option>
+                                    <option value="6">Junio</option>   
+                                    <option value="7">Julio</option>
+                                    <option value="8">Agosto</option> 
+                                    <option value="9">Septiembre</option>  
+                                    <option value="10">Octubre</option>  
+                                    <option value="11">Noviembre</option>  
+                                    <option value="12">Diciembre</option>  
+                                </select>
+
+                            </div>
 
                         </div>
                     </div>
-
+                                     
                     <div class="divboton" id="divb">
-                        <input   type="image" style="height:48px;width:48px;"  onmouseover="this.style.background = '#0fa1e0';
-                                ShowDef();" onmouseout="this.style.background = 'white';
-                                        HideDef();" src="Images/dd.svg">
+                        <input   type="image" style="height:90%;width:90%; padding-right:25px;"  
+                                 onmouseover="ShowDef();" onmouseout="HideDef();" src="Images/dd.svg">
+                        <div class="DefStyle" id="EmaliographyDef">Descargar</div>         
                     </div>
-                    <div class="DefStyle" id="EmaliographyDef">Descarga</div>
 
                 </form> 
-                <br style="line-height: 10px">
+
+                <br>
                 <center>
-                    <div style="line-height: 5px">
-                        <h3 id="titulo"></h3>
-                        <h4 id="subtitulo"></h4>
+                    <h2>Indicadores De Calidad</h2>
+                </center>
+                <br>
+                <center>
+                    <div id="table">
+                    </div>
+                    <div > 
+
+                        <p>
+                            *En color verde se muestran los valores mayores al promedio del año anterior.<br/>
+                            *En color rojo se muestran los valores menores al promedio del año anterior.
+                        </p>
+
                     </div>
                 </center>
-                <div id="GraficaPrincipal" class="divimagen"></div>
             </div>
         </div>
     </body>

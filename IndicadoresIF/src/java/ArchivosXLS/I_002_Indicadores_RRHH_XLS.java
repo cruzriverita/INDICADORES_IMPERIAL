@@ -5,8 +5,7 @@
  */
 package ArchivosXLS;
 
-import Modelo.Modelo_IndicadoresProduccion;
-import Modelo.Modelo_IndicadoresRRHH;
+import Modelo.Modelo_002_Indicadores_RRHH;
 import Utilidades.Metodos_Generales_Excel;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -34,8 +33,8 @@ import jxl.write.WriteException;
  */
 public class I_002_Indicadores_RRHH_XLS extends HttpServlet {
 
- Modelo.ConexionBD conexion = new Modelo.ConexionBD();
- 
+    Modelo.ConexionBD conexion = new Modelo.ConexionBD();
+
     ArrayList<String> periodo = new ArrayList<>();
     ArrayList<Double> anio1 = new ArrayList<>();
     ArrayList<Double> devengado1 = new ArrayList<>();
@@ -44,12 +43,10 @@ public class I_002_Indicadores_RRHH_XLS extends HttpServlet {
     ArrayList<Double> Noempleados = new ArrayList<>();
     ArrayList<Double> DifDevengado = new ArrayList<>();
     ArrayList<Double> porcentaje = new ArrayList<>();
-    
+
     String anio = "";
     String tipo = "";
-    String indicador="";
-    
-    
+    String indicador = "";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -89,20 +86,20 @@ public class I_002_Indicadores_RRHH_XLS extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         anio = request.getParameter("anio");
         tipo = request.getParameter("tipo");
-        indicador= request.getParameter("indicador");
-        
+        indicador = request.getParameter("indicador");
+
         OutputStream out = null;
 
         try {
-            if (tipo.equals("1")){
-                tipo="N";
-            }else{
-                tipo="P";
+            if (tipo.equals("1")) {
+                tipo = "N";
+            } else {
+                tipo = "P";
             }
-            String sql = Modelo_IndicadoresRRHH.Consulta_Excel_Indicadores_RRHH(Integer.parseInt(anio),tipo);
+            String sql = Modelo_002_Indicadores_RRHH.Consulta_Excel_Indicadores_RRHH(Integer.parseInt(anio), tipo);
             response.setContentType("application/vnd.ms-excel");
 
             response.setHeader("Content-Disposition",
@@ -111,22 +108,22 @@ public class I_002_Indicadores_RRHH_XLS extends HttpServlet {
             WritableWorkbook w = Workbook.createWorkbook(response.getOutputStream());
             WritableSheet s = w.createSheet("Indicadores RRHH", 0);
 
-            List<Map<String, Object>> resultList = new ArrayList<>();
+            List<Map<String, Object>> resultList;
             resultList = conexion.select(sql);
 
             Iterator<Map<String, Object>> iterador = resultList.iterator();
             while (iterador.hasNext()) {
                 Map<String, Object> mapa = iterador.next();
-                
-           String periodov = String.valueOf(mapa.get("periodo"));
-               
-           if (tipo.equals("N")){
-               periodov = Utilidades.MetodosGlobales.get_mes((Integer)mapa.get("periodo"));
-                
-            }else{
-               periodov = String.valueOf(mapa.get("periodo"));
-            }
-                
+
+                String periodov = String.valueOf(mapa.get("periodo"));
+
+                if (tipo.equals("N")) {
+                    periodov = Utilidades.Metodos_Globales.get_mes((Integer) mapa.get("periodo"));
+
+                } else {
+                    periodov = String.valueOf(mapa.get("periodo"));
+                }
+
                 Double Cvalor1 = Double.parseDouble(mapa.get("anio1").toString());
                 Double Cvalor2 = Double.parseDouble(mapa.get("Devengado1").toString());
                 Double Cvalor3 = Double.parseDouble(mapa.get("anio2").toString());
@@ -135,15 +132,12 @@ public class I_002_Indicadores_RRHH_XLS extends HttpServlet {
                 Double Cvalor6 = Double.parseDouble(mapa.get("Devengado").toString());
                 Double Cvalor7 = Double.parseDouble(mapa.get("Porcentaje").toString());
 
-                
-                
-                
                 periodo.add(periodov);
                 anio1.add(Cvalor1);
                 devengado1.add(Cvalor2);
                 anio2.add(Cvalor3);
                 devengado2.add(Cvalor4);
-                
+
                 Noempleados.add(existe(Cvalor5));
                 DifDevengado.add(existe(Cvalor6));
                 porcentaje.add(existe(Cvalor7));
@@ -160,14 +154,13 @@ public class I_002_Indicadores_RRHH_XLS extends HttpServlet {
             //Encabezados columnas
             String Header[] = new String[8];
             Header[0] = this.GetPeriodo(tipo);
-            Header[1] = "No. Empleados "+String.valueOf(Integer.parseInt(anio)-1);
-            Header[2] = "Devengado "+String.valueOf(Integer.parseInt(anio)-1);
+            Header[1] = "No. Empleados " + String.valueOf(Integer.parseInt(anio) - 1);
+            Header[2] = "Devengado " + String.valueOf(Integer.parseInt(anio) - 1);
             Header[3] = "No. Empleados " + anio;
-            Header[4] = "Devengado "+anio;
+            Header[4] = "Devengado " + anio;
             Header[5] = "Diferencia No.Empleados";
             Header[6] = "Diferencia Devengado";
             Header[7] = "Porcentaje Incremento";
-            
 
             for (int i = 0; i < Header.length; i++) {
                 Label label = new Label(i + 1, 1, Header[i]);
@@ -177,46 +170,45 @@ public class I_002_Indicadores_RRHH_XLS extends HttpServlet {
 
             }
 
-            //int ultimafila = periodo.size() + 2;
+
             for (int ix = 0; ix < periodo.size(); ix++) {
 
-                
                 //Columna periodo
                 Label COL1 = new Label(1, ix + 2, periodo.get(ix), Metodos_Generales_Excel.Formato_Cuerpo_Excel(Colour.WHITE, WritableFont.ARIAL, 10));
                 s.addCell(COL1);
                 s.setColumnView(1, 15);
-                
+
                 //Empleados ANIO1
                 jxl.write.Number COL2 = new jxl.write.Number(2, ix + 2, anio1.get(ix), Metodos_Generales_Excel.FormatoNumericoEntero(Colour.WHITE, WritableFont.ARIAL, 10));
                 s.addCell(COL2);
-                s.setColumnView(2,25);
-                
+                s.setColumnView(2, 25);
+
                 //Devengado ANIO1
                 jxl.write.Number COL3 = new jxl.write.Number(3, ix + 2, devengado1.get(ix), Metodos_Generales_Excel.FormatoNumericoDecimal(Colour.WHITE, WritableFont.ARIAL, 10));
                 s.addCell(COL3);
                 s.setColumnView(3, 22);
-                
+
                 //Empleados anio2
                 jxl.write.Number COL4 = new jxl.write.Number(4, ix + 2, anio2.get(ix), Metodos_Generales_Excel.FormatoNumericoEntero(Colour.WHITE, WritableFont.ARIAL, 10));
                 s.addCell(COL4);
                 s.setColumnView(4, 25);
-                
-                 jxl.write.Number COL5 = new jxl.write.Number(5, ix + 2, devengado2.get(ix), Metodos_Generales_Excel.FormatoNumericoDecimal(Colour.WHITE, WritableFont.ARIAL, 10));
+
+                jxl.write.Number COL5 = new jxl.write.Number(5, ix + 2, devengado2.get(ix), Metodos_Generales_Excel.FormatoNumericoDecimal(Colour.WHITE, WritableFont.ARIAL, 10));
                 s.addCell(COL5);
                 s.setColumnView(5, 22);
-                
-                 jxl.write.Number COL6 = new jxl.write.Number(6, ix + 2, Noempleados.get(ix), Metodos_Generales_Excel.FormatoNumericoEntero(Colour.WHITE, WritableFont.ARIAL, 10));
+
+                jxl.write.Number COL6 = new jxl.write.Number(6, ix + 2, Noempleados.get(ix), Metodos_Generales_Excel.FormatoNumericoEntero(Colour.WHITE, WritableFont.ARIAL, 10));
                 s.addCell(COL6);
                 s.setColumnView(6, 27);
-                
-                 jxl.write.Number COL7 = new jxl.write.Number(7, ix + 2, DifDevengado.get(ix), Metodos_Generales_Excel.FormatoNumericoDecimal(Colour.WHITE, WritableFont.ARIAL, 10));
+
+                jxl.write.Number COL7 = new jxl.write.Number(7, ix + 2, DifDevengado.get(ix), Metodos_Generales_Excel.FormatoNumericoDecimal(Colour.WHITE, WritableFont.ARIAL, 10));
                 s.addCell(COL7);
                 s.setColumnView(7, 25);
-                
-                jxl.write.Number COL8 = new jxl.write.Number(8, ix + 2, (porcentaje.get(ix)), Metodos_Generales_Excel.FormatoNumericoPorcentaje(Colour.WHITE, WritableFont.ARIAL, 10));               
+
+                jxl.write.Number COL8 = new jxl.write.Number(8, ix + 2, (porcentaje.get(ix)), Metodos_Generales_Excel.FormatoNumericoPorcentaje(Colour.WHITE, WritableFont.ARIAL, 10));
                 s.addCell(COL8);
                 s.setColumnView(8, 25);
-                
+
             }
 
             w.write();
@@ -229,9 +221,7 @@ public class I_002_Indicadores_RRHH_XLS extends HttpServlet {
             this.devengado1.clear();
             this.DifDevengado.clear();
             this.porcentaje.clear();
-            
-            
-            
+
         } catch (IOException | NumberFormatException | WriteException e) {
             throw new ServletException("Exception in Excel Sample Servlet", e);
         } finally {
@@ -265,33 +255,32 @@ public class I_002_Indicadores_RRHH_XLS extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
-    public Double existe(Double valor)
-    {
-     if (valor>0)
-         return valor;
-     else
-         return 0.0;
+    public Double existe(Double valor) {
+        if (valor > 0) {
+            return valor;
+        } else {
+            return 0.0;
+        }
     }
-    
+
     public String GetPeriodo(String tipo) {
-        if (tipo == "N") {
+        if ("N".equals(tipo)) {
             return "Mes";
         } else {
             return "Catorcena";
         }
     }
-    
+
     public String GetTituloHoja(String tipo) {
         if (tipo.equals("N")) {
             /*if (indicador.equals("INDICADOR7")) {
-                return "Cantidad Empleados Nomina";
-            } else {
-                return "Promedio Devengado Nomina";
-            }*/
+             return "Cantidad Empleados Nomina";
+             } else {
+             return "Promedio Devengado Nomina";
+             }*/
             return "Comparativo Nominas";
         } else {
             return "Comparativo Planillas";
         }
     }
-
 }

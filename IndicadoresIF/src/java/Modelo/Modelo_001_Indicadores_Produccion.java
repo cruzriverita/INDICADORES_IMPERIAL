@@ -9,7 +9,7 @@ package Modelo;
  * @author rcruz
  */
 //Consultas que traen informacion de la BD para los indicadores.
-public class Modelo_IndicadoresProduccion {
+public class Modelo_001_Indicadores_Produccion {
 
     /*-------------------------------Consulta utilizada para la grafica general de barras----------------------------*/
     public static String I_001_Kilos_Producidos_Hora_Hombre_General(String mes, Integer anio, String simbolo, String tabla, String tablap, String valor, String valmax, String maxmin, String orden) {

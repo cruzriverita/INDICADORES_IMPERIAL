@@ -6,8 +6,8 @@
 package ArchivosXLS;
 
 
-import Modelo.Modelo_Indicadores_Inventarios;
-import Utilidades.MetodosGlobales;
+import Modelo.Modelo_003_Indicadores_Inventarios;
+import Utilidades.Metodos_Globales;
 import Utilidades.Metodos_Generales_Excel;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -103,64 +103,64 @@ public class C_003_Indicadores_Inventarios_XLS extends HttpServlet {
             WritableSheet s7 = w.createSheet("Tela Terminada", 6);
 
             //Se crean las tablas por cada tipo de inventario para escribir en el archivo. 
-            String sql = Modelo_Indicadores_Inventarios.Consulta_Excel_Resumen(Integer.parseInt(anio));
+            String sql = Modelo_003_Indicadores_Inventarios.Consulta_Excel_Resumen(Integer.parseInt(anio));
             this.EscribirResumen(s, w, sql, "Inventario Grupo Imperial " + anio);
 
-            String sql2 = Modelo_Indicadores_Inventarios.Consulta_Excel_Detalle1(Integer.parseInt(anio), "A");
+            String sql2 = Modelo_003_Indicadores_Inventarios.Consulta_Excel_Detalle1(Integer.parseInt(anio), "A");
             this.EscribirDetalle(s2, w, sql2, "Algodon");
 
-            String sql3 = Modelo_Indicadores_Inventarios.Consulta_Excel_Detalle1(Integer.parseInt(anio), "PF");
+            String sql3 = Modelo_003_Indicadores_Inventarios.Consulta_Excel_Detalle1(Integer.parseInt(anio), "PF");
             this.EscribirDetalle(s3, w, sql3, "Poliester y Fibra");
 
-            String sql4 = Modelo_Indicadores_Inventarios.Consulta_Excel_Detalle1(Integer.parseInt(anio), "HP");
+            String sql4 = Modelo_003_Indicadores_Inventarios.Consulta_Excel_Detalle1(Integer.parseInt(anio), "HP");
             this.EscribirDetalle(s4, w, sql4, "Hilo Producido");
 
-            String sql5 = Modelo_Indicadores_Inventarios.Consulta_Excel_Detalle1(Integer.parseInt(anio), "HC");
+            String sql5 = Modelo_003_Indicadores_Inventarios.Consulta_Excel_Detalle1(Integer.parseInt(anio), "HC");
             this.EscribirDetalle(s5, w, sql5, "Hilo Comprado");
 
-            String sql6 = Modelo_Indicadores_Inventarios.Consulta_Excel_Detalle1(Integer.parseInt(anio), "TC");
+            String sql6 = Modelo_003_Indicadores_Inventarios.Consulta_Excel_Detalle1(Integer.parseInt(anio), "TC");
             this.EscribirDetalle(s6, w, sql6, "Tela Cruda");
 
             /**
              * ************************************HILO PRODUCIDO**********************************************
              */
-            String sql4_1 = Modelo_Indicadores_Inventarios.Consulta_Excel_Detalle2(Integer.parseInt(anio), "HP", "RLRS");
+            String sql4_1 = Modelo_003_Indicadores_Inventarios.Consulta_Excel_Detalle2(Integer.parseInt(anio), "HP", "RLRS");
             this.EscribirDetalle2(s4, w, sql4_1, 1, "C", "D");
 
-            String sql4_2 = Modelo_Indicadores_Inventarios.Consulta_Excel_Detalle2(Integer.parseInt(anio), "HP", "RS");
+            String sql4_2 = Modelo_003_Indicadores_Inventarios.Consulta_Excel_Detalle2(Integer.parseInt(anio), "HP", "RS");
             this.EscribirDetalle2(s4, w, sql4_2, 5, "G", "H");
 
-            String sql4_3 = Modelo_Indicadores_Inventarios.Consulta_Excel_Detalle2(Integer.parseInt(anio), "HP", "RSM");
+            String sql4_3 = Modelo_003_Indicadores_Inventarios.Consulta_Excel_Detalle2(Integer.parseInt(anio), "HP", "RSM");
             this.EscribirDetalle2(s4, w, sql4_3, 9, "K", "L");
 
             /**
              * ***********************************TELA CRUDA************************************************
              */
-            String sql6_2 = Modelo_Indicadores_Inventarios.Consulta_Excel_Detalle2(Integer.parseInt(anio), "TC", "KNIT");
+            String sql6_2 = Modelo_003_Indicadores_Inventarios.Consulta_Excel_Detalle2(Integer.parseInt(anio), "TC", "KNIT");
             this.EscribirDetalle2(s6, w, sql6_2, 5, "G", "H");
 
-            String sql6_3 = Modelo_Indicadores_Inventarios.Consulta_Excel_Detalle2(Integer.parseInt(anio), "TC", "FPS");
+            String sql6_3 = Modelo_003_Indicadores_Inventarios.Consulta_Excel_Detalle2(Integer.parseInt(anio), "TC", "FPS");
             this.EscribirDetalle2(s6, w, sql6_3, 9, "K", "L");
 
-            String sql6_1 = Modelo_Indicadores_Inventarios.Consulta_Excel_Detalle2(Integer.parseInt(anio), "TC", "DPF");
+            String sql6_1 = Modelo_003_Indicadores_Inventarios.Consulta_Excel_Detalle2(Integer.parseInt(anio), "TC", "DPF");
             this.EscribirDetalle2(s6, w, sql6_1, 1, "C", "D");
 
             /**
              * ***********************************TELA TERMINADA************************************************
              */
-            String sql7 = Modelo_Indicadores_Inventarios.Consulta_Excel_Detalle1(Integer.parseInt(anio), "TT");
+            String sql7 = Modelo_003_Indicadores_Inventarios.Consulta_Excel_Detalle1(Integer.parseInt(anio), "TT");
             this.EscribirDetalle(s7, w, sql7, "Tela Terminada");
 
-            String sql7_1 = Modelo_Indicadores_Inventarios.Consulta_Excel_Detalle2(Integer.parseInt(anio), "TT", "DPF");
+            String sql7_1 = Modelo_003_Indicadores_Inventarios.Consulta_Excel_Detalle2(Integer.parseInt(anio), "TT", "DPF");
             this.EscribirDetalle2(s7, w, sql7_1, 1, "C", "D");
 
-            String sql7_2 = Modelo_Indicadores_Inventarios.Consulta_Excel_Detalle2(Integer.parseInt(anio), "TT", "FPS ANEXO");
+            String sql7_2 = Modelo_003_Indicadores_Inventarios.Consulta_Excel_Detalle2(Integer.parseInt(anio), "TT", "FPS ANEXO");
             this.EscribirDetalle2(s7, w, sql7_2, 5, "G", "H");
 
-            String sql7_3 = Modelo_Indicadores_Inventarios.Consulta_Excel_Detalle2(Integer.parseInt(anio), "TT", "Maquilas");
+            String sql7_3 = Modelo_003_Indicadores_Inventarios.Consulta_Excel_Detalle2(Integer.parseInt(anio), "TT", "Maquilas");
             this.EscribirDetalle2(s7, w, sql7_3, 9, "K", "L");
 
-            String sql7_4 = Modelo_Indicadores_Inventarios.Consulta_Excel_Detalle2(Integer.parseInt(anio), "TT", "Telamarket");
+            String sql7_4 = Modelo_003_Indicadores_Inventarios.Consulta_Excel_Detalle2(Integer.parseInt(anio), "TT", "Telamarket");
             this.EscribirDetalle2(s7, w, sql7_4, 13, "O", "P");
 
             //Escribir el archivo
@@ -275,7 +275,7 @@ public class C_003_Indicadores_Inventarios_XLS extends HttpServlet {
         ArrayList<Double> Dias_A = new ArrayList<>();
         int heightInPoints = 26 * 20;
 
-        //s2 = w.createSheet(name, 0);
+        
         List<Map<String, Object>> resultList2;// = new ArrayList<>();
         resultList2 = conexion.select(sql);
 
@@ -313,10 +313,10 @@ public class C_003_Indicadores_Inventarios_XLS extends HttpServlet {
 
         }
 
-        //int ultimafila = indicador.size() + 2;
+       
         for (int ix = 0; ix < Mes_A.size(); ix++) {
 
-            Label ColIndicador = new Label(1, ix + 2, MetodosGlobales.get_nombre_mes(Integer.parseInt(Mes_A.get(ix))), Metodos_Generales_Excel.Formato_Cuerpo_Excel(Colour.WHITE, WritableFont.ARIAL, 10));
+            Label ColIndicador = new Label(1, ix + 2, Metodos_Globales.get_nombre_mes(Integer.parseInt(Mes_A.get(ix))), Metodos_Generales_Excel.Formato_Cuerpo_Excel(Colour.WHITE, WritableFont.ARIAL, 10));
             s2.addCell(ColIndicador);
             s2.setColumnView(1, 30);
 
@@ -346,7 +346,7 @@ public class C_003_Indicadores_Inventarios_XLS extends HttpServlet {
             ArrayList<String> Vplanta = new ArrayList<>();
             int xx = 0;
 
-            //s2 = w.createSheet(name, 0);
+           
             List<Map<String, Object>> resultList2;
             resultList2 = conexion.select(sql);
 
@@ -377,8 +377,7 @@ public class C_003_Indicadores_Inventarios_XLS extends HttpServlet {
 
             for (int i = 0; i < Header2.length; i++) {
                 Label label = new Label(col_inicial + i, 18, Header2[i]);
-                s2.addCell(label);
-                //columna,fila                               
+                s2.addCell(label);                               
                 WritableCell cell = s2.getWritableCell(col_inicial + i, 18);
                 cell.setCellFormat(Metodos_Generales_Excel.Formato_Cuerpo_Excel(Colour.OCEAN_BLUE, WritableFont.ARIAL, 12));
 
@@ -387,7 +386,7 @@ public class C_003_Indicadores_Inventarios_XLS extends HttpServlet {
             for (int ix = 0; ix < Mes_A.size(); ix++) {
 
                 //col,fila
-                Label ColIndicador = new Label(col_inicial, xx + 19, MetodosGlobales.get_nombre_mes(Integer.parseInt(Mes_A.get(ix))), Metodos_Generales_Excel.Formato_Cuerpo_Excel(Colour.WHITE, WritableFont.ARIAL, 10));
+                Label ColIndicador = new Label(col_inicial, xx + 19, Metodos_Globales.get_nombre_mes(Integer.parseInt(Mes_A.get(ix))), Metodos_Generales_Excel.Formato_Cuerpo_Excel(Colour.WHITE, WritableFont.ARIAL, 10));
                 s2.addCell(ColIndicador);
                 s2.setColumnView(col_inicial, 30);
 
@@ -401,8 +400,6 @@ public class C_003_Indicadores_Inventarios_XLS extends HttpServlet {
                 xx++;
 
             }
-       // }
-
             addAvgCells(s2, "AVERAGE(" + l1 + "20:" + l1 + "31)", 31, col_inicial + 1, col_inicial);
             addAvgCells(s2, "AVERAGE(" + l2 + "20:" + l2 + "31)", 31, col_inicial + 2, col_inicial);
 
@@ -419,11 +416,11 @@ public class C_003_Indicadores_Inventarios_XLS extends HttpServlet {
             WritableSheet sheet,
             String formula, int row, int col, int col_label) throws RowsExceededException, WriteException {
 
-        //Create a formula for average
+        //Formula promedio.
         Formula formulaCell = new Formula(col, row, formula, Metodos_Generales_Excel.FormatoNumericoDecimal2(Colour.WHITE, WritableFont.ARIAL, 10));
         sheet.addCell(formulaCell);
 
-        //Create label for average
+        //Etiqueta para el promedio.
         Label formulaLabel = new Label(col_label, row, "Promedio", Metodos_Generales_Excel.Formato_Cuerpo_Excel(Colour.WHITE, WritableFont.ARIAL, 10));
         sheet.addCell(formulaLabel);
     }

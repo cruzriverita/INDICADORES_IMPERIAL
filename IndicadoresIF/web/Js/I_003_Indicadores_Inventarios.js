@@ -50,11 +50,10 @@ var tooltipData; //vector grafica secundaria
 var primaryOptions; //Opciones grafica principal
 var tooltipOptions; //opciones grafica secundaria
 
-
-// Draws your charts to pull the PNGs for your tooltips.
+//Draws your charts to pull the PNGs for your tooltips.
 //Funcion principal que se llama desde jsp para dibujar las graficas.
-function DibujarChartPrincipal() {
 
+function DibujarChartPrincipal() {
     //Se obtienen las dos cadenas, 1 de cada servlet y con al informacion para las graficas, principal y secundaria respectivamente.
     var cadena = carga();
     var cadena2 = carga2();

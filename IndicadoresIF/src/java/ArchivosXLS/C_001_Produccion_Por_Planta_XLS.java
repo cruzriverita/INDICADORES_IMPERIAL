@@ -6,7 +6,7 @@
 package ArchivosXLS;
 
 import Utilidades.Metodos_Generales_Excel;
-import Modelo.Modelo_IndicadoresProduccion;
+import Modelo.Modelo_001_Indicadores_Produccion;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintWriter;
@@ -24,7 +24,6 @@ import jxl.write.WritableSheet;
 import jxl.write.WritableWorkbook;
 import jxl.write.WriteException;
 import jxl.format.Colour;
-import jxl.write.Formula;
 import jxl.write.WritableCell;
 import jxl.write.WritableFont;
 
@@ -84,13 +83,14 @@ public class C_001_Produccion_Por_Planta_XLS extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
         anio = request.getParameter("anio");
         mes = request.getParameter("mes");
         planta = request.getParameter("planta");
         OutputStream out = null;
 
         try {
-            String sql = Modelo_IndicadoresProduccion.C_001_Produccion_Por_Planta(mes, Integer.parseInt(anio))+" UNION "+Modelo_IndicadoresProduccion.C_001_Produccion_Por_Planta2(mes, Integer.parseInt(anio));
+            String sql = Modelo_001_Indicadores_Produccion.C_001_Produccion_Por_Planta(mes, Integer.parseInt(anio)) + " UNION " + Modelo_001_Indicadores_Produccion.C_001_Produccion_Por_Planta2(mes, Integer.parseInt(anio));
             response.setContentType("application/vnd.ms-excel");
 
             response.setHeader("Content-Disposition",
@@ -99,7 +99,7 @@ public class C_001_Produccion_Por_Planta_XLS extends HttpServlet {
             WritableWorkbook w = Workbook.createWorkbook(response.getOutputStream());
             WritableSheet s = w.createSheet("Indicadores Produccion", 0);
 
-            List<Map<String, Object>> resultList = new ArrayList<>();
+            List<Map<String, Object>> resultList ;
             resultList = conexion.select(sql);
 
             Iterator<Map<String, Object>> iterador = resultList.iterator();
@@ -159,28 +159,27 @@ public class C_001_Produccion_Por_Planta_XLS extends HttpServlet {
                 jxl.write.Number rst = new jxl.write.Number(2, ix + 2, valoresRST.get(ix), Metodos_Generales_Excel.FormatoNumericoDecimal(Colour.WHITE, WritableFont.ARIAL, 10));
                 s.addCell(rst);
                 s.setColumnView(2, 20);
-                
-                //Columna valores RST
+
                 jxl.write.Number knit = new jxl.write.Number(3, ix + 2, valoresKNIT.get(ix), Metodos_Generales_Excel.FormatoNumericoDecimal(Colour.WHITE, WritableFont.ARIAL, 10));
                 s.addCell(knit);
                 s.setColumnView(3, 20);
-                
+
                 jxl.write.Number dpf = new jxl.write.Number(4, ix + 2, valoresDPF.get(ix), Metodos_Generales_Excel.FormatoNumericoDecimal(Colour.WHITE, WritableFont.ARIAL, 10));
                 s.addCell(dpf);
                 s.setColumnView(4, 20);
-                
-                 jxl.write.Number rlrs = new jxl.write.Number(5, ix + 2, valoresRLRS.get(ix), Metodos_Generales_Excel.FormatoNumericoDecimal(Colour.WHITE, WritableFont.ARIAL, 10));
+
+                jxl.write.Number rlrs = new jxl.write.Number(5, ix + 2, valoresRLRS.get(ix), Metodos_Generales_Excel.FormatoNumericoDecimal(Colour.WHITE, WritableFont.ARIAL, 10));
                 s.addCell(rlrs);
                 s.setColumnView(5, 20);
-                
-                 jxl.write.Number fps = new jxl.write.Number(6, ix + 2, valoresFPS.get(ix), Metodos_Generales_Excel.FormatoNumericoDecimal(Colour.WHITE, WritableFont.ARIAL, 10));
+
+                jxl.write.Number fps = new jxl.write.Number(6, ix + 2, valoresFPS.get(ix), Metodos_Generales_Excel.FormatoNumericoDecimal(Colour.WHITE, WritableFont.ARIAL, 10));
                 s.addCell(fps);
                 s.setColumnView(6, 20);
-                
-                 jxl.write.Number rsm = new jxl.write.Number(7, ix + 2, valoresRSM.get(ix), Metodos_Generales_Excel.FormatoNumericoDecimal(Colour.WHITE, WritableFont.ARIAL, 10));
+
+                jxl.write.Number rsm = new jxl.write.Number(7, ix + 2, valoresRSM.get(ix), Metodos_Generales_Excel.FormatoNumericoDecimal(Colour.WHITE, WritableFont.ARIAL, 10));
                 s.addCell(rsm);
                 s.setColumnView(7, 20);
-                
+
             }
 
             w.write();
@@ -192,9 +191,7 @@ public class C_001_Produccion_Por_Planta_XLS extends HttpServlet {
             this.valoresFPS.clear();
             this.valoresKNIT.clear();
             this.valoresRSM.clear();
-            
-            
-            
+
         } catch (IOException | NumberFormatException | WriteException e) {
             throw new ServletException("Exception in Excel Sample Servlet", e);
         } finally {
@@ -204,25 +201,12 @@ public class C_001_Produccion_Por_Planta_XLS extends HttpServlet {
         }
     }
 
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
     @Override
     public String getServletInfo() {
         return "Short description";

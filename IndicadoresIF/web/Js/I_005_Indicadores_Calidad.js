@@ -5,13 +5,14 @@ function DibujarChartPrincipal() {
             ({
                 type: "POST",
                 //Nombre del servlet de donde se reciben los datos en formato json.
-                url: "I_004_Indicadores_Financieros_Servlet",
+                url: "I_005_Indicadores_Calidad_Servlet",
                 //Parametros leidos del jsp. anio y mes, parametros en enviados al servlet aniojs mesjs,opcion.         
                 data: {
                     mesjs: $("#mes").val(),
                     aniojs: $("#anio").val(),
                     opcion: $('#opciones option:selected').val(), //trae la planta seleccionada.
-                    indicador: $('#indicador').val()
+                    indicador: $('#indicador').val(),
+                    amb: $('#ambito').val()
                 },
                 dataType: "json", //Se reciben los datos en formato JSON                
                 success: function (data_) {
@@ -26,7 +27,7 @@ function DibujarChartPrincipal() {
                         var x = parseInt($("#anio").val(), 10);
 
 
-                        data.addColumn('string', 'Empresa');
+                        data.addColumn('string', 'Planta');
                         data.addColumn('number', (x - 1));
                         data.addColumn('number', 'Mayor Historico');
                         data.addColumn('number', x);
@@ -52,7 +53,6 @@ function DibujarChartPrincipal() {
                                 ]
                             ]);
                         }
-
 
                         var options = {
                             title: '',
@@ -194,21 +194,21 @@ function click_grafica(planta)
 }
 
 
-function GetTituloG4() {
+function GetTituloG5() {
     var e = document.getElementById("indicador").value;
 
     if (e === "1")
     {
-        document.getElementById('titulo').innerHTML = "Liquidez Corriente";
+        document.getElementById('titulo').innerHTML = "Calidad Facturable";
     }
 
     else if (e === "2")
     {
-        document.getElementById('titulo').innerHTML = "Prueba Acida";
+        document.getElementById('titulo').innerHTML = "Calidad No Facturable";
     }
     else if (e === "3")
     {
-        document.getElementById('titulo').innerHTML = "Apalancamiento Financiero";
+        document.getElementById('titulo').innerHTML = "Subproducto";
     }
     else if (e === "4")
     {
@@ -244,6 +244,24 @@ function GetTituloG4() {
         document.getElementById('titulo').innerHTML = "Total pagado por multas y retificaciones";
     }
 
+}
 
-
+//Esconder select de interno/externo
+function hideInterno() {
+    var e = document.getElementById("opciones");
+    var val = e.options[e.selectedIndex].value;
+    if (val === "ALL")
+    {
+        document.getElementById('ambito').style.display = "none";
+        document.getElementById('lblamb').style.display = "none";
+        document.getElementById('divamb').style.display = "none";
+        document.getElementById('divselectamb').style.display = "none";
+    }
+    else
+    {
+        document.getElementById('ambito').style.display = "block";
+        document.getElementById('lblamb').style.display = "block";
+        document.getElementById('divamb').style.display = "block";
+        document.getElementById('divselectamb').style.display = "block";
+    }
 }

@@ -5,7 +5,7 @@
  */
 package Controladores;
 
-import Modelo.Modelo_Indicadores_Financieros;
+import Modelo.Modelo_004_Indicadores_Financieros;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Iterator;
@@ -62,11 +62,10 @@ public class C_004_Indicadores_Financieros_Servlet extends HttpServlet {
         JSONObject Obj = null;
 
         //Recuperar valores enviados desde el javascript.
-        // opcion = request.getParameter("opcionjs");
         anio = request.getParameter("aniojs");
         mes = request.getParameter("mesjs");
         String sql;
-        sql = Modelo_Indicadores_Financieros.Consulta_Tabla_Indicadores_Financieros(Integer.parseInt(anio), mes);
+        sql = Modelo_004_Indicadores_Financieros.Consulta_Tabla_Indicadores_Financieros(Integer.parseInt(anio), mes);
 
         List<Map<String, Object>> resultList;
         resultList = conexion.select(sql);
@@ -80,23 +79,18 @@ public class C_004_Indicadores_Financieros_Servlet extends HttpServlet {
             Float Cvalor1 = Float.parseFloat(mapa.get("Imperial Fashion").toString());
             Float Cvalor2 = Float.parseFloat(mapa.get("MT Textil").toString());
             Float Cvalor3 = Float.parseFloat(mapa.get("Blake").toString());
-            
+
             Float Cvalor4 = Float.parseFloat(mapa.get("pif").toString());
             Float Cvalor5 = Float.parseFloat(mapa.get("pmt").toString());
             Float Cvalor6 = Float.parseFloat(mapa.get("pbl").toString());
+            Cvalor1 = Utilidades.Metodos_Globales.redondear(Cvalor1, 2);
+            Cvalor2 = Utilidades.Metodos_Globales.redondear(Cvalor2, 2);
+            Cvalor3 = Utilidades.Metodos_Globales.redondear(Cvalor3, 2);
+            Cvalor4 = Utilidades.Metodos_Globales.redondear(Cvalor4, 2);
+            Cvalor5 = Utilidades.Metodos_Globales.redondear(Cvalor5, 2);
+            Cvalor6 = Utilidades.Metodos_Globales.redondear(Cvalor6, 2);
 
-           // Float Cvalor4 = Float.parseFloat(mapa.get("diaa").toString());
-            Cvalor1 = Utilidades.MetodosGlobales.redondear(Cvalor1, 2);
-            Cvalor2 = Utilidades.MetodosGlobales.redondear(Cvalor2, 2);
-            Cvalor3 = Utilidades.MetodosGlobales.redondear(Cvalor3, 2);
-            
-            Cvalor4 = Utilidades.MetodosGlobales.redondear(Cvalor4, 2);
-            Cvalor5 = Utilidades.MetodosGlobales.redondear(Cvalor5, 2);
-            Cvalor6 = Utilidades.MetodosGlobales.redondear(Cvalor6, 2);
-            
             tipo = GetNombreIndicador(tipo);
-            
-
 
             Obj = new JSONObject();
 
@@ -105,8 +99,7 @@ public class C_004_Indicadores_Financieros_Servlet extends HttpServlet {
                 Obj.put("valor1", Cvalor1);
                 Obj.put("valor2", Cvalor2);
                 Obj.put("valor3", Cvalor3);
-               
-                
+
                 Obj.put("valor4", Cvalor4);
                 Obj.put("valor5", Cvalor5);
                 Obj.put("valor6", Cvalor6);
@@ -131,9 +124,7 @@ public class C_004_Indicadores_Financieros_Servlet extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
-    
-    public String GetNombreIndicador(String indicador)
-    {
+    public String GetNombreIndicador(String indicador) {
         String name;
         switch (indicador) {
 
@@ -164,7 +155,7 @@ public class C_004_Indicadores_Financieros_Servlet extends HttpServlet {
             case "7":
                 name = "Margen Operacional";
                 break;
-                
+
             case "8":
                 name = "Rendimiento sobre Activos Totales";
                 break;
@@ -176,11 +167,11 @@ public class C_004_Indicadores_Financieros_Servlet extends HttpServlet {
             case "10":
                 name = "Impacto Carga Financiera";
                 break;
-                
+
             case "11":
                 name = "Total pagado por multas y retificaciones";
                 break;
-                
+
             default:
                 name = "";
                 break;
@@ -189,5 +180,5 @@ public class C_004_Indicadores_Financieros_Servlet extends HttpServlet {
 
         return name;
     }
-    
+
 }

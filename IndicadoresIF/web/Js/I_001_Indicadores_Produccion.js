@@ -17,7 +17,7 @@ function DibujarChartPrincipal() {
                 success: function (data_) {
 
                     //Si se elige una de estas dos opciones entonces se muestra la grafica de barras, se separa DPF (trabaja con docenas y no KG)
-                    if ($('#opciones option:selected').val() === "ALL" || $('#opciones option:selected').val() === "FPS MES")
+                    if ($('#opciones option:selected').val() === "ALL" )
                     {
                         queryObject = eval('(' + JSON.stringify(data_) + ')');
                         queryObjectLen = queryObject.ListaValores.length;
@@ -58,40 +58,38 @@ function DibujarChartPrincipal() {
                             ]);
                         }
 
-                        //Si se eligen todas las plantas
-                        if ($('#opciones option:selected').val() === "ALL") {
-                            var options = {
-                                title: '',
-                                vAxis: {title: GetTituloEje() + '\n\n',
-                                    titleTextStyle: {color: 'Black'}},
-                                is3D: true,
-                                colors: Coloresrrhh(),
-                                //Formato de anotaciones sobre la grafica si las llevara
-                                annotations: {
-                                    textStyle: {
-                                        //fontName: 'Times-Roman',
-                                        //fontSize: 10,
-                                        // bold: true,
-                                        // italic: true,
-                                        //color: '#fff',// The color of the text.
-                                        //auraColor: 'transparent' // The color of the text outline.
-                                        //opacity: 0.8 // The transparency of the text.
-                                    }
+                        var options = {
+                            title: '',
+                            
+                            vAxis: {title: GetTituloEje(),
+                                titleTextStyle: {color: 'white'},
+                                textStyle: {color: 'white'}
+                            },
+                            hAxis: {textStyle: {color: '#FFF'}},
+                            backgroundColor: FondoGrafica(),
+                            legend: {
+                                textStyle: {
+                                    color: '#ffffff'
+                                }},
+                            
+                            
+                            is3D: true,
+                            colors: Coloresrrhh(),
+                            //Formato de anotaciones sobre la grafica si las llevara
+                            annotations: {
+                                textStyle: {
+                                    //fontName: 'Times-Roman',
+                                    //fontSize: 10,
+                                    // bold: true,
+                                    // italic: true,
+                                    //color: '#fff',// The color of the text.
+                                    //auraColor: 'transparent' // The color of the text outline.
+                                    //opacity: 0.8 // The transparency of the text.
                                 }
-                            };
-                        }
-                        //Si se selecciona FPS
-                        else
-                        {
-                            var options = {
-                                title: '', //GetTituloDPF() + ConvertirMes($("#mes").val()) + ' ' + $("#anio").val(),
-                                vAxis: {title: GetTituloDPFEje(), titleTextStyle: {color: 'Black'}},
-                                is3D: true,
-                                colors: Coloresrrhh()
-                            };
-
-                        }
-
+                            }
+                          
+                        };
+                        
                         var chart = new google.visualization.ColumnChart(document.getElementById('GraficaPrincipal'));
 
                         //funcion que se ejecuta al dar click sobre la barra
@@ -163,25 +161,38 @@ function DibujarChartPrincipal() {
                             ]);
                         }
 
-                            var options = {
-                                title: '',
-                                vAxis: {title: GetTituloEje(), titleTextStyle: {color: 'Black'}},
-                                hAxis: {title: '*El valor "' + "Menor historico" + '" corresponde a ' + ConvertirMes(mm) + ' de ' + aa  + '\n'
-                                            + '*El valor "' + "Mayor historico" + '" corresponde a ' + ConvertirMes(m) + ' de ' + a
+                        var options = {
+                            title: '',
+                             vAxis: {title: GetTituloEje(),
+                                titleTextStyle: {color: 'white'},
+                                textStyle: {color: 'white'}
+                            },
+                          
+                            backgroundColor: FondoGrafica(),
+                            legend: {
+                                textStyle: {
+                                    color: '#ffffff'
+                                }},
+                            
+                            hAxis:
+                                    {
+                                        title: '*El valor "' + "Menor historico" + '" corresponde a ' + ConvertirMes(mm) + ' de ' + aa + '\n'
+                                                + '*El valor "' + "Mayor historico" + '" corresponde a ' + ConvertirMes(m) + ' de ' + a, titleTextStyle: {color: 'white'}
+                                    },
+                            is3D: true,
+                            colors: Coloresrrhh(),
+                            annotations:
+                                    {
+                                        style: 'line'
+                                    },
+                            series:
+                                    {
+                                        0: {pointShape: 'circle', pointSize: tamapunto()},
+                                        2: {pointShape: 'circle', pointSize: tamapunto()}
 
-                                    , titleTextStyle: {color: 'Blue'}},
-                                is3D: true,
-                                colors: Coloresrrhh(),
-                                annotations: {
-                                    style: 'line'
-                                },
-                                 series: {
-                                    0: {pointShape: 'circle', pointSize: tamapunto()},
-                                    2: {pointShape: 'circle', pointSize: tamapunto()}
-                                  
-                                }
-                                , lineWidth: tamlinea
-                            };
+                                    },
+                            lineWidth: tamlinea
+                        };
                         
 
                         var chart = new google.visualization.LineChart(document.getElementById('GraficaPrincipal'));
@@ -196,11 +207,11 @@ function DibujarChartPrincipal() {
                 },
                 error: function () {
                     alert('No existen datos para los parametros elegidos');
-                    //document.getElementById("mes").value = 2; //MesActual();
                     location.reload();
                 }
             });
 }
+
 
 function click_grafica(planta)
 {
@@ -225,3 +236,67 @@ function click_grafica(planta)
     DibujarChartPrincipal();
     hideMes();
 }
+
+function GetTitulo() {
+    var e = document.getElementById("indicador").value;
+    //var val = e.options[e.selectedIndex].value;
+    if (e === "INDICADOR1")
+    {
+        return "Kilos Producidos / Hora-Hombre ";
+    }
+    else if (e === "INDICADOR2")
+    {
+        return "Kilos Producidos / Kilovatio-Hora ";
+    }
+    else if (e === "INDICADOR3")
+    {
+        return "Kilos Producidos / MRS ";
+    }
+    else if (e === "INDICADOR4")
+    {
+        return "Costo Mo / Kg Producidos ";
+    }
+    else if (e === "INDICADOR5")
+    {
+        return "Costo KWH / Kg Producidos ";
+    }
+    else if (e === "INDICADOR6")
+    {
+        return "Costo MRS / Kg Producidos ";
+    }
+}
+
+function GetTituloEje() {
+    var e = document.getElementById("indicador").value;
+
+    if (e === "INDICADOR1")
+    {
+        return "Kilogramos / Hora-Hombre ";
+    }
+    else if (e === "INDICADOR2")
+    {
+        return "Kilogramos / Kilovatio-Hora ";
+    }
+    else if (e === "INDICADOR3")
+    {
+        return "Kilogramos / MRS ";
+    }
+    else if (e === "INDICADOR4")
+    {
+        return "($) Costo Mo / Kg Producido ";
+    }
+    else if (e === "INDICADOR5")
+    {
+        return "($) Costo KWH / Kg Producido ";
+    }
+    else if (e === "INDICADOR6")
+    {
+        return "($) Costo MRS / Kg Producido ";
+    }
+}
+
+
+//Obtener el titulo de las graficas de produccion.
+
+
+

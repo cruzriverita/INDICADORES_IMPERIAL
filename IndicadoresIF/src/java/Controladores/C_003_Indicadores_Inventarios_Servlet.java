@@ -6,7 +6,7 @@
 package Controladores;
 
 
-import Modelo.Modelo_Indicadores_Inventarios;
+import Modelo.Modelo_003_Indicadores_Inventarios;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Iterator;
@@ -94,16 +94,8 @@ public class C_003_Indicadores_Inventarios_Servlet extends HttpServlet {
         anio = request.getParameter("aniojs");
         mes=request.getParameter("mesjs");
         String sql;
-        sql = Modelo_Indicadores_Inventarios.Inventarios_tabla_general(Integer.parseInt(anio),mes);
+        sql = Modelo_003_Indicadores_Inventarios.Inventarios_tabla_general(Integer.parseInt(anio),mes);
 
-        /*if (opcion.equals("1")){
-        sql = Modelo_Indicadores_Inventarios.Inventarios_tabla_general(Integer.parseInt(anio),"indice");
-        }
-        else
-        {
-            sql = Modelo_Indicadores_Inventarios.Inventarios_tabla_general(Integer.parseInt(anio),"dias");
-        }
-        */
         List<Map<String, Object>> resultList;
         resultList = conexion.select(sql);
 
@@ -120,12 +112,12 @@ public class C_003_Indicadores_Inventarios_Servlet extends HttpServlet {
             Float Cvalor5 = Float.parseFloat(mapa.get("diav").toString());
             Float Cvalor6 = Float.parseFloat(mapa.get("diap").toString());
 
-            Cvalor1 = Utilidades.MetodosGlobales.redondear(Cvalor1, 2);
-            Cvalor2 = Utilidades.MetodosGlobales.redondear(Cvalor2, 2);
-            Cvalor3 = Utilidades.MetodosGlobales.redondear(Cvalor3, 2);
-            Cvalor4 = Utilidades.MetodosGlobales.redondear(Cvalor4, 2);
-            Cvalor5 = Utilidades.MetodosGlobales.redondear(Cvalor5, 2);
-            Cvalor6 = Utilidades.MetodosGlobales.redondear(Cvalor6, 2);
+            Cvalor1 = Utilidades.Metodos_Globales.redondear(Cvalor1, 2);
+            Cvalor2 = Utilidades.Metodos_Globales.redondear(Cvalor2, 2);
+            Cvalor3 = Utilidades.Metodos_Globales.redondear(Cvalor3, 2);
+            Cvalor4 = Utilidades.Metodos_Globales.redondear(Cvalor4, 2);
+            Cvalor5 = Utilidades.Metodos_Globales.redondear(Cvalor5, 2);
+            Cvalor6 = Utilidades.Metodos_Globales.redondear(Cvalor6, 2);
             
             Obj = new JSONObject();
 

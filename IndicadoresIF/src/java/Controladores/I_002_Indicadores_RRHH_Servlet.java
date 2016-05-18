@@ -7,7 +7,6 @@ package Controladores;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -25,8 +24,8 @@ import org.json.JSONObject;
  *
  * @author rcruz
  */
-public class I_002_Indicadores_RRHH_Servlet extends HttpServlet {
 
+public class I_002_Indicadores_RRHH_Servlet extends HttpServlet {
     Modelo.ConexionBD conexion = new Modelo.ConexionBD();
 
     /**
@@ -82,38 +81,38 @@ public class I_002_Indicadores_RRHH_Servlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        String anio, mes, tipo, indicador;
+        String anio, tipo, indicador;
         List ListaValores = new LinkedList();
         JSONObject responseObj = new JSONObject();
         JSONObject Obj = null;
 
         //Recuperar valores enviados desde el javascript.
-        mes = request.getParameter("mesjs");
+
         anio = request.getParameter("aniojs");
         tipo = request.getParameter("tipojs");
         indicador = request.getParameter("indicador");
 
-        String sql = "";
+        String sql;
 
         if (null != indicador) {
             switch (indicador) {
                 case "INDICADOR7":
                     if (tipo.equals("1")) {
-                        sql = Modelo.Modelo_IndicadoresRRHH.I_002_IndicadoresRRHH_Consulta(Integer.parseInt(anio), "N", "P.No_Empleados", "No_Empleados");
+                        sql = Modelo.Modelo_002_Indicadores_RRHH.I_002_IndicadoresRRHH_Consulta(Integer.parseInt(anio), "N", "P.No_Empleados", "No_Empleados");
                         this.Generales(sql, ListaValores, Obj, responseObj, response);
                     } else {
-                        //sql = Modelo_IndicadoresProduccion.I_001_Kilos_Producidos_Hora_Hombre_Detalle(mes, Integer.parseInt(anio), opcion);
-                        sql = Modelo.Modelo_IndicadoresRRHH.I_002_IndicadoresRRHH_Consulta(Integer.parseInt(anio), "P", "P.No_Empleados", "No_Empleados");
+
+                        sql = Modelo.Modelo_002_Indicadores_RRHH.I_002_IndicadoresRRHH_Consulta(Integer.parseInt(anio), "P", "P.No_Empleados", "No_Empleados");
                         this.Generales(sql, ListaValores, Obj, responseObj, response);
                     }
                     break;
                 case "INDICADOR8":
                     if (tipo.equals("1")) {
-                        sql = Modelo.Modelo_IndicadoresRRHH.I_002_IndicadoresRRHH_Consulta(Integer.parseInt(anio), "N", "P.Devengado/P.No_Empleados", "Devengado/No_Empleados");
+                        sql = Modelo.Modelo_002_Indicadores_RRHH.I_002_IndicadoresRRHH_Consulta(Integer.parseInt(anio), "N", "P.Devengado/P.No_Empleados", "Devengado/No_Empleados");
                         this.Generales(sql, ListaValores, Obj, responseObj, response);
                     } else {
 
-                        sql = Modelo.Modelo_IndicadoresRRHH.I_002_IndicadoresRRHH_Consulta(Integer.parseInt(anio), "P", "P.Devengado/P.No_Empleados", "Devengado/No_Empleados");
+                        sql = Modelo.Modelo_002_Indicadores_RRHH.I_002_IndicadoresRRHH_Consulta(Integer.parseInt(anio), "P", "P.Devengado/P.No_Empleados", "Devengado/No_Empleados");
                         this.Generales(sql, ListaValores, Obj, responseObj, response);
                     }
                     break;
@@ -121,10 +120,12 @@ public class I_002_Indicadores_RRHH_Servlet extends HttpServlet {
         }
 
     }
+    
+
 
     public void Generales(String sql, List ListaValores, JSONObject Obj, JSONObject responseObj, HttpServletResponse response) throws IOException {
 
-        List<Map<String, Object>> resultList = new ArrayList<>();
+        List<Map<String, Object>> resultList ;
         resultList = conexion.select(sql);
 
         Iterator<Map<String, Object>> iterador = resultList.iterator();
@@ -171,11 +172,6 @@ public class I_002_Indicadores_RRHH_Servlet extends HttpServlet {
         }
     }
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
     @Override
     public String getServletInfo() {
         return "Short description";

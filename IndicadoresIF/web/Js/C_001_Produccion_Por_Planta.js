@@ -1,7 +1,3 @@
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.*/
 /* global google */
 
 function DibujarTabla() {
@@ -17,96 +13,96 @@ function DibujarTabla() {
                 dataType: "json", //Se reciben los datos en formato JSON                
                 success: function (data_) {
 
-                        queryObject = eval('(' + JSON.stringify(data_) + ')');
-                        queryObjectLen = queryObject.ListaValores.length;
-                        var data = new google.visualization.DataTable();
+                    queryObject = eval('(' + JSON.stringify(data_) + ')');
+                    queryObjectLen = queryObject.ListaValores.length;
+                    var data = new google.visualization.DataTable();
 
-                        data.addColumn('string', 'INDICADOR');
-                        data.addColumn('number', 'RST');
-                        data.addColumn('number', 'RLRS');
-                        data.addColumn('number', 'RSM');
-                        data.addColumn('number', 'KNIT');
-                        data.addColumn('number', 'DPF');
+                    data.addColumn('string', 'INDICADOR');
+                    data.addColumn('number', 'RST');
+                    data.addColumn('number', 'RLRS');
+                    data.addColumn('number', 'RSM');
+                    data.addColumn('number', 'KNIT');
+                    data.addColumn('number', 'DPF');
 
 
-                        data.addRows(queryObjectLen);
-                        for (var i = 0; i < queryObjectLen; i++)
-                        {
-                            var indicador = queryObject.ListaValores[i].indicador;
-                            var a1 = queryObject.ListaValores[i].valor1;
-                            var a2 = queryObject.ListaValores[i].valor2;
-                            var a3 = queryObject.ListaValores[i].valor3;
-                            var a4 = queryObject.ListaValores[i].valor4;
-                            var a5 = queryObject.ListaValores[i].valor5;
-                            var a6 = queryObject.ListaValores[i].valor6;
-                            var a7 = queryObject.ListaValores[i].valor7;
-                            var a8 = queryObject.ListaValores[i].valor8;
-                            var a11 = queryObject.ListaValores[i].valor11;
-                            var a12 = queryObject.ListaValores[i].valor12;
+                    data.addRows(queryObjectLen);
+                    for (var i = 0; i < queryObjectLen; i++)
+                    {
+                        var indicador = queryObject.ListaValores[i].indicador;
+                        var a1 = queryObject.ListaValores[i].valor1;
+                        var a2 = queryObject.ListaValores[i].valor2;
+                        var a3 = queryObject.ListaValores[i].valor3;
+                        var a4 = queryObject.ListaValores[i].valor4;
+                        var a5 = queryObject.ListaValores[i].valor5;
+                        var a6 = queryObject.ListaValores[i].valor6;
+                        var a7 = queryObject.ListaValores[i].valor7;
+                        var a8 = queryObject.ListaValores[i].valor8;
+                        var a11 = queryObject.ListaValores[i].valor11;
+                        var a12 = queryObject.ListaValores[i].valor12;
 
-                            //Agregar nombre del indicador.
-                            data.setCell(i, 0, indicador);
+                        //Agregar nombre del indicador.
+                        data.setCell(i, 0, indicador);
 
-                            //Comparar promedio vs valor actual para elegir color de la celda
-                            if (a2 > a1) {
-                                data.setCell(i, 1, parseFloat(a1), a1, {'className': 'red-background'});
-                            } else {
-                                data.setCell(i, 1, parseFloat(a1), a1, {'className': 'green-background'});
-                            }
-                            if (a4 > a3) {
-                                data.setCell(i, 2, parseFloat(a3), a3, {'className': 'red-background'});
-                            } else {
-                                data.setCell(i, 2, parseFloat(a3), a3, {'className': 'green-background'});
-                            }
-                            if (a6 > a5) {
-                                data.setCell(i, 3, parseFloat(a5), a5, {'className': 'red-background'});
-                            } else {
-                                data.setCell(i, 3, parseFloat(a5), a5, {'className': 'green-background'});
-                            }
-                            if (a8 > a7) {
-                                data.setCell(i, 4, parseFloat(a7), a7, {'className': 'red-background'});
-                            } else {
-                                data.setCell(i, 4, parseFloat(a7), a7, {'className': 'green-background'});
-                            }
-                            if (a12 > a11) {
-                                data.setCell(i, 5, parseFloat(a11), a11, {'className': 'red-background'});
-                            } else {
-                                data.setCell(i, 5, parseFloat(a11), a11, {'className': 'green-background'});
-
-                            }
+                        //Comparar promedio vs valor actual para elegir color de la celda
+                        if (a2 > a1) {
+                            data.setCell(i, 1, parseFloat(a1), a1, {'className': 'red-background'});
+                        } else {
+                            data.setCell(i, 1, parseFloat(a1), a1, {'className': 'green-background'});
                         }
+                        if (a4 > a3) {
+                            data.setCell(i, 2, parseFloat(a3), a3, {'className': 'red-background'});
+                        } else {
+                            data.setCell(i, 2, parseFloat(a3), a3, {'className': 'green-background'});
+                        }
+                        if (a6 > a5) {
+                            data.setCell(i, 3, parseFloat(a5), a5, {'className': 'red-background'});
+                        } else {
+                            data.setCell(i, 3, parseFloat(a5), a5, {'className': 'green-background'});
+                        }
+                        if (a8 > a7) {
+                            data.setCell(i, 4, parseFloat(a7), a7, {'className': 'red-background'});
+                        } else {
+                            data.setCell(i, 4, parseFloat(a7), a7, {'className': 'green-background'});
+                        }
+                        if (a12 > a11) {
+                            data.setCell(i, 5, parseFloat(a11), a11, {'className': 'red-background'});
+                        } else {
+                            data.setCell(i, 5, parseFloat(a11), a11, {'className': 'green-background'});
+
+                        }
+                    }
 
 
-                        /*Opciones Css de la tabla, los valores asignados a las propiedades estan declarados como
-                         clases en el archivo Estilo.css*/
-                        var cssClassNames = {
-                            'headerRow': 'large-font bold-font',
-                            'tableRow': '',
-                            //'oddTableRow': 'beige-background',
-                            //'selectedTableRow': 'orange-background large-font',
-                            //'hoverTableRow': '',
-                            'headerCell': 'gold-border',
-                            'tableCell': '',
-                            'rowNumberCell': 'black-font'};
+                    /*Opciones Css de la tabla, los valores asignados a las propiedades estan declarados como
+                     clases en el archivo Estilo.css*/
+                    var cssClassNames = {
+                        'headerRow': 'large-font bold-font',
+                        'tableRow': '',
+                        //'oddTableRow': 'beige-background',
+                        //'selectedTableRow': 'orange-background large-font',
+                        //'hoverTableRow': '',
+                        'headerCell': 'gold-border',
+                        'tableCell': '',
+                        'rowNumberCell': 'black-font'};
 
-                        var options = {'showRowNumber': true, 'allowHtml': false, 'cssClassNames': cssClassNames, width: '50%', height: '100%'};
-                        var table = new google.visualization.Table(document.getElementById('table'));
-                        table.draw(data, options);
+                    var options = {'showRowNumber': true, 'allowHtml': false, 'cssClassNames': cssClassNames, width: '50%', height: '100%'};
+                    var table = new google.visualization.Table(document.getElementById('table'));
+                    table.draw(data, options);
 
-                        //Redirecciona dependiendo de la celda a la que se le da click.
-                        $("#table table tbody tr td").click(function () {
-                            Redireccionar(this, 'table');
-                        });
+                    //Redirecciona dependiendo de la celda a la que se le da click.
+                    $("#table table tbody tr td").click(function () {
+                        Redireccionar(this, 'table');
+                    });
 
-                        //Cambiar color al estar sobre la celda
-                        $("#table table tbody tr td").mouseover(function () {
-                            CambiarColorCelda(this, 'table');
-                        });
+                    //Cambiar color al estar sobre la celda
+                    $("#table table tbody tr td").mouseover(function () {
+                        CambiarColorCelda(this, 'table');
+                    });
 
-                        //Regresar al color original la celda
-                        $("#table table tbody tr td").mouseout(function () {
-                            ColorOriginalCelda(this, 'table');
-                        });
+                    //Regresar al color original la celda
+                    $("#table table tbody tr td").mouseout(function () {
+                        ColorOriginalCelda(this, 'table');
+                    });
 
                 },
                 error: function () {
@@ -118,7 +114,7 @@ function DibujarTabla() {
 
             });
 
-    //tabla con indicadores basados en costos 
+    //tabla con indicadores basados en costos, se recibe la informacion para llenar la 2da tabla.
     $.ajax
             ({
                 type: "POST",
@@ -127,97 +123,94 @@ function DibujarTabla() {
                     mesjs: $("#mes").val(),
                     aniojs: $("#anio").val()
                 },
-                dataType: "json", //Se reciben los datos en formato JSON                
+                dataType: "json",            
                 success: function (data_) {
 
-                        queryObject = eval('(' + JSON.stringify(data_) + ')');
-                        queryObjectLen = queryObject.ListaValores.length;
-                        var data = new google.visualization.DataTable();
+                    queryObject = eval('(' + JSON.stringify(data_) + ')');
+                    queryObjectLen = queryObject.ListaValores.length;
+                    var data = new google.visualization.DataTable();
 
-                        data.addColumn('string', 'INDICADOR');
-                        data.addColumn('number', 'RST');
-                        data.addColumn('number', 'RLRS');
-                        data.addColumn('number', 'RSM');
-                        data.addColumn('number', 'KNIT');
-                        data.addColumn('number', 'DPF');
+                    data.addColumn('string', 'INDICADOR');
+                    data.addColumn('number', 'RST');
+                    data.addColumn('number', 'RLRS');
+                    data.addColumn('number', 'RSM');
+                    data.addColumn('number', 'KNIT');
+                    data.addColumn('number', 'DPF');
 
-                        data.addRows(queryObjectLen);
-                        for (var i = 0; i < queryObjectLen; i++)
-                        {
-                            var indicador = queryObject.ListaValores[i].indicador;
-                            var a1 = queryObject.ListaValores[i].valor1;
-                            var a2 = queryObject.ListaValores[i].valor2;
-                            var a3 = queryObject.ListaValores[i].valor3;
-                            var a4 = queryObject.ListaValores[i].valor4;
-                            var a5 = queryObject.ListaValores[i].valor5;
-                            var a6 = queryObject.ListaValores[i].valor6;
-                            var a7 = queryObject.ListaValores[i].valor7;
-                            var a8 = queryObject.ListaValores[i].valor8;
+                    data.addRows(queryObjectLen);
+                    for (var i = 0; i < queryObjectLen; i++)
+                    {
+                        var indicador = queryObject.ListaValores[i].indicador;
+                        var a1 = queryObject.ListaValores[i].valor1;
+                        var a2 = queryObject.ListaValores[i].valor2;
+                        var a3 = queryObject.ListaValores[i].valor3;
+                        var a4 = queryObject.ListaValores[i].valor4;
+                        var a5 = queryObject.ListaValores[i].valor5;
+                        var a6 = queryObject.ListaValores[i].valor6;
+                        var a7 = queryObject.ListaValores[i].valor7;
+                        var a8 = queryObject.ListaValores[i].valor8;
 
-                            var a11 = queryObject.ListaValores[i].valor11;
-                            var a12 = queryObject.ListaValores[i].valor12;
+                        var a11 = queryObject.ListaValores[i].valor11;
+                        var a12 = queryObject.ListaValores[i].valor12;
 
-                            data.setCell(i, 0, indicador);
-                            //Comparar promedio vs valor actual para elegir color de la celda
-                            if (a1 > a2) {
-                                data.setCell(i, 1, parseFloat(a1), a1, {'className': 'red-background'});
-                            } else {
-                                data.setCell(i, 1, parseFloat(a1), a1, {'className': 'green-background'});
-                            }
-                            if (a3 > a4) {
-                                data.setCell(i, 2, parseFloat(a3), a3, {'className': 'red-background'});
-                            } else {
-                                data.setCell(i, 2, parseFloat(a3), a3, {'className': 'green-background'});
-                            }
-                            if (a5 > a6) {
-                                data.setCell(i, 3, parseFloat(a5), a5, {'className': 'red-background'});
-                            } else {
-                                data.setCell(i, 3, parseFloat(a5), a5, {'className': 'green-background'});
-                            }
-                            if (a7 > a8) {
-                                data.setCell(i, 4, parseFloat(a7), a7, {'className': 'red-background'});
-                            } else {
-                                data.setCell(i, 4, parseFloat(a7), a7, {'className': 'green-background'});
-                            }
-
-                            if (a11 > a12) {
-                                data.setCell(i, 5, parseFloat(a11), a11, {'className': 'red-background'});
-                            } else {
-                                data.setCell(i, 5, parseFloat(a11), a11, {'className': 'green-background'});
-                            }
-
+                        data.setCell(i, 0, indicador);
+                        //Comparar promedio vs valor actual para elegir color de la celda
+                        if (a1 > a2) {
+                            data.setCell(i, 1, parseFloat(a1), a1, {'className': 'red-background'});
+                        } else {
+                            data.setCell(i, 1, parseFloat(a1), a1, {'className': 'green-background'});
+                        }
+                        if (a3 > a4) {
+                            data.setCell(i, 2, parseFloat(a3), a3, {'className': 'red-background'});
+                        } else {
+                            data.setCell(i, 2, parseFloat(a3), a3, {'className': 'green-background'});
+                        }
+                        if (a5 > a6) {
+                            data.setCell(i, 3, parseFloat(a5), a5, {'className': 'red-background'});
+                        } else {
+                            data.setCell(i, 3, parseFloat(a5), a5, {'className': 'green-background'});
+                        }
+                        if (a7 > a8) {
+                            data.setCell(i, 4, parseFloat(a7), a7, {'className': 'red-background'});
+                        } else {
+                            data.setCell(i, 4, parseFloat(a7), a7, {'className': 'green-background'});
                         }
 
+                        if (a11 > a12) {
+                            data.setCell(i, 5, parseFloat(a11), a11, {'className': 'red-background'});
+                        } else {
+                            data.setCell(i, 5, parseFloat(a11), a11, {'className': 'green-background'});
+                        }
 
-                        //Opciones Css de la tabla
-                        var cssClassNames = {
-                            'headerRow': 'large-font bold-font',
-                            'tableRow': '',
-                            //'oddTableRow': 'beige-background',
-                            //'selectedTableRow': 'orange-background large-font',
-                            //'hoverTableRow': '',
-                            'headerCell': 'gold-border',
-                            'tableCell': '',
-                            'rowNumberCell': 'black-font'};
+                    }
 
-                        var options = {'showRowNumber': true, 'allowHtml': false, 'cssClassNames': cssClassNames, width: '50%', height: '100%'};
-                        var table = new google.visualization.Table(document.getElementById('table2'));
-                        table.draw(data, options);
 
-                        //Redirecciona dependiendo de la celda a la que se le da click.
-                        $("#table2 table tbody tr td").click(function () {
-                            Redireccionar2(this, 'table2');
-                        });
+                    //Opciones Css de la tabla
+                    var cssClassNames = {
+                        'headerRow': 'large-font bold-font',
+                        'tableRow': '',
+                        'headerCell': 'gold-border',
+                        'tableCell': '',
+                        'rowNumberCell': 'black-font'};
 
-                        //Cambiar color al estar sobre la celda
-                        $("#table2 table tbody tr td").mouseover(function () {
-                            CambiarColorCelda(this, 'table2');
-                        });
+                    var options = {'showRowNumber': true, 'allowHtml': false, 'cssClassNames': cssClassNames, width: '50%', height: '100%'};
+                    var table = new google.visualization.Table(document.getElementById('table2'));
+                    table.draw(data, options);
 
-                        //Regresar al color original la celda
-                        $("#table2 table tbody tr td").mouseout(function () {
-                            ColorOriginalCelda(this, 'table2');
-                        });
+                    //Redirecciona dependiendo de la celda a la que se le da click.
+                    $("#table2 table tbody tr td").click(function () {
+                        Redireccionar2(this, 'table2');
+                    });
+
+                    //Cambiar color al estar sobre la celda
+                    $("#table2 table tbody tr td").mouseover(function () {
+                        CambiarColorCelda(this, 'table2');
+                    });
+
+                    //Regresar al color original la celda
+                    $("#table2 table tbody tr td").mouseout(function () {
+                        ColorOriginalCelda(this, 'table2');
+                    });
                 },
                 error: function () {
                     alert('No existen datos para los parametros elegidos');
@@ -226,8 +219,6 @@ function DibujarTabla() {
                 }
 
             });
-
-
 }
 
 //Se ejecuta al dar click sobre una celda de la tabla de produccion en kilogramos.
@@ -267,8 +258,8 @@ function Redireccionar(x, element) {
                 {
                     location.href = "I_001_IndicadoresProduccion.jsp?planta=PLANTA DPF&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "&indicador=INDICADOR1";
                 }
-
             }
+
             else
             if (this.rowIndex === 2) /*Indicador 2*/
             {

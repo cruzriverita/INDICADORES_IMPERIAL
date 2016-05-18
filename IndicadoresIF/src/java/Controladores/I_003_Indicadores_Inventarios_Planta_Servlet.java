@@ -1,7 +1,6 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Procesa los datos por planta de acuerdo al mes sobre el que se haga un "mouseover" en la grafica lineal de inventario.
+ * Datos que utiliza la grafica que aparece en el tooltip.
  */
 package Controladores;
 
@@ -78,9 +77,6 @@ public class I_003_Indicadores_Inventarios_Planta_Servlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String anio, articulo, tipo;
-        List ListaValores = new LinkedList();
-        JSONObject responseObj = new JSONObject();
-        JSONObject Obj = null;
 
         //Recuperar valores enviados desde el javascript.
         articulo = request.getParameter("tipojs");
@@ -91,19 +87,18 @@ public class I_003_Indicadores_Inventarios_Planta_Servlet extends HttpServlet {
 
         //Si es indice
         if (tipo.equals("1")) {
-            sql = Modelo.Modelo_Indicadores_Inventarios.I_003_Indicadores_Inventarios_Planta(Integer.parseInt(anio), this.GetArticulo(articulo), "indice");
-            this.Generales(sql, ListaValores, Obj, responseObj, response);
+            sql = Modelo.Modelo_003_Indicadores_Inventarios.I_003_Indicadores_Inventarios_Planta(Integer.parseInt(anio), this.GetArticulo(articulo), "indice");
+            this.Generales(sql,response);
         } //si son dias
         else {
-            sql = Modelo.Modelo_Indicadores_Inventarios.I_003_Indicadores_Inventarios_Planta(Integer.parseInt(anio), this.GetArticulo(articulo), "dias");
-            this.Generales(sql, ListaValores, Obj, responseObj, response);
+            sql = Modelo.Modelo_003_Indicadores_Inventarios.I_003_Indicadores_Inventarios_Planta(Integer.parseInt(anio), this.GetArticulo(articulo), "dias");
+            this.Generales(sql, response);
         }
 
     }
 
-    public void Generales(String sql, List ListaValores, JSONObject Obj, JSONObject responseObj, HttpServletResponse response) throws IOException {
-        //sql = Modelo_IndicadoresProduccion.I_001_Kilos_Producidos_Hora_Hombre_General(articulo, Integer.parseInt(anio));
-
+    public void Generales(String sql, HttpServletResponse response) throws IOException {
+     
         String cadena = "";
         List<Map<String, Object>> resultList;
         resultList = conexion.select(sql);

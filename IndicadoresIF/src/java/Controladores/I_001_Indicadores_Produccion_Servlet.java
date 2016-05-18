@@ -5,7 +5,7 @@
  */
 package Controladores;
 
-import Modelo.Modelo_IndicadoresProduccion;
+import Modelo.Modelo_001_Indicadores_Produccion;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Iterator;
@@ -94,117 +94,87 @@ public class I_001_Indicadores_Produccion_Servlet extends HttpServlet {
 
         String sql;
 
-        if (null != indicador) switch (indicador) {
-            case "INDICADOR1":
-                if (opcion.equals("ALL")) {
-                    sql = Modelo_IndicadoresProduccion.I_001_Kilos_Producidos_Hora_Hombre_General(mes, Integer.parseInt(anio), "<>","I_001_KilosProducidosHoraHombre","I_001_KilosProducidosHoraHombreP","P.VALOR","VALOR","max","DESC");
-                    this.Generales(sql, ListaValores, Obj, responseObj, response);
-                } else if (opcion.equals("FPS MES")) {
-                    sql = Modelo_IndicadoresProduccion.I_001_Kilos_Producidos_Hora_Hombre_General(mes, Integer.parseInt(anio), "=","I_001_KilosProducidosHoraHombre","I_001_KilosProducidosHoraHombreP","P.VALOR","VALOR","max","DESC");
-                    this.Generales(sql, ListaValores, Obj, responseObj, response);
-                } else {
-                    //sql = Modelo_IndicadoresProduccion.I_001_Kilos_Producidos_Hora_Hombre_Detalle(mes, Integer.parseInt(anio), opcion);
-                    sql = Modelo_IndicadoresProduccion.IndicadoresProduccion_Consulta_Por_Planta_Lineal(opcion, Integer.parseInt(anio), "I_001_KilosProducidosHoraHombre", "I_001_KilosProducidosHoraHombreP", "P.VALOR", "VALOR", "DESC");
-                    this.Especifico(sql, ListaValores, Obj, responseObj, response);
-                }   break;
-            case "INDICADOR2":
-        switch (opcion) {
-            case "ALL":
-                //sql = Modelo_IndicadoresProduccion.I_002_Kg_Producidos_Kwh_General(mes, Integer.parseInt(anio), "<>");
-                sql = Modelo_IndicadoresProduccion.I_001_Kilos_Producidos_Hora_Hombre_General(mes, Integer.parseInt(anio), "<>","I_002_KgProducidosKwh","I_002_KgProducidosKwhP","P.Kg/P.Kwh","Kg/Kwh","max","DESC");
-                this.Generales(sql, ListaValores, Obj, responseObj, response);
-                break;
-            case "FPS MES":
-                sql = Modelo_IndicadoresProduccion.I_001_Kilos_Producidos_Hora_Hombre_General(mes, Integer.parseInt(anio), "=","I_002_KgProducidosKwh","I_002_KgProducidosKwhP","P.Kg/P.Kwh","Kg/Kwh","max","DESC");
-                this.Generales(sql, ListaValores, Obj, responseObj, response);
-                break;
-            default:
-                //sql = Modelo_IndicadoresProduccion.I_001_Kilos_Producidos_Hora_Hombre_Detalle(mes, Integer.parseInt(anio), opcion);
-                //sql = Modelo_IndicadoresProduccion.I_002_Kg_Producidos_Kwh_Planta(opcion, Integer.parseInt(anio));
-                sql = Modelo_IndicadoresProduccion.IndicadoresProduccion_Consulta_Por_Planta_Lineal(opcion, Integer.parseInt(anio), "I_002_KgProducidosKwh", "I_002_KgProducidosKwhP", "P.Kg/P.Kwh", "Kg/Kwh", "DESC");
-                this.Especifico(sql, ListaValores, Obj, responseObj, response);
-                break;
-        }
-break;
-            case "INDICADOR3":
-        switch (opcion) {
-            case "ALL":
-                //sql = Modelo_IndicadoresProduccion.I_003_Kg_Producidos_Mrs_General(mes, Integer.parseInt(anio), "<>");
-                sql = Modelo_IndicadoresProduccion.I_001_Kilos_Producidos_Hora_Hombre_General(mes, Integer.parseInt(anio), "<>","I_003_Kgproducidos_MRS","I_003_Kgproducidos_MRSP","P.Kg/P.Mrs","Kg/Mrs","max","DESC");
-                this.Generales(sql, ListaValores, Obj, responseObj, response);
-                break;
-            case "FPS MES":
-                //sql = Modelo_IndicadoresProduccion.I_003_Kg_Producidos_Mrs_General(mes, Integer.parseInt(anio), "=");
-                sql = Modelo_IndicadoresProduccion.I_001_Kilos_Producidos_Hora_Hombre_General(mes, Integer.parseInt(anio), "=","I_003_Kgproducidos_MRS","I_003_Kgproducidos_MRSP","P.Kg/P.Mrs","Kg/Mrs","max","DESC");
-                this.Generales(sql, ListaValores, Obj, responseObj, response);
-                break;
-            default:
-                //sql = Modelo_IndicadoresProduccion.I_001_Kilos_Producidos_Hora_Hombre_Detalle(mes, Integer.parseInt(anio), opcion);
-                sql = Modelo_IndicadoresProduccion.IndicadoresProduccion_Consulta_Por_Planta_Lineal(opcion, Integer.parseInt(anio), "I_003_Kgproducidos_MRS", "I_003_Kgproducidos_MRSP", "P.Kg/P.Mrs", "Kg/Mrs", "DESC");
-                this.Especifico(sql, ListaValores, Obj, responseObj, response);
-                break;
-        }
-break;
-            case "INDICADOR4":
-        switch (opcion) {
-            case "ALL":
-                //sql = Modelo_IndicadoresProduccion.I_004_CostoMO_Kg_Producido_General(mes, Integer.parseInt(anio), "<>");
-                sql = Modelo_IndicadoresProduccion.I_001_Kilos_Producidos_Hora_Hombre_General(mes, Integer.parseInt(anio), "<>","I_004_CostoMoKgProducido","I_004_CostoMoKgProducidoP","P.VALOR","VALOR","min","ASC");
-                this.Generales(sql, ListaValores, Obj, responseObj, response);
-                break;
-            case "FPS MES":
-                sql = Modelo_IndicadoresProduccion.I_001_Kilos_Producidos_Hora_Hombre_General(mes, Integer.parseInt(anio), "=","I_004_CostoMoKgProducido","I_004_CostoMoKgProducidoP","P.VALOR","VALOR","min","ASC");
-                this.Generales(sql, ListaValores, Obj, responseObj, response);
-                break;
-            default:
-                sql = Modelo_IndicadoresProduccion.IndicadoresProduccion_Consulta_Por_Planta_Lineal(opcion, Integer.parseInt(anio), "I_004_CostoMoKgProducido", "I_004_CostoMoKgProducidoP", "P.VALOR", "VALOR", "ASC");
-                this.Especifico(sql, ListaValores, Obj, responseObj, response);
-                break;
-        }
-break;
-            case "INDICADOR5":
-        switch (opcion) {
-            case "ALL":
-                //sql = Modelo_IndicadoresProduccion.I_005_CostoKWH_Kg_Producido_General(mes, Integer.parseInt(anio), "<>");
-                sql = Modelo_IndicadoresProduccion.I_001_Kilos_Producidos_Hora_Hombre_General(mes, Integer.parseInt(anio), "<>","I_002_KgProducidosKwh","I_005_CostoKwh_KgProducidoP","P.QKwh/P.Kg","QKwh/Kg","min","ASC");
-                this.Generales(sql, ListaValores, Obj, responseObj, response);
-                break;
-            case "FPS MES":
-                //sql = Modelo_IndicadoresProduccion.I_005_CostoKWH_Kg_Producido_General(mes, Integer.parseInt(anio), "=");
-                sql = Modelo_IndicadoresProduccion.I_001_Kilos_Producidos_Hora_Hombre_General(mes, Integer.parseInt(anio), "=","I_002_KgProducidosKwh","I_005_CostoKwh_KgProducidoP","P.QKwh/P.Kg","QKwh/Kg","min","ASC");
-                this.Generales(sql, ListaValores, Obj, responseObj, response);
-                break;
-            default:
-                //sql = Modelo_IndicadoresProduccion.I_001_Kilos_Producidos_Hora_Hombre_Detalle(mes, Integer.parseInt(anio), opcion);
-                sql = Modelo_IndicadoresProduccion.IndicadoresProduccion_Consulta_Por_Planta_Lineal(opcion, Integer.parseInt(anio), "I_002_KgProducidosKwh", "I_005_CostoKwh_KgProducidoP", "P.QKwh/P.Kg", "QKwh/Kg", "ASC");
-                this.Especifico(sql, ListaValores, Obj, responseObj, response);
-                break;
-        }
-break;
-            case "INDICADOR6":
-        switch (opcion) {
-            case "ALL":
-                //sql = Modelo_IndicadoresProduccion.I_006_Mrs_Kg_Producidos_General(mes, Integer.parseInt(anio), "<>");
-                sql = Modelo_IndicadoresProduccion.I_001_Kilos_Producidos_Hora_Hombre_General(mes, Integer.parseInt(anio), "<>","I_003_Kgproducidos_MRS","I_006_MRS_KgproducidosP","P.Mrs/P.Kg","Mrs/Kg","min","ASC");
-                this.Generales(sql, ListaValores, Obj, responseObj, response);
-                break;
-            case "FPS MES":
-                sql = Modelo_IndicadoresProduccion.I_001_Kilos_Producidos_Hora_Hombre_General(mes, Integer.parseInt(anio), "=","I_003_Kgproducidos_MRS","I_006_MRS_KgproducidosP","P.Mrs/P.Kg","Mrs/Kg","min","ASC");
-                this.Generales(sql, ListaValores, Obj, responseObj, response);
-                break;
-            default:
-                sql = Modelo_IndicadoresProduccion.IndicadoresProduccion_Consulta_Por_Planta_Lineal(opcion, Integer.parseInt(anio), "I_003_Kgproducidos_MRS", "I_006_MRS_KgproducidosP", "P.Mrs/P.Kg", "Mrs/Kg", "ASC");
-                this.Especifico(sql, ListaValores, Obj, responseObj, response);
-                break;
-        }
-break;
+        if (null != indicador) {
+            switch (indicador) {
+                case "INDICADOR1":
+                    switch (opcion) {
+                        case "ALL":
+                            sql = Modelo_001_Indicadores_Produccion.I_001_Kilos_Producidos_Hora_Hombre_General(mes, Integer.parseInt(anio), "<>", "I_001_KilosProducidosHoraHombre", "I_001_KilosProducidosHoraHombreP", "P.VALOR", "VALOR", "max", "DESC");
+                            this.Generales(sql, ListaValores, Obj, responseObj, response);
+                            break;
+                        default:
+                            sql = Modelo_001_Indicadores_Produccion.IndicadoresProduccion_Consulta_Por_Planta_Lineal(opcion, Integer.parseInt(anio), "I_001_KilosProducidosHoraHombre", "I_001_KilosProducidosHoraHombreP", "P.VALOR", "VALOR", "DESC");
+                            this.Especifico(sql, ListaValores, Obj, responseObj, response);
+                            break;
+                    }
+                    break;
+                case "INDICADOR2":
+                    switch (opcion) {
+                        case "ALL":
+                            sql = Modelo_001_Indicadores_Produccion.I_001_Kilos_Producidos_Hora_Hombre_General(mes, Integer.parseInt(anio), "<>", "I_002_KgProducidosKwh", "I_002_KgProducidosKwhP", "P.Kg/P.Kwh", "Kg/Kwh", "max", "DESC");
+                            this.Generales(sql, ListaValores, Obj, responseObj, response);
+                            break;
+                        default:
+                            sql = Modelo_001_Indicadores_Produccion.IndicadoresProduccion_Consulta_Por_Planta_Lineal(opcion, Integer.parseInt(anio), "I_002_KgProducidosKwh", "I_002_KgProducidosKwhP", "P.Kg/P.Kwh", "Kg/Kwh", "DESC");
+                            this.Especifico(sql, ListaValores, Obj, responseObj, response);
+                            break;
+                    }
+                    break;
+                case "INDICADOR3":
+                    switch (opcion) {
+                        case "ALL":
+                            sql = Modelo_001_Indicadores_Produccion.I_001_Kilos_Producidos_Hora_Hombre_General(mes, Integer.parseInt(anio), "<>", "I_003_Kgproducidos_MRS", "I_003_Kgproducidos_MRSP", "P.Kg/P.Mrs", "Kg/Mrs", "max", "DESC");
+                            this.Generales(sql, ListaValores, Obj, responseObj, response);
+                            break;
+                        default:
+                            sql = Modelo_001_Indicadores_Produccion.IndicadoresProduccion_Consulta_Por_Planta_Lineal(opcion, Integer.parseInt(anio), "I_003_Kgproducidos_MRS", "I_003_Kgproducidos_MRSP", "P.Kg/P.Mrs", "Kg/Mrs", "DESC");
+                            this.Especifico(sql, ListaValores, Obj, responseObj, response);
+                            break;
+                    }
+                    break;
+                case "INDICADOR4":
+                    switch (opcion) {
+                        case "ALL":
+
+                            sql = Modelo_001_Indicadores_Produccion.I_001_Kilos_Producidos_Hora_Hombre_General(mes, Integer.parseInt(anio), "<>", "I_004_CostoMoKgProducido", "I_004_CostoMoKgProducidoP", "P.VALOR", "VALOR", "min", "ASC");
+                            this.Generales(sql, ListaValores, Obj, responseObj, response);
+                            break;
+                        default:
+                            sql = Modelo_001_Indicadores_Produccion.IndicadoresProduccion_Consulta_Por_Planta_Lineal(opcion, Integer.parseInt(anio), "I_004_CostoMoKgProducido", "I_004_CostoMoKgProducidoP", "P.VALOR", "VALOR", "ASC");
+                            this.Especifico(sql, ListaValores, Obj, responseObj, response);
+                            break;
+                    }
+                    break;
+                case "INDICADOR5":
+                    switch (opcion) {
+                        case "ALL":
+                            sql = Modelo_001_Indicadores_Produccion.I_001_Kilos_Producidos_Hora_Hombre_General(mes, Integer.parseInt(anio), "<>", "I_002_KgProducidosKwh", "I_005_CostoKwh_KgProducidoP", "P.QKwh/P.Kg", "QKwh/Kg", "min", "ASC");
+                            this.Generales(sql, ListaValores, Obj, responseObj, response);
+                            break;
+                        default:
+                            sql = Modelo_001_Indicadores_Produccion.IndicadoresProduccion_Consulta_Por_Planta_Lineal(opcion, Integer.parseInt(anio), "I_002_KgProducidosKwh", "I_005_CostoKwh_KgProducidoP", "P.QKwh/P.Kg", "QKwh/Kg", "ASC");
+                            this.Especifico(sql, ListaValores, Obj, responseObj, response);
+                            break;
+                    }
+                    break;
+                case "INDICADOR6":
+                    switch (opcion) {
+                        case "ALL":
+                            sql = Modelo_001_Indicadores_Produccion.I_001_Kilos_Producidos_Hora_Hombre_General(mes, Integer.parseInt(anio), "<>", "I_003_Kgproducidos_MRS", "I_006_MRS_KgproducidosP", "P.Mrs/P.Kg", "Mrs/Kg", "min", "ASC");
+                            this.Generales(sql, ListaValores, Obj, responseObj, response);
+                            break;
+                        default:
+                            sql = Modelo_001_Indicadores_Produccion.IndicadoresProduccion_Consulta_Por_Planta_Lineal(opcion, Integer.parseInt(anio), "I_003_Kgproducidos_MRS", "I_006_MRS_KgproducidosP", "P.Mrs/P.Kg", "Mrs/Kg", "ASC");
+                            this.Especifico(sql, ListaValores, Obj, responseObj, response);
+                            break;
+                    }
+                    break;
+            }
         }
 
     }//fin response
 
     public void Generales(String sql, List ListaValores, JSONObject Obj, JSONObject responseObj, HttpServletResponse response) throws IOException {
-        //sql = Modelo_IndicadoresProduccion.I_001_Kilos_Producidos_Hora_Hombre_General(mes, Integer.parseInt(anio));
-
         List<Map<String, Object>> resultList;
         resultList = conexion.select(sql);
 
@@ -230,7 +200,7 @@ break;
                 Obj.put("valor2", Cvalor2);
                 Obj.put("valor3", Cvalor3);
                 Obj.put("valor4", Cvalor4);
-              //  Obj.put("valor5", Cvalor5);
+                //  Obj.put("valor5", Cvalor5);
                 Obj.put("valor6", Cvalor6);
 
                 ListaValores.add(Obj);
@@ -249,21 +219,19 @@ break;
 
     public void Especifico(String sql, List ListaValores, JSONObject Obj, JSONObject responseObj, HttpServletResponse response) throws IOException {
 
-        List<Map<String, Object>> resultList ;
+        List<Map<String, Object>> resultList;
         resultList = conexion.select(sql);
 
         Iterator<Map<String, Object>> iterador = resultList.iterator();
         while (iterador.hasNext()) {
             Map<String, Object> mapa = iterador.next();
 
-            String Nmes = Utilidades.MetodosGlobales.get_mes((Integer) mapa.get("Mes"));
-            //String Nmes = String.valueOf(mapa.get("MES"));
+            String Nmes = Utilidades.Metodos_Globales.get_mes((Integer) mapa.get("Mes"));
 
             Float Cvalor = Float.parseFloat(mapa.get("2015").toString());
             Float Cvalor2 = Float.parseFloat(mapa.get("2016").toString());
             Float Cvalor3 = Float.parseFloat(mapa.get("mejor").toString());
             Float Cvalor4 = Float.parseFloat(mapa.get("peor").toString());
-            //Float Cvalor5 = Float.parseFloat(mapa.get("Acumulado1").toString());
             Float Cvalor6 = Float.parseFloat(mapa.get("PROMEDIO").toString());
             String mejormes = String.valueOf(mapa.get("MEJORMES"));
             String mejoranio = String.valueOf(mapa.get("MEJORANIO"));
@@ -277,7 +245,6 @@ break;
                 Obj.put("valor2", Cvalor2);
                 Obj.put("valor3", Cvalor3);
                 Obj.put("valor4", Cvalor4);
-                //Obj.put("valor5", Cvalor5);
                 Obj.put("valor6", Cvalor6);
                 Obj.put("mejormes", mejormes);
                 Obj.put("mejoranio", mejoranio);

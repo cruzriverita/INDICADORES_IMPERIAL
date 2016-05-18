@@ -75,19 +75,23 @@ function DibujarChartPrincipal() {
                                 vAxis: {title: 'Cantidad de empleados', titleTextStyle: {color: 'Black'}, gridlines: {count: 20}, viewWindow: {
                                         min: (menor - 10),
                                         max: (mayor + 20)
-                                    }},
+                                    }
+                                },
                                 hAxis: {title: '*El valor "Menor historico" corresponde a ' + ConvertirMes(menormes) + ' de ' + menoranio + '\n' +
                                             '*El valor "Mayor historico" corresponde a ' + ConvertirMes(mayormes) + ' de ' + mayoranio, titleTextStyle: {color: 'Blue'}},
                                 is3D: true,
                                 colors: Coloresrrhh(),
-                                annotations: {
-                                    style: 'line'
-                                },
-                                series: {
-                                    0: {pointShape: 'circle', pointSize: tamapunto()},
-                                    2: {pointShape: 'circle', pointSize: tamapunto()}
+                                annotations:
+                                        {
+                                            style: 'line'
+                                        },
+                                series:
+                                        {
+                                            0: {pointShape: 'circle', pointSize: tamapunto()},
+                                            2: {pointShape: 'circle', pointSize: tamapunto()}
 
-                                }, lineWidth: tamlinea
+                                        },
+                                lineWidth: tamlinea
                             };
                         }
                         else //Si es el indicador DEVENGADO/NO_EMPLEADOS

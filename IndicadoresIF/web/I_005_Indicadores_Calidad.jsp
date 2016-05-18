@@ -1,8 +1,9 @@
 <%-- 
-    Document   : I_001_Kilos_Producidos_Hora_Hombre
-    Created on : 9/03/2016, 09:07:09 AM
+    Document   : I_005_Indicadores_Calidad
+    Created on : May 12, 2016, 8:47:59 AM
     Author     : rcruz
 --%>
+
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -41,7 +42,7 @@
     <!-----------------------------------------------------------------------------------------------------> 
 
     <!------------------------------------------JS GOOGLE CHARTS-------------------------------------------> 
-    <script type="text/javascript" src="Js/I_004_Indicadores_Financieros.js"></script>
+    <script type="text/javascript" src="Js/I_005_Indicadores_Calidad.js"></script>
     <script type="text/javascript">
         //API de Google Chart, Se llama en cada jsp  
         /* global google */
@@ -61,9 +62,11 @@
             //Setear valores por defecto para los parametros.
             $('#opciones').val("<%=v%>");
             $('#mes').val("<%=m%>");
+            $('#ambito').val("I");
             hideMes();
-            GetTituloG4();
+            GetTituloG5();
             GetSubTituloG();
+            hideInterno();
         });
     </script> 
     <!-----------------------------------------------------------------------------------------------------> 
@@ -77,7 +80,7 @@
         <link rel="stylesheet" href="css/styles.css">
         <!-----------------------------------------------------------------------------------------------------> 
 
-        <title>FINANCIEROS</title>
+        <title>CALIDAD</title>
 
     </head>
 
@@ -96,15 +99,20 @@
                                 <input type="text" id="lbla"  name="lbla"  onkeypress="" value="Año" disabled="true" class="texto" /> 
                             </div> 
                             <div class="divtexto">
-                                <input type="text" id="lblP"  name="lblP"  onkeypress="" value="Empresa" disabled="true" class="texto" /> 
+                                <input type="text" id="lblP"  name="lblP"  onkeypress="" value="Planta" disabled="true" class="texto" /> 
                             </div>
+                            
+                             <div class="divtexto" id = "divamb">
+                                <input type="text" id="lblamb"  name="lblamb"  onkeypress="" value="Int/Ext" disabled="true" class="texto" /> 
+                            </div>
+                            
                         </div>
 
                         <div style="clear:both;">    
                             <div class="divselect" id="divselectmes">
                                 <select id="mes" name="mes" onchange="DibujarChartPrincipal();
-                                        GetTituloG4();
-                                        GetSubTituloG();" class="select">
+                                        GetTituloG5();
+                                        GetSubTituloG(); hideInterno();" class="select">
                                     <option value="1">Enero</option>
                                     <option value="2">Febrero</option>
                                     <option value="3">Marzo</option>
@@ -121,8 +129,8 @@
                             </div>
                             <div class="divselect">
                                 <select id="anio" name="anio" onchange="DibujarChartPrincipal();
-                                        GetTituloG4();
-                                        GetSubTituloG();" class="select">
+                                        GetTituloG5();
+                                        GetSubTituloG();hideInterno(); " class="select">
 
                                     <option value="<%=Utilidades.Metodos_Globales.year_actual - 2%>"> <%=Utilidades.Metodos_Globales.year_actual - 2%> </option>
                                     <option value="<%=Utilidades.Metodos_Globales.year_actual - 1%>"> <%=Utilidades.Metodos_Globales.year_actual - 1%> </option>
@@ -136,21 +144,33 @@
                             <div class="divselect">
                                 <select id="opciones" name="opciones" onchange="DibujarChartPrincipal();
                                         hideMes();
-                                        GetTituloG4();
-                                        GetSubTituloG();" class="select">
+                                        GetTituloG5();
+                                        GetSubTituloG();hideInterno();" class="select">
 
-                                    <option value="ALL">Todas Las Empresas</option>
-
-                                    <option value="1">Imperial Fashion</option> 
-                                    <option value="2">MT TEXTIL</option> 
-                                    <option value="3">BLAKE S.A.</option>  
-                                    <option value="4">IMPERIALTEX</option>
+                                    <option value="ALL">Todas las plantas</option>
+                                
+                                    <option value="1">RS</option> 
+                                    <option value="2">RSM</option>  
+                                    <option value="3">RLRS</option>
+                                    <option value="4">FPS</option>
+                                    <option value="5">KNIT</option>
+                                    <option value="6">DPF</option>
+                                    
                                 </select>
                             </div>
+
+                            <div class="divselect" id ="divselectamb">
+                                <select id="ambito" name="ambito" onchange="DibujarChartPrincipal();
+                                        hideMes();
+                                        GetTituloG5();
+                                        GetSubTituloG();hideInterno();" class="select">
+
+                                    <option value="I">Interno</option>
+                                    <option value="E">Externo</option> 
+                                </select>
+                            </div>  
                         </div>
                     </div>
-
-
                     <input type="hidden" id="indicador"  name="indicador" value="<%=vind%>"/>  
                 </form> 
                 <br style="line-height: 10px">

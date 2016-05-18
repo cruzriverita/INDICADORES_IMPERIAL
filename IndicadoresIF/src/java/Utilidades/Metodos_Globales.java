@@ -15,7 +15,7 @@ import java.util.Calendar;
  *
  * @author rcruz
  */
-public class MetodosGlobales {
+public class Metodos_Globales {
 
     static Calendar c = Calendar.getInstance();
 

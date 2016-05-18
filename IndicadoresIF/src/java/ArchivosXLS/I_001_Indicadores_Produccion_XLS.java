@@ -5,7 +5,7 @@
  */
 package ArchivosXLS;
 
-import Modelo.Modelo_IndicadoresProduccion;
+import Modelo.Modelo_001_Indicadores_Produccion;
 import Utilidades.Metodos_Generales_Excel;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -32,6 +32,7 @@ import jxl.write.WriteException;
  * @author rcruz
  */
 public class I_001_Indicadores_Produccion_XLS extends HttpServlet {
+
     Modelo.ConexionBD conexion = new Modelo.ConexionBD();
     ArrayList<String> indicador = new ArrayList<>();
     ArrayList<Double> valoresRST = new ArrayList<>();
@@ -88,7 +89,7 @@ public class I_001_Indicadores_Produccion_XLS extends HttpServlet {
         OutputStream out = null;
 
         try {
-            String sql = Modelo_IndicadoresProduccion.C_001_Produccion_Por_Planta(mes, Integer.parseInt(anio))+" UNION "+Modelo_IndicadoresProduccion.C_001_Produccion_Por_Planta2(mes, Integer.parseInt(anio));
+            String sql = Modelo_001_Indicadores_Produccion.C_001_Produccion_Por_Planta(mes, Integer.parseInt(anio)) + " UNION " + Modelo_001_Indicadores_Produccion.C_001_Produccion_Por_Planta2(mes, Integer.parseInt(anio));
             response.setContentType("application/vnd.ms-excel");
 
             response.setHeader("Content-Disposition",
@@ -157,28 +158,27 @@ public class I_001_Indicadores_Produccion_XLS extends HttpServlet {
                 jxl.write.Number rst = new jxl.write.Number(2, ix + 2, valoresRST.get(ix), Metodos_Generales_Excel.FormatoNumericoDecimal(Colour.WHITE, WritableFont.ARIAL, 10));
                 s.addCell(rst);
                 s.setColumnView(2, 20);
-                
-                //Columna valores RST
+
                 jxl.write.Number knit = new jxl.write.Number(3, ix + 2, valoresKNIT.get(ix), Metodos_Generales_Excel.FormatoNumericoDecimal(Colour.WHITE, WritableFont.ARIAL, 10));
                 s.addCell(knit);
                 s.setColumnView(3, 20);
-                
+
                 jxl.write.Number dpf = new jxl.write.Number(4, ix + 2, valoresDPF.get(ix), Metodos_Generales_Excel.FormatoNumericoDecimal(Colour.WHITE, WritableFont.ARIAL, 10));
                 s.addCell(dpf);
                 s.setColumnView(4, 20);
-                
-                 jxl.write.Number rlrs = new jxl.write.Number(5, ix + 2, valoresRLRS.get(ix), Metodos_Generales_Excel.FormatoNumericoDecimal(Colour.WHITE, WritableFont.ARIAL, 10));
+
+                jxl.write.Number rlrs = new jxl.write.Number(5, ix + 2, valoresRLRS.get(ix), Metodos_Generales_Excel.FormatoNumericoDecimal(Colour.WHITE, WritableFont.ARIAL, 10));
                 s.addCell(rlrs);
                 s.setColumnView(5, 20);
-                
-                 jxl.write.Number fps = new jxl.write.Number(6, ix + 2, valoresFPS.get(ix), Metodos_Generales_Excel.FormatoNumericoDecimal(Colour.WHITE, WritableFont.ARIAL, 10));
+
+                jxl.write.Number fps = new jxl.write.Number(6, ix + 2, valoresFPS.get(ix), Metodos_Generales_Excel.FormatoNumericoDecimal(Colour.WHITE, WritableFont.ARIAL, 10));
                 s.addCell(fps);
                 s.setColumnView(6, 20);
-                
-                 jxl.write.Number rsm = new jxl.write.Number(7, ix + 2, valoresRSM.get(ix), Metodos_Generales_Excel.FormatoNumericoDecimal(Colour.WHITE, WritableFont.ARIAL, 10));
+
+                jxl.write.Number rsm = new jxl.write.Number(7, ix + 2, valoresRSM.get(ix), Metodos_Generales_Excel.FormatoNumericoDecimal(Colour.WHITE, WritableFont.ARIAL, 10));
                 s.addCell(rsm);
                 s.setColumnView(7, 20);
-                
+
             }
 
             w.write();
@@ -190,9 +190,7 @@ public class I_001_Indicadores_Produccion_XLS extends HttpServlet {
             this.valoresFPS.clear();
             this.valoresKNIT.clear();
             this.valoresRSM.clear();
-            
-            
-            
+
         } catch (IOException | NumberFormatException | WriteException e) {
             throw new ServletException("Exception in Excel Sample Servlet", e);
         } finally {

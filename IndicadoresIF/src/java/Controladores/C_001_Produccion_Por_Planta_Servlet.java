@@ -1,14 +1,11 @@
-package Controladores;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-import Modelo.Modelo_IndicadoresProduccion;
+/* Devuelve los datos para la primera tabla de los indicadores de produccion*/
+
+
+package Controladores;
+import Modelo.Modelo_001_Indicadores_Produccion;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -96,8 +93,8 @@ public class C_001_Produccion_Por_Planta_Servlet extends HttpServlet {
         String sql;// = "";
 
         
-        sql = Modelo_IndicadoresProduccion.C_001_Produccion_Por_Planta(mes, Integer.parseInt(anio));
-        List<Map<String, Object>> resultList; //= new ArrayList<>();
+        sql = Modelo_001_Indicadores_Produccion.C_001_Produccion_Por_Planta(mes, Integer.parseInt(anio));
+        List<Map<String, Object>> resultList;
         resultList = conexion.select(sql);
 
         Iterator<Map<String, Object>> iterador = resultList.iterator();
@@ -118,12 +115,12 @@ public class C_001_Produccion_Por_Planta_Servlet extends HttpServlet {
             Float Cvalor11 = Float.parseFloat(mapa.get("DPF").toString());
             Float Cvalor12 = Float.parseFloat(mapa.get("DPFP").toString());
 
-            Cvalor1 = Utilidades.MetodosGlobales.redondear(Cvalor1, 2);
-            Cvalor3 = Utilidades.MetodosGlobales.redondear(Cvalor3, 2);
-            Cvalor5 = Utilidades.MetodosGlobales.redondear(Cvalor5, 2);
-            Cvalor7 = Utilidades.MetodosGlobales.redondear(Cvalor7, 2);
-            Cvalor9 = Utilidades.MetodosGlobales.redondear(Cvalor9, 2);
-            Cvalor11 = Utilidades.MetodosGlobales.redondear(Cvalor11, 2);
+            Cvalor1 = Utilidades.Metodos_Globales.redondear(Cvalor1, 2);
+            Cvalor3 = Utilidades.Metodos_Globales.redondear(Cvalor3, 2);
+            Cvalor5 = Utilidades.Metodos_Globales.redondear(Cvalor5, 2);
+            Cvalor7 = Utilidades.Metodos_Globales.redondear(Cvalor7, 2);
+            Cvalor9 = Utilidades.Metodos_Globales.redondear(Cvalor9, 2);
+            Cvalor11 = Utilidades.Metodos_Globales.redondear(Cvalor11, 2);
             
             
             Obj = new JSONObject();

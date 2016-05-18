@@ -6,6 +6,7 @@ function GenerarColorRandom()
     return '#' + (0x1000000 + (Math.random()) * 0xffffff).toString(16).substr(1, 6);
 }
 
+
 //Recoger parametros enviados por medio de una URL
 function getParameterByName(name) {
     name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
@@ -98,13 +99,14 @@ function Coloresrrhh()
 
 /*------------------------------------funciones tablas de indicadores------------------------------*/
 
-var color = ''; //obtiene el color actaul de la celda de la tabla
+var color = ''; //obtiene el color actual de la celda de la tabla
 //Funcion que cambia de color una celda de una tabla 
+
 function CambiarColorCelda(x, element) {
     var rows = document.getElementById(element).getElementsByTagName('tbody')[0].getElementsByTagName('tr');
     for (i = 0; i < rows.length; i++) {
         rows[i].onmouseover = function () {
-            // alert("Columna " + x.cellIndex + "FILA " + this.rowIndex);
+            //alert("Columna " + x.cellIndex + "FILA " + this.rowIndex);
             if (x.cellIndex === 1 || x.cellIndex === 0)
             {
             }
@@ -117,13 +119,17 @@ function CambiarColorCelda(x, element) {
     }
 }
 
+
 //se utiliza la variable "color" y se regresa la celda a su color original.
 function ColorOriginalCelda(x, element) {
     var rows = document.getElementById(element).getElementsByTagName('tbody')[0].getElementsByTagName('tr');
     for (i = 0; i < rows.length; i++) {
         rows[i].onmouseout = function () {
+
+
             x.style.backgroundColor = color;
             x.style.color = 'black';
+
         };
     }
 }
@@ -132,7 +138,7 @@ function ColorOriginalCelda(x, element) {
 function hideMes() {
     var e = document.getElementById("opciones");
     var val = e.options[e.selectedIndex].value;
-    if (val === "ALL" || val === "FPS MES")
+    if (val === "ALL" )
     {
         document.getElementById('mes').style.display = "block";
         document.getElementById('lblmes').style.display = "block";
@@ -146,196 +152,6 @@ function hideMes() {
         document.getElementById('divlblmes').style.display = "none";
         document.getElementById('divselectmes').style.display = "none";
     }
-}
-
-function GetTitulo() {
-    var e = document.getElementById("indicador").value;
-    //var val = e.options[e.selectedIndex].value;
-    if (e === "INDICADOR1")
-    {
-        return "Kilos Producidos / Hora-Hombre ";
-    }
-    else if (e === "INDICADOR2")
-    {
-        return "Kilos Producidos / Kilovatio-Hora ";
-    }
-    else if (e === "INDICADOR3")
-    {
-        return "Kilos Producidos / MRS ";
-    }
-    else if (e === "INDICADOR4")
-    {
-        return "Costo Mo / Kg Producidos ";
-    }
-    else if (e === "INDICADOR5")
-    {
-        return "Costo KWH / Kg Producidos ";
-    }
-    else if (e === "INDICADOR6")
-    {
-        return "Costo MRS / Kg Producidos ";
-    }
-}
-
-function GetTituloEje() {
-    var e = document.getElementById("indicador").value;
-    //var val = e.options[e.selectedIndex].value;
-    if (e === "INDICADOR1")
-    {
-        return "Kilogramos / Hora-Hombre ";
-    }
-    else if (e === "INDICADOR2")
-    {
-        return "Kilogramos / Kilovatio-Hora ";
-    }
-    else if (e === "INDICADOR3")
-    {
-        return "Kilogramos / MRS ";
-    }
-    else if (e === "INDICADOR4")
-    {
-        return "($) Costo Mo / Kg Producido ";
-    }
-    else if (e === "INDICADOR5")
-    {
-        return "($) Costo KWH / Kg Producido ";
-    }
-    else if (e === "INDICADOR6")
-    {
-        return "($) Costo MRS / Kg Producido ";
-    }
-}
-
-function GetTituloDPF() {
-    var e = document.getElementById("indicador").value;
-    //var val = e.options[e.selectedIndex].value;
-    if (e === "INDICADOR1")
-    {
-        return "Docenas Producidas / Hora-Hombre ";
-    }
-    else if (e === "INDICADOR2")
-    {
-        return "Docenas Producidas / Kilovatio-Hora ";
-    }
-    else if (e === "INDICADOR3")
-    {
-        return "Docenas Producidas / MRS ";
-    }
-    else if (e === "INDICADOR4")
-    {
-        return "Costo Mo / Docenas Producidas ";
-    }
-    else if (e === "INDICADOR5")
-    {
-        return "Costo KWH / Docenas Producidas ";
-    }
-    else if (e === "INDICADOR6")
-    {
-        return "Costo MRS / Docenas Producidas ";
-    }
-}
-
-function GetTituloDPFEje() {
-    var e = document.getElementById("indicador").value;
-    //var val = e.options[e.selectedIndex].value;
-    if (e === "INDICADOR1")
-    {
-        return "Docenas / Hora-Hombre ";
-    }
-    else if (e === "INDICADOR2")
-    {
-        return "Docenas / Kilovatio-Hora ";
-    }
-    else if (e === "INDICADOR3")
-    {
-        return "Docenas / MRS ";
-    }
-    else if (e === "INDICADOR4")
-    {
-        return "Costo Mo / Docena ";
-    }
-    else if (e === "INDICADOR5")
-    {
-        return "Costo KWH / Docena ";
-    }
-    else if (e === "INDICADOR6")
-    {
-        return "Costo MRS / Docena";
-    }
-}
-
-
-
-//Obtener el titulo de las graficas de produccion.
-function GetTituloG() {
-    var e = document.getElementById("indicador").value;
-
-    var p = document.getElementById("opciones");
-    var val = p.options[p.selectedIndex].value;
-
-    if (val === "PLANTA FPS" || val === "FPS MES")
-    {
-        if (e === "INDICADOR1")
-        {
-            document.getElementById('titulo').innerHTML = "Docenas Producidas / Hora-Hombre ";
-        }
-
-        else if (e === "INDICADOR2")
-        {
-            document.getElementById('titulo').innerHTML = "Docenas Producidas / Kilovatio-Hora ";
-        }
-        else if (e === "INDICADOR3")
-        {
-            document.getElementById('titulo').innerHTML = "Docenas Producidas / MRS ";
-        }
-        else if (e === "INDICADOR4")
-        {
-            document.getElementById('titulo').innerHTML = "Costo Mo / Docenas Producidas ";
-        }
-        else if (e === "INDICADOR5")
-        {
-            document.getElementById('titulo').innerHTML = "Costo KWH / Docenas Producidas ";
-        }
-        else if (e === "INDICADOR6")
-        {
-            document.getElementById('titulo').innerHTML = "Costo MRS / Docenas Producidas ";
-        }
-
-    }
-    else
-    {
-        if (e === "INDICADOR1")
-        {
-            document.getElementById('titulo').innerHTML = "Kilos Producidos / Hora-Hombre ";
-        }
-        else if (e === "INDICADOR2")
-        {
-            document.getElementById('titulo').innerHTML = "Kilos Producidos / Kilovatio-Hora ";
-        }
-        else if (e === "INDICADOR3")
-        {
-            document.getElementById('titulo').innerHTML = "Kilos Producidos / MRS ";
-        }
-        else if (e === "INDICADOR4")
-        {
-            document.getElementById('titulo').innerHTML = "Costo Mo / Kg Producidos ";
-        }
-        else if (e === "INDICADOR5")
-        {
-            document.getElementById('titulo').innerHTML = "Costo KWH / Kg Producidos ";
-        }
-        else if (e === "INDICADOR6")
-        {
-            document.getElementById('titulo').innerHTML = "Costo MRS / Kg Producidos ";
-        }
-    }
-}
-
-//Obtener subtitulo para las graficas de produccion.
-function GetSubTituloG() {
-    var mes = document.getElementById("mes").value;
-    var anio = document.getElementById("anio").value;
-    document.getElementById('subtitulo').innerHTML = get_nombre_mes(parseInt(mes)) + " " + anio;
 }
 
 //Devolver el nombre del mes recibe un string.
@@ -417,7 +233,78 @@ function HideDef()
 }
 
 
+function GetTituloG() {
+    var e = document.getElementById("indicador").value;
 
+    var p = document.getElementById("opciones");
+    var val = p.options[p.selectedIndex].value;
 
+    if (val === "PLANTA FPS" || val === "FPS MES")
+    {
+        if (e === "INDICADOR1")
+        {
+            document.getElementById('titulo').innerHTML = "Docenas Producidas / Hora-Hombre ";
+        }
 
+        else if (e === "INDICADOR2")
+        {
+            document.getElementById('titulo').innerHTML = "Docenas Producidas / Kilovatio-Hora ";
+        }
+        else if (e === "INDICADOR3")
+        {
+            document.getElementById('titulo').innerHTML = "Docenas Producidas / MRS ";
+        }
+        else if (e === "INDICADOR4")
+        {
+            document.getElementById('titulo').innerHTML = "Costo Mo / Docenas Producidas ";
+        }
+        else if (e === "INDICADOR5")
+        {
+            document.getElementById('titulo').innerHTML = "Costo KWH / Docenas Producidas ";
+        }
+        else if (e === "INDICADOR6")
+        {
+            document.getElementById('titulo').innerHTML = "Costo MRS / Docenas Producidas ";
+        }
 
+    }
+    else
+    {
+        if (e === "INDICADOR1")
+        {
+            document.getElementById('titulo').innerHTML = "Kilos Producidos / Hora-Hombre ";
+        }
+        else if (e === "INDICADOR2")
+        {
+            document.getElementById('titulo').innerHTML = "Kilos Producidos / Kilovatio-Hora ";
+        }
+        else if (e === "INDICADOR3")
+        {
+            document.getElementById('titulo').innerHTML = "Kilos Producidos / MRS ";
+        }
+        else if (e === "INDICADOR4")
+        {
+            document.getElementById('titulo').innerHTML = "Costo Mo / Kg Producidos ";
+        }
+        else if (e === "INDICADOR5")
+        {
+            document.getElementById('titulo').innerHTML = "Costo KWH / Kg Producidos ";
+        }
+        else if (e === "INDICADOR6")
+        {
+            document.getElementById('titulo').innerHTML = "Costo MRS / Kg Producidos ";
+        }
+    }
+}
+
+//Obtener subtitulo para las graficas de produccion.
+function GetSubTituloG() {
+    var mes = document.getElementById("mes").value;
+    var anio = document.getElementById("anio").value;
+    document.getElementById('subtitulo').innerHTML = get_nombre_mes(parseInt(mes)) + " " + anio;
+}
+
+function FondoGrafica()
+{
+    return 'transparent';
+}

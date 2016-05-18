@@ -31,13 +31,13 @@
 
         <script type="text/javascript" src="Js/js/CuerpoMenuHorizontal.js"></script>
 
-        <div id="DivPrincipal" class="divprincipal">
+        <div id="DivPrincipal" class="divprincipal_index">
             <div class="DivWithScroll">
                 <center>
                     <h1>SISTEMA DE INFORMACION IMPERIAL</h1>
                     <br>
                     <br>
-                    <img src="Images/Img_Indicadores.jpg" alt="Mountain View" style="width:30%;height:30%;">
+                    <img src="Images/logo1.jpg" alt="" style="width:30%;height:30%;">
                 </center>
             </div> 
         </div> 
