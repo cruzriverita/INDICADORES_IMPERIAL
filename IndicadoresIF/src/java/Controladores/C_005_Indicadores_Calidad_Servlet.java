@@ -79,19 +79,19 @@ public class C_005_Indicadores_Calidad_Servlet extends HttpServlet {
             String ambito = String.valueOf(mapa.get("ambito"));
             String indicador = String.valueOf(mapa.get("indicador"));
 
-            Float Cvalor1 = Float.parseFloat(mapa.get("RS").toString());
+            Float Cvalor1 = Float.parseFloat(mapa.get("RST").toString());
             Float Cvalor2 = Float.parseFloat(mapa.get("RSM").toString());
             Float Cvalor3 = Float.parseFloat(mapa.get("RLRS").toString());         
-            Float Cvalor4 = Float.parseFloat(mapa.get("FPS").toString());
+            Float Cvalor4 = Float.parseFloat(mapa.get("DPF").toString());
             Float Cvalor5 = Float.parseFloat(mapa.get("KNIT").toString());
-            Float Cvalor6 = Float.parseFloat(mapa.get("DPF").toString());
+            Float Cvalor6 = Float.parseFloat(mapa.get("FPS").toString());
             
             Float Cvalor7 = Float.parseFloat(mapa.get("PRS").toString());
             Float Cvalor8 = Float.parseFloat(mapa.get("PRSM").toString());
             Float Cvalor9 = Float.parseFloat(mapa.get("PRLRS").toString());         
-            Float Cvalor10 = Float.parseFloat(mapa.get("PFPS").toString());
+            Float Cvalor10 = Float.parseFloat(mapa.get("PDPF").toString());
             Float Cvalor11 = Float.parseFloat(mapa.get("PKNIT").toString());
-            Float Cvalor12 = Float.parseFloat(mapa.get("PDPF").toString());
+            Float Cvalor12 = Float.parseFloat(mapa.get("PFPS").toString());
 
 
             Cvalor1 = Utilidades.Metodos_Globales.redondear(Cvalor1, 2);
@@ -108,13 +108,14 @@ public class C_005_Indicadores_Calidad_Servlet extends HttpServlet {
             Cvalor11 = Utilidades.Metodos_Globales.redondear(Cvalor11, 2);
             Cvalor12 = Utilidades.Metodos_Globales.redondear(Cvalor12, 2);
           
-
+           String  indicador2 = GetIndicador(indicador);
+           String ambito2 = GetAmbito(ambito);
 
             Obj = new JSONObject();
 
             try {
-                Obj.put("ambito", ambito);
-                Obj.put("indicador", indicador);
+                Obj.put("ambito", ambito2);
+                Obj.put("indicador", indicador2);
                 
                 Obj.put("valor1", Cvalor1);
                 Obj.put("valor2", Cvalor2);
@@ -150,5 +151,49 @@ public class C_005_Indicadores_Calidad_Servlet extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
+    private String GetIndicador(String val) {
+        String name;
 
+        switch (val) {
+            case "CF":
+                name = "Calidad Facturable";
+                break;
+
+            case "CNF":
+                name = "Calidad No Facturable";
+                break;
+            case "SUB":
+                name = "Subproducto";
+                break;
+
+            case "PT":
+                name = "Produccion Total";
+                break;
+
+            default:
+                name = "";
+                break;
+        }
+        return name;
+    }
+
+        private String GetAmbito(String val) {
+        String name;
+
+        switch (val) {
+            case "I":
+                name = "Interno";
+                break;
+
+            case "E":
+                name = "Externo";
+                break;
+
+
+            default:
+                name = "";
+                break;
+        }
+        return name;
+    }
 }

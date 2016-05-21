@@ -14,7 +14,7 @@ function DibujarChartPrincipal() {
                 },
                 dataType: "json", //Se reciben los datos en formato JSON                
                 success: function (data_) {
-                    
+
                     var tamlinea = tamalinea();
 
                     queryObject = eval('(' + JSON.stringify(data_) + ')');
@@ -30,13 +30,13 @@ function DibujarChartPrincipal() {
                     data.addColumn('number', x - 1); //año anterior  
                     data.addColumn('number', 'Mayor historico');
                     data.addColumn('number', x);   //año actual  
-                    data.addColumn('number', 'Promedio '+ (x-1));
+                    data.addColumn('number', 'Promedio ' + (x - 1));
                     data.addColumn('number', 'Menor historico');
 
                     for (var i = 0; i < queryObjectLen; i++)
                     {
                         var periodo = queryObject.ListaValores[i].periodo;
-                        
+
                         //Si se selecciona la opcion NOMINA se trabaja con meses.
                         if ($('#tipo option:selected').val() === "1")
                         {
@@ -71,14 +71,16 @@ function DibujarChartPrincipal() {
                         if ($('#indicador').val() === "INDICADOR7")
                         {
                             var options = {
-                                title: '', //Cantidad de empleados Nomina '+ x,
-                                vAxis: {title: 'Cantidad de empleados', titleTextStyle: {color: 'Black'}, gridlines: {count: 20}, viewWindow: {
+                                title: '',
+                                vAxis: {title: 'Cantidad de empleados', titleTextStyle: {color: ColorFuenteGrafica()}, textStyle: {color: ColorFuenteGrafica()},
+                                    gridlines: {count: 20}, viewWindow: {
                                         min: (menor - 10),
                                         max: (mayor + 20)
                                     }
                                 },
                                 hAxis: {title: '*El valor "Menor historico" corresponde a ' + ConvertirMes(menormes) + ' de ' + menoranio + '\n' +
-                                            '*El valor "Mayor historico" corresponde a ' + ConvertirMes(mayormes) + ' de ' + mayoranio, titleTextStyle: {color: 'Blue'}},
+                                            '*El valor "Mayor historico" corresponde a ' + ConvertirMes(mayormes) + ' de ' + mayoranio, titleTextStyle: {color: ColorFuenteGrafica()},
+                                    textStyle: {color: ColorFuenteGrafica()}},
                                 is3D: true,
                                 colors: Coloresrrhh(),
                                 annotations:
@@ -91,20 +93,26 @@ function DibujarChartPrincipal() {
                                             2: {pointShape: 'circle', pointSize: tamapunto()}
 
                                         },
-                                lineWidth: tamlinea
+                                lineWidth: tamlinea,
+                                backgroundColor: FondoGrafica(),
+                                legend: {
+                                    textStyle: {
+                                        color: ColorFuenteGrafica()
+                                    }}
                             };
                         }
                         else //Si es el indicador DEVENGADO/NO_EMPLEADOS
                         {
                             var options = {
                                 title: '', //Promedio Devengado por empleado (Nomina) ' + x,
-                                vAxis: {title: '(Q) Promedio devengado por empleado ', titleTextStyle: {color: 'Black'},
+                                vAxis: {title: '(Q) Promedio devengado por empleado ', titleTextStyle: {color: ColorFuenteGrafica()}, textStyle: {color: ColorFuenteGrafica()},
                                     gridlines: {count: 20}, viewWindow: {
                                         min: (menor - 100),
                                         max: (mayor + 100)
                                     }},
                                 hAxis: {title: '*El valor "Menor historico" corresponde a ' + ConvertirMes(menormes) + ' de ' + menoranio + '\n' +
-                                            '*El valor "Mayor historico" corresponde a ' + ConvertirMes(mayormes) + ' de ' + mayoranio, titleTextStyle: {color: 'Blue'}},
+                                            '*El valor "Mayor historico" corresponde a ' + ConvertirMes(mayormes) + ' de ' + mayoranio, titleTextStyle: {color: ColorFuenteGrafica()}
+                                    , textStyle: {color: ColorFuenteGrafica()}},
                                 is3D: true,
                                 colors: Coloresrrhh(),
                                 annotations: {
@@ -114,7 +122,12 @@ function DibujarChartPrincipal() {
                                     0: {pointShape: 'circle', pointSize: tamapunto()},
                                     2: {pointShape: 'circle', pointSize: tamapunto()}
 
-                                }, lineWidth: tamlinea
+                                }, lineWidth: tamlinea,
+                                backgroundColor: FondoGrafica(),
+                                legend: {
+                                    textStyle: {
+                                        color: ColorFuenteGrafica()
+                                    }}
                             };
 
 
@@ -127,12 +140,14 @@ function DibujarChartPrincipal() {
                         {
                             var options = {
                                 title: '', //'Cantidad de empleados Planilla '+ x,
-                                vAxis: {title: 'Cantidad de empleados', titleTextStyle: {color: 'Black'}, gridlines: {count: 20}, viewWindow: {
+                                vAxis: {title: 'Cantidad de empleados', titleTextStyle: {color: ColorFuenteGrafica()}, textStyle: {color: ColorFuenteGrafica()},
+                                    gridlines: {count: 20}, viewWindow: {
                                         min: (menor - 10),
                                         max: (mayor + 10)
                                     }},
                                 hAxis: {title: 'Catorcena\n' + '*El valor "Menor historico" corresponde a la catorcena ' + menormes + ' de ' + menoranio + '\n' +
-                                            '*El valor "Mayor historico" corresponde a la catorcena ' + mayormes + ' de ' + mayoranio, titleTextStyle: {color: 'Blue'}},
+                                            '*El valor "Mayor historico" corresponde a la catorcena ' + mayormes + ' de ' + mayoranio, titleTextStyle: {color: ColorFuenteGrafica()},
+                                    textStyle: {color: ColorFuenteGrafica()}},
                                 is3D: true,
                                 colors: Coloresrrhh(),
                                 annotations: {
@@ -142,19 +157,26 @@ function DibujarChartPrincipal() {
                                     0: {pointShape: 'circle', pointSize: tamapunto()},
                                     2: {pointShape: 'circle', pointSize: tamapunto()}
 
-                                }, lineWidth: tamlinea
+                                }, lineWidth: tamlinea,
+                                backgroundColor: FondoGrafica(),
+                                legend: {
+                                    textStyle: {
+                                        color: ColorFuenteGrafica()
+                                    }}
                             };
                         }
                         else
                         {
                             var options = {
                                 title: '', //Promedio devengado por empleado (Planilla) ' + x,
-                                vAxis: {title: '(Q) Promedio devengado por empleado', titleTextStyle: {color: 'Black'}, gridlines: {count: 20}, viewWindow: {
+                                vAxis: {title: '(Q) Promedio devengado por empleado', titleTextStyle: {color: ColorFuenteGrafica()}, textStyle: {color: ColorFuenteGrafica()},
+                                    gridlines: {count: 20}, viewWindow: {
                                         min: (menor - 100),
                                         max: (mayor + 100)
                                     }},
                                 hAxis: {title: 'Catorcena\n' + '*El valor menor corresponde a la catorcena ' + menormes + ' de ' + menoranio + '\n' +
-                                            '*El valor mayor corresponde a la catorcena ' + mayormes + ' de ' + mayoranio, titleTextStyle: {color: 'Blue'}},
+                                            '*El valor mayor corresponde a la catorcena ' + mayormes + ' de ' + mayoranio, titleTextStyle: {color: ColorFuenteGrafica()},
+                                    textStyle: {color: ColorFuenteGrafica()}},
                                 is3D: true,
                                 colors: Coloresrrhh(),
                                 annotations: {
@@ -164,7 +186,12 @@ function DibujarChartPrincipal() {
                                     0: {pointShape: 'circle', pointSize: tamapunto()},
                                     2: {pointShape: 'circle', pointSize: tamapunto()}
 
-                                }, lineWidth: tamlinea
+                                }, lineWidth: tamlinea,
+                                backgroundColor: FondoGrafica(),
+                                legend: {
+                                    textStyle: {
+                                        color: ColorFuenteGrafica()
+                                    }}
                             };
 
                         }

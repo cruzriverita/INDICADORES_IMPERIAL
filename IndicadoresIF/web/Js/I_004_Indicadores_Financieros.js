@@ -56,8 +56,9 @@ function DibujarChartPrincipal() {
 
                         var options = {
                             title: '',
-                            vAxis: {title: '' + '\n\n',
-                                titleTextStyle: {color: 'Black'}},
+                            vAxis: {title: '',
+                                titleTextStyle: {color: ColorFuenteGrafica()}, textStyle: {color: ColorFuenteGrafica()}},
+                            hAxis: {textStyle: {color: ColorFuenteGrafica()}},
                             is3D: true,
                             colors: Coloresrrhh(),
                             //Formato de anotaciones sobre la grafica si las llevara
@@ -71,7 +72,12 @@ function DibujarChartPrincipal() {
                                     //auraColor: 'transparent' // The color of the text outline.
                                     //opacity: 0.8 // The transparency of the text.
                                 }
-                            }
+                            },
+                            backgroundColor: FondoGrafica(),
+                            legend: {
+                                textStyle: {
+                                    color: ColorFuenteGrafica()
+                                }}
                         };
 
                         var chart = new google.visualization.ColumnChart(document.getElementById('GraficaPrincipal'));
@@ -142,11 +148,11 @@ function DibujarChartPrincipal() {
 
                         var options = {
                             title: '',
-                            vAxis: {title: '', titleTextStyle: {color: 'Black'}},
+                            vAxis: {title: '', titleTextStyle: {color: ColorFuenteGrafica()}, textStyle: {color: ColorFuenteGrafica()}},
                             hAxis: {title: '*El valor "' + "Menor historico" + '" corresponde a ' + ConvertirMes(mm) + ' de ' + aa + '\n'
                                         + '*El valor "' + "Mayor historico" + '" corresponde a ' + ConvertirMes(m) + ' de ' + a
 
-                                , titleTextStyle: {color: 'Blue'}},
+                                , titleTextStyle: {color: ColorFuenteGrafica()}, textStyle: {color: ColorFuenteGrafica()}},
                             is3D: true,
                             colors: Coloresrrhh(),
                             annotations: {
@@ -157,7 +163,12 @@ function DibujarChartPrincipal() {
                                 2: {pointShape: 'circle', pointSize: tamapunto()}
 
                             }
-                            , lineWidth: tamlinea
+                            , lineWidth: tamlinea,
+                            backgroundColor: FondoGrafica(),
+                            legend: {
+                                textStyle: {
+                                    color: ColorFuenteGrafica()
+                                }}
                         };
 
 

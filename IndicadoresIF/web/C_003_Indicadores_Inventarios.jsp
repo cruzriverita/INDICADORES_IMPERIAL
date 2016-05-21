@@ -100,7 +100,7 @@
                                 
                                 <div class="divboton" id="divb">
                                     <input   type="image" style="height:90%;width:90%; padding-right:25px;"  
-                                             onmouseover="ShowDef();" onmouseout="HideDef();" src="Images/dd.svg">
+                                             onmouseover="ShowDef();" onmouseout="HideDef();" src="Images/ddw.png">
                                     
                                     <div class="DefStyle" id="EmaliographyDef">Descargar</div>         
                                 </div>
@@ -110,7 +110,7 @@
                 <br>
 
                 <center>
-                    <h2>Rotacion De Inventarios</h2>
+                    <h2 class="titulos"> Rotacion De Inventarios</h2>
                 </center>
                 <br>
                 <center>
@@ -120,7 +120,7 @@
 
 
                     <div> 
-                        <p>*Para la columna  "Indice del mes" en color verde se muestran los valores mayores al promedio y en rojo los menores.<br/>
+                        <p class="parrafo_tabla">*Para la columna  "Indice del mes" en color verde se muestran los valores mayores al promedio y en rojo los menores.<br/>
                             *Para la columna "Dias de inventario" en color verde se muestran los valores menores al promedio y en rojo los mayores.</p>
                     </div>
                 </center>

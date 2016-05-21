@@ -304,7 +304,15 @@ function GetSubTituloG() {
     document.getElementById('subtitulo').innerHTML = get_nombre_mes(parseInt(mes)) + " " + anio;
 }
 
+//Devuelve el fondo utilizado en todas las graficas.
 function FondoGrafica()
 {
     return 'transparent';
 }
+
+//devuelve el color de la fuente utilizada dentro de las graficas.
+function ColorFuenteGrafica()
+{
+    return '#ffffff';
+}
+

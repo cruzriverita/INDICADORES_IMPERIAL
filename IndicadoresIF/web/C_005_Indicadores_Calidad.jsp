@@ -28,7 +28,7 @@
         $(document).ready(function () {
             //Valores por defecto al cargar la pagina, seteados con javascript
             $('#anio').val("2015");
-         
+
         });
     </script> 
     <!-----------------------------------------------------------------------------------------------------> 
@@ -105,10 +105,10 @@
 
                         </div>
                     </div>
-                                     
+
                     <div class="divboton" id="divb">
                         <input   type="image" style="height:90%;width:90%; padding-right:25px;"  
-                                 onmouseover="ShowDef();" onmouseout="HideDef();" src="Images/dd.svg">
+                                 onmouseover="ShowDef();" onmouseout="HideDef();" src="Images/ddw.png">
                         <div class="DefStyle" id="EmaliographyDef">Descargar</div>         
                     </div>
 
@@ -116,7 +116,7 @@
 
                 <br>
                 <center>
-                    <h2>Indicadores De Calidad</h2>
+                    <h2 class="titulos">Indicadores De Calidad</h2>
                 </center>
                 <br>
                 <center>
@@ -124,7 +124,7 @@
                     </div>
                     <div > 
 
-                        <p>
+                        <p class="parrafo_tabla">
                             *En color verde se muestran los valores mayores al promedio del año anterior.<br/>
                             *En color rojo se muestran los valores menores al promedio del año anterior.
                         </p>

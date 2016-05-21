@@ -103,40 +103,40 @@
                         </div>
                     </div>
 
-                                <div class="divboton" id="divb">
-                                    <input   type="image" style="height:90%;width:90%; padding-right:25px;"  
-                                             onmouseover="ShowDef();" onmouseout="HideDef();" src="Images/dd.svg">
-                                    
-                                    <div class="DefStyle" id="EmaliographyDef">Descargar</div>         
-                                </div>
+                    <div class="divboton" id="divb">
+                        <input   type="image" style="height:90%;width:90%; padding-right:25px;"  
+                                 onmouseover="ShowDef();" onmouseout="HideDef();" src="Images/ddw.png">
+
+                        <div class="DefStyle" id="EmaliographyDef">Descargar</div>         
+                    </div>
 
                 </form> 
 
                 <br>
 
                 <CENTER>
-                    <h2> INDICADORES PRODUCCION</h2>
-                    <h4> Produccion Kilogramos</h4>
-                    <div id="table" >
+                    <h2 class="titulos"> INDICADORES PRODUCCION</h2>
+                    <h3 class="titulos"> Produccion Kilogramos</h3>
+                    <div id="table" class="divtabla" >
                     </div>
                 </CENTER>
 
                 <center>
                     <div> 
-                        <p style="font-size: 13px">  *En color verde se muestran los valores mayores al promedio<br/>
+                        <p class="parrafo_tabla">  *En color verde se muestran los valores mayores al promedio<br/>
                             *En color rojo se muestran los valores menores al promedio</p>
                     </div>
                 </center>
                 <br>
                 <CENTER>
-                    <h4> Produccion Costos</h4>
-                    <div id="table2">
+                    <h3 class="titulos"> Produccion Costos</h3>
+                    <div id="table2" class="divtabla">
                     </div>
                 </CENTER>
 
                 <center>
                     <div> 
-                        <p style="font-size: 13px" >*En color verde se muestran los valores menores al promedio<br/>
+                        <p class="parrafo_tabla">*En color verde se muestran los valores menores al promedio<br/>
                             *En color rojo se muestran los valores mayores al promedio</p>        
                     </div>
                 </CENTER>

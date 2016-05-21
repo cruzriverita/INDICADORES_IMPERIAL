@@ -25,6 +25,7 @@ and open the template in the editor.
     width:99.4%;
     float: right;
     border: 5px solid black;
+  
 }
 
 .divprincipal_index {
@@ -208,30 +209,16 @@ option:focus{
 }
 
 .divtabla {
-    background-color:#ffffff;
-    height:60%;
-    width:90%;
-    float:right;
+ border: 5px solid black;
+ width: 50%;
 }
 
-.pp
+.parrafo_tabla
 {
-    padding-top:        0px;
-    padding-right:      0px;
-    padding-bottom:     0px;
-    padding-left:       585px;
-    font-size:          13px;
+    font-size: 15px; 
+    color: white;
 }
 
-.formato_parrafo
-{
-    padding-top:        0px;
-    padding-right:      0px;
-    padding-bottom:     0px;
-    padding-left:       475px;
-    font-size:          13px;
-
-}
 
 
 
@@ -303,3 +290,8 @@ option:focus{
 
 }
 
+.yellow-background {
+    background-color: yellow;
+    font-weight: bold;
+
+}

@@ -61,21 +61,23 @@ function DibujarChartPrincipal() {
     cadena = cadena.split(",");
     cadena2 = cadena2.split(",");
 
+
+
     //Se arma el vector con los datos de la grafica principal de forma manual.
     primaryData =
             [
-                [ConvertirMes(cadena[0]), '', parseFloat(cadena[1]), parseFloat(cadena[2]), parseFloat(cadena[3]), parseFloat(cadena[4]), parseFloat(cadena[5])],
-                [ConvertirMes(cadena[6]), '', parseFloat(cadena[7]), parseFloat(cadena[8]), parseFloat(cadena[9]), parseFloat(cadena[10]), parseFloat(cadena[11])],
-                [ConvertirMes(cadena[12]), '', parseFloat(cadena[13]), parseFloat(cadena[14]), parseFloat(cadena[15]), parseFloat(cadena[16]), parseFloat(cadena[17])],
-                [ConvertirMes(cadena[18]), '', parseFloat(cadena[19]), parseFloat(cadena[20]), parseFloat(cadena[21]), parseFloat(cadena[22]), parseFloat(cadena[23])],
-                [ConvertirMes(cadena[24]), '', parseFloat(cadena[25]), parseFloat(cadena[26]), parseFloat(cadena[27]), parseFloat(cadena[28]), parseFloat(cadena[29])],
-                [ConvertirMes(cadena[30]), '', parseFloat(cadena[31]), parseFloat(cadena[32]), parseFloat(cadena[33]), parseFloat(cadena[34]), parseFloat(cadena[35])],
-                [ConvertirMes(cadena[36]), '', parseFloat(cadena[37]), parseFloat(cadena[38]), parseFloat(cadena[39]), parseFloat(cadena[40]), parseFloat(cadena[41])],
-                [ConvertirMes(cadena[42]), '', parseFloat(cadena[43]), parseFloat(cadena[44]), parseFloat(cadena[45]), parseFloat(cadena[46]), parseFloat(cadena[47])],
-                [ConvertirMes(cadena[48]), '', parseFloat(cadena[49]), parseFloat(cadena[50]), parseFloat(cadena[51]), parseFloat(cadena[52]), parseFloat(cadena[53])],
-                [ConvertirMes(cadena[54]), '', parseFloat(cadena[55]), parseFloat(cadena[56]), parseFloat(cadena[57]), parseFloat(cadena[58]), parseFloat(cadena[59])],
-                [ConvertirMes(cadena[60]), '', parseFloat(cadena[61]), parseFloat(cadena[62]), parseFloat(cadena[63]), parseFloat(cadena[64]), parseFloat(cadena[65])],
-                [ConvertirMes(cadena[66]), '', parseFloat(cadena[67]), parseFloat(cadena[68]), parseFloat(cadena[69]), parseFloat(cadena[70]), parseFloat(cadena[71])]
+                [ConvertirMes(cadena[0]), '',  DevolverNull(parseFloat(cadena[1])), parseFloat(cadena[2]), parseFloat(cadena[3]), parseFloat(cadena[4]), parseFloat(cadena[5])],
+                [ConvertirMes(cadena[6]), '',  DevolverNull(parseFloat(cadena[7])), parseFloat(cadena[8]), parseFloat(cadena[9]), parseFloat(cadena[10]), parseFloat(cadena[11])],
+                [ConvertirMes(cadena[12]), '', DevolverNull(parseFloat(cadena[13])), parseFloat(cadena[14]), parseFloat(cadena[15]), parseFloat(cadena[16]), parseFloat(cadena[17])],
+                [ConvertirMes(cadena[18]), '', DevolverNull(parseFloat(cadena[19])), parseFloat(cadena[20]), parseFloat(cadena[21]), parseFloat(cadena[22]), parseFloat(cadena[23])],
+                [ConvertirMes(cadena[24]), '', DevolverNull(parseFloat(cadena[25])), parseFloat(cadena[26]), parseFloat(cadena[27]), parseFloat(cadena[28]), parseFloat(cadena[29])],
+                [ConvertirMes(cadena[30]), '', DevolverNull(parseFloat(cadena[31])), parseFloat(cadena[32]), parseFloat(cadena[33]), parseFloat(cadena[34]), parseFloat(cadena[35])],
+                [ConvertirMes(cadena[36]), '', DevolverNull(parseFloat(cadena[37])), parseFloat(cadena[38]), parseFloat(cadena[39]), parseFloat(cadena[40]), parseFloat(cadena[41])],
+                [ConvertirMes(cadena[42]), '', DevolverNull(parseFloat(cadena[43])), parseFloat(cadena[44]), parseFloat(cadena[45]), parseFloat(cadena[46]), parseFloat(cadena[47])],
+                [ConvertirMes(cadena[48]), '', DevolverNull(parseFloat(cadena[49])), parseFloat(cadena[50]), parseFloat(cadena[51]), parseFloat(cadena[52]), parseFloat(cadena[53])],
+                [ConvertirMes(cadena[54]), '', DevolverNull(parseFloat(cadena[55])), parseFloat(cadena[56]), parseFloat(cadena[57]), parseFloat(cadena[58]), parseFloat(cadena[59])],
+                [ConvertirMes(cadena[60]), '', DevolverNull(parseFloat(cadena[61])), parseFloat(cadena[62]), parseFloat(cadena[63]), parseFloat(cadena[64]), parseFloat(cadena[65])],
+                [ConvertirMes(cadena[66]), '', DevolverNull(parseFloat(cadena[67])), parseFloat(cadena[68]), parseFloat(cadena[69]), parseFloat(cadena[70]), parseFloat(cadena[71])]
             ];
 
     //Datos necesarios para utilizar en la grafica principal.        
@@ -97,12 +99,13 @@ function DibujarChartPrincipal() {
             title: '',
             //legend: 'none',
             tooltip: {isHtml: true}, // This MUST be set to true for your chart to show.
-            vAxis: {title: 'Indice del mes', titleTextStyle: {color: 'Black'}, gridlines: {count: 20}, viewWindow: {
+            vAxis: {title: 'Indice del mes', titleTextStyle: {color: ColorFuenteGrafica()}, textStyle: {color: ColorFuenteGrafica()},gridlines: {count: 20}, viewWindow: {
                     min: (menor - 0.1),
                     max: (mayor + 0.1)
                 }},
             hAxis: {title: '*El valor "Menor historico" corresponde a ' + ConvertirMes(menormes) + ' de ' + menoranio + '\n' +
-                        '*El valor "Mayor historico" corresponde a ' + ConvertirMes(mayormes) + ' de ' + mayoranio, titleTextStyle: {color: 'Blue'}},
+                        '*El valor "Mayor historico" corresponde a ' + ConvertirMes(mayormes) + ' de ' + mayoranio, titleTextStyle: {color: ColorFuenteGrafica()}
+            ,textStyle: {color: ColorFuenteGrafica()}},
             colors: ["#EAD008", "#40FF00", "#01DFD7", "#FF0000", "#000000"],
             annotations: {
                 style: 'line'
@@ -112,7 +115,12 @@ function DibujarChartPrincipal() {
                 4: {pointShape: 'circle', pointSize: tamapunto()}
 
             },
-            lineWidth: tamlinea
+            lineWidth: tamlinea,
+                backgroundColor: FondoGrafica(),
+            legend: {
+                textStyle: {
+                    color: ColorFuenteGrafica()
+                }}
         };
     }
     else
@@ -121,12 +129,14 @@ function DibujarChartPrincipal() {
         primaryOptions = {
             title: '', 
             tooltip: {isHtml: true}, 
-            vAxis: {title: 'Dias de inventario', titleTextStyle: {color: 'Black'}, gridlines: {count: 20}, viewWindow: {
+            vAxis: {title: 'Dias de inventario', titleTextStyle: {color:  ColorFuenteGrafica()}, textStyle: {color: ColorFuenteGrafica()},
+                gridlines: {count: 20}, viewWindow: {
                     min: (menor - 1),
                     max: (mayor + 1)
                 }},
             hAxis: {title: '*El valor "Menor historico" corresponde a ' + ConvertirMes(menormes) + ' de ' + menoranio + '\n' +
-                        '*El valor "Mayor historico" corresponde a ' + ConvertirMes(mayormes) + ' de ' + mayoranio, titleTextStyle: {color: 'Blue'}},
+                        '*El valor "Mayor historico" corresponde a ' + ConvertirMes(mayormes) + ' de ' + mayoranio, titleTextStyle: {color: ColorFuenteGrafica()},
+            textStyle: {color: ColorFuenteGrafica()}},
             is3D: true,
             colors: ["#EAD008", "#FF0000", "#01DFD7", "#40FF00", "#000000"],
             annotations: {
@@ -136,7 +146,12 @@ function DibujarChartPrincipal() {
                 0: {pointShape: 'circle', pointSize: tamapunto()},
                 4: {pointShape: 'circle', pointSize: tamapunto()}
 
-            }, lineWidth: tamlinea
+            }, lineWidth: tamlinea,
+                   backgroundColor: FondoGrafica(),
+            legend: {
+                textStyle: {
+                    color: ColorFuenteGrafica()
+                }}
         };
     }
 

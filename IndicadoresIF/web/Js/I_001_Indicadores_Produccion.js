@@ -62,14 +62,14 @@ function DibujarChartPrincipal() {
                             title: '',
                             
                             vAxis: {title: GetTituloEje(),
-                                titleTextStyle: {color: 'white'},
-                                textStyle: {color: 'white'}
+                                titleTextStyle: {color: ColorFuenteGrafica()},
+                                textStyle: {color: ColorFuenteGrafica()}
                             },
-                            hAxis: {textStyle: {color: '#FFF'}},
+                            hAxis: { titleTextStyle: {color: ColorFuenteGrafica()},textStyle: {color: ColorFuenteGrafica()}},
                             backgroundColor: FondoGrafica(),
                             legend: {
                                 textStyle: {
-                                    color: '#ffffff'
+                                    color: ColorFuenteGrafica()
                                 }},
                             
                             
@@ -164,21 +164,22 @@ function DibujarChartPrincipal() {
                         var options = {
                             title: '',
                              vAxis: {title: GetTituloEje(),
-                                titleTextStyle: {color: 'white'},
-                                textStyle: {color: 'white'}
+                                titleTextStyle: {color: ColorFuenteGrafica()},
+                                textStyle: {color: ColorFuenteGrafica()}
                             },
                           
                             backgroundColor: FondoGrafica(),
                             legend: {
                                 textStyle: {
-                                    color: '#ffffff'
+                                    color: ColorFuenteGrafica()
                                 }},
                             
                             hAxis:
                                     {
                                         title: '*El valor "' + "Menor historico" + '" corresponde a ' + ConvertirMes(mm) + ' de ' + aa + '\n'
-                                                + '*El valor "' + "Mayor historico" + '" corresponde a ' + ConvertirMes(m) + ' de ' + a, titleTextStyle: {color: 'white'}
-                                    },
+                                                + '*El valor "' + "Mayor historico" + '" corresponde a ' + ConvertirMes(m) + ' de ' + a, titleTextStyle: {color: ColorFuenteGrafica()},
+                                        textStyle: {color: ColorFuenteGrafica()}},
+                                    
                             is3D: true,
                             colors: Coloresrrhh(),
                             annotations:

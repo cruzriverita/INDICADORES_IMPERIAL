@@ -137,6 +137,7 @@ public class I_005_Indicadores_Calidad_Servlet extends HttpServlet {
     }
 
     //Devuelve los valores de un año para una empresa especifica.
+    
     public void Especifico(String sql, List ListaValores, JSONObject Obj, JSONObject responseObj, HttpServletResponse response) throws IOException {
         List<Map<String, Object>> resultList;
         resultList = conexion.select(sql);
@@ -218,7 +219,7 @@ public class I_005_Indicadores_Calidad_Servlet extends HttpServlet {
         String nombre;
         switch (value) {
             case "1":
-                nombre = "RS";
+                nombre = "RST";
                 break;
 
             case "2":

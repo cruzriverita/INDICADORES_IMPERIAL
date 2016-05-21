@@ -55,7 +55,7 @@
 
     </script> 
     <!-----------------------------------------------------------------------------------------------------> 
-    
+
     <head>
         <!---------------------------------------------ARCHIVOS CSS-------------------------------------------> 
         <link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,300italic,700&subset=latin,cyrillic-ext,latin-ext,cyrillic' rel='stylesheet' type='text/css'>
@@ -92,8 +92,8 @@
 
                             <div class="divselect">
                                 <select id="tipo" name="tipo" onchange="DibujarChartPrincipal();
-            GetTituloG2();
-            GetSubTituloG2();" class="select">
+                                        GetTituloG2();
+                                        GetSubTituloG2();" class="select">
                                     <option value="1">Nomina</option>
                                     <option value="2">Planilla</option>
                                 </select> 
@@ -104,11 +104,13 @@
                                 <select id="anio" name="anio" onchange="DibujarChartPrincipal();
                                         GetTituloG2();
                                         GetSubTituloG2();" class="select">
+                                    
                                     <option value="<%=Utilidades.Metodos_Globales.year_actual - 2%>"> <%=Utilidades.Metodos_Globales.year_actual - 2%> </option>
                                     <option value="<%=Utilidades.Metodos_Globales.year_actual - 1%>"> <%=Utilidades.Metodos_Globales.year_actual - 1%> </option>
                                     <option value="<%=Utilidades.Metodos_Globales.year_actual%>" selected> <%=Utilidades.Metodos_Globales.year_actual%> </option>
                                     <option value="<%=Utilidades.Metodos_Globales.year_actual + 1%>"> <%=Utilidades.Metodos_Globales.year_actual + 1%> </option>
                                     <option value="<%=Utilidades.Metodos_Globales.year_actual + 2%>"> <%=Utilidades.Metodos_Globales.year_actual + 2%> </option>
+                                
                                 </select>
                             </div>
 
@@ -117,19 +119,20 @@
                         </div>
                     </div>
 
+
                     <div class="divboton" id="divb">
-                        <input   type="image" style="height:48px;width:48px;"  onmouseover="this.style.background = '#0fa1e0';
-                                ShowDef();" onmouseout="this.style.background = 'white';
-                                        HideDef();" src="Images/dd.svg">
+                        <input type="image" style="height:90%;width:90%; padding-right:25px;"  
+                                 onmouseover="ShowDef();" onmouseout="HideDef();" src="Images/ddw.png">
+
+                        <div class="DefStyle" id="EmaliographyDef">Descargar</div>         
                     </div>
-                    <div class="DefStyle" id="EmaliographyDef">Descarga</div>
 
                 </form> 
                 <br style="line-height: 10px">
                 <center>
                     <div style="line-height: 5px">
-                        <h3 id="titulo"></h3>
-                        <h4 id="subtitulo"></h4>
+                        <h3 id="titulo" class="titulos"></h3>
+                        <h4 id="subtitulo" class="titulos"></h4>
                     </div>
                 </center>
                 <div id="GraficaPrincipal" class="divimagen"></div>

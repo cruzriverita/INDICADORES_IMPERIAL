@@ -15,10 +15,12 @@
         String mes = request.getParameter("mes");
         String an = request.getParameter("anio");
         String ind = request.getParameter("indicador");
+        String amb=request.getParameter("ambito");
         String v = "ALL";
         String m = "3";
         String a = "2016";
         String vind = "1";
+        String vamb="I";
 
         if (planta == null) {
         } else {
@@ -31,6 +33,11 @@
         } else {
             vind = ind;
         }
+        
+         if (amb == null) {
+        } else {
+            vamb = amb;
+        } 
     %>
     <!----------------------------------------------------------------------------------------------------->
 
@@ -62,7 +69,7 @@
             //Setear valores por defecto para los parametros.
             $('#opciones').val("<%=v%>");
             $('#mes').val("<%=m%>");
-            $('#ambito').val("I");
+            $('#ambito').val("<%=vamb%>");
             hideMes();
             GetTituloG5();
             GetSubTituloG();
@@ -149,7 +156,7 @@
 
                                     <option value="ALL">Todas las plantas</option>
                                 
-                                    <option value="1">RS</option> 
+                                    <option value="1">RST</option> 
                                     <option value="2">RSM</option>  
                                     <option value="3">RLRS</option>
                                     <option value="4">FPS</option>
@@ -177,8 +184,8 @@
 
                 <center>
                     <div style="line-height: 5px">
-                        <h3 id="titulo"></h3>
-                        <h4 id="subtitulo"></h4>
+                        <h3 id="titulo" class="titulos"></h3>
+                        <h4 id="subtitulo" class="titulos"></h4>
                     </div>
                 </center>
 

@@ -168,8 +168,8 @@
 
                 <center>
                     <div style="line-height: 5px">
-                        <h3 id="titulo"></h3>
-                        <h4 id="subtitulo"></h4>
+                        <h3 id="titulo" class="titulos"></h3>
+                        <h4 id="subtitulo" class="titulos"></h4>
                     </div>
                 </center>
 
