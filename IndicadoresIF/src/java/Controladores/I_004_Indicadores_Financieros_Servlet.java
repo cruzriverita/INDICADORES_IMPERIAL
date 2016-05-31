@@ -204,6 +204,22 @@ public class I_004_Indicadores_Financieros_Servlet extends HttpServlet {
                 nombre = "MT TEXTIL";
                 break;
 
+            case "3":
+                nombre = "BLAKE";
+                break;
+
+            case "4":
+                nombre = "IMPERIALTEX";
+                break;
+
+            case "5":
+                nombre = "FABRICA IMPERIAL";
+                break;
+
+            case "6":
+                nombre = "CONSOLIDADO";
+                break;
+
             default:
                 nombre = "";
                 break;

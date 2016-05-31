@@ -11,7 +11,7 @@
     <script type="text/javascript" src="Js/js/FuncionesGlobales.js"></script>
     <script type="text/javascript" src="Js/js/CuerpoMenuHorizontal.js"></script>
     <!-----------------------------------------------------------------------------------------------------> 
-
+    
     <!------------------------------------------JS GOOGLE CHARTS-------------------------------------------> 
     <script type="text/javascript" src="Js/C_001_Produccion_Por_Planta.js"></script>
     <script type="text/javascript">
@@ -29,10 +29,9 @@
                 DibujarTabla();
             });
             //Setear valores de inicio (por defecto) para los parametros. 
-            //$('#opciones').val("ALL");
             //$('#mes').val(<%=mes%>);
             $('#mes').val(<%=3%>);
-            $('anio').val(<%=Utilidades.Metodos_Globales.year_actual%>);
+            $('#anio').val(<%=Utilidades.Metodos_Globales.year_actual%>);
         });
     </script> 
     <!-----------------------------------------------------------------------------------------------------> 
@@ -67,7 +66,6 @@
                                 <input id="lbla" name="lbla" onkeypress="" value="Año" disabled="true" class="texto" type="text"> 
                             </div>
 
-
                         </div>
 
                         <div style="clear:both;">                
@@ -93,21 +91,18 @@
                                 <select id="anio" name="anio" onchange="DibujarTabla()" class="select">
                                     <option value="<%=Utilidades.Metodos_Globales.year_actual - 2%>"> <%=Utilidades.Metodos_Globales.year_actual - 2%> </option>
                                     <option value="<%=Utilidades.Metodos_Globales.year_actual - 1%>"> <%=Utilidades.Metodos_Globales.year_actual - 1%> </option>
-                                    <option value="<%=Utilidades.Metodos_Globales.year_actual%>" selected> <%=Utilidades.Metodos_Globales.year_actual%> </option>
+                                    <option value="<%=Utilidades.Metodos_Globales.year_actual%>"> <%=Utilidades.Metodos_Globales.year_actual%> </option>
                                     <option value="<%=Utilidades.Metodos_Globales.year_actual + 1%>"> <%=Utilidades.Metodos_Globales.year_actual + 1%> </option>
                                     <option value="<%=Utilidades.Metodos_Globales.year_actual + 2%>"> <%=Utilidades.Metodos_Globales.year_actual + 2%> </option>
                                 </select>
                             </div>
 
-
                         </div>
                     </div>
 
                     <div class="divboton" id="divb">
-                        <input   type="image" style="height:90%;width:90%; padding-right:25px;"  
-                                 onmouseover="ShowDef();" onmouseout="HideDef();" src="Images/ddw.png">
-
-                        <div class="DefStyle" id="EmaliographyDef">Descargar</div>         
+                        <input  id ="imagen" type="image" style="height:100%;width:100%;"  
+                                src="Images/ddw.png" title="Exportar a Excel">
                     </div>
 
                 </form> 
@@ -133,13 +128,13 @@
                     <div id="table2" class="divtabla">
                     </div>
                 </CENTER>
-
+                
                 <center>
                     <div> 
                         <p class="parrafo_tabla">*En color verde se muestran los valores menores al promedio<br/>
                             *En color rojo se muestran los valores mayores al promedio</p>        
                     </div>
-                </CENTER>
+                </center>
             </div>
         </div>
     </body>

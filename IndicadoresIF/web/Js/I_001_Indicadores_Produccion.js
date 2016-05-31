@@ -297,7 +297,29 @@ function GetTituloEje() {
 }
 
 
-//Obtener el titulo de las graficas de produccion.
+
+
+function GetPlanta()
+{
+     var p = document.getElementById("opciones");
+     var val = p.options[p.selectedIndex].value;
+    
+        if (val === "ALL")
+        {
+            
+            document.getElementById('titulop').innerHTML = "";
+        }
+        else if (val === "PLANTA RSM O&M")
+        {
+             document.getElementById('titulop').innerHTML = "PLANTA RSM";  
+            
+        }
+        else
+        {
+          document.getElementById('titulop').innerHTML = val;  
+        }
+        
+}
 
 
 

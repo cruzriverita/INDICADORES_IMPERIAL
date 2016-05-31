@@ -3,13 +3,19 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/REPOSITORIOS/Indicadores%20Imperial/trunk/INDICADORES_IMPERIAL/IndicadoresIF/src/java/Controladores/I_003_Indicadores_Inventarios_Servlet.java</file>
-            <file>file:/C:/REPOSITORIOS/Indicadores%20Imperial/trunk/INDICADORES_IMPERIAL/IndicadoresIF/src/java/Controladores/I_003_Indicadores_Inventarios_Planta_Servlet.java</file>
+            <file>file:/C:/REPOSITORIOS/Indicadores%20Imperial/trunk/INDICADORES_IMPERIAL/IndicadoresIF/web/Js/C_003_Indicadores_Inventarios.js</file>
+            <file>file:/C:/REPOSITORIOS/Indicadores%20Imperial/trunk/INDICADORES_IMPERIAL/IndicadoresIF/web/Js/C_004_Indicadores_Financieros.js</file>
             <file>file:/C:/REPOSITORIOS/Indicadores%20Imperial/trunk/INDICADORES_IMPERIAL/IndicadoresIF/web/Js/js/FuncionesGlobales.js</file>
-            <file>file:/C:/REPOSITORIOS/Indicadores%20Imperial/trunk/INDICADORES_IMPERIAL/IndicadoresIF/web/Js/C_001_Produccion_Por_Planta.js</file>
+            <file>file:/C:/REPOSITORIOS/Indicadores%20Imperial/trunk/INDICADORES_IMPERIAL/IndicadoresIF/web/Js/js/CuerpoMenuHorizontal.js</file>
             <file>file:/C:/REPOSITORIOS/Indicadores%20Imperial/trunk/INDICADORES_IMPERIAL/IndicadoresIF/web/Js/I_001_Indicadores_Produccion.js</file>
-            <file>file:/C:/REPOSITORIOS/Indicadores%20Imperial/trunk/INDICADORES_IMPERIAL/IndicadoresIF/web/Js/I_003_Indicadores_Inventarios.js</file>
-            <file>file:/C:/REPOSITORIOS/Indicadores%20Imperial/trunk/INDICADORES_IMPERIAL/IndicadoresIF/web/Js/I_002_Indicadores_RRHH.js</file>
+            <file>file:/C:/REPOSITORIOS/Indicadores%20Imperial/trunk/INDICADORES_IMPERIAL/IndicadoresIF/web/Js/C_005_Indicadores_Calidad.js</file>
+            <file>file:/C:/REPOSITORIOS/Indicadores%20Imperial/trunk/INDICADORES_IMPERIAL/IndicadoresIF/web/Js/I_005_Indicadores_Calidad.js</file>
+            <file>file:/C:/REPOSITORIOS/Indicadores%20Imperial/trunk/INDICADORES_IMPERIAL/IndicadoresIF/web/C_004_Indicadores_Financieros.jsp</file>
+            <file>file:/C:/REPOSITORIOS/Indicadores%20Imperial/trunk/INDICADORES_IMPERIAL/IndicadoresIF/web/C_003_Indicadores_Inventarios.jsp</file>
+            <file>file:/C:/REPOSITORIOS/Indicadores%20Imperial/trunk/INDICADORES_IMPERIAL/IndicadoresIF/src/java/ArchivosXLS/C_005_Indicadores_Calidad_XLS.java</file>
+            <file>file:/C:/REPOSITORIOS/Indicadores%20Imperial/trunk/INDICADORES_IMPERIAL/IndicadoresIF/web/Js/C_001_Produccion_Por_Planta.js</file>
+            <file>file:/C:/REPOSITORIOS/Indicadores%20Imperial/trunk/INDICADORES_IMPERIAL/IndicadoresIF/web/I_001_IndicadoresProduccion.jsp</file>
+            <file>file:/C:/REPOSITORIOS/Indicadores%20Imperial/trunk/INDICADORES_IMPERIAL/IndicadoresIF/web/I_004_Indicadores_Financieros.jsp</file>
         </group>
     </open-files>
 </project-private>

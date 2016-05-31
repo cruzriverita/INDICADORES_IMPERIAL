@@ -182,11 +182,11 @@ public class C_005_Indicadores_Calidad_Servlet extends HttpServlet {
 
         switch (val) {
             case "I":
-                name = "Interno";
+                name = "Interna";
                 break;
 
             case "E":
-                name = "Externo";
+                name = "Externa";
                 break;
 
 

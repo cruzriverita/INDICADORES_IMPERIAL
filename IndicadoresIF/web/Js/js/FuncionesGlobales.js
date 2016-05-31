@@ -1,11 +1,10 @@
-//Javascript que contiene funciones utilizadas en diferentes jsp por lo tanto se toman como "globales"
+//Funciones que se reautilizan en distintos archivos JSP y js
 
 //Genera un color de manera aleatoria para colocar a cada elemento de la grafica de barras.
 function GenerarColorRandom()
 {
     return '#' + (0x1000000 + (Math.random()) * 0xffffff).toString(16).substr(1, 6);
 }
-
 
 //Recoger parametros enviados por medio de una URL
 function getParameterByName(name) {
@@ -97,7 +96,7 @@ function Coloresrrhh()
 }
 
 
-/*------------------------------------funciones tablas de indicadores------------------------------*/
+/**********************************************************funciones tablas de indicadores*****************************************************/
 
 var color = ''; //obtiene el color actual de la celda de la tabla
 //Funcion que cambia de color una celda de una tabla 
@@ -196,17 +195,6 @@ function get_nombre_mes(mes) {
     return nmes;
 }
 
-//Grosor de la linea para las graficas lineales.
-function tamalinea()
-{
-    return 5;
-}
-
-//tamaño de los puntos en la grafica lineal.
-function tamapunto()
-{
-    return 9;
-}
 
 //Se devuelve null para no dibujar valores que sean "0" en la grafica.
 function DevolverNull(valor)
@@ -222,17 +210,21 @@ function DevolverNull(valor)
     }
 }
 
+/*********************************************************************************************************************************/
 //Mostrar/esconder leyenda "Descargar" en el evento MOUSEOVER del boton.
 function ShowDef()
 {
-    document.getElementById("EmaliographyDef").style.display = "block";
+    //document.getElementById("EmaliographyDef").style.display = "block";
+    $('imagen').css({height: '+=10%', width: '+=10%'});
+    
 }
 function HideDef()
 {
-    document.getElementById("EmaliographyDef").style.display = "none";
+    //document.getElementById("EmaliographyDef").style.display = "none";
+     document.getElementById("divb").style.display.width="90%";
 }
 
-
+/*********************************************Titulo, subtitulo graficas***********************************************************/
 function GetTituloG() {
     var e = document.getElementById("indicador").value;
 
@@ -241,31 +233,8 @@ function GetTituloG() {
 
     if (val === "PLANTA FPS" || val === "FPS MES")
     {
-        if (e === "INDICADOR1")
-        {
-            document.getElementById('titulo').innerHTML = "Docenas Producidas / Hora-Hombre ";
-        }
 
-        else if (e === "INDICADOR2")
-        {
-            document.getElementById('titulo').innerHTML = "Docenas Producidas / Kilovatio-Hora ";
-        }
-        else if (e === "INDICADOR3")
-        {
-            document.getElementById('titulo').innerHTML = "Docenas Producidas / MRS ";
-        }
-        else if (e === "INDICADOR4")
-        {
-            document.getElementById('titulo').innerHTML = "Costo Mo / Docenas Producidas ";
-        }
-        else if (e === "INDICADOR5")
-        {
-            document.getElementById('titulo').innerHTML = "Costo KWH / Docenas Producidas ";
-        }
-        else if (e === "INDICADOR6")
-        {
-            document.getElementById('titulo').innerHTML = "Costo MRS / Docenas Producidas ";
-        }
+    //No se utiliza
 
     }
     else
@@ -304,6 +273,8 @@ function GetSubTituloG() {
     document.getElementById('subtitulo').innerHTML = get_nombre_mes(parseInt(mes)) + " " + anio;
 }
 
+
+/************************************************************ Formato graficas google ************************************************/
 //Devuelve el fondo utilizado en todas las graficas.
 function FondoGrafica()
 {
@@ -316,3 +287,14 @@ function ColorFuenteGrafica()
     return '#ffffff';
 }
 
+//Grosor de la linea para las graficas lineales.
+function tamalinea()
+{
+    return 5;
+}
+
+//tamaño de los puntos en la grafica lineal.
+function tamapunto()
+{
+    return 9;
+}

@@ -169,8 +169,8 @@ public class Modelo_001_Indicadores_Produccion {
                 + "\n";
 
     }
-    
-/*-------------------------------Consulta utilizada para la tabla de indicadores de produccion (COSTOS)-----------------------------*/
+
+    /*-------------------------------Consulta utilizada para la tabla de indicadores de produccion (COSTOS)-----------------------------*/
     public static String C_001_Produccion_Por_Planta2(String mes, Integer anio) {
         return "SELECT  'Costo Mo/Kg Producido' as Indicador,\n"
                 + "SUM( CASE WHEN P.PLANTA='PLANTA RST' THEN P.TotalMO/P.Produccion ELSE 0 END) AS 'RST',\n"

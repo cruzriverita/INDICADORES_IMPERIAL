@@ -15,21 +15,26 @@
         String an = request.getParameter("anio");
         String ind = request.getParameter("indicador");
 
+        //Valores por defecto de los parametros.
         String v = "ALL";
         String m = "2";
         String a = "2016";
         String vind = "INDICADOR1";
+
         /*Se utiliza la decision para convertir el parmetro enviado como RSM ya que no se puede enviar
          por url "RSM 0&M"*/
-        if (planta == null) {
+        if (planta == null) { /*se toman los valores por defecto ya que si la planta es NULL quiere decir que no se estan enviando
+             parametros por medio de la URL*/
+
         } else if (planta.equals("PLANTA RSM")) {
             v = "PLANTA RSM O&M";
+            a = an;
+            m = mes;
         } else {
             v = planta;
             a = an;
             m = mes;
         }
-
         if (ind == null) {
         } else {
             vind = ind;
@@ -66,9 +71,12 @@
             //Setear valores por defecto para los parametros.
             $('#opciones').val("<%=v%>");
             $('#mes').val("<%=m%>");
+            $('#anio').val("<%=a%>");
             hideMes();
             GetTituloG();
             GetSubTituloG();
+            GetPlanta();
+
         });
     </script> 
     <!-----------------------------------------------------------------------------------------------------> 
@@ -109,7 +117,8 @@
                             <div class="divselect" id="divselectmes">
                                 <select id="mes" name="mes" onchange="DibujarChartPrincipal();
                                         GetTituloG();
-                                        GetSubTituloG();" class="select">
+                                        GetSubTituloG();
+                                        GetPlanta();" class="select">
                                     <option value="1">Enero</option>
                                     <option value="2">Febrero</option>
                                     <option value="3">Marzo</option>
@@ -127,11 +136,12 @@
                             <div class="divselect">
                                 <select id="anio" name="anio" onchange="DibujarChartPrincipal();
                                         GetTituloG();
-                                        GetSubTituloG();" class="select">
+                                        GetSubTituloG();
+                                        GetPlanta();" class="select">
 
                                     <option value="<%=Utilidades.Metodos_Globales.year_actual - 2%>"> <%=Utilidades.Metodos_Globales.year_actual - 2%> </option>
                                     <option value="<%=Utilidades.Metodos_Globales.year_actual - 1%>"> <%=Utilidades.Metodos_Globales.year_actual - 1%> </option>
-                                    <option value="<%=Utilidades.Metodos_Globales.year_actual%>" selected> <%=Utilidades.Metodos_Globales.year_actual%> </option>
+                                    <option value="<%=Utilidades.Metodos_Globales.year_actual%>"> <%=Utilidades.Metodos_Globales.year_actual%> </option>
                                     <option value="<%=Utilidades.Metodos_Globales.year_actual + 1%>"> <%=Utilidades.Metodos_Globales.year_actual + 1%> </option>
                                     <option value="<%=Utilidades.Metodos_Globales.year_actual + 2%>"> <%=Utilidades.Metodos_Globales.year_actual + 2%> </option>
                                 </select>
@@ -142,7 +152,8 @@
                                 <select id="opciones" name="opciones" onchange="DibujarChartPrincipal();
                                         hideMes();
                                         GetTituloG();
-                                        GetSubTituloG();" class="select">
+                                        GetSubTituloG();
+                                        GetPlanta();" class="select">
 
                                     <option value="ALL">Todas Las Plantas</option>                                 
                                     <option value="PLANTA RST">RST</option> 
@@ -165,6 +176,7 @@
                     <div style="line-height: 5px">
                         <h3 id="titulo" class="titulos"></h3>
                         <h4 id="subtitulo" class="titulos"></h4>
+                        <h4 id="titulop" class="titulos"></h4>
                     </div>
                 </center>
 

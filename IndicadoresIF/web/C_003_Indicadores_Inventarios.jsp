@@ -22,12 +22,13 @@
     <!---------------------------------Se ejecuta al cargar la pagina-------------------------------------->  
     <script type="text/javascript">
         $(document).ready(function () {
-            // $('#opciones').val("1");
-            $('#anio').val("2015");
+
+            $('#anio').val(<%=Utilidades.Metodos_Globales.year_actual%>);
+            $('#mes').val(<%=3%>);
         });
     </script> 
     <!-----------------------------------------------------------------------------------------------------> 
-    
+
     <head>
         <!---------------------------------------------ARCHIVOS CSS-------------------------------------------> 
         <link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,300italic,700&subset=latin,cyrillic-ext,latin-ext,cyrillic' rel='stylesheet' type='text/css'>
@@ -69,7 +70,7 @@
                                 <select id="anio" name="anio" onchange="DibujarTabla()" class="select">
                                     <option value="<%=Utilidades.Metodos_Globales.year_actual - 2%>"> <%=Utilidades.Metodos_Globales.year_actual - 2%> </option>
                                     <option value="<%=Utilidades.Metodos_Globales.year_actual - 1%>"> <%=Utilidades.Metodos_Globales.year_actual - 1%> </option>
-                                    <option value="<%=Utilidades.Metodos_Globales.year_actual%>" selected> <%=Utilidades.Metodos_Globales.year_actual%> </option>
+                                    <option value="<%=Utilidades.Metodos_Globales.year_actual%>"> <%=Utilidades.Metodos_Globales.year_actual%> </option>
                                     <option value="<%=Utilidades.Metodos_Globales.year_actual + 1%>"> <%=Utilidades.Metodos_Globales.year_actual + 1%> </option>
                                     <option value="<%=Utilidades.Metodos_Globales.year_actual + 2%>"> <%=Utilidades.Metodos_Globales.year_actual + 2%> </option>
                                 </select>
@@ -97,13 +98,11 @@
                         </div>
 
                     </div>
-                                
-                                <div class="divboton" id="divb">
-                                    <input   type="image" style="height:90%;width:90%; padding-right:25px;"  
-                                             onmouseover="ShowDef();" onmouseout="HideDef();" src="Images/ddw.png">
-                                    
-                                    <div class="DefStyle" id="EmaliographyDef">Descargar</div>         
-                                </div>
+
+                    <div class="divboton" id="divb">
+                        <input   type="image" style="height:100%;width:100%;"  
+                                 src="Images/ddw.png" title="Exportar a Excel">
+                    </div>
 
                 </form> 
 
@@ -114,10 +113,8 @@
                 </center>
                 <br>
                 <center>
-                    <div id="table">
+                    <div id="table" class="divtabla">
                     </div>
-
-
 
                     <div> 
                         <p class="parrafo_tabla">*Para la columna  "Indice del mes" en color verde se muestran los valores mayores al promedio y en rojo los menores.<br/>

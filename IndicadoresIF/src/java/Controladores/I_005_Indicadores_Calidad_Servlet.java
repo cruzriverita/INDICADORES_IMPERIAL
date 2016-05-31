@@ -231,7 +231,7 @@ public class I_005_Indicadores_Calidad_Servlet extends HttpServlet {
                 break;
 
             case "4":
-                nombre = "FPS";
+                nombre = "DPF";
                 break;
 
             case "5":
@@ -239,7 +239,7 @@ public class I_005_Indicadores_Calidad_Servlet extends HttpServlet {
                 break;
 
             case "6":
-                nombre = "DPF";
+                nombre = "FPS";
                 break;
 
             default:

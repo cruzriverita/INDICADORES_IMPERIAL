@@ -89,7 +89,7 @@ function DibujarTabla() {
                         'tableCell': '',
                         'rowNumberCell': 'black-font'};
 
-                    var options = {'showRowNumber': true, 'allowHtml': false, 'cssClassNames': cssClassNames, height: '100%'};
+                    var options = {'showRowNumber': true, 'allowHtml': false, 'cssClassNames': cssClassNames, height: '100%', width : '100%'};
 
                     //var table = new google.visualization.Table(document.getElementById('table'));
 
@@ -153,178 +153,39 @@ function DibujarTabla() {
 }
 
 //Se ejecuta al dar click sobre una celda de la tabla de produccion en kilogramos.
+
+
+
+
 function Redireccionar_inv(x, element) {
     var y = parseInt($("#anio").val(), 10);
     var rows = document.getElementById(element).getElementsByTagName('tbody')[0].getElementsByTagName('tr');
     for (i = 0; i < rows.length; i++) {
         rows[i].onclick = function () {
-
-            if (this.rowIndex === 2) /*Indicador 1*/
-            {
-                if (x.cellIndex === 1)
+            
+            if (x.cellIndex === 1)
                 {
-                    location.href = "I_003_Indicadores_Inventarios.jsp?tipo2=1&tipo=1&anio=" + y;
+                    location.href = "I_003_Indicadores_Inventarios.jsp?tipo2="+(this.rowIndex-1)+"&tipo=1&anio=" + y;
                 }
                 else if (x.cellIndex === 2)
                 {
-                    location.href = "I_003_Indicadores_Inventarios.jsp?tipo2=1&tipo=1&anio=" + y;
+                    location.href = "I_003_Indicadores_Inventarios.jsp?tipo2="+(this.rowIndex-1)+"&tipo=1&anio=" + y;
                 }
 
                 else if (x.cellIndex === 3)
                 {
-                    location.href = "I_003_Indicadores_Inventarios.jsp?tipo2=1&tipo=1&anio=" + (y - 1);
+                    location.href = "I_003_Indicadores_Inventarios.jsp?tipo2="+(this.rowIndex-1)+"&tipo=1&anio=" + (y - 1);
                 }
 
                 else if (x.cellIndex === 4)
                 {
-                    location.href = "I_003_Indicadores_Inventarios.jsp?tipo2=1&tipo=2&anio=" + (y);
+                    location.href = "I_003_Indicadores_Inventarios.jsp?tipo2="+(this.rowIndex-1)+"&tipo=2&anio=" + (y);
                 }
                 else if (x.cellIndex === 5)
                 {
-                    location.href = "I_003_Indicadores_Inventarios.jsp?tipo2=1&tipo=2&anio=" + (y - 1);
+                    location.href = "I_003_Indicadores_Inventarios.jsp?tipo2="+(this.rowIndex-1)+"&tipo=2&anio=" + (y - 1);
                 }
-
-            }
-
-            else
-            if (this.rowIndex === 3) /*Indicador 2*/
-            {
-                if (x.cellIndex === 1)
-                {
-                    location.href = "I_003_Indicadores_Inventarios.jsp?tipo2=2&tipo=1&anio=" + y;
-                }
-                else if (x.cellIndex === 2)
-                {
-                    location.href = "I_003_Indicadores_Inventarios.jsp?tipo2=2&tipo=1&anio=" + y;
-                }
-
-                else if (x.cellIndex === 3)
-                {
-                    location.href = "I_003_Indicadores_Inventarios.jsp?tipo2=2&tipo=1&anio=" + (y - 1);
-                }
-
-                else if (x.cellIndex === 4)
-                {
-                    location.href = "I_003_Indicadores_Inventarios.jsp?tipo2=2&tipo=2&anio=" + (y);
-                }
-                else if (x.cellIndex === 5)
-                {
-                    location.href = "I_003_Indicadores_Inventarios.jsp?tipo2=2&tipo=2&anio=" + (y - 1);
-                }
-            }
-
-            else
-            if (this.rowIndex === 4) /*Indicador 3*/
-            {
-                if (x.cellIndex === 1)
-                {
-                    location.href = "I_003_Indicadores_Inventarios.jsp?tipo2=3&tipo=1&anio=" + y;
-                }
-                else if (x.cellIndex === 2)
-                {
-                    location.href = "I_003_Indicadores_Inventarios.jsp?tipo2=3&tipo=1&anio=" + y;
-                }
-
-                else if (x.cellIndex === 3)
-                {
-                    location.href = "I_003_Indicadores_Inventarios.jsp?tipo2=3&tipo=1&anio=" + (y - 1);
-                }
-
-                else if (x.cellIndex === 4)
-                {
-                    location.href = "I_003_Indicadores_Inventarios.jsp?tipo2=3&tipo=2&anio=" + (y);
-                }
-                else if (x.cellIndex === 5)
-                {
-                    location.href = "I_003_Indicadores_Inventarios.jsp?tipo2=3&tipo=2&anio=" + (y - 1);
-                }
-
-            }
-            else
-            if (this.rowIndex === 5) /*Indicador 3*/
-            {
-                if (x.cellIndex === 1)
-                {
-                    location.href = "I_003_Indicadores_Inventarios.jsp?tipo2=4&tipo=1&anio=" + y;
-                }
-                else if (x.cellIndex === 2)
-                {
-                    location.href = "I_003_Indicadores_Inventarios.jsp?tipo2=4&tipo=1&anio=" + y;
-                }
-
-                else if (x.cellIndex === 3)
-                {
-                    location.href = "I_003_Indicadores_Inventarios.jsp?tipo2=4&tipo=1&anio=" + (y - 1);
-                }
-
-                else if (x.cellIndex === 4)
-                {
-                    location.href = "I_003_Indicadores_Inventarios.jsp?tipo2=4&tipo=2&anio=" + (y);
-                }
-                else if (x.cellIndex === 5)
-                {
-                    location.href = "I_003_Indicadores_Inventarios.jsp?tipo2=4&tipo=2&anio=" + (y - 1);
-                }
-            }
-
-            else
-            if (this.rowIndex === 6) /*Indicador 3*/
-            {
-                if (x.cellIndex === 1)
-                {
-                    location.href = "I_003_Indicadores_Inventarios.jsp?tipo2=5&tipo=1&anio=" + y;
-                }
-                else if (x.cellIndex === 2)
-                {
-                    location.href = "I_003_Indicadores_Inventarios.jsp?tipo2=5&tipo=1&anio=" + y;
-                }
-
-                else if (x.cellIndex === 3)
-                {
-                    location.href = "I_003_Indicadores_Inventarios.jsp?tipo2=5&tipo=1&anio=" + (y - 1);
-                }
-
-                else if (x.cellIndex === 4)
-                {
-                    location.href = "I_003_Indicadores_Inventarios.jsp?tipo2=5&tipo=2&anio=" + (y);
-                }
-                else if (x.cellIndex === 5)
-                {
-                    location.href = "I_003_Indicadores_Inventarios.jsp?tipo2=5&tipo=2&anio=" + (y - 1);
-                }
-            }
-
-            else
-            if (this.rowIndex === 7) /*Indicador 3*/
-            {
-                if (x.cellIndex === 1)
-                {
-                    location.href = "I_003_Indicadores_Inventarios.jsp?tipo2=6&tipo=1&anio=" + y;
-                }
-                else if (x.cellIndex === 2)
-                {
-                    location.href = "I_003_Indicadores_Inventarios.jsp?tipo2=6&tipo=1&anio=" + y;
-                }
-
-                else if (x.cellIndex === 3)
-                {
-                    location.href = "I_003_Indicadores_Inventarios.jsp?tipo2=6&tipo=1&anio=" + (y - 1);
-                }
-
-                else if (x.cellIndex === 4)
-                {
-                    location.href = "I_003_Indicadores_Inventarios.jsp?tipo2=6&tipo=2&anio=" + (y);
-                }
-                else if (x.cellIndex === 5)
-                {
-                    location.href = "I_003_Indicadores_Inventarios.jsp?tipo2=6&tipo=2&anio=" + (y - 1);
-                }
-            }
 
         };
     }
 }
-
-
-
-

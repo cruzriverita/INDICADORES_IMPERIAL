@@ -1,8 +1,7 @@
 
 /* Devuelve los datos para la primera tabla de los indicadores de produccion*/
-
-
 package Controladores;
+
 import Modelo.Modelo_001_Indicadores_Produccion;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -19,13 +18,13 @@ import javax.servlet.http.HttpServletResponse;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-
 /**
  *
  * @author rcruz
  */
 public class C_001_Produccion_Por_Planta_Servlet extends HttpServlet {
 
+    //Objeto de la clase conexion. 
     Modelo.ConexionBD conexion = new Modelo.ConexionBD();
 
     /**
@@ -55,7 +54,6 @@ public class C_001_Produccion_Por_Planta_Servlet extends HttpServlet {
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-
     /**
      * Handles the HTTP <code>GET</code> method.
      *
@@ -78,6 +76,9 @@ public class C_001_Produccion_Por_Planta_Servlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    /* Se utiliza el metodo Post para enviar los datos procesado en formato JSON al archivo js correspondiente
+     y que este ultimo ordene la informacion en el formato requerido por la API de google charts.
+     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -87,12 +88,11 @@ public class C_001_Produccion_Por_Planta_Servlet extends HttpServlet {
         JSONObject responseObj = new JSONObject();
         JSONObject Obj = null;
 
-        //Recuperar valores enviados desde el javascript.
+        //Recuperar valores enviados desde el javascript, js los captura con jquery. 
         mes = request.getParameter("mesjs");
         anio = request.getParameter("aniojs");
-        String sql;// = "";
+        String sql;
 
-        
         sql = Modelo_001_Indicadores_Produccion.C_001_Produccion_Por_Planta(mes, Integer.parseInt(anio));
         List<Map<String, Object>> resultList;
         resultList = conexion.select(sql);
@@ -121,8 +121,7 @@ public class C_001_Produccion_Por_Planta_Servlet extends HttpServlet {
             Cvalor7 = Utilidades.Metodos_Globales.redondear(Cvalor7, 2);
             Cvalor9 = Utilidades.Metodos_Globales.redondear(Cvalor9, 2);
             Cvalor11 = Utilidades.Metodos_Globales.redondear(Cvalor11, 2);
-            
-            
+
             Obj = new JSONObject();
 
             try {
@@ -131,14 +130,14 @@ public class C_001_Produccion_Por_Planta_Servlet extends HttpServlet {
                 Obj.put("valor2", Cvalor2);
                 Obj.put("valor3", Cvalor3);
                 Obj.put("valor4", Cvalor4);
-                Obj.put("valor5",Cvalor5);
-                Obj.put("valor6",Cvalor6 );
-                Obj.put("valor7",Cvalor7);
+                Obj.put("valor5", Cvalor5);
+                Obj.put("valor6", Cvalor6);
+                Obj.put("valor7", Cvalor7);
                 Obj.put("valor8", Cvalor8);
-                Obj.put("valor9",Cvalor9);
-                Obj.put("valor10",Cvalor10 );
-                Obj.put("valor11",Cvalor11 );
-                Obj.put("valor12",Cvalor12 );
+                Obj.put("valor9", Cvalor9);
+                Obj.put("valor10", Cvalor10);
+                Obj.put("valor11", Cvalor11);
+                Obj.put("valor12", Cvalor12);
 
                 ListaValores.add(Obj);
                 responseObj.put("ListaValores", ListaValores);

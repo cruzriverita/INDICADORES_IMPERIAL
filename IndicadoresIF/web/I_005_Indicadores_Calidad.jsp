@@ -119,7 +119,7 @@
                             <div class="divselect" id="divselectmes">
                                 <select id="mes" name="mes" onchange="DibujarChartPrincipal();
                                         GetTituloG5();
-                                        GetSubTituloG(); hideInterno();" class="select">
+                                        GetSubTituloG(); hideInterno(); GetPlantaCalidad();" class="select">
                                     <option value="1">Enero</option>
                                     <option value="2">Febrero</option>
                                     <option value="3">Marzo</option>
@@ -137,7 +137,7 @@
                             <div class="divselect">
                                 <select id="anio" name="anio" onchange="DibujarChartPrincipal();
                                         GetTituloG5();
-                                        GetSubTituloG();hideInterno(); " class="select">
+                                        GetSubTituloG();hideInterno();GetPlantaCalidad(); " class="select">
 
                                     <option value="<%=Utilidades.Metodos_Globales.year_actual - 2%>"> <%=Utilidades.Metodos_Globales.year_actual - 2%> </option>
                                     <option value="<%=Utilidades.Metodos_Globales.year_actual - 1%>"> <%=Utilidades.Metodos_Globales.year_actual - 1%> </option>
@@ -152,16 +152,16 @@
                                 <select id="opciones" name="opciones" onchange="DibujarChartPrincipal();
                                         hideMes();
                                         GetTituloG5();
-                                        GetSubTituloG();hideInterno();" class="select">
+                                        GetSubTituloG();hideInterno(); GetPlantaCalidad();" class="select">
 
                                     <option value="ALL">Todas las plantas</option>
                                 
                                     <option value="1">RST</option> 
                                     <option value="2">RSM</option>  
                                     <option value="3">RLRS</option>
-                                    <option value="4">FPS</option>
+                                    <option value="4">DPF</option>
                                     <option value="5">KNIT</option>
-                                    <option value="6">DPF</option>
+                                    <option value="6">FPS</option>
                                     
                                 </select>
                             </div>
@@ -170,7 +170,7 @@
                                 <select id="ambito" name="ambito" onchange="DibujarChartPrincipal();
                                         hideMes();
                                         GetTituloG5();
-                                        GetSubTituloG();hideInterno();" class="select">
+                                        GetSubTituloG();hideInterno(); GetPlantaCalidad();" class="select">
 
                                     <option value="I">Interno</option>
                                     <option value="E">Externo</option> 
@@ -186,6 +186,7 @@
                     <div style="line-height: 5px">
                         <h3 id="titulo" class="titulos"></h3>
                         <h4 id="subtitulo" class="titulos"></h4>
+                        <h4 id="titulop" class="titulos"></h4>
                     </div>
                 </center>
 

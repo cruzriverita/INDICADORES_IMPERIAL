@@ -10,7 +10,7 @@ function DibujarTabla() {
                     aniojs: $("#anio").val(),
                     opcion: $('#opciones option:selected').val()
                 },
-                dataType: "json", //Se reciben los datos en formato JSON                
+                dataType: "json",
                 success: function (data_) {
 
                     queryObject = eval('(' + JSON.stringify(data_) + ')');
@@ -29,21 +29,23 @@ function DibujarTabla() {
                     for (var i = 0; i < queryObjectLen; i++)
                     {
                         var indicador = queryObject.ListaValores[i].indicador;
-                        var a1 = queryObject.ListaValores[i].valor1;
-                        var a2 = queryObject.ListaValores[i].valor2;
-                        var a3 = queryObject.ListaValores[i].valor3;
-                        var a4 = queryObject.ListaValores[i].valor4;
-                        var a5 = queryObject.ListaValores[i].valor5;
-                        var a6 = queryObject.ListaValores[i].valor6;
-                        var a7 = queryObject.ListaValores[i].valor7;
-                        var a8 = queryObject.ListaValores[i].valor8;
-                        var a11 = queryObject.ListaValores[i].valor11;
-                        var a12 = queryObject.ListaValores[i].valor12;
+                        var a1 = queryObject.ListaValores[i].valor1; //RST
+                        var a2 = queryObject.ListaValores[i].valor2; //Promedio RST
+                        var a3 = queryObject.ListaValores[i].valor3; //RLRS
+                        var a4 = queryObject.ListaValores[i].valor4; //Promedio RLRS
+                        var a5 = queryObject.ListaValores[i].valor5; //RSM
+                        var a6 = queryObject.ListaValores[i].valor6; //Promedio RLRS
+                        var a7 = queryObject.ListaValores[i].valor7; //KNIT
+                        var a8 = queryObject.ListaValores[i].valor8; //Promedio KNIT
+                        var a11 = queryObject.ListaValores[i].valor11; //DPF
+                        var a12 = queryObject.ListaValores[i].valor12; //Promedio DPF
 
                         //Agregar nombre del indicador.
                         data.setCell(i, 0, indicador);
 
-                        //Comparar promedio vs valor actual para elegir color de la celda
+                        /*Comparar promedio (promedio del año anterior) vs valor actual, si el promedio es mayor la celda del indicador
+                         se muestra en color rojo, en caso contrario se muestra en color verde.*/
+
                         if (a2 > a1) {
                             data.setCell(i, 1, parseFloat(a1), a1, {'className': 'red-background'});
                         } else {
@@ -114,7 +116,7 @@ function DibujarTabla() {
 
             });
 
-    //tabla con indicadores basados en costos, se recibe la informacion para llenar la 2da tabla.
+    /********************tabla con indicadores basados en costos, se recibe la informacion para llenar la 2da tabla.***********************/
     $.ajax
             ({
                 type: "POST",
@@ -123,7 +125,7 @@ function DibujarTabla() {
                     mesjs: $("#mes").val(),
                     aniojs: $("#anio").val()
                 },
-                dataType: "json",            
+                dataType: "json",
                 success: function (data_) {
 
                     queryObject = eval('(' + JSON.stringify(data_) + ')');
@@ -221,113 +223,43 @@ function DibujarTabla() {
             });
 }
 
-//Se ejecuta al dar click sobre una celda de la tabla de produccion en kilogramos.
+/*Se ejecuta al dar click sobre una celda de la tabla de produccion en kilogramos.
+ se evalua primero por fila y luego por columna, cada fila (rowindex) representa un indicador y cada columna
+ (cellindex) representa una planta */
+
 function Redireccionar(x, element) {
     var rows = document.getElementById(element).getElementsByTagName('tbody')[0].getElementsByTagName('tr');
     for (i = 0; i < rows.length; i++) {
         rows[i].onclick = function () {
 
-            if (this.rowIndex === 1) /*Indicador 1*/
+            if (x.cellIndex === 1)
             {
-                if (x.cellIndex === 1)
-                {
-                    location.href = "I_001_IndicadoresProduccion.jsp?planta=ALL&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "&indicador=INDICADOR1";
-                }
-                else
-                if (x.cellIndex === 2)
-                {
-                    location.href = "I_001_IndicadoresProduccion.jsp?planta=PLANTA RST&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "&indicador=INDICADOR1";
-                }
-                else
-                if (x.cellIndex === 3)
-                {
-                    location.href = "I_001_IndicadoresProduccion.jsp?planta=PLANTA RLRS&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "&indicador=INDICADOR1";
-                }
-                else
-                if (x.cellIndex === 4)
-                {
-                    location.href = "I_001_IndicadoresProduccion.jsp?planta=PLANTA RSM&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "&indicador=INDICADOR1";
-                }
-                else
-                if (x.cellIndex === 5)
-                {
-                    location.href = "I_001_IndicadoresProduccion.jsp?planta=PLANTA KNIT&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "&indicador=INDICADOR1";
-                }
-                else
-                if (x.cellIndex === 6)
-                {
-                    location.href = "I_001_IndicadoresProduccion.jsp?planta=PLANTA DPF&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "&indicador=INDICADOR1";
-                }
+                location.href = "I_001_IndicadoresProduccion.jsp?planta=ALL&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "&indicador=INDICADOR" + this.rowIndex;
             }
-
             else
-            if (this.rowIndex === 2) /*Indicador 2*/
+            if (x.cellIndex === 2)
             {
-                if (x.cellIndex === 1)
-                {
-                    location.href = "I_001_IndicadoresProduccion.jsp?planta=ALL&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "&indicador=INDICADOR2";
-                }
-                else
-                if (x.cellIndex === 2)
-                {
-                    location.href = "I_001_IndicadoresProduccion.jsp?planta=PLANTA RST&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "&indicador=INDICADOR2";
-                }
-                else
-                if (x.cellIndex === 3)
-                {
-                    location.href = "I_001_IndicadoresProduccion.jsp?planta=PLANTA RLRS&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "&indicador=INDICADOR2";
-                }
-                else
-                if (x.cellIndex === 4)
-                {
-                    location.href = "I_001_IndicadoresProduccion.jsp?planta=PLANTA RSM&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "&indicador=INDICADOR2";
-                }
-                else
-                if (x.cellIndex === 5)
-                {
-                    location.href = "I_001_IndicadoresProduccion.jsp?planta=PLANTA KNIT&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "&indicador=INDICADOR2";
-                }
-                else
-                if (x.cellIndex === 6)
-                {
-                    location.href = "I_001_IndicadoresProduccion.jsp?planta=PLANTA DPF&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "&indicador=INDICADOR2";
-                }
-
+                location.href = "I_001_IndicadoresProduccion.jsp?planta=PLANTA RST&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "&indicador=INDICADOR" + this.rowIndex;
             }
-
             else
-            if (this.rowIndex === 3) /*Indicador 3*/
+            if (x.cellIndex === 3)
             {
-                if (x.cellIndex === 1)
-                {
-                    location.href = "I_001_IndicadoresProduccion.jsp?planta=ALL&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "&indicador=INDICADOR3";
-                }
-                else
-                if (x.cellIndex === 2)
-                {
-                    location.href = "I_001_IndicadoresProduccion.jsp?planta=PLANTA RST&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "&indicador=INDICADOR3";
-                }
-                else
-                if (x.cellIndex === 3)
-                {
-                    location.href = "I_001_IndicadoresProduccion.jsp?planta=PLANTA RLRS&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "&indicador=INDICADOR3";
-                }
-                else
-                if (x.cellIndex === 4)
-                {
-                    location.href = "I_001_IndicadoresProduccion.jsp?planta=PLANTA RSM&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "&indicador=INDICADOR3";
-                }
-                else
-                if (x.cellIndex === 5)
-                {
-                    location.href = "I_001_IndicadoresProduccion.jsp?planta=PLANTA KNIT&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "&indicador=INDICADOR3";
-                }
-                else
-                if (x.cellIndex === 6)
-                {
-                    location.href = "I_001_IndicadoresProduccion.jsp?planta=PLANTA DPF&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "&indicador=INDICADOR3";
-                }
-
+                location.href = "I_001_IndicadoresProduccion.jsp?planta=PLANTA RLRS&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "&indicador=INDICADOR" + this.rowIndex;
+            }
+            else
+            if (x.cellIndex === 4)
+            {
+                location.href = "I_001_IndicadoresProduccion.jsp?planta=PLANTA RSM&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "&indicador=INDICADOR" + this.rowIndex;
+            }
+            else
+            if (x.cellIndex === 5)
+            {
+                location.href = "I_001_IndicadoresProduccion.jsp?planta=PLANTA KNIT&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "&indicador=INDICADOR" + this.rowIndex;
+            }
+            else
+            if (x.cellIndex === 6)
+            {
+                location.href = "I_001_IndicadoresProduccion.jsp?planta=PLANTA DPF&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "&indicador=INDICADOR" + this.rowIndex;
             }
         };
     }
@@ -341,109 +273,35 @@ function Redireccionar2(x, element) {
         rows[i].onclick = function () {
             //alert("Columna " + x.cellIndex + "FILA " + this.rowIndex);
 
-            if (this.rowIndex === 1) /*Indicador 1*/
+            if (x.cellIndex === 1)
             {
-                if (x.cellIndex === 1)
-                {
-                    location.href = "I_001_IndicadoresProduccion.jsp?planta=ALL&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "&indicador=INDICADOR4";
-                }
-                else
-                if (x.cellIndex === 2)
-                {
-                    location.href = "I_001_IndicadoresProduccion.jsp?planta=PLANTA RST&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "&indicador=INDICADOR4";
-                }
-                else
-                if (x.cellIndex === 3)
-                {
-                    location.href = "I_001_IndicadoresProduccion.jsp?planta=PLANTA RLRS&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "&indicador=INDICADOR4";
-                }
-                else
-                if (x.cellIndex === 4)
-                {
-                    location.href = "I_001_IndicadoresProduccion.jsp?planta=PLANTA RSM&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "&indicador=INDICADOR4";
-                }
-                else
-                if (x.cellIndex === 5)
-                {
-                    location.href = "I_001_IndicadoresProduccion.jsp?planta=PLANTA KNIT&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "&indicador=INDICADOR4";
-                }
-                else
-                if (x.cellIndex === 6)
-                {
-                    location.href = "I_001_IndicadoresProduccion.jsp?planta=PLANTA DPF&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "&indicador=INDICADOR4";
-                }
-
+                location.href = "I_001_IndicadoresProduccion.jsp?planta=ALL&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "&indicador=INDICADOR" + (this.rowIndex + 3);
             }
             else
-            if (this.rowIndex === 2) /*Indicador 2*/
+            if (x.cellIndex === 2)
             {
-                if (x.cellIndex === 1)
-                {
-                    location.href = "I_001_IndicadoresProduccion.jsp?planta=ALL&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "&indicador=INDICADOR5";
-                }
-                else
-                if (x.cellIndex === 2)
-                {
-                    location.href = "I_001_IndicadoresProduccion.jsp?planta=PLANTA RST&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "&indicador=INDICADOR5";
-                }
-                else
-                if (x.cellIndex === 3)
-                {
-                    location.href = "I_001_IndicadoresProduccion.jsp?planta=PLANTA RLRS&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "&indicador=INDICADOR5";
-                }
-                else
-                if (x.cellIndex === 4)
-                {
-                    location.href = "I_001_IndicadoresProduccion.jsp?planta=PLANTA RSM&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "&indicador=INDICADOR5";
-                }
-                else
-                if (x.cellIndex === 5)
-                {
-                    location.href = "I_001_IndicadoresProduccion.jsp?planta=PLANTA KNIT&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "&indicador=INDICADOR5";
-                }
-                else
-                if (x.cellIndex === 6)
-                {
-                    location.href = "I_001_IndicadoresProduccion.jsp?planta=PLANTA DPF&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "&indicador=INDICADOR5";
-                }
-
+                location.href = "I_001_IndicadoresProduccion.jsp?planta=PLANTA RST&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "&indicador=INDICADOR" + (this.rowIndex + 3);
             }
-
             else
-            if (this.rowIndex === 3) /*Indicador 3*/
+            if (x.cellIndex === 3)
             {
-                if (x.cellIndex === 1)
-                {
-                    location.href = "I_001_IndicadoresProduccion.jsp?planta=ALL&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "&indicador=INDICADOR6";
-                }
-                else
-                if (x.cellIndex === 2)
-                {
-                    location.href = "I_001_IndicadoresProduccion.jsp?planta=PLANTA RST&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "&indicador=INDICADOR6";
-                }
-                else
-                if (x.cellIndex === 3)
-                {
-                    location.href = "I_001_IndicadoresProduccion.jsp?planta=PLANTA RLRS&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "&indicador=INDICADOR6";
-                }
-                else
-                if (x.cellIndex === 4)
-                {
-                    location.href = "I_001_IndicadoresProduccion.jsp?planta=PLANTA RSM&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "&indicador=INDICADOR6";
-                }
-                else
-                if (x.cellIndex === 5)
-                {
-                    location.href = "I_001_IndicadoresProduccion.jsp?planta=PLANTA KNIT&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "&indicador=INDICADOR6";
-                }
-                else
-                if (x.cellIndex === 6)
-                {
-                    location.href = "I_001_IndicadoresProduccion.jsp?planta=PLANTA DPF&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "&indicador=INDICADOR6";
-                }
-
+                location.href = "I_001_IndicadoresProduccion.jsp?planta=PLANTA RLRS&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "&indicador=INDICADOR" + (this.rowIndex + 3);
             }
-
+            else
+            if (x.cellIndex === 4)
+            {
+                location.href = "I_001_IndicadoresProduccion.jsp?planta=PLANTA RSM&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "&indicador=INDICADOR" + (this.rowIndex + 3);
+            }
+            else
+            if (x.cellIndex === 5)
+            {
+                location.href = "I_001_IndicadoresProduccion.jsp?planta=PLANTA KNIT&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "&indicador=INDICADOR" + (this.rowIndex + 3);
+            }
+            else
+            if (x.cellIndex === 6)
+            {
+                location.href = "I_001_IndicadoresProduccion.jsp?planta=PLANTA DPF&mes=" + $("#mes").val() + "&anio=" + $("#anio").val() + "&indicador=INDICADOR" + (this.rowIndex + 3);
+            }
         };
     }
 }

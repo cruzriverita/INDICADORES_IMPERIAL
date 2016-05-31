@@ -138,6 +138,9 @@ function DibujarChartPrincipal() {
                             var a = queryObject.ListaValores[i].mejoranio;
                             var mm = queryObject.ListaValores[i].peormes;
                             var aa = queryObject.ListaValores[i].peoranio;
+                            
+                            var menor=a3;
+                            var mayor=a4;
 
                             data.addRows([
                                 [mes, "", parseFloat(a1), parseFloat(a3),
@@ -148,11 +151,14 @@ function DibujarChartPrincipal() {
 
                         var options = {
                             title: '',
-                            vAxis: {title: '', titleTextStyle: {color: ColorFuenteGrafica()}, textStyle: {color: ColorFuenteGrafica()}},
+                            vAxis: {title: '', titleTextStyle: {color: ColorFuenteGrafica()}, textStyle: {color: ColorFuenteGrafica()},gridlines: {count: 30}, viewWindow: {
+                    min: (menor - 0.6),
+                    max: (mayor + 0.6)}},
                             hAxis: {title: '*El valor "' + "Menor historico" + '" corresponde a ' + ConvertirMes(mm) + ' de ' + aa + '\n'
                                         + '*El valor "' + "Mayor historico" + '" corresponde a ' + ConvertirMes(m) + ' de ' + a
 
-                                , titleTextStyle: {color: ColorFuenteGrafica()}, textStyle: {color: ColorFuenteGrafica()}},
+                                , titleTextStyle: {color: ColorFuenteGrafica()}, textStyle: {color: ColorFuenteGrafica()}, format: '#.####'
+                            },
                             is3D: true,
                             colors: Coloresrrhh(),
                             annotations: {
@@ -190,13 +196,26 @@ function DibujarChartPrincipal() {
             });
 }
 
-function click_grafica(planta)
+function click_grafica(empresa)
 {
-    if (planta === "IMPERIAL FASHION") {
+    if (empresa === "IMPERIAL FASHION") {
         document.getElementById('opciones').value = "1";
     }
-    else if (planta === "MT TEXTIL") {
+    else if (empresa === "MT TEXTIL") {
         document.getElementById('opciones').value = "2";
+    }
+    else if (empresa === "BLAKE") {
+        document.getElementById('opciones').value = "3";
+    }
+    else if (empresa === "IMPERIALTEX") {
+        document.getElementById('opciones').value = "4";
+    }
+    
+    else if (empresa === "FABRICA IMPERIAL") {
+        document.getElementById('opciones').value = "5";
+    }
+    else if (empresa === "CONSOLIDADO") {
+        document.getElementById('opciones').value = "6";
     }
 
     //empresas pendientes
@@ -254,7 +273,48 @@ function GetTituloG4() {
     {
         document.getElementById('titulo').innerHTML = "Total pagado por multas y retificaciones";
     }
+}
 
+function GetEmpresa()
+{
+     var p = document.getElementById("opciones");
+     var val = p.options[p.selectedIndex].value;
+    
+        if (val === "1")
+        {
+            
+            document.getElementById('titulop').innerHTML = "IMPERIAL FASHION";
+        }
 
+        else if (val === "2")
+        {
+          document.getElementById('titulop').innerHTML = "MT TEXTIL";  
+        }
+        
+         else if (val === "3")
+        {
+          document.getElementById('titulop').innerHTML = "BLAKE S.A.";  
+        }
+        
+         else if (val === "4")
+        {
+          document.getElementById('titulop').innerHTML = "IMPERIALTEX";  
+        }
+        
+         else if (val === "5")
+        {
+          document.getElementById('titulop').innerHTML = "FABRICA IMPERIAL";  
+        }
+        
+         else if (val === "6")
+        {
+          document.getElementById('titulop').innerHTML = "CONSOLIDADO";  
+        }
+        
+         else 
+        {
+          document.getElementById('titulop').innerHTML = "";  
+        }
+        
 
 }

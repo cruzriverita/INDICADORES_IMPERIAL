@@ -83,7 +83,7 @@ public class C_001_Produccion_Por_Planta_XLS extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         anio = request.getParameter("anio");
         mes = request.getParameter("mes");
         planta = request.getParameter("planta");
@@ -94,12 +94,12 @@ public class C_001_Produccion_Por_Planta_XLS extends HttpServlet {
             response.setContentType("application/vnd.ms-excel");
 
             response.setHeader("Content-Disposition",
-                    "attachment; filename=Indicadores Produccion" + ".xls");
+                    "attachment; filename=Indicadores Produccion " + Utilidades.Metodos_Globales.get_nombre_mes(Integer.parseInt(mes)) + " " + anio + " " + ".xls");
 
             WritableWorkbook w = Workbook.createWorkbook(response.getOutputStream());
             WritableSheet s = w.createSheet("Indicadores Produccion", 0);
 
-            List<Map<String, Object>> resultList ;
+            List<Map<String, Object>> resultList;
             resultList = conexion.select(sql);
 
             Iterator<Map<String, Object>> iterador = resultList.iterator();
@@ -125,26 +125,26 @@ public class C_001_Produccion_Por_Planta_XLS extends HttpServlet {
 
             Label Titulo = new Label(0, 0, "INDICADORES PRODUCCION", Metodos_Generales_Excel.Titulo());
             s.addCell(Titulo);
-            s.mergeCells(0, 0, 7, 0);
+            s.mergeCells(0, 0, 6, 0);
             //altura de la fila, en este caso la fila 0
             int heightInPoints = 26 * 20;
             s.setRowView(0, heightInPoints);
 
             //Encabezados columnas
-            String Header[] = new String[7];
-            Header[0] = "Nombre Indicador";
+            String Header[] = new String[6];
+            Header[0] = "Indicador";
             Header[1] = "RST";
-            Header[2] = "KNIT";
-            Header[3] = "DPF";
-            Header[4] = "RLRS";
-            Header[5] = "FPS";
-            Header[6] = "RSM O&M";
+            Header[2] = "RLRS";
+            Header[3] = "RSM";
+            Header[4] = "KNIT";
+            Header[5] = "DPF";
+            //Header[6] = "RSM O&M";
 
             for (int i = 0; i < Header.length; i++) {
                 Label label = new Label(i + 1, 1, Header[i]);
                 s.addCell(label);
                 WritableCell cell = s.getWritableCell(i + 1, 1);
-                cell.setCellFormat(Metodos_Generales_Excel.Formato_Cuerpo_Excel(Colour.OCEAN_BLUE, WritableFont.ARIAL, 12));
+                cell.setCellFormat(Metodos_Generales_Excel.Formato_headers_Excel(Colour.OCEAN_BLUE, WritableFont.ARIAL, 12));
 
             }
 
@@ -160,25 +160,25 @@ public class C_001_Produccion_Por_Planta_XLS extends HttpServlet {
                 s.addCell(rst);
                 s.setColumnView(2, 20);
 
-                jxl.write.Number knit = new jxl.write.Number(3, ix + 2, valoresKNIT.get(ix), Metodos_Generales_Excel.FormatoNumericoDecimal(Colour.WHITE, WritableFont.ARIAL, 10));
+                jxl.write.Number knit = new jxl.write.Number(5, ix + 2, valoresKNIT.get(ix), Metodos_Generales_Excel.FormatoNumericoDecimal(Colour.WHITE, WritableFont.ARIAL, 10));
                 s.addCell(knit);
-                s.setColumnView(3, 20);
-
-                jxl.write.Number dpf = new jxl.write.Number(4, ix + 2, valoresDPF.get(ix), Metodos_Generales_Excel.FormatoNumericoDecimal(Colour.WHITE, WritableFont.ARIAL, 10));
-                s.addCell(dpf);
-                s.setColumnView(4, 20);
-
-                jxl.write.Number rlrs = new jxl.write.Number(5, ix + 2, valoresRLRS.get(ix), Metodos_Generales_Excel.FormatoNumericoDecimal(Colour.WHITE, WritableFont.ARIAL, 10));
-                s.addCell(rlrs);
                 s.setColumnView(5, 20);
 
-                jxl.write.Number fps = new jxl.write.Number(6, ix + 2, valoresFPS.get(ix), Metodos_Generales_Excel.FormatoNumericoDecimal(Colour.WHITE, WritableFont.ARIAL, 10));
-                s.addCell(fps);
+                jxl.write.Number dpf = new jxl.write.Number(6, ix + 2, valoresDPF.get(ix), Metodos_Generales_Excel.FormatoNumericoDecimal(Colour.WHITE, WritableFont.ARIAL, 10));
+                s.addCell(dpf);
                 s.setColumnView(6, 20);
 
-                jxl.write.Number rsm = new jxl.write.Number(7, ix + 2, valoresRSM.get(ix), Metodos_Generales_Excel.FormatoNumericoDecimal(Colour.WHITE, WritableFont.ARIAL, 10));
+                jxl.write.Number rlrs = new jxl.write.Number(3, ix + 2, valoresRLRS.get(ix), Metodos_Generales_Excel.FormatoNumericoDecimal(Colour.WHITE, WritableFont.ARIAL, 10));
+                s.addCell(rlrs);
+                s.setColumnView(3, 20);
+
+              /*  jxl.write.Number fps = new jxl.write.Number(6, ix + 2, valoresFPS.get(ix), Metodos_Generales_Excel.FormatoNumericoDecimal(Colour.WHITE, WritableFont.ARIAL, 10));
+                s.addCell(fps);
+                s.setColumnView(6, 20);*/
+
+                jxl.write.Number rsm = new jxl.write.Number(4, ix + 2, valoresRSM.get(ix), Metodos_Generales_Excel.FormatoNumericoDecimal(Colour.WHITE, WritableFont.ARIAL, 10));
                 s.addCell(rsm);
-                s.setColumnView(7, 20);
+                s.setColumnView(4, 20);
 
             }
 

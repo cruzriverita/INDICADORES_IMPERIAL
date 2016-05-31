@@ -21,7 +21,8 @@
     <script type="text/javascript">
         $(document).ready(function () {
             //Valores por defecto al cargar la pagina, seteados con javascript
-            $('#anio').val("2015");
+             $('#anio').val(<%=Utilidades.Metodos_Globales.year_actual%>);
+             $('#mes').val(<%=3%>);
 
         });
     </script> 
@@ -66,13 +67,12 @@
 
                         <div style="clear:both;">                
 
-
                             <div class="divselect">
 
                                 <select id="anio" name="anio" onchange="DibujarTabla()" class="select">
                                     <option value="<%=Utilidades.Metodos_Globales.year_actual - 2%>"> <%=Utilidades.Metodos_Globales.year_actual - 2%> </option>
                                     <option value="<%=Utilidades.Metodos_Globales.year_actual - 1%>"> <%=Utilidades.Metodos_Globales.year_actual - 1%> </option>
-                                    <option value="<%=Utilidades.Metodos_Globales.year_actual%>" selected> <%=Utilidades.Metodos_Globales.year_actual%> </option>
+                                    <option value="<%=Utilidades.Metodos_Globales.year_actual%>"> <%=Utilidades.Metodos_Globales.year_actual%> </option>
                                     <option value="<%=Utilidades.Metodos_Globales.year_actual + 1%>"> <%=Utilidades.Metodos_Globales.year_actual + 1%> </option>
                                     <option value="<%=Utilidades.Metodos_Globales.year_actual + 2%>"> <%=Utilidades.Metodos_Globales.year_actual + 2%> </option>
                                 </select>
@@ -103,9 +103,8 @@
                     </div>
 
                     <div class="divboton" id="divb">
-                        <input   type="image" style="height:90%;width:90%; padding-right:25px;"  
-                                 onmouseover="ShowDef();" onmouseout="HideDef();" src="Images/ddw.png">
-                        <div class="DefStyle" id="EmaliographyDef">Descargar</div>         
+                        <input   type="image" style="height:100%;width:100%;"  
+                                 src="Images/ddw.png" title="Exportar a Excel">       
                     </div>
 
                 </form> 
@@ -117,7 +116,7 @@
                 <br>
 
                 <center>
-                    <div id="table">
+                    <div id="table" class="divtabla">
                     </div>
                     <div > 
 

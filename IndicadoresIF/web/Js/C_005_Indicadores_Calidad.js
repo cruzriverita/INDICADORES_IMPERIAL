@@ -32,7 +32,7 @@ function DibujarTabla() {
                     var total7 = queryObject.ListaValores[6].valor5;
                     var total8 = queryObject.ListaValores[6].valor4;
 
-                    data.addColumn('string', 'Ambito');
+                    data.addColumn('string', 'Produccion');
                     data.addColumn('string', 'Indicador');
                     data.addColumn('number', 'RST');
                     data.addColumn('number', 'RSM');
@@ -67,7 +67,11 @@ function DibujarTabla() {
                         //1ra columna de la tabla, (interno/externo)
                         data.setCell(i, 0, ambito);
                         //2da columna de la tabla, el nombre del indicador
-                        data.setCell(i, 1, indicador);
+                        
+                        if (i === 2 || i === 6)
+                            data.setCell(i, 1, indicador, indicador, {'className': 'yellow-background'});
+                        else
+                            data.setCell(i, 1, indicador);
 
                         /*---------------------------------------------------------------------------------------------------------------*/
                         //si es el indicador CF o CNF se convierten las cantidades a porcentaje, caso contrario no.
@@ -231,7 +235,7 @@ function DibujarTabla() {
                                     data.setCell(i, 7, parseFloat(a6 * 100 / total6).toFixed(2), (a6 * 100 / total6).toFixed(2) + '%', {'className': 'green-background'});
                             }
                         }
-                           else if (i === 2)
+                        else if (i === 2)
                         {
                             data.setCell(i, 7, parseFloat(a6), a6, {'className': 'yellow-background'});
                         }
@@ -263,7 +267,7 @@ function DibujarTabla() {
                         'tableCell': '',
                         'rowNumberCell': 'black-font'};
 
-                    var options = {'showRowNumber': false, 'allowHtml': false, 'cssClassNames': cssClassNames, height: '100%'};
+                    var options = {'showRowNumber': false, 'allowHtml': false, 'cssClassNames': cssClassNames, height: '100%',width: '100%'};
 
                     var table = new google.visualization.Table(document.getElementById('table'));
 
@@ -324,6 +328,9 @@ function AddRowspan(selector) {
 
 
 //Se ejecuta al dar click sobre una celda de la tabla de produccion en kilogramos.
+//indicador se refiere al numero de indicador elegido, puede ser 1 = CF, 2 = CNF o 3 = Subproducto
+//planta puede ser un numero del 1 al 6 refiriendose al cada una de las plantas de la empresa. (en el .jsp esta que numero corresponde a c/planta)
+//ambito se refiere a si es prudccion INTERNA o EXTERNA 
 function Redireccionar_calidad(x, element) {
 
     var rows = document.getElementById(element).getElementsByTagName('tbody')[0].getElementsByTagName('tr');
@@ -434,15 +441,15 @@ function Redireccionar_calidad(x, element) {
 
                 if (x.cellIndex === 1)
                 {
-                    location.href = "I_005_Indicadores_Calidad.jsp?indicador=4";
+                    location.href = "I_005_Indicadores_Calidad.jsp?indicador=1";
+                }
+                else if (x.cellIndex === 5)
+                {
+                    location.href = "I_005_Indicadores_Calidad.jsp?indicador=1&planta=4&ambito=E";
                 }
                 else if (x.cellIndex === 6)
                 {
                     location.href = "I_005_Indicadores_Calidad.jsp?indicador=1&planta=5&ambito=E";
-                }
-                else if (x.cellIndex === 7)
-                {
-                    location.href = "I_005_Indicadores_Calidad.jsp?indicador=1&planta=6&ambito=E";
                 }
             }
 
@@ -454,15 +461,15 @@ function Redireccionar_calidad(x, element) {
 
                 if (x.cellIndex === 0)
                 {
-                    location.href = "I_005_Indicadores_Calidad.jsp?indicador=4";
+                    location.href = "I_005_Indicadores_Calidad.jsp?indicador=2";
+                }
+                else if (x.cellIndex === 4)
+                {
+                    location.href = "I_005_Indicadores_Calidad.jsp?indicador=2&planta=4&ambito=E";
                 }
                 else if (x.cellIndex === 5)
                 {
-                    location.href = "I_005_Indicadores_Calidad.jsp?indicador=1&planta=5&ambito=E";
-                }
-                else if (x.cellIndex === 6)
-                {
-                    location.href = "I_005_Indicadores_Calidad.jsp?indicador=1&planta=6&ambito=E";
+                    location.href = "I_005_Indicadores_Calidad.jsp?indicador=2&planta=5&ambito=E";
                 }
 
             }
@@ -471,15 +478,15 @@ function Redireccionar_calidad(x, element) {
             {
                 if (x.cellIndex === 0)
                 {
-                    location.href = "I_005_Indicadores_Calidad.jsp?indicador=4";
+                    location.href = "I_005_Indicadores_Calidad.jsp?indicador=3";
+                }
+                else if (x.cellIndex === 4)
+                {
+                    location.href = "I_005_Indicadores_Calidad.jsp?indicador=3&planta=4&ambito=E";
                 }
                 else if (x.cellIndex === 5)
                 {
-                    location.href = "I_005_Indicadores_Calidad.jsp?indicador=1&planta=5&ambito=E";
-                }
-                else if (x.cellIndex === 6)
-                {
-                    location.href = "I_005_Indicadores_Calidad.jsp?indicador=1&planta=6&ambito=E";
+                    location.href = "I_005_Indicadores_Calidad.jsp?indicador=3&planta=5&ambito=E";
                 }
             }
 
@@ -488,21 +495,15 @@ function Redireccionar_calidad(x, element) {
     }
 }
 
-
 function CambiarColorCelda1(x, element) {
     var rows = document.getElementById(element).getElementsByTagName('tbody')[0].getElementsByTagName('tr');
     for (i = 0; i < rows.length; i++) {
-        rows[i].onclick = function () {
-            alert("Columna " + x.cellIndex + "FILA " + this.rowIndex);
-            /* if (x.cellIndex === 0)
-             {
-             }
-             else {
-             */
+        rows[i].onmouseover = function () {
+
             color = x.style.backgroundColor;
             x.style.backgroundColor = 'black';
             x.style.color = 'yellow';
-            // }
+            
         };
     }
 }

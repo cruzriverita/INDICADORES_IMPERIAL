@@ -79,16 +79,30 @@ public class C_004_Indicadores_Financieros_Servlet extends HttpServlet {
             Float Cvalor1 = Float.parseFloat(mapa.get("Imperial Fashion").toString());
             Float Cvalor2 = Float.parseFloat(mapa.get("MT Textil").toString());
             Float Cvalor3 = Float.parseFloat(mapa.get("Blake").toString());
+            Float Cvalor7 = Float.parseFloat(mapa.get("Imperialtex").toString());
+            Float Cvalor8 = Float.parseFloat(mapa.get("Fabricaimp").toString());
+            Float Cvalor9 = Float.parseFloat(mapa.get("Consolidado").toString());
 
             Float Cvalor4 = Float.parseFloat(mapa.get("pif").toString());
             Float Cvalor5 = Float.parseFloat(mapa.get("pmt").toString());
             Float Cvalor6 = Float.parseFloat(mapa.get("pbl").toString());
-            Cvalor1 = Utilidades.Metodos_Globales.redondear(Cvalor1, 2);
-            Cvalor2 = Utilidades.Metodos_Globales.redondear(Cvalor2, 2);
-            Cvalor3 = Utilidades.Metodos_Globales.redondear(Cvalor3, 2);
-            Cvalor4 = Utilidades.Metodos_Globales.redondear(Cvalor4, 2);
-            Cvalor5 = Utilidades.Metodos_Globales.redondear(Cvalor5, 2);
-            Cvalor6 = Utilidades.Metodos_Globales.redondear(Cvalor6, 2);
+            Float Cvalor10 = Float.parseFloat(mapa.get("pit").toString());
+            Float Cvalor11 = Float.parseFloat(mapa.get("pfi").toString());
+            Float Cvalor12 = Float.parseFloat(mapa.get("pcn").toString());
+            
+            Cvalor1 = Utilidades.Metodos_Globales.redondear(Cvalor1, 4);
+            Cvalor2 = Utilidades.Metodos_Globales.redondear(Cvalor2, 4);
+            Cvalor3 = Utilidades.Metodos_Globales.redondear(Cvalor3, 4);
+            Cvalor4 = Utilidades.Metodos_Globales.redondear(Cvalor4, 4);
+            Cvalor5 = Utilidades.Metodos_Globales.redondear(Cvalor5, 4);
+            Cvalor6 = Utilidades.Metodos_Globales.redondear(Cvalor6, 4);
+            
+            Cvalor7 = Utilidades.Metodos_Globales.redondear(Cvalor7, 4);
+            Cvalor8 = Utilidades.Metodos_Globales.redondear(Cvalor8, 4);
+            Cvalor9 = Utilidades.Metodos_Globales.redondear(Cvalor9, 4);
+            Cvalor10 = Utilidades.Metodos_Globales.redondear(Cvalor10, 4);
+            Cvalor11 = Utilidades.Metodos_Globales.redondear(Cvalor11, 4);
+            Cvalor12 = Utilidades.Metodos_Globales.redondear(Cvalor12, 4);
 
             tipo = GetNombreIndicador(tipo);
 
@@ -104,6 +118,14 @@ public class C_004_Indicadores_Financieros_Servlet extends HttpServlet {
                 Obj.put("valor5", Cvalor5);
                 Obj.put("valor6", Cvalor6);
 
+                Obj.put("valor7", Cvalor7);
+                Obj.put("valor8", Cvalor8);
+                Obj.put("valor9", Cvalor9);
+
+                Obj.put("valor10", Cvalor10);
+                Obj.put("valor11", Cvalor11);
+                Obj.put("valor12", Cvalor12);
+                
                 ListaValores.add(Obj);
                 responseObj.put("ListaValores", ListaValores);
             } catch (JSONException ex) {

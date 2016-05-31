@@ -1,8 +1,5 @@
-/*
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
-*/
+
+
 /* 
     Created on : 1/03/2016, 03:51:48 PM
     Author     : rcruz
@@ -114,32 +111,27 @@ and open the template in the editor.
 
     width: 4.2%;
     height: 150%;
-    //border: 2px solid #0fa1e0;
-    //float:left;
-    //margin: 50px auto 10px;
-    //overflow: hidden;
-    //background-color: #0fa1e0;
     float: right; 
+    
 
 }
 
+/*Ya no se utiliza
 .DefStyle
 {
     font-family:Verdana;
-    font-size:12px;
-    border-width:1px;
+    font-size:75%;
+    //border-width:1px;
     border-color:Black;
     display:none;
     float: right;
-    padding-right: -5%;
+    margin-right:-4%;
     color: white;
     font-weight: bold;
-    padding-top: 4%
-
-}
+    margin-top: 5%;
+}*/
 
 .select{
-    //width: 15.8%;
 
     text-align: left;
     padding: 5px 8px;
@@ -210,7 +202,7 @@ option:focus{
 
 .divtabla {
  border: 5px solid black;
- width: 50%;
+ width: 60%;
 }
 
 .parrafo_tabla
@@ -218,8 +210,6 @@ option:focus{
     font-size: 15px; 
     color: white;
 }
-
-
 
 
 /*******************************************ESTILO PARA LAS TABLAS DE GOOGLE UTILIZADAS******************************************/
@@ -287,11 +277,13 @@ option:focus{
 .black-background {
     background-color: black;
     font-weight: bold;
+    
 
 }
 
 .yellow-background {
     background-color: yellow;
     font-weight: bold;
+    
 
 }

@@ -1,5 +1,4 @@
 <%-- 
-    Document   : I_001_Kilos_Producidos_Hora_Hombre
     Created on : 9/03/2016, 09:07:09 AM
     Author     : rcruz
 --%>
@@ -10,7 +9,7 @@
 
     <!---------------------------------------------CODIGO JSP---------------------------------------------->
     <%
-        String planta = request.getParameter("planta");
+        String planta = request.getParameter("empresa");
         String mes = request.getParameter("mes");
         String an = request.getParameter("anio");
         String ind = request.getParameter("indicador");
@@ -61,13 +60,15 @@
             //Setear valores por defecto para los parametros.
             $('#opciones').val("<%=v%>");
             $('#mes').val("<%=m%>");
+            $('#anio').val("<%=a%>");
             hideMes();
             GetTituloG4();
             GetSubTituloG();
+            GetEmpresa();
         });
     </script> 
     <!-----------------------------------------------------------------------------------------------------> 
-    
+
     <head>
         <!---------------------------------------------ARCHIVOS CSS-------------------------------------------> 
         <link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,300italic,700&subset=latin,cyrillic-ext,latin-ext,cyrillic' rel='stylesheet' type='text/css'>
@@ -104,7 +105,8 @@
                             <div class="divselect" id="divselectmes">
                                 <select id="mes" name="mes" onchange="DibujarChartPrincipal();
                                         GetTituloG4();
-                                        GetSubTituloG();" class="select">
+                                        GetSubTituloG();
+                                        GetEmpresa()" class="select">
                                     <option value="1">Enero</option>
                                     <option value="2">Febrero</option>
                                     <option value="3">Marzo</option>
@@ -122,11 +124,12 @@
                             <div class="divselect">
                                 <select id="anio" name="anio" onchange="DibujarChartPrincipal();
                                         GetTituloG4();
-                                        GetSubTituloG();" class="select">
+                                        GetSubTituloG();
+                                        GetEmpresa()" class="select">
 
                                     <option value="<%=Utilidades.Metodos_Globales.year_actual - 2%>"> <%=Utilidades.Metodos_Globales.year_actual - 2%> </option>
                                     <option value="<%=Utilidades.Metodos_Globales.year_actual - 1%>"> <%=Utilidades.Metodos_Globales.year_actual - 1%> </option>
-                                    <option value="<%=Utilidades.Metodos_Globales.year_actual%>" selected> <%=Utilidades.Metodos_Globales.year_actual%> </option>
+                                    <option value="<%=Utilidades.Metodos_Globales.year_actual%>"> <%=Utilidades.Metodos_Globales.year_actual%> </option>
                                     <option value="<%=Utilidades.Metodos_Globales.year_actual + 1%>"> <%=Utilidades.Metodos_Globales.year_actual + 1%> </option>
                                     <option value="<%=Utilidades.Metodos_Globales.year_actual + 2%>"> <%=Utilidades.Metodos_Globales.year_actual + 2%> </option>
                                 </select>
@@ -137,7 +140,8 @@
                                 <select id="opciones" name="opciones" onchange="DibujarChartPrincipal();
                                         hideMes();
                                         GetTituloG4();
-                                        GetSubTituloG();" class="select">
+                                        GetSubTituloG();
+                                        GetEmpresa()" class="select">
 
                                     <option value="ALL">Todas Las Empresas</option>
 
@@ -145,13 +149,16 @@
                                     <option value="2">MT TEXTIL</option> 
                                     <option value="3">BLAKE S.A.</option>  
                                     <option value="4">IMPERIALTEX</option>
+                                    <option value="5">FABRICA IMPERIAL</option>
+                                    <option value="5">CONSOLIDADO</option>
                                 </select>
                             </div>
                         </div>
                     </div>
 
-
+                    <!--Se lee el indicador de la URL en caso de que esta lo especifique-->      
                     <input type="hidden" id="indicador"  name="indicador" value="<%=vind%>"/>  
+
                 </form> 
                 <br style="line-height: 10px">
 
@@ -159,6 +166,7 @@
                     <div style="line-height: 5px">
                         <h3 id="titulo" class="titulos"></h3>
                         <h4 id="subtitulo" class="titulos"></h4>
+                        <h4 id="titulop" class="titulos"></h4>
                     </div>
                 </center>
 

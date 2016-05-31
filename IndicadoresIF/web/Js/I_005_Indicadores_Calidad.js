@@ -57,8 +57,8 @@ function DibujarChartPrincipal() {
                         var options = {
                             title: '',
                             vAxis: {title: '' + '\n\n',
-                                titleTextStyle: {color: ColorFuenteGrafica()}, textStyle: {color:ColorFuenteGrafica()}},
-                            hAxis: {titleTextStyle:{color: ColorFuenteGrafica()}, textStyle: {color: ColorFuenteGrafica()}},
+                                titleTextStyle: {color: ColorFuenteGrafica()}, textStyle: {color: ColorFuenteGrafica()}},
+                            hAxis: {titleTextStyle: {color: ColorFuenteGrafica()}, textStyle: {color: ColorFuenteGrafica()}},
                             is3D: true,
                             colors: Coloresrrhh(),
                             //Formato de anotaciones sobre la grafica si las llevara
@@ -73,7 +73,7 @@ function DibujarChartPrincipal() {
                                     //opacity: 0.8 // The transparency of the text.
                                 }
                             },
-                             backgroundColor: FondoGrafica(),
+                            backgroundColor: FondoGrafica(),
                             legend: {
                                 textStyle: {
                                     color: ColorFuenteGrafica()
@@ -148,7 +148,7 @@ function DibujarChartPrincipal() {
 
                         var options = {
                             title: '',
-                            vAxis: {title: '', titleTextStyle: {color: ColorFuenteGrafica()}, textStyle: {color: ColorFuenteGrafica()} },
+                            vAxis: {title: '', titleTextStyle: {color: ColorFuenteGrafica()}, textStyle: {color: ColorFuenteGrafica()}},
                             hAxis: {title: '*El valor "' + "Menor historico" + '" corresponde a ' + ConvertirMes(mm) + ' de ' + aa + '\n'
                                         + '*El valor "' + "Mayor historico" + '" corresponde a ' + ConvertirMes(m) + ' de ' + a
 
@@ -164,7 +164,7 @@ function DibujarChartPrincipal() {
 
                             }
                             , lineWidth: tamlinea,
-                             backgroundColor: FondoGrafica(),
+                            backgroundColor: FondoGrafica(),
                             legend: {
                                 textStyle: {
                                     color: ColorFuenteGrafica()
@@ -276,3 +276,46 @@ function hideInterno() {
         document.getElementById('divselectamb').style.display = "block";
     }
 }
+
+function GetPlantaCalidad()
+{
+    var p = document.getElementById("opciones");
+    var val = p.options[p.selectedIndex].value;
+
+    if (val === "1")
+    {
+
+        document.getElementById('titulop').innerHTML = "PLANTA RST";
+    }
+
+    else if (val === "2")
+    {
+        document.getElementById('titulop').innerHTML = "PLANTA RSM";
+    }
+
+    else if (val === "6")
+    {
+        document.getElementById('titulop').innerHTML = "PLANTA FPS";
+    }
+
+    else if (val === "3")
+    {
+        document.getElementById('titulop').innerHTML = "PLANTA RLRS";
+    }
+
+    else if (val === "4")
+    {
+        document.getElementById('titulop').innerHTML = "PLANTA DPF";
+    }
+
+    else if (val === "5")
+    {
+        document.getElementById('titulop').innerHTML = "PLANTA KNIT";
+    }
+    else
+    {
+        document.getElementById('titulop').innerHTML = "";
+    }
+
+}
+

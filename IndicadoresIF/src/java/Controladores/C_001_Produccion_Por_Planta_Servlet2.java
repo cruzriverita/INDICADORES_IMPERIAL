@@ -1,8 +1,7 @@
 /* Devuelve los datos para la segunda tabla de los indicadores de produccion, se realizo un servlet
-aparte en donde solo cambia la consulta utilizada, esto por motivos de simplicidad a la hora de 
-cargar los datos y no sobrecargar con codigo el archivo js que procesa la informacion poniendole
-mas deciciones.*/
-
+ aparte en donde solo cambia la consulta utilizada, esto por motivos de simplicidad a la hora de 
+ cargar los datos y no sobrecargar con codigo el archivo js que procesa la informacion poniendole
+ mas decision.*/
 package Controladores;
 
 import Modelo.Modelo_001_Indicadores_Produccion;

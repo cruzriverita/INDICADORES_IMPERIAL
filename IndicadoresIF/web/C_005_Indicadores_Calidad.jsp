@@ -53,7 +53,7 @@
 
             <div class="DivWithScroll">
 
-                <form method="get" action="" class="formulario">
+                <form method="get" action="C_005_Indicadores_Calidad_XLS" class="formulario">
 
                     <div style="float: left; width: 70%;">
 
@@ -107,9 +107,9 @@
                     </div>
 
                     <div class="divboton" id="divb">
-                        <input   type="image" style="height:90%;width:90%; padding-right:25px;"  
-                                 onmouseover="ShowDef();" onmouseout="HideDef();" src="Images/ddw.png">
-                        <div class="DefStyle" id="EmaliographyDef">Descargar</div>         
+                        <input   type="image" style="height:100%;width:100%;"  
+                                 src="Images/ddw.png" title="Exportar a Excel">
+                                
                     </div>
 
                 </form> 
@@ -120,7 +120,7 @@
                 </center>
                 <br>
                 <center>
-                    <div id="table">
+                    <div id="table"  class="divtabla">
                     </div>
                     <div > 
 

@@ -50,7 +50,6 @@
             $('#indicador').val("<%=vindicador%>");
             GetTituloG2();
             GetSubTituloG2();
-
         });
 
     </script> 
@@ -119,15 +118,13 @@
                         </div>
                     </div>
 
-
                     <div class="divboton" id="divb">
-                        <input type="image" style="height:90%;width:90%; padding-right:25px;"  
-                                 onmouseover="ShowDef();" onmouseout="HideDef();" src="Images/ddw.png">
-
-                        <div class="DefStyle" id="EmaliographyDef">Descargar</div>         
+                        <input type="image" style="height:100%;width:100%;"  
+                               src="Images/ddw.png" title="Exportar a Excel"> 
                     </div>
 
                 </form> 
+  
                 <br style="line-height: 10px">
                 <center>
                     <div style="line-height: 5px">

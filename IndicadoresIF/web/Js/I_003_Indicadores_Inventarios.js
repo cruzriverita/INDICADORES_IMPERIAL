@@ -61,13 +61,11 @@ function DibujarChartPrincipal() {
     cadena = cadena.split(",");
     cadena2 = cadena2.split(",");
 
-
-
     //Se arma el vector con los datos de la grafica principal de forma manual.
     primaryData =
             [
-                [ConvertirMes(cadena[0]), '',  DevolverNull(parseFloat(cadena[1])), parseFloat(cadena[2]), parseFloat(cadena[3]), parseFloat(cadena[4]), parseFloat(cadena[5])],
-                [ConvertirMes(cadena[6]), '',  DevolverNull(parseFloat(cadena[7])), parseFloat(cadena[8]), parseFloat(cadena[9]), parseFloat(cadena[10]), parseFloat(cadena[11])],
+                [ConvertirMes(cadena[0]), '', DevolverNull(parseFloat(cadena[1])), parseFloat(cadena[2]), parseFloat(cadena[3]), parseFloat(cadena[4]), parseFloat(cadena[5])],
+                [ConvertirMes(cadena[6]), '', DevolverNull(parseFloat(cadena[7])), parseFloat(cadena[8]), parseFloat(cadena[9]), parseFloat(cadena[10]), parseFloat(cadena[11])],
                 [ConvertirMes(cadena[12]), '', DevolverNull(parseFloat(cadena[13])), parseFloat(cadena[14]), parseFloat(cadena[15]), parseFloat(cadena[16]), parseFloat(cadena[17])],
                 [ConvertirMes(cadena[18]), '', DevolverNull(parseFloat(cadena[19])), parseFloat(cadena[20]), parseFloat(cadena[21]), parseFloat(cadena[22]), parseFloat(cadena[23])],
                 [ConvertirMes(cadena[24]), '', DevolverNull(parseFloat(cadena[25])), parseFloat(cadena[26]), parseFloat(cadena[27]), parseFloat(cadena[28]), parseFloat(cadena[29])],
@@ -79,6 +77,7 @@ function DibujarChartPrincipal() {
                 [ConvertirMes(cadena[60]), '', DevolverNull(parseFloat(cadena[61])), parseFloat(cadena[62]), parseFloat(cadena[63]), parseFloat(cadena[64]), parseFloat(cadena[65])],
                 [ConvertirMes(cadena[66]), '', DevolverNull(parseFloat(cadena[67])), parseFloat(cadena[68]), parseFloat(cadena[69]), parseFloat(cadena[70]), parseFloat(cadena[71])]
             ];
+
 
     //Datos necesarios para utilizar en la grafica principal.        
     var menor = parseFloat(cadena[4]);
@@ -99,13 +98,13 @@ function DibujarChartPrincipal() {
             title: '',
             //legend: 'none',
             tooltip: {isHtml: true}, // This MUST be set to true for your chart to show.
-            vAxis: {title: 'Indice del mes', titleTextStyle: {color: ColorFuenteGrafica()}, textStyle: {color: ColorFuenteGrafica()},gridlines: {count: 20}, viewWindow: {
+            vAxis: {title: 'Indice del mes', titleTextStyle: {color: ColorFuenteGrafica()}, textStyle: {color: ColorFuenteGrafica()}, gridlines: {count: 20}, viewWindow: {
                     min: (menor - 0.1),
                     max: (mayor + 0.1)
                 }},
             hAxis: {title: '*El valor "Menor historico" corresponde a ' + ConvertirMes(menormes) + ' de ' + menoranio + '\n' +
                         '*El valor "Mayor historico" corresponde a ' + ConvertirMes(mayormes) + ' de ' + mayoranio, titleTextStyle: {color: ColorFuenteGrafica()}
-            ,textStyle: {color: ColorFuenteGrafica()}},
+                , textStyle: {color: ColorFuenteGrafica()}},
             colors: ["#EAD008", "#40FF00", "#01DFD7", "#FF0000", "#000000"],
             annotations: {
                 style: 'line'
@@ -116,7 +115,7 @@ function DibujarChartPrincipal() {
 
             },
             lineWidth: tamlinea,
-                backgroundColor: FondoGrafica(),
+            backgroundColor: FondoGrafica(),
             legend: {
                 textStyle: {
                     color: ColorFuenteGrafica()
@@ -127,16 +126,16 @@ function DibujarChartPrincipal() {
     {
 
         primaryOptions = {
-            title: '', 
-            tooltip: {isHtml: true}, 
-            vAxis: {title: 'Dias de inventario', titleTextStyle: {color:  ColorFuenteGrafica()}, textStyle: {color: ColorFuenteGrafica()},
+            title: '',
+            tooltip: {isHtml: true},
+            vAxis: {title: 'Dias de inventario', titleTextStyle: {color: ColorFuenteGrafica()}, textStyle: {color: ColorFuenteGrafica()},
                 gridlines: {count: 20}, viewWindow: {
                     min: (menor - 1),
                     max: (mayor + 1)
                 }},
             hAxis: {title: '*El valor "Menor historico" corresponde a ' + ConvertirMes(menormes) + ' de ' + menoranio + '\n' +
                         '*El valor "Mayor historico" corresponde a ' + ConvertirMes(mayormes) + ' de ' + mayoranio, titleTextStyle: {color: ColorFuenteGrafica()},
-            textStyle: {color: ColorFuenteGrafica()}},
+                textStyle: {color: ColorFuenteGrafica()}},
             is3D: true,
             colors: ["#EAD008", "#FF0000", "#01DFD7", "#40FF00", "#000000"],
             annotations: {
@@ -147,7 +146,7 @@ function DibujarChartPrincipal() {
                 4: {pointShape: 'circle', pointSize: tamapunto()}
 
             }, lineWidth: tamlinea,
-                   backgroundColor: FondoGrafica(),
+            backgroundColor: FondoGrafica(),
             legend: {
                 textStyle: {
                     color: ColorFuenteGrafica()
@@ -240,16 +239,34 @@ function DibujarChartPrincipal() {
             // Si el tipo de inventario (algodon, poliester, etc) no tiene subgrafica se agrega esta opcion
             var tooltipImg2 = '<h2>' + '&nbsp&nbsp' + primaryData[i][0].toString() + '' + '</h2> <h3> &nbsp&nbsp ' + $("#anio").val() + ':  ' + primaryData[i][6].toString() + '&nbsp&nbsp&nbsp' + '</h3>';
 
-            // Add the new tooltip image to your data rows.
-            // Se agrega de acuerdo al tipo de inventario.
-            if ($('#tipo2').val() === "1" || $('#tipo2').val() === "2" || $('#tipo2').val() === "4")
-            {
-                primaryData[i][7] = tooltipImg2;
-            }
+            /*Se evalua si el valor del mes es "0", si es 0 quiere decir que no existen datos para tal mes aun y por lo tanto no se debe graficar,
+             * por lo tanto las ultimas dos columnas de la matriz de la grafica se vuelven NULL para que no dibuje el punto con valor 0 y para que
+             * no agregue tooltip a un valor inexistente.
+             */
+            if (primaryData[i][6].toString() === "0") {
 
-            else
-            {
-                primaryData[i][7] = tooltipImg;
+                primaryData[i][6] = null;
+                primaryData[i][7] = null;
+
+            }
+            else {
+
+                // Add the new tooltip image to your data rows.
+                /* Se agrega de acuerdo al tipo de inventario, si el tipo de inventario esta divido por plantas se agrega el tooltip con subgrafica,
+                 de lo contrario se agrega el tooltip solo con los datos.*/
+
+                if ($('#tipo2').val() === "1" || $('#tipo2').val() === "2" || $('#tipo2').val() === "4")
+                {
+
+                    primaryData[i][7] = tooltipImg2;
+                }
+
+                else
+                {
+
+                    primaryData[i][7] = tooltipImg;
+                }
+
             }
         });
 
@@ -270,7 +287,7 @@ function drawPrimaryChart() {
 
     data.addColumn('number', x - 1);
     data.addColumn('number', 'Mayor historico');
-    data.addColumn('number', 'Promedio '+(x-1));
+    data.addColumn('number', 'Promedio ' + (x - 1));
     data.addColumn('number', 'Menor historico');
     data.addColumn('number', x);
 

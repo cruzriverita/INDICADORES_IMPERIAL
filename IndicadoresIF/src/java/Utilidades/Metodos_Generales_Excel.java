@@ -12,6 +12,7 @@ import jxl.write.WritableFont;
 import jxl.write.WriteException;
 import jxl.format.Border;
 import jxl.format.BorderLineStyle;
+import jxl.format.VerticalAlignment;
 
 /**
  *
@@ -29,6 +30,7 @@ public class Metodos_Generales_Excel {
         WritableCellFormat cellFormat = new WritableCellFormat(cellFont);
         cellFormat.setBorder(border, borderLineStyle);
         cellFormat.setBackground(colour_background);
+        cellFormat.setAlignment(Alignment.CENTRE);
         return cellFormat;
     }
 
@@ -42,6 +44,22 @@ public class Metodos_Generales_Excel {
         WritableCellFormat cellFormat = new WritableCellFormat(cellFont);
         cellFormat.setBorder(border, borderLineStyle);
         cellFormat.setBackground(colour_background);
+        return cellFormat;
+    }
+    
+    
+        //Formato a las celdas texto. Parametros: Color, fuente y tamaño de fuente 
+    public static WritableCellFormat Formato_Cuerpo_merge(Colour colour_background, WritableFont.FontName font, int size) throws WriteException {
+        Border border = Border.ALL;
+        BorderLineStyle borderLineStyle = BorderLineStyle.THIN;
+
+        WritableFont cellFont = new WritableFont(font, size);
+
+        WritableCellFormat cellFormat = new WritableCellFormat(cellFont);
+        cellFormat.setBorder(border, borderLineStyle);
+        cellFormat.setBackground(colour_background);
+        cellFormat.setAlignment(Alignment.CENTRE);
+        cellFormat.setVerticalAlignment(VerticalAlignment.CENTRE);
         return cellFormat;
     }
 
